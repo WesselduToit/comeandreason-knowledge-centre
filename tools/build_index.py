@@ -13,7 +13,7 @@ import pathlib
 import re
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-PAGES = ["fire", "two-lenses", "dominoes", "seven-reasons", "sin-disease", "wrath", "four-judgments", "lab"]
+PAGES = ["fire", "two-lenses", "dominoes", "seven-reasons", "sin-disease", "wrath", "four-judgments", "lab", "records"]
 TITLES = {
     "fire": "The Consuming Fire",
     "two-lenses": "Two Lenses: the Biblical Keyword Switcher",
@@ -23,6 +23,7 @@ TITLES = {
     "wrath": "Wrath = Letting Go",
     "four-judgments": "The Four Judgments",
     "lab": "God's Design Laws Lab",
+    "records": "Heavenly Records: rap sheet or medical chart?",
     "seven-levels": "The Seven Levels of Moral Development",
 }
 BOOKS = (

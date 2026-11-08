@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heavenly Records — rap sheet or medical chart?</title>
+<!-- @kit.css -->
+<style>
+/* page-only styles */
+.pa{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;background:rgba(127,176,224,.14);color:var(--accent2);margin-left:6px;vertical-align:middle}
+.scard{border:1px solid var(--line);border-radius:var(--radius-s);padding:10px 12px;margin:10px 0;background:var(--card2)}
+.scard .sref{font-weight:750;color:var(--accent2);font-size:13px;letter-spacing:.04em}
+.scard blockquote.q{margin:8px 0}
+.contrast{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.contrast .cell{border:1px solid var(--line);border-radius:var(--radius-s);padding:12px 14px;font-size:14.5px;background:var(--card2);min-width:0}
+.contrast .cell.d{border-color:var(--design)}
+.contrast .cell.p{border-color:var(--imposed)}
+.contrast .cell h4{margin:0 0 8px;font-family:Georgia,serif;font-size:16px}
+body[data-lens="imposed"] .contrast.lensed .cell.d{opacity:.45}
+body[data-lens="design"] .contrast.lensed .cell.p{opacity:.45}
+.vrow{border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;margin:12px 0;background:var(--card2)}
+.vrow .vtop{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline}
+.vrow .vref{font-family:Georgia,serif;font-size:18px;font-weight:700;color:var(--accent)}
+.vrow .grp{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.readings{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.readings .lens-panel{margin:0;min-width:0}
+body[data-lens="imposed"] .readings .lens-panel.design{opacity:.45}
+body[data-lens="design"] .readings .lens-panel.imposed{opacity:.45}
+.readings .lens-panel .pa{margin-left:0;margin-top:6px}
+.harmony{font-size:13.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;margin-top:8px}
+.harmony b{color:var(--accent2)}
+.now-reading{font-size:13px;color:var(--faint);margin:6px 0 10px}
+.now-reading b{color:var(--accent)}
+.steps{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.steps button{flex:1 1 90px;font:inherit;font-size:13px;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--card2);color:var(--muted);cursor:pointer;min-width:0;overflow-wrap:anywhere}
+.steps button.on{color:#10161d;border-color:transparent;background:var(--accent);font-weight:700}
+.flip .topic{grid-column:1/-1;font-family:Georgia,serif;font-size:16px;margin:0}
+.evid{margin-top:10px}
+.poll-wrap{margin:12px 0}
+.poll-wrap .opt{display:inline-block;width:auto;border:1px solid var(--line);background:var(--card2);color:var(--muted);border-radius:20px;padding:7px 13px;cursor:pointer;font:inherit;font-size:13.5px;margin:4px 6px 4px 0}
+.poll-wrap .opt.sel{color:#10161d;font-weight:750;border-color:transparent;background:var(--accent)}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:10px}
+.wall .vcard{margin:0}
+.wall .why{font-size:12.5px;color:var(--faint);margin-top:6px}
+.bullets{margin:6px 0 6px 18px;padding:0;font-size:14.5px}
+.doc{border:1px solid var(--line);border-radius:var(--radius-s);padding:10px 12px;margin:10px 0;background:var(--card2)}
+.doc .readings{margin-top:6px}
+.psv{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.psv .n{font-family:Georgia,serif;font-size:20px;color:var(--accent);min-width:1.4em}
+@media (max-width:640px){.contrast,.readings{grid-template-columns:1fr}.steps button{flex-basis:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="lensbar"></div>
+
+  <header class="hero">
+    <div class="eyebrow">An Interactive Study · Come and Reason Knowledge Centre</div>
+    <h1>Heavenly Records: rap sheet or medical chart?</h1>
+    <p class="sub">The Bible speaks of books in heaven, of names written and blotted out, of the dead judged "as recorded in the books". Read through imposed law those books are a prosecutor's file. Read through design law they are a physician's chart. This page puts the same verses through both readings and asks which one lets every text stand.</p>
+    <p class="credit"><a href="index.html">&larr; Knowledge Centre</a> &middot; Teaching of Timothy R. Jennings, MD · <a href="https://comeandreason.com" target="_blank" rel="noopener">Come and Reason Ministries</a> · the judgment these records belong to is walked in <a href="four-judgments.html">The Four Judgments</a>; see also <a href="fire.html">The Consuming Fire</a>, <a href="wrath.html">Wrath = Letting Go</a>, <a href="two-lenses.html">Two Lenses</a>, <a href="dominoes.html">The Falling Dominoes</a>, <a href="sin-disease.html">Sin Is a Disease</a>, <a href="seven-reasons.html">Same Act, Seven Reasons</a> and <a href="seven-levels.html">The Seven Levels</a></p>
+    <div class="toc">
+      <a href="#s1">The question</a><a href="#s2">Eleven verses, two readings</a><a href="#s3">What are the records for?</a><a href="#s4">What is in the file?</a><a href="#s5">Blotting out</a><a href="#s6">Angels, Ellen White, servers</a><a href="#s7">How the cross is recorded</a><a href="#s8">Ledger or medical record?</a><a href="#s9">Seven ways to hear it</a><a href="#s10">Verse wall</a><a href="#s11">Objections</a><a href="#s12">Closing</a><a href="#sources">Glossary &amp; sources</a>
+    </div>
+  </header>
+
+  <section id="s1"><div class="card"><h2><span class="num">1</span>If love keeps no record of wrongs, what are the books?</h2><div id="intro"></div></div></section>
+  <section id="s2"><div class="card"><h2><span class="num">2</span>Eleven verses, two readings</h2><div id="verses"></div></div></section>
+  <section id="s3"><div class="card"><h2><span class="num">3</span>What are the records for?</h2><div id="purpose"></div></div></section>
+  <section id="s4"><div class="card"><h2><span class="num">4</span>What is in the file?</h2><div id="sorter"></div></div></section>
+  <section id="s5"><div class="card"><h2><span class="num">5</span>Blotting out: what the text says, and where it happens</h2><div id="blotting"></div></div></section>
+  <section id="s6"><div class="card"><h2><span class="num">6</span>Recording angels, Ellen White's books, and the cloud servers</h2><div id="angels"></div></div></section>
+  <section id="s7"><div class="card"><h2><span class="num">7</span>How the cross is recorded</h2><div id="cross"></div></div></section>
+  <section id="s8"><div class="card"><h2><span class="num">8</span>Ledger or medical record? Seven phrases, flipped</h2><div id="fjrecords"></div></div></section>
+  <section id="s9"><div class="card"><h2><span class="num">9</span>Seven ways to hear "the books were opened"</h2><div id="levels"></div></div></section>
+  <section id="s10"><div class="card"><h2><span class="num">10</span>The verse wall: the records in The Remedy</h2><div id="wall"></div></div></section>
+  <section id="s11"><div class="card"><h2><span class="num">11</span>Objections desk</h2><div id="objections"></div></div></section>
+  <section id="s12"><div class="card"><h2><span class="num">12</span>Closing: what the file is for</h2><div id="closing"></div></div></section>
+  <section id="sources"><div class="card"><h2>Glossary and sources</h2><div id="glossary"></div><h3>Sources used on this page</h3><div id="sourceList"></div></div></section>
+
+  <p class="footnote">Built as a study companion for Dr Timothy R. Jennings' teaching. Quotations are verbatim from the cited local files; The Remedy is Jennings' expanded paraphrase. Items marked page-authored are written for this page and are not quotations. Nothing leaves your browser.</p>
+</div>
+
+<!-- @data -->
+<!-- @kit.js -->
+<script>
+(function(){
+  'use strict';
+  const D = window.PAGE_DATA || {};
+  const { el, quote, sourceChip, caveat, store, nodata } = KC;
+  const PFX = 'cr-records-';
+  const stripMd = s => String(s).replace(/\*\*([^*]+)\*\*/g, '$1').replace(/(^|[\s(“"'])\*([^*\n]+)\*(?=[\s).,;:!?”"']|$)/g, '$1$2').replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g, '$1');
+  const txt = x => x == null ? '' : stripMd(typeof x === 'string' ? x : (x.text || ''));
+  const list = v => Array.isArray(v) ? v : v ? [v] : [];
+  const voiceOf = o => { const s = (o && o.speaker) || ''; return !s || /^jennings$/i.test(s) ? 'jennings' : /white/i.test(s) ? 'egw' : /cole/i.test(s) ? 'cole' : /^scripture/i.test(s) ? 'scripture' : 'egw'; };
+  const refOf = o => { if (!o) return null; const s = o.speaker || ''; if (!s || /^jennings$/i.test(s)) return o.citation || o.ref || null; const bits = [s]; if (o.citation) bits.push(o.citation); return bits.join(' · '); };
+  const J = o => o && txt(o) ? quote(txt(o), { voice: voiceOf(o), ref: refOf(o), version: o.version && !/^scripture/i.test(o.speaker || '') ? o.version : null, verify: o.verify, source: o.source }) : null;
+  const Q = (o, voice) => o && txt(o) ? quote(txt(o), { ref: o.ref || refOf(o), version: o.version, verify: o.verify, source: o.source, voice: voice || 'scripture' }) : null;
+  const R = (o, ref) => { const r = o && o.remedy !== undefined && typeof o.remedy === 'object' ? o.remedy : o; const t = txt(r); if (!t) return null; const rr = ref || (r && (r.ref || (r.book ? `${r.book.replace(/^(\d)(?=[A-Z])/, '$1 ')} ${r.chapter}${r.verses ? ':' + r.verses : r.verse ? ':' + r.verse : ''}` : null))) || (o && o.ref); return quote(t, { voice: 'remedy', ref: rr }); };
+  const P = (o, cls) => o && txt(o) ? el('p', { class: cls || 'lead' }, txt(o), o && typeof o === 'object' && o.page_authored && cls !== 'small' ? el('span', { class: 'pa' }, 'page-authored') : null) : null;
+  const C = o => { if (!o) return null; const t = typeof o === 'string' ? o : (o.caveat ? (typeof o.caveat === 'string' ? o.caveat : txt(o.caveat)) : txt(o)); return t ? caveat(stripMd(t)) : null; };
+  const sec = id => document.getElementById(id);
+  const fill = (id, fn) => { const node = sec(id); if (!node) return; try { fn(node); } catch (e) { node.append(el('p', { class: 'nodata' }, 'This section could not render: ' + e.message)); console.error(id, e); } };
+  const acc = (title, ...kids) => el('details', { class: 'acc' }, el('summary', {}, title), el('div', { class: 'body' }, ...kids.filter(Boolean)));
+  const panel = (cls, tag, body, pa) => el('div', { class: 'lens-panel ' + cls }, el('span', { class: 'tag ' + cls }, tag), el('div', {}, txt(body)), pa || (body && body.page_authored) ? el('div', {}, el('span', { class: 'pa' }, 'page-authored')) : null);
+  const LENS_NAME = { imposed: 'the court file (imposed law)', design: 'the clinic chart (design law)' };
+  /* a scripture card: the text as quoted + The Remedy (or the missing badge) */
+  const scard = (s, voice) => { if (!s) return null; const c = el('div', { class: 'scard' }, el('div', { class: 'sref' }, s.ref || ''));
+    const aq = s.as_quoted || s.traditional; list(aq).forEach(a => { if (txt(a)) c.append(Q(a, voice)); });
+    if (s.remedy && txt(s.remedy)) c.append(R(s.remedy, s.remedy.ref || s.ref)); else if (s.remedy_note || !aq) c.append(el('div', { style: 'margin:6px 0' }, KC.missingBadge(s.remedy_note)));
+    list(s.jennings).forEach(q => c.append(J(q)));
+    if (s.gloss) c.append(P(s.gloss, 'small')); if (s.note) c.append(P(s.note, 'small')); if (s.caveat) c.append(C(s.caveat)); return c; };
+
+  KC.lensBar(sec('lensbar'), { initial: 'imposed', imposed: 'Court file (imposed law)', design: 'Clinic chart (design law)' });
+
+  /* 1. the question */
+  fill('intro', n => {
+    const I = D.intro || {};
+    n.append(P(I.opening));
+    list(I.scripture).forEach(s => n.append(scard(s)));
+    list(I.tension).forEach(q => n.append(J(q)));
+    if (I.helen) { n.append(el('p', { class: 'small' }, 'A friend in Jennings’ Bible class put the question this way:'), J(I.helen)); }
+    if (I.lens_line) n.append(J(I.lens_line));
+    if (D.poll && D.poll.options) { const pw = el('div', { class: 'card sub poll-wrap' }); KC.renderPoll(pw, { key: PFX + 'poll', question: txt(D.poll.question), options: D.poll.options, thanks: 'Remembered in this browser only. You will be asked again at the end.' }); n.append(pw); }
+    if (I.question) n.append(P(I.question));
+  });
+
+  /* 2. eleven verses, two readings (redrawn on every lens switch) */
+  fill('verses', n => {
+    const vs = list(D.verses); if (!vs.length) { n.append(nodata()); return; }
+    if (D.verses_intro) n.append(P(D.verses_intro));
+    const groups = ['all', ...new Set(vs.map(v => v.group).filter(Boolean))];
+    let grp = 'all';
+    const chips = el('div', { class: 'filters row' });
+    const now = el('p', { class: 'now-reading' });
+    const box = el('div');
+    const draw = () => {
+      const lens = KC.lens();
+      now.innerHTML = ''; now.append('Reading every verse through ', el('b', {}, LENS_NAME[lens] || lens), '. The other reading stays visible but dimmed; flip the switch at the top to swap them.');
+      chips.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c.dataset.g === grp));
+      box.innerHTML = '';
+      vs.filter(v => grp === 'all' || v.group === grp).forEach(v => {
+        const row = el('div', { class: 'vrow' }, el('div', { class: 'vtop' }, el('span', { class: 'vref' }, v.ref || ''), v.group ? el('span', { class: 'grp' }, v.group) : null));
+        const aq = v.as_quoted || v.traditional; if (aq && txt(aq)) row.append(Q(aq));
+        if (v.remedy && txt(v.remedy)) row.append(R(v.remedy, v.remedy.ref || v.ref)); else row.append(el('div', { style: 'margin:6px 0' }, KC.missingBadge(v.remedy_note)));
+        const court = panel('imposed', 'Heard in the court file', v.court), clinic = panel('design', 'Heard in the clinic chart', v.clinic);
+        row.append(el('div', { class: 'readings' }, ...(lens === 'imposed' ? [court, clinic] : [clinic, court])));
+        if (v.anchor) row.append(J(v.anchor));
+        if (v.harmony) row.append(el('div', { class: 'harmony' }, el('b', {}, 'Harmony check: '), txt(v.harmony), v.harmony.page_authored ? el('span', { class: 'pa' }, 'page-authored') : null));
+        if (v.caveat) row.append(C(v.caveat));
+        box.append(row);
+      });
+    };
+    groups.forEach(g => chips.append(el('button', { class: 'chip', 'data-g': g, onclick: () => { grp = g; draw(); } }, g === 'all' ? 'All eleven' : g)));
+    n.append(chips, now, box);
+    document.addEventListener('kc:lens', draw); draw();
+    if (D.harmony_intro || D.harmony_quote) { n.append(el('h3', {}, 'The test: does one reading let every text stand?')); if (D.harmony_intro) n.append(P(D.harmony_intro)); if (D.harmony_quote) n.append(J(D.harmony_quote)); }
+  });
+
+  /* 3. what are the records for? */
+  fill('purpose', n => {
+    const pu = D.purpose; if (!pu) { n.append(nodata()); return; }
+    n.append(P(pu.intro));
+    const cs = pu.case;
+    if (cs && list(cs.steps).length) {
+      n.append(el('h3', {}, 'A case from the emergency room'));
+      if (cs.intro) n.append(P(cs.intro));
+      const steps = list(cs.steps); let cur = 0;
+      const bar = el('div', { class: 'steps' }); const out = el('div');
+      const show = i => { cur = i; bar.querySelectorAll('button').forEach((b, k) => b.classList.toggle('on', k === i)); out.innerHTML = ''; const s = steps[i]; out.append(J(s.text || s)); if (s.helen) out.append(J(s.helen)); list(s.exchange).forEach(q => out.append(J(q))); list(s.more).forEach(q => out.append(J(q))); if (i < steps.length - 1) out.append(el('button', { class: 'btn sm ghost', onclick: () => show(i + 1) }, 'Next')); };
+      steps.forEach((s, i) => bar.append(el('button', { onclick: () => show(i) }, `${i + 1} · ${txt(s.title) || 'Step ' + (i + 1)}`)));
+      n.append(bar, out); show(0);
+      if (cs.caveat) n.append(C(cs.caveat));
+    }
+    const r = pu.rom3_4;
+    if (r) { n.append(el('h3', {}, 'Who is on trial? Romans 3:4')); n.append(scard(r)); }
+    if (list(pu.evidence).length) { n.append(el('h3', {}, 'Evidence for the universe, not a memory aid for God')); list(pu.evidence).forEach(q => n.append(J(q))); }
+    const nm = pu.not_memory;
+    if (nm) { if (nm.intro) n.append(P(nm.intro)); if (nm.remedy) n.append(R(nm.remedy, 'Hebrews 4:13')); list(nm.quotes).forEach(q => n.append(J(q))); if (nm.note) n.append(P(nm.note, 'small')); }
+    const kw = pu.keywords;
+    if (kw && (kw.design || kw.imposed)) {
+      n.append(el('h3', {}, 'The same entry in Jennings’ keyword table'));
+      if (kw.intro) n.append(P(kw.intro));
+      n.append(el('div', { class: 'contrast lensed' }, el('div', { class: 'cell p' }, el('h4', {}, 'Imposed law'), J(kw.imposed)), el('div', { class: 'cell d' }, el('h4', {}, 'Design law'), J(kw.design))));
+      if (kw.caveat) n.append(C(kw.caveat));
+    }
+  });
+
+  /* 4. what is in the file? sorter */
+  fill('sorter', n => {
+    const s = D.sorter; if (!s || !list(s.items).length) { n.append(nodata()); return; }
+    n.append(P(s.intro));
+    const box = el('div'); const ev = el('div', { class: 'evid' });
+    KC.renderSortBins(box, { hint: 'Tap an item, then tap the file it belongs to as Jennings reads Scripture.', bins: s.bins || [], items: s.items.map(it => ({ label: it.label, answer: it.answer, note: txt(it.feedback), feedback: txt(it.feedback), it })),
+      onPlace: it => { ev.innerHTML = ''; const src = it.it || it; ev.append(el('h3', {}, src.label)); if (src.evidence) ev.append(J(src.evidence)); if (src.as_quoted) ev.append(Q(src.as_quoted)); if (src.remedy) ev.append(R(src.remedy)); if (src.caveat) ev.append(C(src.caveat)); },
+      onDone: () => ev.append(el('p', { class: 'lead' }, 'All placed. Items that landed in the court file are what the imposed-law reading supposes is recorded; Jennings denies they are there at all.')) });
+    n.append(box, ev);
+    if (s.note) n.append(P(s.note, 'small'));
+    if (s.caveat) n.append(C(s.caveat));
+  });
+
+  /* 5. blotting out */
+  fill('blotting', n => {
+    const b = D.blotting; if (!b) { n.append(nodata()); return; }
+    n.append(P(b.intro));
+    const L = b.labels || { a: 'What the text says', b: 'What is blotted out, and where' };
+    list(b.pairs).forEach(p => {
+      const f = el('div', { class: 'flip' });
+      f.append(el('h4', { class: 'topic' }, txt(p.topic)));
+      const a = el('div', { class: 'side said' }, el('h4', {}, L.a));
+      if (p.said && txt(p.said)) a.append(Q(p.said));
+      if (list(p.remedy).some(r => txt(r))) list(p.remedy).forEach(r => a.append(R(r))); else if (p.remedy_note) a.append(el('div', { style: 'margin:6px 0' }, KC.missingBadge(p.remedy_note)));
+      if (p.legal && txt(p.legal)) a.append(panel('imposed', 'the legal reading', p.legal));
+      if (p.legal_as_jennings_describes) a.append(J(p.legal_as_jennings_describes));
+      a.append(el('button', { class: 'btn sm ghost', onclick: () => f.classList.toggle('open') }, 'Where is it blotted out?'));
+      const bb = el('div', { class: 'side happened' }, el('h4', {}, L.b));
+      list(p.means).forEach(q => bb.append(J(q)));
+      if (p.gloss) bb.append(panel('design', 'in short', p.gloss));
+      if (p.caveat) bb.append(C(p.caveat));
+      f.append(a, bb); n.append(f);
+    });
+    const w = b.where;
+    if (w) { n.append(el('h3', {}, 'Where does sin happen?')); if (w.intro) n.append(P(w.intro)); if (w.question) n.append(J(w.question)); if (w.answer) n.append(J(w.answer)); if (w.sinfulness_not_sins) n.append(J(w.sinfulness_not_sins));
+      const cr = w.critic; if (cr) n.append(acc('"Do you believe our sins are removed from the record books?" A convention exchange', J(cr.challenge), J(cr.reply), J(cr.retort), cr.caveat ? C(cr.caveat) : null));
+      if (w.prewitt) { n.append(J(w.prewitt)); if (w.prewitt.caveat) n.append(C(w.prewitt.caveat)); } if (w.caveat) n.append(C(w.caveat)); }
+    const ps = b.psalm51;
+    if (ps && list(ps.verses).length) {
+      n.append(el('h3', {}, 'David’s own answer: Psalm 51, verse by verse'));
+      if (ps.intro) n.append(P(ps.intro));
+      const vv = list(ps.verses); const bar = el('div', { class: 'steps' }); const out = el('div');
+      const show = i => { bar.querySelectorAll('button').forEach((x, k) => x.classList.toggle('on', k === i)); out.innerHTML = ''; const v = vv[i]; out.append(el('div', { class: 'psv' }, el('span', { class: 'n' }, 'v. ' + v.n)), Q(v.as_quoted)); if (v.jennings) out.append(J(v.jennings)); else out.append(el('p', { class: 'small' }, 'Jennings gives no separate comment on this verse.')); if (i < vv.length - 1) out.append(el('button', { class: 'btn sm ghost', onclick: () => show(i + 1) }, 'Next verse')); };
+      vv.forEach((v, i) => bar.append(el('button', { onclick: () => show(i) }, 'v. ' + v.n)));
+      n.append(bar, out); show(0);
+      if (ps.remedy) n.append(acc('Psalm 51:1-10 in The Remedy', R(ps.remedy, 'Psalm 51:1-10')));
+      if (ps.cleansing_post) n.append(J(ps.cleansing_post));
+      if (ps.caveat) n.append(C(ps.caveat));
+    }
+    const m = b.memory;
+    if (m) { n.append(el('h3', {}, '"Remembers your sins no more": is the memory erased?')); if (m.intro) n.append(P(m.intro)); list(m.quotes).forEach(q => n.append(J(q))); list(m.remedy).forEach(r => n.append(R(r))); if (m.gloss) n.append(P(m.gloss, 'small')); if (m.caveat) n.append(C(m.caveat)); }
+  });
+
+  /* 6. recording angels, Ellen White, cloud servers */
+  fill('angels', n => {
+    const a = D.angels; if (!a) { n.append(nodata()); return; }
+    n.append(P(a.intro));
+    if (list(a.taught).length) { n.append(el('h3', {}, 'The angel with the golden clipboard')); list(a.taught).forEach(q => n.append(J(q))); }
+    if (list(a.reframe).length) { n.append(el('h3', {}, 'The same agencies, a different purpose')); list(a.reframe).forEach(q => n.append(J(q))); }
+    if (a.radar) n.append(acc('"A heavenly radar-jammer": how Jennings voices the penal picture', J(a.radar), a.radar.caveat ? C(a.radar.caveat) : null));
+    const e = a.egw;
+    if (e) { n.append(el('h3', {}, 'Ellen White’s "books of record", as Jennings handles them')); if (e.intro) n.append(P(e.intro)); list(e.quotes).forEach(q => n.append(J(q))); list(e.jennings).forEach(q => n.append(J(q))); if (e.caveat) n.append(C(e.caveat)); }
+    const s = a.servers;
+    if (s) { n.append(el('h3', {}, 'Jennings’ own picture: a backup of who you are')); if (s.intro) n.append(P(s.intro)); if (s.caveat) n.append(C(s.caveat)); list(s.quotes).forEach(q => n.append(J(q)));
+      list(s.drawers).forEach(d => n.append(acc(txt(d.title), ...list(d.quotes).map(J), d.egw ? J(d.egw) : null, d.caveat ? C(d.caveat) : null))); }
+  });
+
+  /* 7. how the cross is recorded */
+  fill('cross', n => {
+    const c = D.cross; if (!c) { n.append(nodata()); return; }
+    n.append(P(c.intro));
+    if (c.col2_14) n.append(scard(c.col2_14));
+    if (c.not_counting) n.append(scard(c.not_counting));
+    const d = c.doctrines;
+    if (d && list(d.items).length) {
+      n.append(el('h3', {}, 'Five doctrines, two ways: Jennings’ own questions'));
+      if (d.intro) n.append(P(d.intro));
+      list(d.items).forEach(it => n.append(el('div', { class: 'doc' }, J(it.question), el('div', { class: 'readings' }, panel('imposed', 'imposed-law reading', it.imposed), panel('design', 'design-law reading', it.design)), it.caveat ? C(it.caveat) : null)));
+      if (d.after) n.append(J(d.after));
+    }
+    const ac = c.account;
+    if (ac) { n.append(el('h3', {}, 'What the Father sees in the "account"')); if (ac.intro) n.append(P(ac.intro)); if (ac.legal_as_jennings_describes) { n.append(J(ac.legal_as_jennings_describes)); if (ac.caveat) n.append(C(ac.caveat)); } list(ac.reality).forEach(q => n.append(J(q))); if (ac.egw_robe) n.append(J(ac.egw_robe)); if (ac.egw_note) n.append(J(ac.egw_note));
+      const fr = ac.fraud; if (fr) n.append(acc('Two medical pictures of the legal model (Jennings’ analogies)', fr.intro ? P(fr.intro) : null, ...list(fr.quotes).map(J), fr.caveat ? C(fr.caveat) : null)); }
+    const ad = c.advocate;
+    if (ad) { n.append(el('h3', {}, 'The Advocate: pleading with the Father, or working with Him?')); if (ad.intro) n.append(P(ad.intro)); list(ad.remedy).forEach(r => n.append(R(r))); if (ad.jennings) list(ad.jennings).forEach(q => n.append(J(q))); if (ad.my_blood) n.append(acc('How Jennings voices the courtroom Advocate', J(ad.my_blood), ad.caveat ? C(ad.caveat) : null)); }
+  });
+
+  /* 8. ledger or medical record (reused from The Four Judgments) */
+  fill('fjrecords', n => {
+    const rc = D.fj_records; if (!rc || !list(rc.pairs).length) { n.append(nodata()); return; }
+    n.append(el('p', { class: 'lead' }, 'Reused from The Four Judgments: seven phrases people quote about the books, each read first as a legal ledger and then as a medical record. Tap a card to flip it.'));
+    const L = rc.labels || { a: 'Read as a legal ledger', b: 'Read as a medical record' };
+    list(rc.pairs).forEach(p => {
+      const f = el('div', { class: 'flip' });
+      f.append(el('h4', { class: 'topic' }, txt(p.topic)));
+      const a = el('div', { class: 'side said' }, el('h4', {}, L.a));
+      if (p.verse && (p.verse.remedy || p.verse.as_quoted)) { if (p.verse.as_quoted) a.append(Q(p.verse.as_quoted)); if (p.verse.remedy) a.append(R(p.verse.remedy, p.verse.ref)); }
+      const lg = p.ledger || {};
+      if (txt(lg)) a.append(panel('imposed', 'the legal reading', lg));
+      if (lg.as_jennings_describes) a.append(J(lg.as_jennings_describes));
+      if (lg.helen) a.append(J(lg.helen));
+      if (lg.holders) a.append(P(lg.holders, 'small'));
+      if (lg.caveat) a.append(C(lg.caveat));
+      a.append(el('button', { class: 'btn sm ghost', onclick: () => f.classList.toggle('open') }, 'Flip to the medical record'));
+      const b = el('div', { class: 'side happened' }, el('h4', {}, L.b));
+      const rec = p.record || {};
+      list(rec.quote || rec.quotes).forEach(q => b.append(J(q)));
+      if (rec.quote2) b.append(J(rec.quote2));
+      if (rec.gloss) b.append(panel('design', 'Jennings reads', rec.gloss));
+      if (p.caveat) b.append(C(p.caveat));
+      f.append(a, b); n.append(f);
+    });
+    if (rc.note) n.append(P(rc.note, 'small'));
+    n.append(el('p', { class: 'small' }, 'The judgment these books belong to: ', el('a', { href: 'four-judgments.html#s7' }, 'The Four Judgments, section 7'), '.'));
+  });
+
+  /* 9. seven ways to hear Rev 20:12 (reused from the Fire page) */
+  fill('levels', n => {
+    const L = D.levels_rev20; if (!L || !list(L.rows).length) { n.append(nodata()); return; }
+    n.append(el('p', { class: 'lead' }, 'Reused from The Consuming Fire: the same verse, heard from each of the seven levels of moral development. Levels 1–4 hear a court file; levels 5–7 hear a chart.'));
+    if (L.remedy) n.append(R({ text: L.remedy }, L.verse_ref || 'Revelation 20:12'));
+    if (L.intro) n.append(J(L.intro));
+    const step = el('div'); const out = el('div');
+    KC.renderStepper(step, L.rows, r => { out.innerHTML = ''; out.append(el('p', { class: 'lead' }, el('b', {}, 'The question this level asks: '), r.question || '—'), r.handout ? J(r.handout) : null, el('div', { class: 'lens-panel ' + (r.n <= 4 ? 'imposed' : 'design') }, el('span', { class: 'tag ' + (r.n <= 4 ? 'imposed' : 'design') }, r.mode || (r.n <= 4 ? 'courtroom' : 'diagnosis')), el('div', {}, r.hears || '—'))); }, 6);
+    n.append(step, out);
+    if (L.diagnosis) n.append(J(L.diagnosis));
+    if (L.voice_note) n.append(P(L.voice_note, 'small'));
+  });
+
+  /* 10. verse wall */
+  fill('wall', n => {
+    const verses = list(D.wall); if (!verses.length) { n.append(nodata()); return; }
+    n.append(P(D.wall_intro));
+    const cats = ['all', ...(D.wall_categories || [...new Set(verses.map(v => v.category).filter(Boolean))])];
+    let cat = 'all';
+    const chips = el('div', { class: 'filters row' });
+    const grid = el('div', { class: 'wall' });
+    const count = el('p', { class: 'small' });
+    const draw = () => {
+      grid.innerHTML = '';
+      const shown = verses.filter(v => cat === 'all' || v.category === cat);
+      shown.forEach(v => { const card = R(v.remedy || v, v.ref); card.classList.add('vcard'); if (v.why) card.append(el('div', { class: 'why' }, txt(v.why))); grid.append(card); });
+      count.textContent = `${shown.length} of ${verses.length} passages.`;
+      chips.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c.dataset.cat === cat));
+    };
+    cats.forEach(c => chips.append(el('button', { class: 'chip', 'data-cat': c, onclick: () => { cat = c; draw(); } }, c === 'all' ? 'All' : c)));
+    n.append(chips, count, grid); draw();
+  });
+
+  /* 11. objections */
+  fill('objections', n => {
+    const items = list(D.objections); if (!items.length) { n.append(nodata()); return; }
+    n.append(el('p', { class: 'lead' }, 'Each objection has a journal box: write your own answer first, then open Jennings’ reply. The strength tag is this page’s estimate of how directly the local corpus answers it.'));
+    items.forEach(o => {
+      const replies = list(o.reply);
+      const reveal = el('div', { class: 'hidden' }, o.echo ? el('p', { class: 'small' }, 'As it was actually put to Jennings:') : null, o.echo ? J(o.echo) : null, ...replies.map(J), o.retort ? J(o.retort) : null, ...list(o.remedy).map(r => R(r)), o.strength_note ? P(o.strength_note, 'small') : null, o.caveat ? C(o.caveat) : null);
+      n.append(acc(txt(o.objection), el('span', { class: 'tag ' + (o.strength || 'moderate') }, o.strength || ''), el('p', { class: 'small' }, 'How would you answer?'), KC.journal(PFX + 'obj-' + o.id, 'Your answer first…'), el('button', { class: 'btn sm', onclick: () => reveal.classList.toggle('hidden') }, 'Show Jennings’ reply'), reveal));
+    });
+  });
+
+  /* 12. closing */
+  fill('closing', n => {
+    const c = D.closing || {};
+    n.append(P(c.intro));
+    list(c.quotes).forEach(q => n.append(J(q)));
+    list(c.remedy_wall).forEach(v => n.append(R(v.remedy || v, v.ref)));
+    const first = store.get(PFX + 'poll', null);
+    if (c.poll && c.poll.options) { const box = el('div', { class: 'card sub poll-wrap' }); KC.renderPoll(box, { key: PFX + 'poll2', question: txt(c.poll.question), options: c.poll.options, thanks: 'Remembered in this browser only.' }); if (first) box.append(el('p', { class: 'small first-answer' }, 'At the start you said: ', el('b', {}, first), '.')); n.append(box); }
+    n.append(el('div', { class: 'row', style: 'margin-top:12px' }, el('a', { class: 'btn', href: 'four-judgments.html#s7' }, 'Now see the judgment these books belong to'), el('a', { class: 'btn ghost', href: 'sin-disease.html' }, 'Sin Is a Disease'), el('a', { class: 'btn ghost', href: 'index.html' }, 'Back to the Knowledge Centre')));
+  });
+
+  /* glossary and sources */
+  fill('glossary', n => {
+    const g = list(D.glossary); if (!g.length) { n.append(nodata()); return; }
+    g.forEach(t => n.append(acc(txt(t.term), P(t.meaning, 'lead'), t.caveat ? C(t.caveat) : null, t.quote ? (t.quote.remedy || t.quote.book ? R(t.quote) : J(t.quote)) : null, t.remedy ? R(t.remedy) : null)));
+  });
+  fill('sourceList', n => {
+    const seen = new Map();
+    const walk = o => { if (!o || typeof o !== 'object') return; if (Array.isArray(o)) { o.forEach(walk); return; } if (o.source && (o.source.file || o.source.url)) { const k = (o.source.file || '') + '|' + (o.source.url || ''); if (!seen.has(k)) seen.set(k, o.source); } Object.values(o).forEach(walk); };
+    walk(D);
+    if (D.reuse_note) n.append(P(D.reuse_note, 'small'));
+    const lst = el('div');
+    [...seen.values()].sort((a, b) => String(a.file || a.url).localeCompare(String(b.file || b.url))).forEach(s => { const c = sourceChip({ file: s.file, url: s.url }); if (c) lst.append(el('div', { style: 'margin:4px 0' }, c)); });
+    n.append(el('p', { class: 'small' }, `${seen.size} distinct source files.`), lst);
+  });
+})();
+</script>
+</body>
+</html>

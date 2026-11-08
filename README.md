@@ -21,6 +21,7 @@ python -m http.server 8777 --directory dist
 | Sin Is a Disease: symptom or condition? (plus the Atonement Prism) | `dist/sin-disease.html` | built from `src/pages/sin-disease.html` + `data/pages/sin-disease.json` (atonement-by-level ladder reused from seven-reasons.json) |
 | Wrath = Letting Go (the mechanism beneath Fire) | `dist/wrath.html` | built from `src/pages/wrath.html` + `data/pages/wrath.json` (reuses the Fire page's verified wrath data) |
 | The Four Judgments (who is judging whom?) | `dist/four-judgments.html` | built from `src/pages/four-judgments.html` + `data/pages/four-judgments.json` (reuses the Fire page's end-time sequence and seven-level hearing of Rev 20:12, and the Wrath page's SDA commentary quotation) |
+| Heavenly Records: rap sheet or medical chart? | `dist/records.html` | built from `src/pages/records.html` + `data/pages/records.json` (reuses the Four Judgments page's ledger-or-medical-record flip cards and the Fire page's seven-level hearing of Rev 20:12) |
 | God's Design Laws Lab | `dist/lab.html` | built from `src/pages/lab.html` + `data/pages/lab.json` |
 
 ## Build a page
@@ -81,4 +82,4 @@ tools/           build script and corpus parsers
 
 ## Next pages (from `docs/2026-11-08-knowledge-centre-proposal.md`)
 
-Sanctuary, Heavenly Records, Design Laws Lab, Parables, Two Covenants, Brain Map, Clinic self-checks, Cosmic Conflict in 13 weeks.
+Sanctuary, Design Laws Lab, Parables, Two Covenants, Brain Map, Clinic self-checks, Cosmic Conflict in 13 weeks.

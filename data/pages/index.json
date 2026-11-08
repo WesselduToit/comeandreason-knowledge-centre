@@ -860,6 +860,19 @@
     ],
     "status": "built",
     "page_authored": true
+   },
+   {
+    "slug": "records",
+    "title": "Heavenly Records: rap sheet or medical chart?",
+    "short": "Heavenly Records",
+    "pitch": "The same verses about books, names, judgment and blotting out (Daniel 7:10, Revelation 20:12, Malachi 3:16, Exodus 32:32-33, Psalm 69:28, Isaiah 43:25, Acts 3:19, Colossians 2:14, Luke 10:20, Revelation 3:5, Hebrews 8:10-12) read two ways: a prosecutor's file under imposed law, or the physician's chart that records the condition, tracks the treatment and defends God's character (Romans 3:4) under design law. A lens switch that re-voices all eleven verses, Jennings' emergency-room case, a \"what is in the file?\" sorter, blotting-out flip cards, David's Psalm 51 verse by verse, the recording angels and Ellen White's books as Jennings handles them, his cloud-server model, how the cross is recorded, a Remedy verse wall and an objections desk.",
+    "pillar": "God's character",
+    "nodes": [
+     "wrath",
+     "remedy"
+    ],
+    "status": "built",
+    "page_authored": true
    }
   ],
   "planned_intro": {
@@ -931,16 +944,6 @@
      "remedy"
     ],
     "effort": "M-L",
-    "page_authored": true
-   },
-   {
-    "title": "Heavenly Records: rap sheet or medical chart?",
-    "pillar": "The Remedy",
-    "nodes": [
-     "wrath",
-     "remedy"
-    ],
-    "effort": "S-M",
     "page_authored": true
    },
    {

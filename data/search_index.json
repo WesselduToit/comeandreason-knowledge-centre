@@ -32,6 +32,10 @@
 "title": "God's Design Laws Lab",
 "file": "lab.html"
 },
+"records": {
+"title": "Heavenly Records: rap sheet or medical chart?",
+"file": "records.html"
+},
 "seven-levels": {
 "title": "The Seven Levels of Moral Development",
 "file": "seven-levels.html"
@@ -9080,6 +9084,846 @@
 "kind": "verse",
 "title": "Romans 6:23",
 "anchor": "#s1",
+"text": ""
+},
+{
+"page": "records",
+"kind": "section",
+"title": "If love keeps no record of wrongs, what are the books?",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "records",
+"kind": "section",
+"title": "Eleven verses, two readings",
+"anchor": "#s2",
+"text": ""
+},
+{
+"page": "records",
+"kind": "section",
+"title": "What are the records for?",
+"anchor": "#s3",
+"text": ""
+},
+{
+"page": "records",
+"kind": "section",
+"title": "What is in the file?",
+"anchor": "#s4",
+"text": ""
+},
+{
+"page": "records",
+"kind": "section",
+"title": "Blotting out: what the text says, and where it happens",
+"anchor": "#s5",
+"text": ""
+},
+{
+"page": "records",
+"kind": "section",
+"title": "Recording angels, Ellen White's books, and the cloud servers",
+"anchor": "#s6",
+"text": ""
+},
+{
+"page": "records",
+"kind": "section",
+"title": "How the cross is recorded",
+"anchor": "#s7",
+"text": ""
+},
+{
+"page": "records",
+"kind": "section",
+"title": "Ledger or medical record? Seven phrases, flipped",
+"anchor": "#s8",
+"text": ""
+},
+{
+"page": "records",
+"kind": "section",
+"title": "Seven ways to hear \"the books were opened\"",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "records",
+"kind": "section",
+"title": "The verse wall: the records in The Remedy",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "section",
+"title": "Objections desk",
+"anchor": "#s11",
+"text": ""
+},
+{
+"page": "records",
+"kind": "section",
+"title": "Closing: what the file is for",
+"anchor": "#s12",
+"text": ""
+},
+{
+"page": "records",
+"kind": "section",
+"title": "Glossary and sources",
+"anchor": "#sources",
+"text": ""
+},
+{
+"page": "records",
+"kind": "term",
+"title": "Heavenly records / books of heaven",
+"anchor": "#sources",
+"text": "{'text': \"The Bible's books (Daniel 7:10, Revelation 20:12) read through design law: a record of each person's actual condition, the treatment offered and the r"
+},
+{
+"page": "records",
+"kind": "term",
+"title": "The book of life",
+"anchor": "#sources",
+"text": "{'text': 'The register of names in Revelation 3:5, 13:8, 20:15 and 21:27. On this page, a register of characters: those healed are kept in it; those who refuse "
+},
+{
+"page": "records",
+"kind": "term",
+"title": "Name = character",
+"anchor": "#sources",
+"text": "{'text': \"In Bible usage a name stands for who a person is. So 'a name written in heaven' is a character on record, and a changed name (Jacob to Israel) is a ch"
+},
+{
+"page": "records",
+"kind": "term",
+"title": "Blotting out",
+"anchor": "#sources",
+"text": "{'text': \"The Bible's word for sin being removed (Isaiah 43:25, Psalm 51, Acts 3:19). Court reading: the entry is erased from the record. Chart reading: sinfuln"
+},
+{
+"page": "records",
+"kind": "term",
+"title": "\"Remembers their sins no more\"",
+"anchor": "#sources",
+"text": "{'text': 'Hebrews 8:12 and 10:17, quoting Jeremiah. Not a memory wiped, but a reason to think about the disease that is gone once the patient is well.', 'page_a"
+},
+{
+"page": "records",
+"kind": "term",
+"title": "Medical records (the chart)",
+"anchor": "#sources",
+"text": "{'text': \"The page's working image for the design-law reading: a file that records condition, treatment and response, does not determine anything, and is opened"
+},
+{
+"page": "records",
+"kind": "term",
+"title": "Court file / rap sheet",
+"anchor": "#sources",
+"text": "{'text': \"The page's label for the imposed-law reading: the books as a record of offences kept so that the Judge can examine the account, the Advocate can plead"
+},
+{
+"page": "records",
+"kind": "term",
+"title": "Recording angels",
+"anchor": "#sources",
+"text": "{'text': \"The teaching, as Jennings reports it from his own childhood, that angels follow each person and write every sin in heaven's books. He keeps the agenci"
+},
+{
+"page": "records",
+"kind": "term",
+"title": "Daguerreotype (Ellen White's image)",
+"anchor": "#sources",
+"text": "{'text': \"An early photograph on a polished plate. Ellen White's picture of what the books of heaven hold: a likeness of character, taken as exactly as a face.\""
+},
+{
+"page": "records",
+"kind": "term",
+"title": "Individuality / cloud server (Jennings' model)",
+"anchor": "#sources",
+"text": "{'text': \"His own picture: a person's identity is backed up with Christ, like data on a server, so that death destroys the hardware but not the person, who is r"
+},
+{
+"page": "records",
+"kind": "term",
+"title": "Design law",
+"anchor": "#sources",
+"text": "{'text': \"God's laws understood as the protocols reality runs on, like gravity or health: breaking them damages the one who breaks them, with no sentence needed"
+},
+{
+"page": "records",
+"kind": "term",
+"title": "Imposed law",
+"anchor": "#sources",
+"text": "{'text': \"God's laws understood as rules like human laws, requiring a judge, a record and an inflicted penalty. Under this lens the books are a court file.\", 'p"
+},
+{
+"page": "records",
+"kind": "term",
+"title": "Investigative (pre-advent) judgment",
+"anchor": "#sources",
+"text": "{'text': 'Seventh-day Adventist teaching that since 1844 a judgment from the books has been under way in heaven before Christ returns. Traditionally: the record"
+},
+{
+"page": "records",
+"kind": "term",
+"title": "Romans 3:4, \"when you are judged\"",
+"anchor": "#sources",
+"text": "{'text': \"Paul's line that God will be proved right and will prevail when He is judged. On this page, the verse that says who is on trial when the books are ope"
+},
+{
+"page": "records",
+"kind": "term",
+"title": "The cleansing of the sanctuary",
+"anchor": "#sources",
+"text": "{'text': \"Daniel 8:14, read by Adventists as the work begun in 1844. Traditionally the removal of recorded sins from the books in the heavenly sanctuary; for Je"
+},
+{
+"page": "records",
+"kind": "term",
+"title": "Pathology report (Colossians 2:14 in The Remedy)",
+"anchor": "#sources",
+"text": "{'text': \"The Remedy's rendering of the 'written code' nailed to the cross: not a debt cancelled but a diagnosis of death nullified, because the patient is bein"
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "1 Corinthians 13:4-7",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Revelation 20:12",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Daniel 7:10",
+"anchor": "#s2",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Revelation 20:12",
+"anchor": "#s2",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Malachi 3:16",
+"anchor": "#s2",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Exodus 32:32-33",
+"anchor": "#s2",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Psalm 69:28",
+"anchor": "#s2",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Isaiah 43:25",
+"anchor": "#s2",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Acts 3:19",
+"anchor": "#s2",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Colossians 2:14",
+"anchor": "#s2",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Luke 10:20",
+"anchor": "#s2",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Revelation 3:5",
+"anchor": "#s2",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Hebrews 8:10-12",
+"anchor": "#s2",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "The crash",
+"anchor": "#s3",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "The refusal",
+"anchor": "#s3",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "The pleading",
+"anchor": "#s3",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "Everything short of a transfusion",
+"anchor": "#s3",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "The lawsuit",
+"anchor": "#s3",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "What comes into evidence?",
+"anchor": "#s3",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Romans 3:4",
+"anchor": "#s3",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "Court file: evidence against me",
+"anchor": "#s4",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "Clinic chart: my condition, the treatment, my response",
+"anchor": "#s4",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "A list of every sin I have committed",
+"anchor": "#s4",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "The sins I forgot to confess, still on the books",
+"anchor": "#s4",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "A pardon stamped against each confessed sin",
+"anchor": "#s4",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "Jesus' payment credited to my account",
+"anchor": "#s4",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "My character, photographed as minutely as a face",
+"anchor": "#s4",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "My 'name'",
+"anchor": "#s4",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "The treatments offered and my responses",
+"anchor": "#s4",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "How long God and his agencies pleaded with me",
+"anchor": "#s4",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "What I chose to encode, value, internalise and become",
+"anchor": "#s4",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "The diagnosis: healed or terminal",
+"anchor": "#s4",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "The history of my sin-sickness, not erased",
+"anchor": "#s4",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "The moment I opened my heart and the record registered the change",
+"anchor": "#s4",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "Body, soul and spirit: the computer analogy",
+"anchor": "#s6",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "The cloud servers",
+"anchor": "#s6",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "The cleansing of the records",
+"anchor": "#s6",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "Why 1844?",
+"anchor": "#s6",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Colossians 2:14",
+"anchor": "#s7",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "2 Corinthians 5:17-19",
+"anchor": "#s7",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Psalm 130:3-4",
+"anchor": "#s12",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Revelation 3:5",
+"anchor": "#s12",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Hebrews 10:16-17",
+"anchor": "#s12",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Revelation 20:12",
+"anchor": "#s8",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Revelation 21:27",
+"anchor": "#s8",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Hebrews 8:10-12",
+"anchor": "#s8",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Romans 2:5-6",
+"anchor": "#s8",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "1 Corinthians 13:4-7",
+"anchor": "#s8",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Revelation 3:5",
+"anchor": "#s8",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Hebrews 4:12-13",
+"anchor": "#s8",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Revelation 20:12",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "Reward and punishment",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "Marketplace exchange",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "Social conformity",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "Law and order",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "Love for others",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "Principle based living",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "records",
+"kind": "topic",
+"title": "Understanding Friend of God",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Psalm 130:3-4",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Psalm 32:1-2",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Psalm 51:1-2",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Psalm 51:9",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Psalm 103:12",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Psalm 56:8",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Psalm 139:16",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Psalm 69:28",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Luke 10:20",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Luke 7:47",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Luke 12:8-9",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Acts 3:19",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Romans 3:4",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Romans 2:15-16",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Romans 8:33-34",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "1 Corinthians 13:4-7",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "1 Corinthians 4:5",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "2 Corinthians 5:17-19",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "2 Corinthians 5:10",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Colossians 2:14",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Philippians 4:3",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Hebrews 4:13",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Hebrews 8:10-12",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Hebrews 10:16-17",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "1 John 1:9",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "1 John 2:1-2",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Matthew 12:36-37",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Revelation 3:5",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Revelation 12:10-11",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Revelation 13:8",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Revelation 20:12-15",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Revelation 21:27",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "records",
+"kind": "verse",
+"title": "Revelation 22:11",
+"anchor": "#s10",
 "text": ""
 },
 {
