@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Four Judgments — who is judging whom?</title>
+<!-- @kit.css -->
+<style>
+/* page-only styles */
+.station-head{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline;margin:4px 0 10px}
+.station-head .era{color:var(--muted);font-size:14px}
+.station-head .refs{color:var(--faint);font-size:12.5px}
+.answer{border-left:3px solid var(--accent);padding:8px 12px;margin:10px 0;background:rgba(224,177,94,.07);border-radius:0 var(--radius-s) var(--radius-s) 0;font-size:15.5px}
+.answer .lbl{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:2px}
+.voicing{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.voicing .cell{border:1px solid var(--line);border-radius:var(--radius-s);padding:10px 12px;font-size:14.5px;background:var(--card2)}
+.voicing .cell.imposed{border-color:var(--imposed)}
+.voicing .cell.design{border-color:var(--design)}
+.voicing .cell .tag{margin-bottom:6px}
+body[data-lens="imposed"] .voicing .cell.design{opacity:.45}
+body[data-lens="design"] .voicing .cell.imposed{opacity:.45}
+.vtable{width:100%;table-layout:fixed;border-collapse:collapse;font-size:14px;margin:10px 0}
+.vtable th,.vtable td{overflow-wrap:anywhere;word-break:break-word;vertical-align:top;padding:8px;border-bottom:1px solid var(--line)}
+.vtable th{text-align:left;color:var(--accent);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.vtable td.n{width:2.2em;color:var(--faint)}
+.vtable td.st{width:30%;font-weight:650}
+.scard{border:1px solid var(--line);border-radius:var(--radius-s);padding:10px 12px;margin:10px 0;background:var(--card2)}
+.scard .sref{font-weight:750;color:var(--accent2);font-size:13px;letter-spacing:.04em}
+.scard blockquote.q{margin:8px 0}
+.contrast{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.contrast .cell{border:1px solid var(--line);border-radius:var(--radius-s);padding:12px 14px;font-size:14.5px;background:var(--card2)}
+.contrast .cell.d{border-color:var(--design)}
+.contrast .cell.p{border-color:var(--imposed)}
+.contrast .cell h4{margin:0 0 8px;font-family:Georgia,serif;font-size:16px}
+.bullets{margin:6px 0 6px 18px;padding:0;font-size:14.5px}
+.bullets li{margin:3px 0}
+.flip .topic{grid-column:1/-1;font-family:Georgia,serif;font-size:16px;margin:0}
+.pager{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.pa{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;background:rgba(127,176,224,.14);color:var(--accent2);margin-left:6px;vertical-align:middle}
+.evid{margin-top:10px}
+.poll-wrap{margin:12px 0}
+.poll-wrap .opt{display:inline-block;border:1px solid var(--line);background:var(--card2);color:var(--muted);border-radius:20px;padding:7px 13px;cursor:pointer;font:inherit;font-size:13.5px;margin:4px 6px 4px 0}
+.poll-wrap .opt.sel{color:#10161d;font-weight:750;border-color:transparent;background:var(--accent)}
+.steptable .acc summary b{color:var(--accent)}
+@media (max-width:640px){.voicing,.contrast{grid-template-columns:1fr}.vtable{font-size:13px}.vtable td.st{width:38%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="lensbar"></div>
+
+  <header class="hero">
+    <div class="eyebrow">An Interactive Study · Come and Reason Knowledge Centre</div>
+    <h1>The Four Judgments</h1>
+    <p class="sub">From Eden to the Great White Throne the Bible speaks of "judgment" again and again, and almost never means a courtroom. This page walks the four events Dr Jennings finds in Scripture and asks the same question at each: who is judging whom?</p>
+    <p class="credit"><a href="index.html">&larr; Knowledge Centre</a> &middot; Teaching of Timothy R. Jennings, MD · <a href="https://comeandreason.com" target="_blank" rel="noopener">Come and Reason Ministries</a> · the end-time sequence comes from <a href="fire.html#s9">The Consuming Fire</a>; see also <a href="wrath.html">Wrath = Letting Go</a>, <a href="two-lenses.html">Two Lenses</a>, <a href="dominoes.html">The Falling Dominoes</a>, <a href="sin-disease.html">Sin Is a Disease</a>, <a href="seven-reasons.html">Same Act, Seven Reasons</a> and <a href="seven-levels.html">The Seven Levels</a></p>
+    <div class="toc">
+      <a href="#s1">The timeline</a><a href="#s2">1 · Our judgment of God</a><a href="#s3">2 · God's diagnosis</a><a href="#s4">Daniel 7</a><a href="#s5">3 · The saints review</a><a href="#s6">4 · The Great White Throne</a><a href="#s7">Ledger or medical record?</a><a href="#s8">Seven ways to hear Rev 20:12</a><a href="#s9">End-time sequence</a><a href="#s10">Sort lab</a><a href="#s11">Verse explorer</a><a href="#s12">Objections</a><a href="#s13">Closing</a><a href="#sources">Glossary &amp; sources</a>
+    </div>
+  </header>
+
+  <section id="s1"><div class="card"><h2><span class="num">1</span>Four judgments, one question</h2><div id="intro"></div></div></section>
+  <section id="s2"><div class="card"><h2><span class="num">2</span>Station 1: our judgment of God</h2><div id="st1"></div></div></section>
+  <section id="s3"><div class="card"><h2><span class="num">3</span>Station 2: God's therapeutic judgment</h2><div id="st2"></div><div id="ij"></div></div></section>
+  <section id="s4"><div class="card"><h2><span class="num">4</span>Daniel 7: royal court or tribunal?</h2><div id="dan7"></div></div></section>
+  <section id="s5"><div class="card"><h2><span class="num">5</span>Station 3: the saints review the records</h2><div id="st3"></div></div></section>
+  <section id="s6"><div class="card"><h2><span class="num">6</span>Station 4: the Great White Throne</h2><div id="st4"></div></div></section>
+  <section id="s7"><div class="card"><h2><span class="num">7</span>Are the books a legal ledger or a medical record?</h2><div id="records"></div></div></section>
+  <section id="s8"><div class="card"><h2><span class="num">8</span>Seven ways to hear "the books were opened"</h2><div id="levels"></div></div></section>
+  <section id="s9"><div class="card"><h2><span class="num">9</span>Where the judgments fall in the end-time sequence</h2><div id="endtime"></div></div></section>
+  <section id="s10"><div class="card"><h2><span class="num">10</span>Sort lab: which judgment is this text about?</h2><div id="sortlab"></div></div></section>
+  <section id="s11"><div class="card"><h2><span class="num">11</span>Verse explorer: every judgment text in The Remedy</h2><div id="explorer"></div></div></section>
+  <section id="s12"><div class="card"><h2><span class="num">12</span>Objections desk</h2><div id="objections"></div></div></section>
+  <section id="s13"><div class="card"><h2><span class="num">13</span>Closing: the hour of his judgment</h2><div id="closing"></div></div></section>
+  <section id="sources"><div class="card"><h2>Glossary and sources</h2><div id="glossary"></div><h3>Sources used on this page</h3><div id="sourceList"></div></div></section>
+
+  <p class="footnote">Built as a study companion for Dr Timothy R. Jennings' teaching. Quotations are verbatim from the cited local files; The Remedy is Jennings' expanded paraphrase. Items marked page-authored are written for this page and are not quotations. Nothing leaves your browser.</p>
+</div>
+
+<!-- @data -->
+<!-- @kit.js -->
+<script>
+(function(){
+  'use strict';
+  const D = window.PAGE_DATA || {};
+  const { el, quote, sourceChip, caveat, store, nodata } = KC;
+  const PFX = 'cr-four-judgments-';
+  const stripMd = s => String(s).replace(/\*\*([^*]+)\*\*/g, '$1').replace(/(^|[\s(“"'])\*([^*\n]+)\*(?=[\s).,;:!?”"']|$)/g, '$1$2').replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g, '$1');
+  const txt = x => x == null ? '' : stripMd(typeof x === 'string' ? x : (x.text || ''));
+  const list = v => Array.isArray(v) ? v : v ? [v] : [];
+  const voiceOf = o => { const s = (o && o.speaker) || ''; return !s || /^jennings$/i.test(s) ? 'jennings' : /white/i.test(s) ? 'egw' : /cole/i.test(s) ? 'cole' : /^scripture/i.test(s) ? 'scripture' : 'egw'; };
+  const refOf = o => { if (!o) return null; const s = o.speaker || ''; if (!s || /^jennings$/i.test(s)) return o.citation || o.ref || null; const bits = [s]; if (o.citation) bits.push(o.citation); return bits.join(' · '); };
+  const J = o => o && txt(o) ? quote(txt(o), { voice: voiceOf(o), ref: refOf(o), version: o.version && !/^scripture/i.test(o.speaker || '') ? o.version : null, verify: o.verify, source: o.source }) : null;
+  const Q = (o, voice) => o && txt(o) ? quote(txt(o), { ref: o.ref || refOf(o), version: o.version, verify: o.verify, source: o.source, voice: voice || 'scripture' }) : null;
+  const R = (o, ref) => { const r = o && o.remedy !== undefined && typeof o.remedy === 'object' ? o.remedy : o; const t = txt(r); if (!t) return null; const rr = ref || (r && (r.ref || (r.book ? `${r.book.replace(/^(\d)(?=[A-Z])/, '$1 ')} ${r.chapter}${r.verses ? ':' + r.verses : r.verse ? ':' + r.verse : ''}` : null))) || (o && o.ref); return quote(t, { voice: 'remedy', ref: rr }); };
+  const P = (o, cls) => o && txt(o) ? el('p', { class: cls || 'lead' }, txt(o), o && typeof o === 'object' && o.page_authored && cls !== 'small' ? el('span', { class: 'pa' }, 'page-authored') : null) : null;
+  const C = o => { if (!o) return null; const t = typeof o === 'string' ? o : (o.caveat ? (typeof o.caveat === 'string' ? o.caveat : txt(o.caveat)) : txt(o)); return t ? caveat(stripMd(t)) : null; };
+  const sec = id => document.getElementById(id);
+  const fill = (id, fn) => { const node = sec(id); if (!node) return; try { fn(node); } catch (e) { node.append(el('p', { class: 'nodata' }, 'This section could not render: ' + e.message)); console.error(id, e); } };
+  const acc = (title, ...kids) => el('details', { class: 'acc' }, el('summary', {}, title), el('div', { class: 'body' }, ...kids.filter(Boolean)));
+  const stations = [...(D.stations_12 || []), ...(D.stations_34 || [])].sort((a, b) => (a.n || 0) - (b.n || 0));
+  const SEC = { 1: 's2', 2: 's3', 3: 's5', 4: 's6' };
+
+  KC.lensBar(sec('lensbar'), { initial: 'imposed', imposed: 'Courtroom (imposed law)', design: 'Clinic (design law)' });
+
+  /* the two voicings of one station */
+  const voicing = st => { const l = st.lens || {}; if (!l.imposed && !l.design) return null;
+    return el('div', { class: 'voicing' },
+      el('div', { class: 'cell imposed' }, el('span', { class: 'tag imposed' }, 'Courtroom verdict'), el('div', {}, txt(l.imposed)), l.imposed && l.imposed.page_authored ? el('span', { class: 'pa' }, 'page-authored') : null),
+      el('div', { class: 'cell design' }, el('span', { class: 'tag design' }, 'Clinical diagnosis'), el('div', {}, txt(l.design)), l.design && l.design.page_authored ? el('span', { class: 'pa' }, 'page-authored') : null)); };
+
+  /* a scripture card: the text as Jennings quotes it + The Remedy (or the missing badge) */
+  const scard = s => { if (!s) return null; const c = el('div', { class: 'scard' }, el('div', { class: 'sref' }, s.ref || ''));
+    const aq = s.as_quoted || s.traditional; if (aq && txt(aq)) c.append(Q(aq));
+    if (s.remedy && txt(s.remedy)) c.append(R(s.remedy, s.remedy.ref || s.ref)); else if (s.remedy_note || !aq) c.append(el('div', { style: 'margin:6px 0' }, KC.missingBadge(s.remedy_note)));
+    if (s.note) c.append(P(s.note, 'small')); if (s.caveat) c.append(C(s.caveat)); return c; };
+
+  /* full station detail */
+  const stationDetail = (n, st, extra) => {
+    const box = el('div');
+    if (!st) { box.append(nodata('Station ' + n + ' has no data yet.')); return box; }
+    box.append(el('div', { class: 'station-head' }, st.era ? el('span', { class: 'era' }, txt(st.era)) : null, st.ref ? el('span', { class: 'refs' }, st.ref) : null));
+    if (st.question || st.answer) box.append(el('div', { class: 'answer' }, el('span', { class: 'lbl' }, txt(st.question) || 'Who is judging whom?'), txt(st.answer), st.answer && st.answer.page_authored ? el('span', { class: 'pa' }, 'page-authored') : null));
+    const v = voicing(st); if (v) box.append(v, el('p', { class: 'small' }, 'The lens switch at the top of the page brightens the voicing you are reading through; both are page-authored re-voicings, not quotations.'));
+    if (st.summary) box.append(J(st.summary));
+    list(st.quotes).forEach(q => box.append(J(q)));
+    if (st.magazine) box.append(acc('The same point in the 3 Angels magazine', J(st.magazine)));
+    if (extra) extra(box, st);
+    if (list(st.scripture).length) { box.append(el('h3', {}, 'The texts')); list(st.scripture).forEach(s => box.append(scard(s))); }
+    if (st.reflection) { const rf = st.reflection; const prompt = txt(rf) || (rf && rf.prompt) || ''; box.append(el('h3', {}, n === 1 ? 'Your judgment of God' : 'Reflect'), P({ text: prompt, page_authored: true }), KC.journal(PFX + 'reflect-' + n, 'Write it down before you read on…')); }
+    if (st.flood_caveat) box.append(C(st.flood_caveat));
+    if (st.caveat) box.append(C(st.caveat));
+    return box;
+  };
+
+  /* 1. intro, poll, timeline */
+  fill('intro', n => {
+    const I = D.intro || {};
+    n.append(P(I.opening));
+    if (I.courtroom) n.append(J(I.courtroom));
+    if (D.poll && D.poll.options) { const pw = el('div', { class: 'card sub poll-wrap' }); KC.renderPoll(pw, { key: PFX + 'poll', question: txt(D.poll.question), options: D.poll.options, thanks: 'Remembered in this browser only. You will be asked again at the end.' }); n.append(pw); }
+    [I.range, I.law_question].forEach(q => { if (q) n.append(J(q)); });
+    if (!stations.length) { n.append(nodata()); return; }
+    n.append(el('h3', {}, 'The four stations'), el('p', { class: 'small' }, 'Answer the question at each station for yourself, then reveal.'));
+    const tl = el('div');
+    KC.renderTimeline(tl, stations.map(st => ({ title: txt(st.title), ref: txt(st.era), st })), {
+      numbered: true, ask: ['Who is judging whom?'], revealLabel: 'Reveal',
+      body: it => it.st.ref ? el('div', { class: 'small' }, it.st.ref) : null,
+      reveal: it => el('div', {}, el('div', { class: 'answer' }, el('span', { class: 'lbl' }, 'Answer'), txt(it.st.answer)), it.st.summary ? J(it.st.summary) : null, voicing(it.st), el('a', { class: 'btn sm ghost', href: '#' + SEC[it.st.n] }, 'Go to station ' + it.st.n)),
+    });
+    n.append(tl);
+    /* lens table: re-voiced live */
+    const tbl = el('div');
+    const draw = () => { const lens = KC.lens(); tbl.innerHTML = ''; const t = el('table', { class: 'vtable' }, el('thead', {}, el('tr', {}, el('th', {}, ''), el('th', {}, 'Station'), el('th', {}, lens === 'imposed' ? 'Heard as a courtroom verdict' : 'Heard as a clinical diagnosis'))));
+      const tb = el('tbody'); stations.forEach(st => tb.append(el('tr', {}, el('td', { class: 'n' }, String(st.n)), el('td', { class: 'st' }, txt(st.title)), el('td', {}, txt((st.lens || {})[lens]))))); t.append(tb); tbl.append(t, el('p', { class: 'small' }, 'Flip the switch at the top to re-voice all four rows. Page-authored re-voicings.')); };
+    document.addEventListener('kc:lens', draw); draw();
+    n.append(el('h3', {}, 'One switch, four re-voicings'), tbl);
+    if (list(I.language_why).length) { n.append(el('h3', {}, 'Then why does the Bible keep saying "judgment"?')); list(I.language_why).forEach(q => n.append(J(q))); }
+    if (I.reality_judge) n.append(J(I.reality_judge));
+  });
+
+  /* 2-6. station details */
+  fill('st1', n => n.append(stationDetail(1, stations.find(s => s.n === 1))));
+  fill('st2', n => n.append(stationDetail(2, stations.find(s => s.n === 2))));
+  fill('st3', n => n.append(stationDetail(3, stations.find(s => s.n === 3), (box, st) => {
+    const ss = st.safe_to_save; if (!ss) return;
+    box.append(el('h3', {}, '"Safe to save"?'));
+    if (ss.intro) box.append(P(ss.intro));
+    if (ss.claim) box.append(J(ss.claim));
+    if (ss.claim_note) box.append(P(ss.claim_note, 'small'));
+    list(ss.verdict).forEach(q => box.append(J(q)));
+    if (ss.caveat) box.append(C(ss.caveat));
+  })));
+  fill('st4', n => n.append(stationDetail(4, stations.find(s => s.n === 4), (box, st) => {
+    const ht = st.hard_texts;
+    if (ht) { box.append(el('h3', {}, 'The courtroom-sounding texts, and how the same post reads them')); if (ht.intro) box.append(P(ht.intro)); list(ht.texts).forEach(t => box.append(Q(t))); list(ht.jennings).forEach(q => box.append(J(q))); if (ht.caveat) box.append(C(ht.caveat)); }
+    const ex = st.exclusion; if (!ex) return;
+    box.append(el('h3', {}, 'Why raise the wicked, and why leave the gates open?'));
+    if (ex.intro) box.append(P(ex.intro));
+    list(ex.quotes).forEach(q => box.append(J(q)));
+    if (ex.remedy) box.append(R(ex.remedy)); if (ex.remedy_note) box.append(P(ex.remedy_note, 'small'));
+    if (ex.egw) box.append(acc('Ellen White on the "verdict" (as Jennings quotes her)', J(ex.egw)));
+    if (ex.jennings_question) box.append(J(ex.jennings_question));
+    if (ex.caveat) box.append(C(ex.caveat));
+  })));
+
+  /* 3b. the investigative judgment reframed */
+  fill('ij', n => {
+    const I = D.ij; if (!I) return;
+    n.append(el('h3', {}, 'The "investigative judgment", re-read as diagnosis'));
+    n.append(P(I.intro)); if (I.caveat) n.append(C(I.caveat));
+    if (I.legal_view_as_jennings_describes) { n.append(J(I.legal_view_as_jennings_describes)); if (I.legal_view_as_jennings_describes.caveat) n.append(C(I.legal_view_as_jennings_describes.caveat)); }
+    if (I.texts_same_event) n.append(J(I.texts_same_event));
+    if (I.timing_only) n.append(J(I.timing_only));
+    if (I.malachi) n.append(I.malachi.as_quoted ? scard(I.malachi) : Q(I.malachi));
+    list(I.spirit_temple).forEach(q => n.append(J(q)));
+    if (I.thess2) n.append(scard(I.thess2));
+    list(I.levites).forEach(q => n.append(J(q)));
+    if (I.new_covenant) { n.append(R(I.new_covenant.remedy, I.new_covenant.ref)); if (I.new_covenant.why) n.append(P(I.new_covenant.why, 'small')); }
+    if (I.how) n.append(J(I.how));
+    if (I.diagnosis) { n.append(J(I.diagnosis)); if (I.diagnosis.caveat) n.append(C(I.diagnosis.caveat)); }
+    list(I.not_for_angels).forEach(q => n.append(J(q)));
+    if (I.not_for_angels_note) n.append(P(I.not_for_angels_note, 'small'));
+    const p = I.pamphlet;
+    if (p) n.append(acc('What the pamphlet adds: ' + (txt(p.title) || 'Heavenly Sanctuary and Investigative Judgment for the Modern World'), ...list(p.intro).map(P), ...list(p.records_are).map(J), p.egw_character_recorded ? J(p.egw_character_recorded) : null, ...list(p.cleansing).map(J), p.egw_same_event ? J(p.egw_same_event) : null, ...list(p.why_1844).map(J), p.two_elements ? J(p.two_elements) : null, p.caveat ? C(p.caveat) : null));
+  });
+
+  /* 4. Daniel 7 */
+  fill('dan7', n => {
+    const d = D.daniel7; if (!d) { n.append(nodata()); return; }
+    n.append(P(d.intro));
+    if (d.passage) n.append(scard(d.passage));
+    const rd = d.readings || {};
+    if (rd.imperial || rd.design) {
+      const cell = (r, cls, fallback) => { const c = el('div', { class: 'cell ' + cls }, el('h4', {}, txt(r.label) || fallback)); if (r.summary) c.append(P(r.summary, 'lead')); if (r.as_jennings_describes) c.append(J(r.as_jennings_describes)); if (r.holders) c.append(P(r.holders, 'small')); list(r.quotes).forEach(q => c.append(J(q))); if (r.caveat) c.append(C(r.caveat)); return c; };
+      n.append(el('div', { class: 'contrast' }, cell(rd.imperial || {}, 'p', 'Imperial-law reading'), cell(rd.design || {}, 'd', 'Design-law reading')));
+    }
+    const r5 = d.rev5_parallels;
+    if (r5) { n.append(el('h3', {}, 'The same scene in Revelation 5')); if (r5.intro) n.append(J(r5.intro)); if (list(r5.items).length) { const ul = el('ul', { class: 'bullets' }); list(r5.items).forEach(s => ul.append(el('li', {}, txt(s)))); n.append(ul); if (r5.source) n.append(el('div', { class: 'small' }, (r5.items_speaker ? 'As ' + r5.items_speaker + ' lists them · ' : ''), sourceChip(r5.source))); } if (r5.remedy) n.append(acc('Revelation 5 in The Remedy', R(r5.remedy, 'Revelation 5'), r5.remedy_note_page ? P(r5.remedy_note_page, 'small') : null)); list(r5.quotes).forEach(q => n.append(J(q))); }
+    const v22 = d.dan7_22;
+    if (v22) { n.append(el('h3', {}, 'Daniel 7:22: "pronounced judgment in favor of" or "judgment was given to"?')); if (v22.intro) n.append(P(v22.intro)); n.append(el('div', { class: 'contrast' }, el('div', { class: 'cell p' }, el('h4', {}, 'NIV84'), Q(v22.niv)), el('div', { class: 'cell d' }, el('h4', {}, 'KJV'), Q(v22.kjv)))); list(v22.jennings).forEach(q => n.append(J(q))); if (v22.scripture_war) n.append(scard(v22.scripture_war)); if (v22.caveat) n.append(C(v22.caveat)); }
+    const dy = d.diyn;
+    if (dy) n.append(el('h3', {}, 'The word "court" (diyn): a reader pushes back'), dy.intro ? P(dy.intro) : null, acc('Read the exchange', J(dy.class_as_quoted_by_listener), J(dy.objection), J(dy.concession), J(dy.wordbook), J(dy.jennings_on_wordbook), ...list(dy.more).map(J)), dy.caveat ? C(dy.caveat) : null);
+    const h = d.hour;
+    if (h) { n.append(el('h3', {}, '"The hour of his judgment has come"')); if (h.intro) n.append(P(h.intro)); if (h.as_quoted) n.append(Q(h.as_quoted)); if (h.remedy) n.append(R(h.remedy, h.remedy.ref || 'Revelation 14:6-7')); list(h.quotes).forEach(q => n.append(J(q))); if (h.magazine || h.magazine_2) n.append(acc('In the 3 Angels magazine', J(h.magazine), J(h.magazine_2))); }
+  });
+
+  /* 7. ledger or medical record */
+  fill('records', n => {
+    const rc = D.records; if (!rc || !list(rc.pairs).length) { n.append(nodata()); return; }
+    n.append(P(rc.intro));
+    const L = rc.labels || { a: 'Read as a legal ledger', b: 'Read as a medical record' };
+    list(rc.pairs).forEach(p => {
+      const f = el('div', { class: 'flip' });
+      f.append(el('h4', { class: 'topic' }, txt(p.topic)));
+      const a = el('div', { class: 'side said' }, el('h4', {}, L.a));
+      if (p.verse && (p.verse.remedy || p.verse.as_quoted)) { if (p.verse.as_quoted) a.append(Q(p.verse.as_quoted)); if (p.verse.remedy) a.append(R(p.verse.remedy, p.verse.ref)); }
+      const lg = p.ledger || {};
+      if (txt(lg)) a.append(el('div', { class: 'lens-panel imposed' }, el('span', { class: 'tag imposed' }, 'the legal reading'), txt(lg), lg.page_authored ? el('span', { class: 'pa' }, 'page-authored') : null));
+      if (lg.as_jennings_describes) a.append(J(lg.as_jennings_describes));
+      if (lg.holders) a.append(P(lg.holders, 'small'));
+      a.append(el('button', { class: 'btn sm ghost', onclick: () => f.classList.toggle('open') }, 'Flip to the medical record'));
+      const b = el('div', { class: 'side happened' }, el('h4', {}, L.b));
+      const rec = p.record || {};
+      list(rec.quote || rec.quotes).forEach(q => b.append(J(q)));
+      if (rec.gloss) b.append(el('div', { class: 'lens-panel design' }, el('span', { class: 'tag design' }, 'Jennings reads'), txt(rec.gloss), rec.gloss.page_authored ? el('span', { class: 'pa' }, 'page-authored') : null));
+      if (p.caveat) b.append(C(p.caveat));
+      f.append(a, b); n.append(f);
+    });
+    if (rc.note) n.append(P(rc.note, 'small'));
+  });
+
+  /* 8. seven ways to hear Rev 20:12 (reused from the Fire page) */
+  fill('levels', n => {
+    const L = D.levels_rev20; if (!L || !list(L.rows).length) { n.append(nodata()); return; }
+    n.append(el('p', { class: 'lead' }, 'Reused from The Consuming Fire: the same verse, heard from each of the seven levels of moral development. Levels 1–4 hear a courtroom; levels 5–7 hear a diagnosis.'));
+    if (L.remedy) n.append(R({ text: L.remedy }, L.verse_ref || 'Revelation 20:12'));
+    if (L.intro) n.append(J(L.intro));
+    if (L.my_blood) n.append(acc('How Jennings voices the level-four picture of the Advocate', J(L.my_blood), caveat('This is Jennings’ characterisation of a view he rejects, not a quotation from its holders.')));
+    const step = el('div'); const out = el('div');
+    KC.renderStepper(step, L.rows, r => { out.innerHTML = ''; out.append(el('p', { class: 'lead' }, el('b', {}, 'The question this level asks: '), r.question || '—'), r.handout ? J(r.handout) : null, el('div', { class: 'lens-panel ' + (r.n <= 4 ? 'imposed' : 'design') }, el('span', { class: 'tag ' + (r.n <= 4 ? 'imposed' : 'design') }, r.mode || (r.n <= 4 ? 'courtroom' : 'diagnosis')), el('div', {}, r.hears || '—'))); }, 4);
+    n.append(step, out);
+    if (L.diagnosis) n.append(J(L.diagnosis));
+    const h = L.hosea_4_17; if (h && h.jennings) n.append(acc('Jennings’ worked example: Hosea 4:17', Q({ text: h.text, ref: h.ref, version: h.version }), J(h.jennings)));
+    if (L.voice_note) n.append(P(L.voice_note, 'small'));
+  });
+
+  /* 9. end-time sequence (reused from the Fire page) */
+  fill('endtime', n => {
+    const e = D.endtime; if (!e || !list(e.steps).length) { n.append(nodata()); return; }
+    if (D.sequence_note) n.append(P(D.sequence_note)); else n.append(P(e.intro));
+    const box = el('div', { class: 'steptable' });
+    list(e.steps).forEach(s => {
+      const kids = [];
+      if (s.who_alive) kids.push(el('p', { class: 'small' }, el('b', {}, 'Who is alive: '), s.who_alive));
+      if (s.where_satan) kids.push(el('p', { class: 'small' }, el('b', {}, 'Satan: '), s.where_satan));
+      if (s.text) kids.push(J({ text: s.text, source: s.source }));
+      if (s.text2) kids.push(J({ text: s.text2, source: s.source }));
+      if (s.judgment_source) kids.push(J(s.judgment_source));
+      if (s.medical_records) kids.push(J(s.medical_records));
+      if (s.egw_gc543) kids.push(J(Object.assign({ speaker: 'Ellen G. White, as quoted by Jennings' }, s.egw_gc543)));
+      list(s.refs).forEach(r => kids.push(R({ text: r.remedy }, r.ref)));
+      box.append(acc(el('span', {}, `${s.n}. ${s.title} `, el('b', {}, '— judgment: ' + (s.judgment || 'none'))), ...kids));
+    });
+    n.append(box);
+    if (e.sequence_source) n.append(J(e.sequence_source));
+    n.append(el('p', { class: 'small' }, 'Full sequence with the fire mechanics: ', el('a', { href: 'fire.html#s9' }, 'The Consuming Fire, section 9'), '.'));
+  });
+
+  /* 10. sort lab */
+  fill('sortlab', n => {
+    const s = D.sortlab; if (!s || !list(s.items).length) { n.append(nodata()); return; }
+    n.append(P(s.intro));
+    const box = el('div'); const ev = el('div', { class: 'evid' });
+    KC.renderSortBins(box, { hint: 'Click a text, then click the judgment Jennings assigns it to.', bins: s.bins || [], items: s.items.map(it => ({ label: it.label, answer: it.answer, note: txt(it.feedback), feedback: txt(it.feedback) + (it.page_placement ? ' (page placement: the post does not assign this text explicitly.)' : ''), it })),
+      onPlace: it => { ev.innerHTML = ''; const src = it.it || it; ev.append(el('h3', {}, src.label)); if (src.evidence) ev.append(J(src.evidence)); if (src.as_quoted) ev.append(Q(src.as_quoted)); if (src.remedy) ev.append(R(src.remedy)); },
+      onDone: () => ev.append(el('p', { class: 'lead' }, 'All placed. Scroll up to see which ones landed outside Jennings’ assignment.')) });
+    n.append(box, ev);
+    if (s.note) n.append(P(s.note, 'small'));
+  });
+
+  /* 11. verse explorer */
+  fill('explorer', n => {
+    const x = D.explorer; if (!x || !list(x.verses).length) { n.append(nodata()); return; }
+    n.append(P(x.intro));
+    const verses = x.verses.map(v => ({ id: v.id, ref: v.ref, group: v.group, hard: v.hard, traditional: v.traditional && txt(v.traditional) ? { text: txt(v.traditional), version: v.traditional.version, verify: v.traditional.verify, source: v.traditional.source } : null, remedy: v.remedy && txt(v.remedy) ? { text: txt(v.remedy), ref: v.remedy.ref || v.ref } : null, remedy_note: v.remedy_note, imposed: txt(v.imposed), design: txt(v.design), jennings_source: v.jennings_source || (v.quote && v.quote.source), caveat: v.caveat ? (typeof v.caveat === 'string' ? v.caveat : txt(v.caveat)) : null }));
+    const box = el('div'); KC.renderVerseExplorer(box, verses); n.append(box);
+    /* append each verse's anchoring Jennings quotation under its card (the kit card has no slot for it) */
+    const byId = Object.fromEntries(x.verses.map(v => [v.id, v]));
+    const decorate = () => box.querySelectorAll('.vcard:not(.xq)').forEach(card => { card.classList.add('xq'); const v = byId[card.dataset.id]; if (v && v.quote) card.append(J(v.quote)); });
+    new MutationObserver(decorate).observe(box, { childList: true, subtree: true }); decorate();
+    if (x.voice_note) n.append(P(x.voice_note, 'small'));
+  });
+
+  /* 12. objections */
+  fill('objections', n => {
+    const items = D.objections || []; if (!items.length) { n.append(nodata()); return; }
+    n.append(el('p', { class: 'lead' }, 'Each objection has a journal box: write your own answer first, then open Jennings’ reply. The strength tag is this page’s estimate of how directly the local corpus answers it.'));
+    items.forEach(o => {
+      const replies = list(o.reply);
+      const reveal = el('div', { class: 'hidden' }, o.voiced_by_listener ? el('p', { class: 'small' }, 'A reader put it this way:') : null, o.voiced_by_listener ? J(o.voiced_by_listener) : null, ...replies.map(J), o.remedy ? R(o.remedy) : null, o.strength_note ? P(o.strength_note, 'small') : null, o.caveat ? C(o.caveat) : null);
+      n.append(acc(txt(o.objection), el('span', { class: 'tag ' + (o.strength || 'moderate') }, o.strength || ''), el('p', { class: 'small' }, 'How would you answer?'), KC.journal(PFX + 'obj-' + o.id, 'Your answer first…'), el('button', { class: 'btn sm', onclick: () => reveal.classList.toggle('hidden') }, 'Show Jennings’ reply'), reveal));
+    });
+  });
+
+  /* 13. closing */
+  fill('closing', n => {
+    const c = D.closing || {};
+    n.append(P(c.intro));
+    list(c.quotes).forEach(q => n.append(J(q)));
+    list(c.remedy_wall).forEach(v => n.append(R(v.remedy || v, v.ref)));
+    if (D.sda_commentary) n.append(acc('How the SDA Bible Commentary defines the wrath that ends the fourth judgment (as Jennings quotes it; reused from the Wrath page)', Q({ text: [D.sda_commentary.text, D.sda_commentary.text_continued].filter(Boolean).join(' '), ref: D.sda_commentary.citation, source: D.sda_commentary.source }, 'egw')));
+    const first = store.get(PFX + 'poll', null);
+    if (c.poll && c.poll.options) { const box = el('div', { class: 'card sub poll-wrap' }); KC.renderPoll(box, { key: PFX + 'poll2', question: txt(c.poll.question), options: c.poll.options, thanks: 'Remembered in this browser only.' }); if (first) box.append(el('p', { class: 'small first-answer' }, 'At the start you said: ', el('b', {}, first), '.')); n.append(box); }
+    n.append(el('div', { class: 'row', style: 'margin-top:12px' }, el('a', { class: 'btn', href: 'fire.html#s9' }, 'Now see the fire at the end of the sequence'), el('a', { class: 'btn ghost', href: 'wrath.html' }, 'Wrath = Letting Go'), el('a', { class: 'btn ghost', href: 'index.html' }, 'Back to the Knowledge Centre')));
+  });
+
+  /* glossary and sources */
+  fill('glossary', n => {
+    const g = D.glossary || []; if (!g.length) { n.append(nodata()); return; }
+    g.forEach(t => n.append(acc(txt(t.term), P(t.meaning, 'lead'), t.caveat ? C(t.caveat) : null, t.quote ? (t.quote.remedy || t.quote.book ? R(t.quote) : J(t.quote)) : null, t.remedy ? R(t.remedy) : null)));
+  });
+  fill('sourceList', n => {
+    const seen = new Map();
+    const walk = o => { if (!o || typeof o !== 'object') return; if (Array.isArray(o)) { o.forEach(walk); return; } if (o.source && (o.source.file || o.source.url)) { const k = (o.source.file || '') + '|' + (o.source.url || ''); if (!seen.has(k)) seen.set(k, o.source); } Object.values(o).forEach(walk); };
+    walk(D);
+    if (D.reuse_note) n.append(P(D.reuse_note, 'small'));
+    const lst = el('div');
+    [...seen.values()].sort((a, b) => String(a.file || a.url).localeCompare(String(b.file || b.url))).forEach(s => { const c = sourceChip({ file: s.file, url: s.url }); if (c) lst.append(el('div', { style: 'margin:4px 0' }, c)); });
+    n.append(el('p', { class: 'small' }, `${seen.size} distinct source files.`), lst);
+  });
+})();
+</script>
+</body>
+</html>

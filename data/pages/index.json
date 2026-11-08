@@ -834,6 +834,19 @@
     ],
     "status": "built",
     "page_authored": true
+   },
+   {
+    "slug": "four-judgments",
+    "title": "The Four Judgments",
+    "short": "Four Judgments",
+    "pitch": "Eden to the Great White Throne as four non-judicial events: our judgment of God (Carmel, Romans 3:4, the first angel), God's therapeutic diagnosis of each heart (the investigative judgment re-read, Malachi 3, Hebrews 8:10, Daniel 7 as a royal court), the saints' review of history during the thousand years, and the final unveiling where the books are medical records and the gates stand open. A scrubbable timeline that asks \"who is judging whom?\" at every station, a courtroom/clinic lens switch, a sort lab, ledger-or-medical-record flip cards, a Daniel 7 panel, and an objections desk.",
+    "pillar": "God's character",
+    "nodes": [
+     "wrath",
+     "healing"
+    ],
+    "status": "built",
+    "page_authored": true
    }
   ],
   "planned_intro": {
@@ -922,15 +935,6 @@
     "nodes": [
      "wrath",
      "remedy"
-    ],
-    "effort": "S-M",
-    "page_authored": true
-   },
-   {
-    "title": "The Four Judgments timeline",
-    "pillar": "God's character",
-    "nodes": [
-     "wrath"
     ],
     "effort": "S-M",
     "page_authored": true

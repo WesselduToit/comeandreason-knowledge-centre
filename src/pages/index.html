@@ -117,7 +117,7 @@
   const sectionsOf = slug => IDX.entries.filter(e => e.page === slug && e.kind === 'section');
 
   /* saved-answer helpers (used by sections 3 and 5) */
-  const PREFIX = { fire: 'cr-fire-', 'two-lenses': 'cr-twolenses-', dominoes: 'cr-dominoes-', 'seven-reasons': 'cr-seven-reasons-', 'sin-disease': 'cr-sin-disease-', wrath: 'cr-wrath-', hub: 'cr-hub-' };
+  const PREFIX = { fire: 'cr-fire-', 'two-lenses': 'cr-twolenses-', dominoes: 'cr-dominoes-', 'seven-reasons': 'cr-seven-reasons-', 'sin-disease': 'cr-sin-disease-', wrath: 'cr-wrath-', 'four-judgments': 'cr-four-judgments-', hub: 'cr-hub-' };
   function allKeys() { const out = []; try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith('cr-')) out.push(k); } } catch (e) { /* storage unavailable */ } return out; }
   function savedKeys(slug) { const p = PREFIX[slug]; return p ? allKeys().filter(k => k.startsWith(p)) : []; }
   KC.lensBar(sec('lensbar'), { initial: 'imposed' });
