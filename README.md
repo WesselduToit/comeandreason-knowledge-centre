@@ -21,11 +21,18 @@ python -m http.server 8777 --directory dist
 | Sin Is a Disease: symptom or condition? (plus the Atonement Prism) | `dist/sin-disease.html` | built from `src/pages/sin-disease.html` + `data/pages/sin-disease.json` (atonement-by-level ladder reused from seven-reasons.json) |
 | Wrath = Letting Go (the mechanism beneath Fire) | `dist/wrath.html` | built from `src/pages/wrath.html` + `data/pages/wrath.json` (reuses the Fire page's verified wrath data) |
 | The Four Judgments (who is judging whom?) | `dist/four-judgments.html` | built from `src/pages/four-judgments.html` + `data/pages/four-judgments.json` (reuses the Fire page's end-time sequence and seven-level hearing of Rev 20:12, and the Wrath page's SDA commentary quotation) |
+| God's Design Laws Lab | `dist/lab.html` | built from `src/pages/lab.html` + `data/pages/lab.json` |
 
 ## Build a page
 
 ```
 python tools/build_page.py fire
+```
+
+To add a finished page to the hub, the search index, the sibling credit lines and this table in one step:
+
+```
+python tools/wire_page.py <slug> --title "..." --short "..." --pitch "..." --pillar "..." --nodes law,healing --planned "<roadmap title>"
 ```
 
 The hub (`index`) also inlines a cross-page search index; regenerate it whenever a page's data changes, then rebuild the hub:

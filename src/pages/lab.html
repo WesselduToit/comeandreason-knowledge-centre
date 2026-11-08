@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>God's Design Laws Lab — break a law and watch what happens</title>
+<!-- @kit.css -->
+<style>
+/* page-only styles */
+.lawgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:12px}
+.law{border:1px solid var(--line);border-radius:var(--radius);background:var(--card2);padding:14px;display:flex;flex-direction:column;gap:8px;position:relative;transition:.25s}
+.law h3{margin:0;font-size:17px}
+.law .def{font-size:13.5px;color:var(--muted)}
+.law .state{border-radius:10px;padding:10px 12px;font-size:14px;min-height:64px}
+.law .state.kept{background:rgba(224,177,94,.10);border:1px solid rgba(224,177,94,.4)}
+.law .state.broken{background:rgba(217,115,106,.10);border:1px solid rgba(217,115,106,.5)}
+.law.broken{border-color:var(--bad);transform:rotate(-.6deg)}
+.law .ctrl{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+.law .more{display:none}
+.law.open .more{display:block}
+.law .bench{font-size:12px;color:var(--accent);text-decoration:none;border:1px dashed var(--accent);border-radius:14px;padding:3px 9px}
+.counter{font-family:Georgia,serif;font-size:15px;color:var(--accent);text-align:center;margin-top:10px}
+.benchbox{border:1px solid var(--line);border-radius:var(--radius);padding:16px;background:var(--card2);margin:12px 0}
+.cons{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.cons .c{border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13.5px;color:var(--faint);opacity:.45;transition:.3s}
+.cons .c.on{opacity:1;color:var(--ink);border-color:var(--bad);background:rgba(217,115,106,.08)}
+.cons .c b{display:block;color:var(--accent);font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.ring{position:relative;width:220px;height:220px;margin:14px auto}
+.ring .node{position:absolute;width:76px;height:76px;border-radius:50%;background:var(--card3);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;padding:6px;transition:.4s}
+.ring .n0{left:72px;top:0}.ring .n1{right:0;top:72px}.ring .n2{left:72px;bottom:0}.ring .n3{left:0;top:72px}
+.ring .dot{position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px;border-radius:50%;background:var(--accent2);box-shadow:0 0 10px var(--accent2);animation:orbit 4s linear infinite}
+.ring .dot.d2{animation-delay:-2s}
+@keyframes orbit{from{transform:rotate(0deg) translateX(100px) rotate(0deg)}to{transform:rotate(360deg) translateX(100px) rotate(-360deg)}}
+.ring.broken .dot{animation-play-state:paused;background:var(--bad);box-shadow:none}
+.ring.broken .node{border-color:var(--line);color:var(--faint)}
+.ring.broken .n1{border-color:var(--bad);background:rgba(217,115,106,.15);color:var(--ink)}
+.bar{height:16px;border-radius:8px;background:var(--line);overflow:hidden;margin:10px 0}
+.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));transition:width 5s linear}
+.fork{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.fork .side{border:1px solid var(--line);border-radius:var(--radius-s);padding:12px;opacity:.5;transition:.3s}
+.fork .side.on{opacity:1}
+.fork .side.embrace.on{border-color:var(--design)}
+.fork .side.reject.on{border-color:var(--bad)}
+.grav{display:flex;align-items:flex-end;gap:14px;margin:10px 0;height:150px}
+.grav .tower{width:60px;background:linear-gradient(180deg,var(--card3),var(--line));border-radius:6px 6px 0 0;transition:height .4s;position:relative}
+.grav .tower .man{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:20px}
+.grav .say{flex:1;font-size:14px}
+.pairs .pair{border:1px solid var(--line);border-radius:var(--radius-s);padding:10px 12px;margin:8px 0;background:var(--card2)}
+.pairs .theme{color:var(--accent);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.pairs .opt{margin:6px 0}
+.verdict{border:1px solid var(--accent);border-radius:var(--radius);padding:14px;margin:12px 0;background:rgba(224,177,94,.06)}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:10px}
+.wall .vcard{margin:0}
+.wall .why{font-size:12.5px;color:var(--faint);margin-top:6px}
+.tag.survival{background:rgba(217,115,106,.16);color:var(--bad)}
+.tag.giving{background:rgba(224,177,94,.16);color:var(--design)}
+.tag.both{background:rgba(127,176,224,.16);color:var(--accent2)}
+@media (max-width:640px){.cons{grid-template-columns:1fr}.fork{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="lensbar"></div>
+
+  <header class="hero">
+    <div class="eyebrow">An Interactive Study · Come and Reason Knowledge Centre</div>
+    <h1>God's Design Laws Lab</h1>
+    <p class="sub">Seventeen laws Jennings says reality runs on. None of them needs a police force: break one and the consequence is built in. Pick a law, break it, and watch; then test yourself on the deepest one, the circle of giving against survival of the fittest.</p>
+    <p class="credit"><a href="index.html">&larr; Knowledge Centre</a> &middot; Teaching of Timothy R. Jennings, MD · <a href="https://comeandreason.com" target="_blank" rel="noopener">Come and Reason Ministries</a> · the laws listed on <a href="two-lenses.html#s10">Two Lenses</a>; see also <a href="dominoes.html">The Falling Dominoes</a>, <a href="sin-disease.html">Sin Is a Disease</a>, <a href="wrath.html">Wrath = Letting Go</a>, <a href="fire.html">The Consuming Fire</a>, <a href="four-judgments.html">The Four Judgments</a> and <a href="seven-reasons.html">Same Act, Seven Reasons</a></p>
+    <div class="toc">
+      <a href="#s1">Rule or protocol?</a><a href="#s2">The seventeen laws</a><a href="#b-liberty">Liberty bench</a><a href="#b-love">Love bench</a><a href="#b-exertion">Exertion bench</a><a href="#b-worship">Worship bench</a><a href="#b-truth">Truth bench</a><a href="#b-gravity">Gravity bench</a><a href="#s9">Survival vs giving</a><a href="#s10">Which principle am I on?</a><a href="#s11">Objections</a><a href="#s12">Closing</a><a href="#sources">Glossary &amp; sources</a>
+    </div>
+  </header>
+
+  <section id="s1"><div class="card"><h2><span class="num">1</span>Rule, or protocol?</h2><div id="intro"></div></div></section>
+  <section id="s2"><div class="card"><h2><span class="num">2</span>The seventeen laws: break one and watch</h2><div id="laws"></div></div></section>
+  <section id="b-liberty"><div class="card"><h2><span class="num">3</span>Bench: the law of liberty</h2><div id="liberty"></div></div></section>
+  <section id="b-love"><div class="card"><h2><span class="num">4</span>Bench: the law of love, the circle of giving</h2><div id="love"></div></div></section>
+  <section id="b-exertion"><div class="card"><h2><span class="num">5</span>Bench: the law of exertion</h2><div id="exertion"></div></div></section>
+  <section id="b-worship"><div class="card"><h2><span class="num">6</span>Bench: the law of worship</h2><div id="worship"></div></div></section>
+  <section id="b-truth"><div class="card"><h2><span class="num">7</span>Bench: the law of truth</h2><div id="truth"></div></div></section>
+  <section id="b-gravity"><div class="card"><h2><span class="num">8</span>Bench: the laws of physics, degree of violation</h2><div id="gravity"></div></div></section>
+  <section id="s9"><div class="card"><h2><span class="num">9</span>Survival of the fittest, or the circle of giving?</h2><div id="survival"></div></div></section>
+  <section id="s10"><div class="card"><h2><span class="num">10</span>Which principle am I running on?</h2><div id="selfcheck"></div></div></section>
+  <section id="s11"><div class="card"><h2><span class="num">11</span>Objections desk</h2><div id="objections"></div></div></section>
+  <section id="s12"><div class="card"><h2><span class="num">12</span>Closing</h2><div id="closing"></div></div></section>
+  <section id="sources"><div class="card"><h2>Glossary and sources</h2><div id="glossary"></div><h3>Sources used on this page</h3><div id="sourceList"></div></div></section>
+
+  <p class="footnote">Built as a study companion for Dr Timothy R. Jennings' teaching. Quotations are verbatim from the cited local files; The Remedy is Jennings' expanded paraphrase. Items marked page-authored are written for this page and are not quotations. Nothing leaves your browser.</p>
+</div>
+
+<!-- @data -->
+<!-- @kit.js -->
+<script>
+(function(){
+  'use strict';
+  const D = window.PAGE_DATA || {};
+  const { el, quote, sourceChip, caveat, store, nodata } = KC;
+  const stripMd = s => String(s).replace(/\*\*([^*]+)\*\*/g, '$1').replace(/(^|[\s(“"'])\*([^*\n]+)\*(?=[\s).,;:!?”"']|$)/g, '$1$2').replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g, '$1');
+  const txt = x => x == null ? '' : stripMd(typeof x === 'string' ? x : (x.text || ''));
+  const voiceOf = o => { const s = (o && o.speaker) || ''; return !s || /^jennings$/i.test(s) ? 'jennings' : /white/i.test(s) ? 'egw' : /cole/i.test(s) ? 'cole' : 'scripture'; };
+  const J = o => o && txt(o) ? quote(txt(o), { voice: voiceOf(o), ref: o.speaker && !/^jennings$/i.test(o.speaker) ? o.speaker : (o.citation || null), source: o.source }) : null;
+  const Q = (o, voice) => o && txt(o) ? quote(txt(o), { ref: o.ref, version: o.version, verify: o.verify, source: o.source, voice: voice || 'scripture' }) : null;
+  const R = (o, ref) => { const t = txt(o && o.remedy !== undefined ? o.remedy : o); return t ? quote(t, { voice: 'remedy', ref: ref || (o && o.ref) }) : null; };
+  const P = (o, cls) => o && txt(o) ? el('p', { class: cls || 'lead' }, txt(o)) : null;
+  const list = v => Array.isArray(v) ? v : v ? [v] : [];
+  const Js = v => list(v).map(J).filter(Boolean);
+  const Rs = v => list(v).map(x => x && (x.remedy || x.text) ? (x.remedy ? R(x) : Q(x)) : null).filter(Boolean);
+  const sec = id => document.getElementById(id);
+  const fill = (id, fn) => { const node = sec(id); try { fn(node); } catch (e) { node.append(el('p', { class: 'nodata' }, 'This section could not render: ' + e.message)); console.error(id, e); } };
+  const acc = (title, ...kids) => el('details', { class: 'acc' }, el('summary', {}, title), el('div', { class: 'body' }, ...kids));
+  const LL = D.laws_list || {};
+  const LAWS = LL.laws || [];
+  const SLUGS = ['love', 'liberty', 'worship', 'exertion', 'physics', 'maths', 'health', 'restoration', 'sowing', 'love_over_fear', 'fear_damages_love', 'forgiveness', 'truth', 'revelation', 'happiness', 'brokenness', 'sin_death'];
+  const BENCH = { liberty: '#b-liberty', love: '#b-love', exertion: '#b-exertion', worship: '#b-worship', truth: '#b-truth', physics: '#b-gravity' };
+  const BR = D.breaks || {};
+  const DEEP = D.deep || {};
+
+  KC.lensBar(sec('lensbar'), { initial: 'imposed' });
+
+  /* 1. Rule or protocol? */
+  fill('intro', n => {
+    n.append(J(LL.intro), J(LL.definition));
+    const box = el('div', { class: 'card sub' });
+    KC.renderSortBins(box, {
+      hint: 'Page-authored warm-up. Click an item, then the bin it belongs in: a made-up rule that needs enforcing, or a protocol reality runs on.',
+      bins: [{ id: 'rule', label: 'Made-up rule (needs an enforcer)' }, { id: 'protocol', label: 'Design protocol (consequence built in)' }],
+      items: [
+        { label: 'A 50 km/h speed limit', answer: 'rule', feedback: 'Change the sign and the law changes; nothing happens unless someone enforces it.' },
+        { label: 'Gravity', answer: 'protocol', feedback: 'No officer needed: step off the roof and the consequence arrives by itself.' },
+        { label: 'The tax code', answer: 'rule', feedback: 'Legislated, amended, enforced by penalty.' },
+        { label: 'Respiration: breathe or die', answer: 'protocol', feedback: 'Stop breathing and no one has to punish you.' },
+        { label: 'A curfew', answer: 'rule', feedback: 'Arbitrary, local, enforced from outside.' },
+        { label: 'Sowing and reaping', answer: 'protocol', feedback: 'Plant thistles, harvest thistles; the field keeps no court.' },
+        { label: 'Parking fines', answer: 'rule', feedback: 'The fine is the only consequence, and it is added by an authority.' },
+        { label: 'The law of love: give, and life circulates', answer: 'protocol', feedback: 'This is the one Jennings says every other design law hangs on; break the circle and the flow stops.' },
+      ],
+      onDone: () => box.append(el('p', { class: 'counter' }, 'Now ask which kind God’s law is. That is the whole page.')),
+    });
+    n.append(box);
+    if (LL.constantine) n.append(acc('How the two got confused: Constantine and the Roman lawyers', J(LL.constantine)));
+    if (D.tract && D.tract.opening) n.append(acc('The same list as a tract', P(D.tract.intro, 'small'), J(D.tract.opening)));
+  });
+
+  /* 2. The seventeen laws */
+  fill('laws', n => {
+    if (!LAWS.length) { n.append(nodata()); return; }
+    n.append(el('p', { class: 'lead' }, 'Each card states the law in Jennings’ words. "Break it" shows the built-in consequence; "Why?" shows a passage and a Remedy verse. Six laws have a bench below where you can run the experiment.'));
+    const counter = el('p', { class: 'counter' });
+    let brokenCount = 0;
+    const grid = el('div', { class: 'lawgrid' });
+    LAWS.forEach((law, i) => {
+      const slug = SLUGS[i] || ('law' + i);
+      const b = BR[slug] || {};
+      const card = el('div', { class: 'law', id: 'law-' + slug });
+      const state = el('div', { class: 'state kept' }, txt(b.kept) || 'Live in harmony with it and life does what it was designed to do.');
+      let broken = false;
+      const toggle = el('button', { class: 'btn sm', onclick: () => {
+        broken = !broken; card.classList.toggle('broken', broken); state.className = 'state ' + (broken ? 'broken' : 'kept');
+        state.textContent = broken ? (txt(b.broken) || 'The consequence is inherent: nothing is added from outside.') : (txt(b.kept) || 'Live in harmony with it and life does what it was designed to do.');
+        toggle.textContent = broken ? 'Restore it' : 'Break it'; brokenCount += broken ? 1 : -1;
+        counter.textContent = brokenCount ? `${brokenCount} of ${LAWS.length} laws broken. Penalties imposed by God: 0. Consequences: ${brokenCount}.` : '';
+      } }, 'Break it');
+      const more = el('div', { class: 'more' });
+      if (law.examples) more.append(el('ul', { class: 'small' }, law.examples.map(x => el('li', {}, x))));
+      if (law.consequences) more.append(el('ul', { class: 'small' }, law.consequences.map(x => el('li', {}, x))));
+      if (law.detail) list(law.detail).forEach(x => more.append(el('p', { class: 'small' }, x)));
+      if (b.jennings) more.append(J(b.jennings));
+      if (b.scripture) more.append(R(b.scripture));
+      if (law.source && !b.jennings) more.append(sourceChip(law.source));
+      const why = el('button', { class: 'btn ghost sm', onclick: () => { card.classList.toggle('open'); why.textContent = card.classList.contains('open') ? 'Less' : 'Why?'; } }, 'Why?');
+      const ctrl = el('div', { class: 'ctrl' }, toggle, why);
+      if (BENCH[slug]) ctrl.append(el('a', { class: 'bench', href: BENCH[slug] }, 'Open the bench'));
+      card.append(el('h3', {}, law.name), el('div', { class: 'def' }, txt(law.text).replace(/;?\s*examples:\s*$/i, '.')), state, more, ctrl);
+      grid.append(card);
+    });
+    n.append(grid, counter);
+    if (LL.source) n.append(el('p', { class: 'small' }, 'Law statements: ', sourceChip(LL.source)));
+    if (D.reuse_note) n.append(P(D.reuse_note, 'small'));
+  });
+
+  /* 3. Liberty bench */
+  fill('liberty', n => {
+    const L = DEEP.liberty; if (!L) { n.append(nodata()); return; }
+    n.append(P(L.intro), ...Js(L.statement));
+    const cons = list(L.three_consequences);
+    const box = el('div', { class: 'benchbox' });
+    box.append(el('p', { class: 'lead' }, el('b', {}, 'Experiment: '), 'How much do you control the other person? Slide from "free" to "dominated" and watch the three consequences Jennings names arrive.'));
+    const r = el('input', { type: 'range', class: 'kc', min: 0, max: 100, value: 0, 'aria-label': 'Degree of control' });
+    const lbl = el('p', { class: 'counter' });
+    const grid = el('div', { class: 'cons' }, ...cons.map(c => el('div', { class: 'c' }, el('b', {}, txt(c.name) || 'Consequence'), txt(c.quote))));
+    const paint = () => { const v = +r.value; [...grid.children].forEach((c, i) => c.classList.toggle('on', v >= Math.round((i + 1) * 100 / (cons.length + 0.5)))); lbl.textContent = v === 0 ? 'Free: love can be given and returned.' : v < 34 ? 'Pressure: the relationship strains.' : v < 67 ? 'Control: love is being damaged.' : v < 100 ? 'Domination: rebellion rises.' : 'Total control: the person is being erased.'; };
+    r.addEventListener('input', paint); box.append(r, lbl, grid); paint();
+    const cases = list(L.cases);
+    if (cases.length) {
+      const chips = el('div', { class: 'row' }); const out = el('div');
+      cases.forEach(c => chips.append(el('button', { class: 'chip', onclick: e => { chips.querySelectorAll('.chip').forEach(x => x.classList.remove('on')); e.target.classList.add('on'); out.innerHTML = ''; out.append(J(c.quote || c), c.what_was_controlled ? el('p', { class: 'small' }, el('b', {}, 'What was controlled: '), txt(c.what_was_controlled)) : null, c.consequence ? el('p', { class: 'small' }, el('b', {}, 'What followed: '), txt(c.consequence)) : null); } }, txt(c.name) || 'Case')));
+      box.append(el('h4', {}, 'Cases Jennings tells'), chips, out);
+    }
+    n.append(box);
+    if (L.spouse_test) n.append(el('h3', {}, 'Test it at home'), J(L.spouse_test));
+    const gr = Js(L.god_respects); if (gr.length) n.append(el('h3', {}, 'Why God will not do it either'), ...gr);
+    for (const c of cons) { /* quotes already shown inside the grid; add sources */ if (c.quote && c.quote.source) { n.append(el('span', {}, sourceChip(c.quote.source))); break; } }
+  });
+
+  /* 4. Love bench */
+  fill('love', n => {
+    const L = DEEP.love; if (!L) { n.append(nodata()); return; }
+    n.append(P(L.intro));
+    const box = el('div', { class: 'benchbox' });
+    const ring = el('div', { class: 'ring' }, el('div', { class: 'node n0' }, 'oceans give vapour'), el('div', { class: 'node n1' }, 'clouds give rain'), el('div', { class: 'node n2' }, 'rivers give to the sea'), el('div', { class: 'node n3' }, 'the land gives life'), el('div', { class: 'dot' }), el('div', { class: 'dot d2' }));
+    const msg = el('p', { class: 'counter' }, 'The circle is intact: everything gives, so everything receives.');
+    const brokenOut = el('div', { class: 'hidden' }, ...Js(L.broken));
+    const btn = el('button', { class: 'btn', onclick: () => { const b = ring.classList.toggle('broken'); btn.textContent = b ? 'Restore the circle' : 'Break the circle: keep it for yourself'; msg.textContent = b ? 'One link keeps instead of giving. The flow stops for everyone, including the one who kept it.' : 'The circle is intact: everything gives, so everything receives.'; brokenOut.classList.toggle('hidden', !b); } }, 'Break the circle: keep it for yourself');
+    box.append(el('p', { class: 'lead' }, el('b', {}, 'Experiment: '), 'the water cycle as Jennings uses it. Page-authored labels; his words below.'), ring, msg, el('div', { class: 'center' }, btn), brokenOut);
+    n.append(box, ...Js(L.circle));
+    if (L.survival) n.append(el('h3', {}, 'The opposite principle'), J(L.survival), el('p', { class: 'small' }, el('a', { href: '#s9' }, 'Go deeper in section 9')));
+    const rs = Rs(L.scripture); if (rs.length) n.append(el('h3', {}, 'In The Remedy'), ...rs);
+  });
+
+  /* 5. Exertion bench */
+  fill('exertion', n => {
+    const E = DEEP.exertion; if (!E) { n.append(nodata()); return; }
+    n.append(P(E.intro), ...Js(E.statement));
+    const box = el('div', { class: 'benchbox' });
+    const bar = el('div', { class: 'bar' }, el('span', { style: 'width:40%' }));
+    const fillEl = bar.firstChild; const msg = el('p', { class: 'counter' }, 'A faculty at rest: muscle, mind, or faith.');
+    const use = el('button', { class: 'btn sm', onclick: () => { fillEl.style.width = '100%'; msg.textContent = 'Used: it grows stronger over time.'; } }, 'Use it');
+    const rest = el('button', { class: 'btn ghost sm', onclick: () => { fillEl.style.width = '8%'; msg.textContent = 'Neglected: it atrophies. Nobody took it away.'; } }, 'Neglect it');
+    const reset = el('button', { class: 'btn ghost sm', onclick: () => { fillEl.style.transition = 'none'; fillEl.style.width = '40%'; setTimeout(() => { fillEl.style.transition = ''; }, 50); msg.textContent = 'A faculty at rest: muscle, mind, or faith.'; } }, 'Reset');
+    box.append(el('p', { class: 'lead' }, el('b', {}, 'Experiment: '), 'the bar is any faculty. Watch five seconds either way.'), bar, msg, el('div', { class: 'row' }, use, rest, reset));
+    n.append(box, ...Js(E.examples));
+    const rs = Rs(E.scripture); if (rs.length) n.append(el('h3', {}, 'In The Remedy'), ...rs);
+  });
+
+  /* 6. Worship bench */
+  fill('worship', n => {
+    const W = DEEP.worship; if (!W) { n.append(nodata()); return; }
+    n.append(P(W.intro), ...Js(W.statement));
+    const ex = list(W.examples);
+    if (ex.length) {
+      const box = el('div', { class: 'benchbox' });
+      const chips = el('div', { class: 'row' }); const out = el('div');
+      const labelOf = (x, i) => txt(x.label) || txt(x.title) || (txt(x.quote || x).split(/\s+/).slice(0, 5).join(' ') + '…');
+      ex.forEach((x, i) => chips.append(el('button', { class: 'chip', onclick: e => { chips.querySelectorAll('.chip').forEach(c => c.classList.remove('on')); e.target.classList.add('on'); out.innerHTML = ''; out.append(J(x.quote || x), x.becomes ? el('p', { class: 'small' }, el('b', {}, 'What the beholder becomes: '), txt(x.becomes)) : null); } }, labelOf(x, i))));
+      box.append(el('p', { class: 'lead' }, el('b', {}, 'Experiment: '), 'pick what a person beholds, and read what Jennings says they become.'), chips, out);
+      n.append(box);
+    }
+    const rs = Rs(W.scripture); if (rs.length) n.append(el('h3', {}, 'In The Remedy'), ...rs);
+  });
+
+  /* 7. Truth bench */
+  fill('truth', n => {
+    const T = DEEP.truth; if (!T) { n.append(nodata()); return; }
+    n.append(P(T.intro), ...Js(T.statement));
+    const f = T.fork || {};
+    const box = el('div', { class: 'benchbox' });
+    const emb = el('div', { class: 'side embrace' }, el('span', { class: 'tag design' }, 'Embrace it'), J(f.embrace) || el('p', { class: 'nodata' }, 'No passage.'));
+    const rej = el('div', { class: 'side reject' }, el('span', { class: 'tag imposed' }, 'Reject it'), J(f.reject) || el('p', { class: 'nodata' }, 'No passage.'));
+    const fork = el('div', { class: 'fork' }, emb, rej);
+    box.append(el('p', { class: 'lead' }, el('b', {}, 'Experiment: '), 'a truth arrives. Choose.'), el('div', { class: 'row' }, el('button', { class: 'btn sm', onclick: () => { emb.classList.add('on'); rej.classList.remove('on'); } }, 'Embrace the truth'), el('button', { class: 'btn ghost sm', onclick: () => { rej.classList.add('on'); emb.classList.remove('on'); } }, 'Reject the truth')), fork);
+    n.append(box);
+    const tl = LAWS[12]; if (tl && tl.detail) list(tl.detail).forEach(x => n.append(el('p', { class: 'lead' }, x)));
+    const rs = Rs(T.scripture); if (rs.length) n.append(el('h3', {}, 'In The Remedy'), ...rs);
+  });
+
+  /* 8. Gravity bench */
+  fill('gravity', n => {
+    const G = D.physics_gravity; if (!G) { n.append(nodata()); return; }
+    n.append(P(G.intro));
+    const steps = list(G.steps);
+    if (steps.length) {
+      const box = el('div', { class: 'benchbox' });
+      const tower = el('div', { class: 'tower', style: 'height:10px' }, el('span', { class: 'man' }, '🧍'));
+      const say = el('div', { class: 'say' });
+      const r = el('input', { type: 'range', class: 'kc', min: 0, max: steps.length - 1, value: 0, 'aria-label': 'Height' });
+      const paint = () => { const s = steps[+r.value]; tower.style.height = (10 + (+r.value) * (130 / Math.max(1, steps.length - 1))) + 'px'; say.innerHTML = ''; say.append(el('b', {}, txt(s.height || s.name || s)), el('div', {}, txt(s.label || s.consequence || s.result || '')), el('div', { class: 'small' }, txt(s.gloss || ''))); };
+      r.addEventListener('input', paint);
+      box.append(el('p', { class: 'lead' }, el('b', {}, 'Experiment: '), 'same law, different degree of violation. Gravity is not angrier at the top; the consequence just scales.'), el('div', { class: 'grav' }, tower, say), r);
+      if (G.steps_note) box.append(P(G.steps_note, 'small'));
+      n.append(box); paint();
+    }
+    n.append(...Js(G.quotes));
+  });
+
+  /* 9. Survival vs giving */
+  fill('survival', n => {
+    const S = D.survival_tab; if (!S) { n.append(nodata()); return; }
+    n.append(P(S.intro), ...Js(S.jennings));
+    const verses = list(S.verses); if (!verses.length) return;
+    n.append(el('h3', {}, 'The two principles in The Remedy'), P(S.pruned_note, 'small'));
+    const cats = [['all', 'All'], ['survival', 'Survival of the fittest'], ['giving', 'The circle of giving'], ['both', 'Both, contrasted']];
+    let cat = 'all';
+    const chips = el('div', { class: 'row' }); const count = el('p', { class: 'small' }); const grid = el('div', { class: 'wall' });
+    const draw = () => { grid.innerHTML = ''; const l = verses.filter(v => cat === 'all' || v.principle === cat); l.forEach(v => { const c = R(v, v.ref); c.classList.add('vcard'); c.prepend(el('span', { class: 'tag ' + (v.principle || 'both') }, v.principle || '')); if (v.why) c.append(el('div', { class: 'why' }, txt(v.why))); grid.append(c); }); count.textContent = `${l.length} of ${verses.length} verses.`; chips.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c.dataset.cat === cat)); };
+    cats.forEach(([v, label]) => chips.append(el('button', { class: 'chip', 'data-cat': v, onclick: () => { cat = v; draw(); } }, label)));
+    n.append(chips, count, grid); draw();
+  });
+
+  /* 10. Self-check */
+  fill('selfcheck', n => {
+    const SC = D.selfcheck; if (!SC || !list(SC.items || SC.pairs).length) { n.append(nodata()); return; }
+    const KEY = 'cr-lab-selfcheck';
+    let picks = store.get(KEY, {});
+    const items = list(SC.items || SC.pairs);
+    n.append(P(SC.scoring && SC.scoring.intro), el('p', { class: 'small' }, 'Reflective, not psychometric; page-authored statements; nothing leaves this browser.'));
+    const wrap = el('div', { class: 'pairs' }); const verdict = el('div');
+    const render = () => {
+      wrap.innerHTML = '';
+      items.forEach((it, i) => {
+        const pair = el('div', { class: 'pair' }, el('div', { class: 'theme' }, txt(it.theme) || `Pair ${i + 1}`));
+        const opts = [['giving', it.giving], ['survival', it.survival]]; if (i % 2) opts.reverse();
+        opts.forEach(([k, t]) => pair.append(el('button', { class: 'opt' + (picks[i] === k ? ' sel' : ''), onclick: () => { picks[i] = k; store.set(KEY, picks); render(); } }, txt(t))));
+        wrap.append(pair);
+      });
+      verdict.innerHTML = '';
+      const done = Object.keys(picks).length;
+      if (done < items.length) { verdict.append(el('p', { class: 'small center' }, `${done} of ${items.length} answered.`)); return; }
+      const giving = Object.values(picks).filter(v => v === 'giving').length;
+      const cat = giving >= items.length - 2 ? 'mostly_giving' : giving <= 3 ? 'mostly_survival' : 'mixed';
+      const sc = SC.scoring || {};
+      verdict.append(el('div', { class: 'verdict' }, el('h3', {}, cat === 'mostly_giving' ? 'Mostly the circle of giving' : cat === 'mostly_survival' ? 'Mostly survival of the fittest' : 'Running on both'), el('p', { class: 'small' }, `${giving} of ${items.length} first choices were giving choices.`), P(sc[cat]), ...Js(SC.jennings_on_change), el('button', { class: 'btn ghost sm', onclick: () => { picks = {}; store.set(KEY, picks); render(); } }, 'Start over')));
+    };
+    n.append(wrap, verdict); render();
+  });
+
+  /* 11. Objections */
+  fill('objections', n => {
+    const items = list(D.objections); if (!items.length) { n.append(nodata()); return; }
+    n.append(el('p', { class: 'lead' }, 'Write your own answer first, then open Jennings’ reply. The strength tag is this page’s estimate of how directly the local corpus answers it.'));
+    items.forEach(o => {
+      const reveal = el('div', { class: 'hidden' }, ...Js(o.reply), o.strength_note ? P(o.strength_note, 'small') : null);
+      n.append(acc(txt(o.objection), el('span', { class: 'tag ' + (o.strength || 'moderate') }, o.strength || ''), el('p', { class: 'small' }, 'How would you answer?'), KC.journal(`cr-lab-obj-${o.id}`, 'Your answer first…'), el('button', { class: 'btn sm', onclick: () => reveal.classList.toggle('hidden') }, 'Show Jennings’ reply'), reveal));
+    });
+  });
+
+  /* 12. Closing */
+  fill('closing', n => {
+    if (LL.closing) n.append(J(LL.closing));
+    n.append(el('p', { class: 'lead' }, 'Every bench above ran the same experiment: a law was broken and nothing was added from outside. That is the claim this whole centre rests on, and the next pages test it where it is hardest: the fire, the wrath, the judgment.'));
+    n.append(el('div', { class: 'row', style: 'margin-top:12px' }, el('a', { class: 'btn', href: 'dominoes.html' }, 'See the chain of consequences'), el('a', { class: 'btn ghost', href: 'two-lenses.html' }, 'Re-read the Bible words'), el('a', { class: 'btn ghost', href: 'index.html' }, 'Back to the Knowledge Centre')));
+  });
+
+  /* Glossary and sources */
+  fill('glossary', n => {
+    const g = list(D.glossary); if (!g.length) { n.append(nodata()); return; }
+    g.forEach(t => n.append(acc(txt(t.term), P(t.meaning, 'lead'), t.caveat ? caveat(txt({ text: typeof t.caveat === 'string' ? t.caveat : (t.caveat.caveat || t.caveat.text) })) : null, t.quote ? (t.quote.remedy ? R(t.quote) : J(t.quote)) : null)));
+  });
+  fill('sourceList', n => {
+    const seen = new Map();
+    const walk = o => { if (!o || typeof o !== 'object') return; if (Array.isArray(o)) { o.forEach(walk); return; } if (o.source && (o.source.file || o.source.url)) { const k = (o.source.file || '') + '|' + (o.source.url || ''); if (!seen.has(k)) seen.set(k, o.source); } Object.values(o).forEach(walk); };
+    walk(D);
+    const listEl = el('div');
+    [...seen.values()].sort((a, b) => String(a.file || a.url).localeCompare(String(b.file || b.url))).forEach(s => { const c = sourceChip({ file: s.file, url: s.url }); if (c) listEl.append(el('div', { style: 'margin:4px 0' }, c)); });
+    n.append(el('p', { class: 'small' }, `${seen.size} distinct source files. The warm-up sorter, bench labels and self-check statements are page-authored.`), listEl);
+  });
+})();
+</script>
+</body>
+</html>

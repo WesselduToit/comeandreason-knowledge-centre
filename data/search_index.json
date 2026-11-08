@@ -28,6 +28,10 @@
 "title": "The Four Judgments",
 "file": "four-judgments.html"
 },
+"lab": {
+"title": "God's Design Laws Lab",
+"file": "lab.html"
+},
 "seven-levels": {
 "title": "The Seven Levels of Moral Development",
 "file": "seven-levels.html"
@@ -8355,6 +8359,727 @@
 "kind": "topic",
 "title": "Understanding Friend of God",
 "anchor": "#s8",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "section",
+"title": "Rule, or protocol?",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "section",
+"title": "The seventeen laws: break one and watch",
+"anchor": "#s2",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "section",
+"title": "Bench: the law of liberty",
+"anchor": "#b-liberty",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "section",
+"title": "Bench: the law of love, the circle of giving",
+"anchor": "#b-love",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "section",
+"title": "Bench: the law of exertion",
+"anchor": "#b-exertion",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "section",
+"title": "Bench: the law of worship",
+"anchor": "#b-worship",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "section",
+"title": "Bench: the law of truth",
+"anchor": "#b-truth",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "section",
+"title": "Bench: the laws of physics, degree of violation",
+"anchor": "#b-gravity",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "section",
+"title": "Survival of the fittest, or the circle of giving?",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "section",
+"title": "Which principle am I running on?",
+"anchor": "#s10",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "section",
+"title": "Objections desk",
+"anchor": "#s11",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "section",
+"title": "Closing",
+"anchor": "#s12",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "section",
+"title": "Glossary and sources",
+"anchor": "#sources",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "term",
+"title": "design law",
+"anchor": "#sources",
+"text": "{'text': 'A principle or protocol upon which reality is actually built to operate (gravity, respiration, love). It is testable and unchanging, and breaking it d"
+},
+{
+"page": "lab",
+"kind": "term",
+"title": "imposed law",
+"anchor": "#sources",
+"text": "{'text': \"A made-up rule with no inherent consequence (speed limits, tax codes), which therefore has to be enforced by an external authority through threatened "
+},
+{
+"page": "lab",
+"kind": "term",
+"title": "protocol",
+"anchor": "#sources",
+"text": "{'text': \"Jennings' preferred synonym for design law: the construction specification the Creator built the universe and life to run on, as opposed to a regulati"
+},
+{
+"page": "lab",
+"kind": "term",
+"title": "circle of giving",
+"anchor": "#sources",
+"text": "{'text': 'The picture Jennings uses for the law of love in nature: breath exchanged with plants, water cycling from ocean to cloud to river, pollen for pollinat"
+},
+{
+"page": "lab",
+"kind": "term",
+"title": "survival of the fittest",
+"anchor": "#sources",
+"text": "{'text': \"Jennings' name for the law of sin and death: the fear-driven, me-first principle that infected humanity at the fall. The exact opposite of the law of "
+},
+{
+"page": "lab",
+"kind": "term",
+"title": "law of liberty",
+"anchor": "#sources",
+"text": "{'text': \"Love exists only in an atmosphere of freedom. Violate someone's liberty and love is damaged, rebellion is incited, and individuality erodes; this is w"
+},
+{
+"page": "lab",
+"kind": "term",
+"title": "law of worship (by beholding)",
+"anchor": "#sources",
+"text": "{'text': 'Also called modeling. We are changed, neurobiologically and in character, to become like whatever we admire, worship and dwell on. The character of th"
+},
+{
+"page": "lab",
+"kind": "term",
+"title": "inherent consequence",
+"anchor": "#sources",
+"text": "{'text': 'The result that follows from violating a design law by itself, as death follows from suffocation. In Jennings\\' reading, \"the wages of sin is death\" n"
+},
+{
+"page": "lab",
+"kind": "topic",
+"title": "The law of love",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "topic",
+"title": "The law of liberty",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "topic",
+"title": "The law of worship",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "topic",
+"title": "The law of exertion",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "topic",
+"title": "The laws of physics",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "topic",
+"title": "The laws of mathematics",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "topic",
+"title": "The laws of health",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "topic",
+"title": "The law of restoration",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "topic",
+"title": "The law of sowing and reaping",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "topic",
+"title": "The law of love overcoming fear",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "topic",
+"title": "The law of fear damaging love and inciting selfishness",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "topic",
+"title": "The law of forgiveness versus resentment",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "topic",
+"title": "The law of truth",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "topic",
+"title": "The law of revelation",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "topic",
+"title": "The law of happiness",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "topic",
+"title": "The law of brokenness",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "topic",
+"title": "The law of sin and death",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "1 John 4:8",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Acts 20:35",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Luke 6:38",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Hebrews 5:14",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Matthew 25:29",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "2 Corinthians 3:18",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Psalms 115:8",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "2 Thessalonians 2:10-11",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "John 8:32",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Romans 1:21",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Genesis 6:5",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Psalms 10:3",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Psalms 119:150",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Matthew 5:45",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Matthew 6:24",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Matthew 6:33",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Matthew 16:25",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Matthew 20:28",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Mark 8:35",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Luke 6:38",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Luke 9:24",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Luke 12:23",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Luke 12:33",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "John 5:42",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "John 12:25",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "John 13:34",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "John 15:13",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Acts 20:35",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Romans 5:12",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Romans 8:7",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Romans 8:20",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Romans 12:10",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Romans 13:10",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "1Corinthians 1:18",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "2Corinthians 5:15",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Galatians 2:20",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Galatians 5:15",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Galatians 6:8",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Ephesians 2:2",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Ephesians 2:3",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Ephesians 4:22",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Philippians 2:3",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Philippians 2:4",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Colossians 1:13",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "James 3:16",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "James 4:1",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "James 4:2",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "James 4:3",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "1John 3:15",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "1John 3:16",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Revelation 12:11",
+"anchor": "#s9",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "1 John 4:16",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "2 Corinthians 3:17",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Psalms 135:18",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Colossians 1:17",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "3 John 1:2",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Mark 2:27",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Galatians 6:7",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "1 John 4:18",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Genesis 3:10",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Ephesians 4:32",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Matthew 12:35",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "James 1:25",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Psalms 51:17",
+"anchor": "#s1",
+"text": ""
+},
+{
+"page": "lab",
+"kind": "verse",
+"title": "Romans 6:23",
+"anchor": "#s1",
 "text": ""
 },
 {

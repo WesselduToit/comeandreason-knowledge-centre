@@ -10,6 +10,9 @@ import pathlib
 import re
 import sys
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from strip_paths import walk as strip_drive_paths  # noqa: E402
+
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DROP = ("part", "conventions", "sections_covered", "notes", "unverified", "_meta")
 
@@ -78,7 +81,7 @@ def main(page: str, parts_dir: pathlib.Path, parts: list[str]):
     for path, val in walk(merged):
         if not isinstance(val, str):
             continue
-        if path.endswith(".file") and ("\\" in val or "/" in val) and not pathlib.Path(val).exists():
+        if path.endswith(".file") and re.match(r"^[A-Za-z]:[\/]", val) and not pathlib.Path(val).exists():  # only absolute paths are checked; reused parts already hold short paths
             bad_paths.append((path, val))
         if ".remedy" in path and (path.endswith(".text") or path.endswith(".remedy")) and len(val) > 20:
             checked += 1
@@ -87,6 +90,8 @@ def main(page: str, parts_dir: pathlib.Path, parts: list[str]):
             if not all(w in blob for w in windows):
                 bad_remedy.append((path, val[:80]))
 
+    # Paths were checked above while still absolute; store them machine-independent (last two segments).
+    merged = strip_drive_paths(merged)
     out = ROOT / "data" / "pages" / f"{page}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(merged, ensure_ascii=False, indent=1), encoding="utf-8")

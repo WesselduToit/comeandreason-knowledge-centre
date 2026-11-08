@@ -847,6 +847,19 @@
     ],
     "status": "built",
     "page_authored": true
+   },
+   {
+    "slug": "lab",
+    "title": "God's Design Laws Lab",
+    "short": "Design Laws Lab",
+    "pitch": "Seventeen laws reality runs on, as cards you can break and watch the built-in consequence; six benches (liberty slider, the circle of giving, exertion, worship, truth fork, gravity) and the survival-of-the-fittest versus circle-of-giving verse set with a which-principle-am-I-on self-check.",
+    "pillar": "Foundations",
+    "nodes": [
+     "law",
+     "healing"
+    ],
+    "status": "built",
+    "page_authored": true
    }
   ],
   "planned_intro": {
@@ -870,15 +883,6 @@
      "law"
     ],
     "effort": "S",
-    "page_authored": true
-   },
-   {
-    "title": "God's Design Laws Lab",
-    "pillar": "Foundations",
-    "nodes": [
-     "law"
-    ],
-    "effort": "M",
     "page_authored": true
    },
    {

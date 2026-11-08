@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>God's Design Laws Lab — break a law and watch what happens</title>
+<style>
+/* Come and Reason Knowledge Centre — shared kit (v1)
+   Visual family matches dist/seven-levels.html: dark cards, Georgia headings, gold accent. */
+:root{
+  --bg:#0f1419; --bg2:#161d26; --card:#1b2430; --card2:#212c3a; --card3:#283547;
+  --ink:#e9edf2; --muted:#9fb0c3; --faint:#6f8298;
+  --line:#2c3a4c; --accent:#e0b15e; --accent2:#7fb0e0;
+  --good:#79c99e; --warn:#e0956a; --bad:#d9736a; --up:#c98bd6;
+  --imposed:#d9736a; --design:#e0b15e;
+  --fire-red:#e2543f; --fire-gold:#f0c060;
+  --radius:16px; --radius-s:11px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(180deg,#0d1218,#121a24 40%,#0f1419);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:24px 18px 90px}
+a{color:var(--accent2)}
+header.hero{text-align:center;padding:34px 8px 20px}
+.eyebrow{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--accent);font-weight:700}
+h1{font-family:Georgia,"Times New Roman",serif;font-weight:600;font-size:clamp(28px,7vw,44px);line-height:1.12;margin:.35em 0 .2em}
+h2{font-family:Georgia,serif;font-size:clamp(22px,5vw,30px);margin:0 0 6px;font-weight:600}
+h2 .num{color:var(--accent);font-size:.7em;letter-spacing:.1em;margin-right:8px}
+h3{font-family:Georgia,serif;font-size:19px;margin:18px 0 6px;font-weight:600}
+.sub{color:var(--muted);font-size:16px;max-width:620px;margin:0 auto}
+.credit{color:var(--faint);font-size:13px;margin-top:14px}
+.lead{color:var(--muted);font-size:15.5px}
+.small{font-size:13px;color:var(--faint)}
+section{margin-top:40px;scroll-margin-top:70px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px;margin:16px 0;box-shadow:0 6px 24px rgba(0,0,0,.22)}
+.card.sub{background:var(--card2);box-shadow:none;padding:16px}
+.hidden{display:none !important}
+.center{text-align:center}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.toc a{font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:6px 12px;text-decoration:none}
+.toc a:hover{border-color:var(--accent);color:var(--ink)}
+.pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;background:rgba(127,176,224,.14);color:var(--accent2);margin-left:6px;vertical-align:middle}
+
+/* buttons & chips */
+.btn{display:inline-block;background:linear-gradient(120deg,var(--accent),#d09a3f);color:#14100a;border:none;font-weight:750;font-size:15px;padding:11px 22px;border-radius:12px;cursor:pointer;transition:.15s;font-family:inherit}
+.btn:hover{filter:brightness(1.07);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn.sm{padding:7px 14px;font-size:13.5px}
+.chip{border:1px solid var(--line);background:var(--card2);color:var(--muted);border-radius:20px;padding:7px 13px;cursor:pointer;font:inherit;font-size:13.5px;transition:.15s}
+.chip:hover{border-color:var(--accent2)}
+.chip.on{color:#10161d;font-weight:750;border-color:transparent;background:var(--accent)}
+.opt{display:block;width:100%;text-align:left;background:var(--card2);border:1px solid var(--line);color:var(--ink);border-radius:var(--radius-s);padding:12px 14px;margin:8px 0;cursor:pointer;font:inherit;transition:.15s}
+.opt:hover{border-color:var(--accent2)}
+.opt.sel{border-color:var(--accent);background:rgba(224,177,94,.13);box-shadow:0 0 0 1px var(--accent) inset}
+.opt.correct{border-color:var(--good);background:rgba(121,201,158,.12)}
+.opt.wrong{border-color:var(--bad);background:rgba(217,115,106,.10)}
+
+/* tags & badges */
+.tag{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:750;padding:3px 9px;border-radius:20px;margin:0 6px 6px 0}
+.tag.scripture{background:rgba(127,176,224,.16);color:var(--accent2)}
+.tag.remedy{background:rgba(224,177,94,.16);color:var(--accent)}
+.tag.jennings{background:rgba(121,201,158,.16);color:var(--good)}
+.tag.egw{background:rgba(159,176,195,.14);color:var(--muted)}
+.tag.cole{background:rgba(201,139,214,.16);color:var(--up)}
+.tag.imposed{background:rgba(217,115,106,.16);color:var(--imposed)}
+.tag.design{background:rgba(224,177,94,.16);color:var(--design)}
+.tag.hard{background:rgba(224,149,106,.18);color:var(--warn)}
+.tag.strong{background:rgba(121,201,158,.16);color:var(--good)}
+.tag.moderate{background:rgba(224,149,106,.16);color:var(--warn)}
+.tag.thin{background:rgba(217,115,106,.16);color:var(--bad)}
+.badge-missing{display:inline-block;font-size:12px;color:var(--faint);border:1px dashed var(--line);border-radius:8px;padding:4px 9px}
+.caveat{border-left:3px solid var(--warn);background:rgba(224,149,106,.08);padding:8px 12px;border-radius:8px;color:#f0d9c8;font-size:13.5px;margin:8px 0}
+.verify{color:var(--faint);font-size:11px;margin-left:6px}
+
+/* quotes & voices */
+blockquote.q{margin:10px 0;padding:12px 16px;border-left:3px solid var(--accent2);background:rgba(127,176,224,.06);border-radius:8px;font-family:Georgia,serif;font-size:16.5px;line-height:1.55;color:#eef2f7}
+blockquote.q.remedy{border-left-color:var(--accent);background:rgba(224,177,94,.07)}
+blockquote.q.jennings{border-left-color:var(--good);background:rgba(121,201,158,.06);font-family:inherit;font-size:15.5px}
+blockquote.q.egw{border-left-color:var(--muted);background:rgba(159,176,195,.06);font-family:inherit;font-size:15px;color:var(--muted)}
+blockquote.q.cole{border-left-color:var(--up);background:rgba(201,139,214,.06);font-family:inherit;font-size:15px}
+blockquote.q .ref{display:block;font-family:inherit;font-size:12.5px;color:var(--muted);margin-top:6px;font-style:normal}
+.src{display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px 6px;font-size:11.5px;color:var(--faint);border:1px solid var(--line);border-radius:20px;padding:2px 9px;margin:4px 6px 0 0;max-width:100%;cursor:default}
+.src a{color:var(--accent2);text-decoration:none}
+.src code{font-size:10.5px;color:var(--muted);word-break:break-all;min-width:0}
+.src a{overflow-wrap:anywhere}
+
+/* lens toggle */
+.lens-bar{position:sticky;top:0;z-index:30;background:rgba(15,20,25,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin:0 -18px;padding:8px 18px;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.lens-bar .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.lens-switch{display:inline-flex;border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.lens-switch button{font:inherit;font-size:13px;font-weight:700;padding:7px 14px;border:none;background:transparent;color:var(--muted);cursor:pointer}
+.lens-switch button.on.imposed{background:var(--imposed);color:#1a0d0b}
+.lens-switch button.on.design{background:var(--design);color:#1a140a}
+body[data-lens="imposed"] .lens-design{display:none}
+body[data-lens="design"] .lens-imposed{display:none}
+.lens-panel{border-radius:var(--radius-s);padding:10px 12px;margin-top:8px;font-size:14.5px}
+.lens-panel.imposed{background:rgba(217,115,106,.09);border:1px solid rgba(217,115,106,.35)}
+.lens-panel.design{background:rgba(224,177,94,.09);border:1px solid rgba(224,177,94,.35)}
+
+/* verse cards */
+.vcard{background:var(--card2);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:12px 0}
+.vcard .vhead{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.vcard .vref{font-family:Georgia,serif;font-size:18px;font-weight:600;color:var(--accent)}
+.vcard .vtext{margin:8px 0}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+
+/* flame + figure (same fire slider) */
+.scene{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center;margin:14px 0}
+@media(max-width:560px){.scene{grid-template-columns:1fr}}
+.flame{width:140px;height:180px;margin:0 auto;position:relative;filter:drop-shadow(0 0 18px rgba(240,192,96,.35))}
+.flame .f{position:absolute;left:50%;bottom:0;transform:translateX(-50%);border-radius:50% 50% 45% 45% / 60% 60% 40% 40%;animation:flick 1.6s ease-in-out infinite alternate}
+.flame .f1{width:120px;height:170px;background:radial-gradient(ellipse at 50% 80%,#f7d58a,#f0a040 45%,#d9532f 80%,transparent 82%)}
+.flame .f2{width:70px;height:110px;background:radial-gradient(ellipse at 50% 85%,#fff5d6,#f7d58a 50%,transparent 75%);animation-duration:1.1s}
+@keyframes flick{from{transform:translateX(-50%) scaleY(1)}to{transform:translateX(-50%) scaleY(1.06) scaleX(.97)}}
+.flame.red .f1{background:radial-gradient(ellipse at 50% 80%,#f7b08a,#e2543f 45%,#8a2317 80%,transparent 82%)}
+.figure{text-align:center;font-size:64px;line-height:1;transition:.3s}
+.figure .cap{display:block;font-size:14px;color:var(--muted);margin-top:8px}
+input[type=range].kc{width:100%;accent-color:var(--accent)}
+.counter{font-family:Georgia,serif;font-size:15px;color:var(--accent);text-align:center;margin-top:6px}
+
+/* sort bins */
+.bins{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+@media(max-width:560px){.bins{grid-template-columns:1fr}}
+.bin{border:1px dashed var(--line);border-radius:var(--radius-s);padding:10px;min-height:90px;background:rgba(255,255,255,.02)}
+.bin h4{margin:0 0 8px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.token{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card3);border-radius:20px;padding:6px 12px;margin:4px;cursor:pointer;font-size:14px;transition:.15s}
+.token:hover{border-color:var(--accent2)}
+.token.ok{border-color:var(--good)}
+.token.no{border-color:var(--bad)}
+.pool{min-height:44px;padding:6px;border-radius:var(--radius-s);background:rgba(255,255,255,.02)}
+.result-line{font-size:14px;color:var(--muted);margin-top:8px}
+
+/* timeline */
+.tl{position:relative;margin:14px 0;padding-left:26px}
+.tl:before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl .node{position:relative;margin:0 0 12px}
+.tl .node:before{content:"";position:absolute;left:-23px;top:14px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(224,177,94,.18)}
+.tl .node.hard:before{background:var(--warn)}
+.tl .node .card.sub{margin:0}
+.tl .ask{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.reveal{display:none;margin-top:8px}
+.node.open .reveal{display:block}
+
+/* flip pairs */
+.flip{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+@media(max-width:560px){.flip{grid-template-columns:1fr}}
+.flip .side{border:1px solid var(--line);border-radius:var(--radius-s);padding:12px;background:var(--card2)}
+.flip .side h4{margin:0 0 6px;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.flip .said h4{color:var(--imposed)}.flip .happened h4{color:var(--design)}
+.flip .happened{display:none}
+.flip.open .happened{display:block}
+
+/* accordion */
+details.acc{margin:10px 0;border:1px solid var(--line);border-radius:var(--radius-s);overflow:hidden;background:var(--card2)}
+details.acc summary{cursor:pointer;padding:12px 14px;font-weight:650;list-style:none}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary::after{content:"＋";float:right;color:var(--accent)}
+details.acc[open] summary::after{content:"－"}
+details.acc .body{padding:0 14px 14px;color:var(--muted);font-size:14.5px}
+textarea.journal{width:100%;min-height:70px;background:var(--bg2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit;font-size:14px}
+
+/* stepper */
+.stepper{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.stepper button{flex:1 1 60px;font:inherit;font-size:13px;font-weight:700;padding:8px 6px;border-radius:10px;border:1px solid var(--line);background:var(--card2);color:var(--muted);cursor:pointer}
+.stepper button.on{color:#10161d;border-color:transparent}
+.l1{background:#c56a5c!important}.l2{background:#cf8a55!important}.l3{background:#d7b859!important}.l4{background:#8fb56a!important}.l5{background:#5fb0a3!important}.l6{background:#6a92cf!important}.l7{background:#a982d6!important}
+.divider-note{font-size:12.5px;color:var(--faint);text-align:center;margin:4px 0 10px}
+
+/* glossary pop */
+.gl{border-bottom:1px dotted var(--accent);cursor:help;color:#f3e2b8}
+.pop{position:fixed;z-index:50;max-width:340px;background:var(--card3);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13.5px;box-shadow:0 12px 30px rgba(0,0,0,.45)}
+.pop b{color:var(--accent)}
+.pop .x{float:right;cursor:pointer;color:var(--faint)}
+
+/* brain panel */
+.brain{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.brain{grid-template-columns:1fr}}
+.region{border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:6px 0;display:flex;justify-content:space-between;align-items:center;font-size:14px}
+.region .lvl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:20px}
+.lvl.high{background:rgba(217,115,106,.2);color:var(--bad)}.lvl.low{background:rgba(111,130,152,.2);color:var(--muted)}
+.region.good .lvl.high{background:rgba(121,201,158,.2);color:var(--good)}
+
+/* dial */
+.dial{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+
+/* meter bars */
+.meter{display:flex;gap:5px;margin:16px 0 26px;align-items:flex-end;height:80px}
+.mbar{flex:1;border-radius:6px 6px 0 0;position:relative;min-height:6px;opacity:.85;background:var(--accent)}
+.mbar span{position:absolute;bottom:-20px;left:0;right:0;text-align:center;font-size:11px;color:var(--faint)}
+
+.footnote{color:var(--faint);font-size:12.5px;text-align:center;margin-top:40px;line-height:1.7}
+.nodata{color:var(--faint);font-style:italic;font-size:14px}
+
+</style>
+<style>
+/* page-only styles */
+.lawgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:12px}
+.law{border:1px solid var(--line);border-radius:var(--radius);background:var(--card2);padding:14px;display:flex;flex-direction:column;gap:8px;position:relative;transition:.25s}
+.law h3{margin:0;font-size:17px}
+.law .def{font-size:13.5px;color:var(--muted)}
+.law .state{border-radius:10px;padding:10px 12px;font-size:14px;min-height:64px}
+.law .state.kept{background:rgba(224,177,94,.10);border:1px solid rgba(224,177,94,.4)}
+.law .state.broken{background:rgba(217,115,106,.10);border:1px solid rgba(217,115,106,.5)}
+.law.broken{border-color:var(--bad);transform:rotate(-.6deg)}
+.law .ctrl{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+.law .more{display:none}
+.law.open .more{display:block}
+.law .bench{font-size:12px;color:var(--accent);text-decoration:none;border:1px dashed var(--accent);border-radius:14px;padding:3px 9px}
+.counter{font-family:Georgia,serif;font-size:15px;color:var(--accent);text-align:center;margin-top:10px}
+.benchbox{border:1px solid var(--line);border-radius:var(--radius);padding:16px;background:var(--card2);margin:12px 0}
+.cons{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.cons .c{border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13.5px;color:var(--faint);opacity:.45;transition:.3s}
+.cons .c.on{opacity:1;color:var(--ink);border-color:var(--bad);background:rgba(217,115,106,.08)}
+.cons .c b{display:block;color:var(--accent);font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.ring{position:relative;width:220px;height:220px;margin:14px auto}
+.ring .node{position:absolute;width:76px;height:76px;border-radius:50%;background:var(--card3);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;padding:6px;transition:.4s}
+.ring .n0{left:72px;top:0}.ring .n1{right:0;top:72px}.ring .n2{left:72px;bottom:0}.ring .n3{left:0;top:72px}
+.ring .dot{position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px;border-radius:50%;background:var(--accent2);box-shadow:0 0 10px var(--accent2);animation:orbit 4s linear infinite}
+.ring .dot.d2{animation-delay:-2s}
+@keyframes orbit{from{transform:rotate(0deg) translateX(100px) rotate(0deg)}to{transform:rotate(360deg) translateX(100px) rotate(-360deg)}}
+.ring.broken .dot{animation-play-state:paused;background:var(--bad);box-shadow:none}
+.ring.broken .node{border-color:var(--line);color:var(--faint)}
+.ring.broken .n1{border-color:var(--bad);background:rgba(217,115,106,.15);color:var(--ink)}
+.bar{height:16px;border-radius:8px;background:var(--line);overflow:hidden;margin:10px 0}
+.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));transition:width 5s linear}
+.fork{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.fork .side{border:1px solid var(--line);border-radius:var(--radius-s);padding:12px;opacity:.5;transition:.3s}
+.fork .side.on{opacity:1}
+.fork .side.embrace.on{border-color:var(--design)}
+.fork .side.reject.on{border-color:var(--bad)}
+.grav{display:flex;align-items:flex-end;gap:14px;margin:10px 0;height:150px}
+.grav .tower{width:60px;background:linear-gradient(180deg,var(--card3),var(--line));border-radius:6px 6px 0 0;transition:height .4s;position:relative}
+.grav .tower .man{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:20px}
+.grav .say{flex:1;font-size:14px}
+.pairs .pair{border:1px solid var(--line);border-radius:var(--radius-s);padding:10px 12px;margin:8px 0;background:var(--card2)}
+.pairs .theme{color:var(--accent);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.pairs .opt{margin:6px 0}
+.verdict{border:1px solid var(--accent);border-radius:var(--radius);padding:14px;margin:12px 0;background:rgba(224,177,94,.06)}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:10px}
+.wall .vcard{margin:0}
+.wall .why{font-size:12.5px;color:var(--faint);margin-top:6px}
+.tag.survival{background:rgba(217,115,106,.16);color:var(--bad)}
+.tag.giving{background:rgba(224,177,94,.16);color:var(--design)}
+.tag.both{background:rgba(127,176,224,.16);color:var(--accent2)}
+@media (max-width:640px){.cons{grid-template-columns:1fr}.fork{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="lensbar"></div>
+
+  <header class="hero">
+    <div class="eyebrow">An Interactive Study · Come and Reason Knowledge Centre</div>
+    <h1>God's Design Laws Lab</h1>
+    <p class="sub">Seventeen laws Jennings says reality runs on. None of them needs a police force: break one and the consequence is built in. Pick a law, break it, and watch; then test yourself on the deepest one, the circle of giving against survival of the fittest.</p>
+    <p class="credit"><a href="index.html">&larr; Knowledge Centre</a> &middot; Teaching of Timothy R. Jennings, MD · <a href="https://comeandreason.com" target="_blank" rel="noopener">Come and Reason Ministries</a> · the laws listed on <a href="two-lenses.html#s10">Two Lenses</a>; see also <a href="dominoes.html">The Falling Dominoes</a>, <a href="sin-disease.html">Sin Is a Disease</a>, <a href="wrath.html">Wrath = Letting Go</a>, <a href="fire.html">The Consuming Fire</a>, <a href="four-judgments.html">The Four Judgments</a> and <a href="seven-reasons.html">Same Act, Seven Reasons</a></p>
+    <div class="toc">
+      <a href="#s1">Rule or protocol?</a><a href="#s2">The seventeen laws</a><a href="#b-liberty">Liberty bench</a><a href="#b-love">Love bench</a><a href="#b-exertion">Exertion bench</a><a href="#b-worship">Worship bench</a><a href="#b-truth">Truth bench</a><a href="#b-gravity">Gravity bench</a><a href="#s9">Survival vs giving</a><a href="#s10">Which principle am I on?</a><a href="#s11">Objections</a><a href="#s12">Closing</a><a href="#sources">Glossary &amp; sources</a>
+    </div>
+  </header>
+
+  <section id="s1"><div class="card"><h2><span class="num">1</span>Rule, or protocol?</h2><div id="intro"></div></div></section>
+  <section id="s2"><div class="card"><h2><span class="num">2</span>The seventeen laws: break one and watch</h2><div id="laws"></div></div></section>
+  <section id="b-liberty"><div class="card"><h2><span class="num">3</span>Bench: the law of liberty</h2><div id="liberty"></div></div></section>
+  <section id="b-love"><div class="card"><h2><span class="num">4</span>Bench: the law of love, the circle of giving</h2><div id="love"></div></div></section>
+  <section id="b-exertion"><div class="card"><h2><span class="num">5</span>Bench: the law of exertion</h2><div id="exertion"></div></div></section>
+  <section id="b-worship"><div class="card"><h2><span class="num">6</span>Bench: the law of worship</h2><div id="worship"></div></div></section>
+  <section id="b-truth"><div class="card"><h2><span class="num">7</span>Bench: the law of truth</h2><div id="truth"></div></div></section>
+  <section id="b-gravity"><div class="card"><h2><span class="num">8</span>Bench: the laws of physics, degree of violation</h2><div id="gravity"></div></div></section>
+  <section id="s9"><div class="card"><h2><span class="num">9</span>Survival of the fittest, or the circle of giving?</h2><div id="survival"></div></div></section>
+  <section id="s10"><div class="card"><h2><span class="num">10</span>Which principle am I running on?</h2><div id="selfcheck"></div></div></section>
+  <section id="s11"><div class="card"><h2><span class="num">11</span>Objections desk</h2><div id="objections"></div></div></section>
+  <section id="s12"><div class="card"><h2><span class="num">12</span>Closing</h2><div id="closing"></div></div></section>
+  <section id="sources"><div class="card"><h2>Glossary and sources</h2><div id="glossary"></div><h3>Sources used on this page</h3><div id="sourceList"></div></div></section>
+
+  <p class="footnote">Built as a study companion for Dr Timothy R. Jennings' teaching. Quotations are verbatim from the cited local files; The Remedy is Jennings' expanded paraphrase. Items marked page-authored are written for this page and are not quotations. Nothing leaves your browser.</p>
+</div>
+
+<script>window.PAGE_DATA = {"laws_list": {"intro": {"text": "When you look up the word “law” in a dictionary, you’ll typically find more than 20 different definitions, but they do break down into two main categories: 1) made-up rules that require enforcement (e.g., tax laws), and 2) principles or protocols upon which reality is constructed to operate (e.g., laws of physics).", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "line 13"}}, "definition": {"text": "In order for a law to be a design law, it must be a principle or protocol upon which reality operates. As such it will be testable — with reproducible, consistent, constant, and predictable results. In other words, it is non-changing.", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "line 29"}}, "constantine": {"text": "Human beings did not and cannot create reality as God did; instead, when we make up rules, we must enforce those rules externally, most often through the infliction of punishment. Sadly, after Constantine “converted,” the idea that God’s law functions in the same way that human laws do was embraced; the idea that God’s law is imposed (imperial) began to infect Christianity — corrupting the saving truths that Jesus brought.", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "line 23"}}, "laws": [{"name": "The law of love", "text": "the principle of giving upon which life is built to operate; examples:", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 33-39"}, "examples": ["We give CO2 to the plants, and they give oxygen to us", "The water cycle (oceans > clouds > rain > rivers > oceans)", "Plants give pollen to bees and bees their industry to pollinate the plants"]}, {"name": "The law of liberty", "text": "Love only exists in the atmosphere of freedom. Violate freedoms in relationships and three predictable and damaging consequences will occur:", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 41-47"}, "consequences": ["Love is damaged and eventually destroyed", "Rebellion (desire to break away and get free) is incited", "Individuality of the one dominated will be eroded and eventually destroyed if the violations do not end"]}, {"name": "The law of worship", "text": "We are changed neurobiologically and characterologically to become like what we admire, worship, and spend time watching and assimilating.", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 49-51"}}, {"name": "The law of exertion", "text": "Strength comes from exercise — “use it or lose it” — not just physically, but also neurologically.", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 53-55"}}, {"name": "The laws of physics", "text": "law of gravity, friction, motion, nuclear forces, etc.", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 57-59"}}, {"name": "The laws of mathematics", "text": "such as commutative laws, a + b = b + a, etc.", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 61-63"}}, {"name": "The laws of health", "text": "the physical laws upon which life and health operate, including nutrition, exercise, sleep, hydration, respiration, etc.", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 65-67"}}, {"name": "The law of restoration", "text": "After expending a resource, one must rest and recover before one is enabled to expend more. For example, a baseball pitcher must rest and recover before he can pitch again, lest he cause permanent damage to his arm.", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 69-71"}}, {"name": "The law of sowing and reaping", "text": "We reap what we sow — not just in fields, but in life. One cannot get grapes by sowing oats, and we cannot get critical reasoning skills by allowing others to think for us. For example, simply getting the correct answers from a textbook or teacher, rather than figuring out those answers ourselves. This is why the Bible says that the mature are those who have trained their faculties by practice to be able to discern right from wrong (Hebrews 5:14).", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 73-75"}}, {"name": "The law of love overcoming fear", "text": "Genuine love overcomes our fear for self and allows us to sacrifice self for others. Neurobiologically, when our love circuit fires, it calms our fear circuit. For example, a mother who sees her child in danger puts herself in harm’s way to save the child, but she would not put herself in such danger on her own whim.", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 77-79"}}, {"name": "The law of fear damaging love and inciting selfishness", "text": "When our fear circuits are active and we identify with them and focus on the fear, we lose concern for others, think of self, and neglect or harm others, in order to protect or save self. Consider being in a theater during a mass shooting: If we don’t know anyone else, the fear drives concern for self and most people seek only to escape the danger, maybe even pushing others out of the way to get out. But if you are with a loved one, you don’t simply flee; you seek to save your loved one, perhaps even putting yourself between the shooter and the one you love.", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 81-83"}}, {"name": "The law of forgiveness versus resentment", "text": "When wronged, we can either forgive or not. When we forgive, we free ourselves from bitterness and resentment and experience healing of our heart and mind, but retaining resentment always injures us. We cannot experience emotional and mental wellness while harboring bitterness.", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 85-87"}}, {"name": "The law of truth", "text": "You can never avoid the truth; you can only delay the day you deal with it.", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 89-94"}, "detail": ["When truth is embraced and accepted, it displaces lies and frees a person from fear and misunderstanding, elevating and ennobling the individual. Truths build together into beliefs, constructs, and perspectives that form our understanding of reality, leading us back to trust in our Creator God. In trust, we open our hearts and experience the indwelling Spirit of God that transforms and ennobles us to be beings of love rather than beings of selfishness. All truth comes from God and, if followed, will lead back to God.", "When truth is rejected, our understanding is confused, our mind is damaged, our heart is hardened, and we slowly become less capable of understanding reality — the truth of God’s kingdom and the world around us. Such individuals will one day face the truth, but it will be painful and destructive to them as they still hate the truth and want to flee from it, even begging for the mountains and rocks to hide them from reality (Luke 23:30)."]}, {"name": "The law of revelation", "text": "People reveal or bring forth and share what they truly believe and value. Those who value God’s principles not only speak them, but live them. Conversely, those who love the methods of this sinful world live them out. Thus, Jesus said, “Out of the overflow of the heart the mouth speaks. The good man brings good things out of the good stored up in him, and the evil man brings evil things out of the evil stored up in him” (Matthew 12:34, 35).", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 96-98"}}, {"name": "The law of happiness", "text": "Happiness is the byproduct of healthiness in all domains — physical, mental, emotional, relational, and spiritual. One only experiences happiness when in harmony with God’s design laws upon which these aspects are built. Break the laws of health and sickness, disease, and suffering occur — thus undermining happiness. Many people fail to understand this and instead of pursuing healthiness, they substitute pleasure seeking, which often violates the laws of health (e.g., drugs, alcohol, casual sex, gambling, etc.) and only causes greater unhappiness.", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 100-102"}}, {"name": "The law of brokenness", "text": "Once there is brokenness (injury) of any kind, there are no pain-free options. Do nothing and one remains in pain and disabled. But healing and recovery from brokenness is painful. Sadly, many fail to realize this when it comes to emotional wounds and, rather than facing the pain and healing the injury, they spend their lives seeking pain relief, rather than healing. But in so doing, they never get well and only get worse, because once there is brokenness, there are no pain-free options. The first step to healing is to embrace this truth and stop asking, “What hurts least?” and start asking, “What is the best action to take to heal, even if it hurts?”", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 104-106"}}, {"name": "The law of sin and death", "text": "This is also known as survival of the fittest, the principle of fear-driven selfishness that infects the world. This is Satan’s law — the strong dominate and exploit the weak. It is the violation of the law of love and liberty, and it also has predictable results: pain, suffering, and eventually death.", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 108-110"}}], "closing": {"text": "God is our loving Creator who built all reality to operate in harmony with His character of love. His laws are design laws, protocols upon which life and health are constructed to operate.", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "line 112"}}, "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "lines 31-110"}}, "reuse_note": {"text": "The seventeen law definitions are reused from the Two Lenses page, where they were fact-checked against Jennings' 2019 post.", "page_authored": true}, "deep": {"liberty": {"intro": {"text": "Jennings calls liberty the atmosphere love breathes. Take freedom out of a relationship and three things follow as predictably as a dropped stone falls: love dies, rebellion stirs, and if the person stays, their very selfhood thins to a shadow. The widget below lets you run his 'spouse test' as a thought experiment and then meet the real patients he describes.", "page_authored": true}, "statement": [{"text": "I described for the first time the law of liberty, the principle of freedom upon which God created reality to operate. I described how this law is, like gravity, a constant that works whether one believes in it or not and that just like gravity, it is testable – there are reproducible and unavoidable consequences when we violate liberty.", "speaker": "Jennings", "source": {"file": "posts/2020-11-17--the-law-of-liberty-and-society-today.md", "url": "https://comeandreason.com/law-of-liberty-and-society-today/", "locator": "line 13"}}, {"text": "Violate liberty, and love is always damaged. Eventually it will even be destroyed. A desire to rebel is instilled in the heart, but if one surrenders to violations long enough, individuality is shattered so that only a shadow remains. Love cannot exist in an atmosphere without freedom. This law is not enacted or legislated; it is one of the principles on which life is designed to operate, and our health and happiness are dependent on harmony with it.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedBrain.md", "url": null, "locator": "line 441"}}], "three_consequences": [{"name": {"text": "Love destroyed", "page_authored": true}, "quote": {"text": "Whenever liberty is violated, three predictable consequences occur: (1) love is always damaged and will eventually be destroyed;", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedBrain.md", "url": null, "locator": "line 430"}}}, {"name": {"text": "Rebellion instilled", "page_authored": true}, "quote": {"text": "(2) a desire to rebel is instilled in the heart", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedBrain.md", "url": null, "locator": "line 430"}}}, {"name": {"text": "Individuality eroded", "page_authored": true}, "quote": {"text": "if one has the option to restore freedom but instead chooses to remain violated, then (3) individuality is slowly eroded and the person becomes, like Joe, a mere shadow.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedBrain.md", "url": null, "locator": "line 430"}}}], "spouse_test": {"text": "Test it on your significant other. For a day, try restricting his or her liberties. Tell your special other where he can go, what she must wear, when he can use the phone, how much money can be spent. See for yourself what happens to love. … Conversely, if you are in a relationship in which freedoms have been abused, begin to breathe in liberty and see if love revives.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedBrain.md", "url": null, "locator": "line 443"}}, "cases": [{"name": {"text": "Joe", "page_authored": true}, "quote": {"text": "So Joe began to limit his activities. He stopped volunteering and stopped meeting with friends. Over the years he withdrew more and more in order to please his wife, in order to keep her happy. In public he stopped socializing. He no longer initiated conversations. When someone asked him a question, he looked to his wife for permission to speak. Slowly, gradually, almost imperceptibly Joe faded away. He lost himself.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedBrain.md", "url": null, "locator": "line 424"}}, "what_was_controlled": {"text": "His time, his friendships, his volunteering, even permission to speak in public — surrendered to keep an unhappy, jealous wife calm.", "page_authored": true}, "consequence": {"text": "Forty years on he is a 'shadow': no initiative, no conversation, looking to his wife before answering a question. Individuality eroded.", "page_authored": true}}, {"name": {"text": "Lynda", "page_authored": true}, "quote": {"text": "Lynda told me she had married a man who was domineering, controlling and demanding. He monitored her every move. He gave her money only to use as he directed. When money was given for groceries, her husband required that she give him receipts showing every penny spent and returning any change to him. She could not use the phone without permission, and was forbidden from talking to old friends or developing new ones. … She was being suffocated as a person.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedBrain.md", "url": null, "locator": "line 436"}}, "what_was_controlled": {"text": "Money to the penny (receipts and change returned), the phone, every friendship, every move.", "page_authored": true}, "consequence": {"text": "Panic attacks, depression, suicidal hospitalisations, fourteen failed medications — the mind fighting for air before it goes under for good.", "page_authored": true}}, {"name": {"text": "Shirley", "page_authored": true}, "quote": {"text": "Hesitantly she described one incident in which her husband told her he wanted dinner ready at 5:00 p.m., and how she had worked diligently preparing the meal, but served it at 5:02 p.m. She cried as she told how her husband began to beat her, breaking her nose and blackening her eye. … “Oh no! It wasn’t his fault. If I would have had dinner ready on time, he wouldn’t have had to hit me.”", "speaker": "Jennings", "source": {"file": "posts/2020-11-17--the-law-of-liberty-and-society-today.md", "url": "https://comeandreason.com/law-of-liberty-and-society-today/", "locator": "lines 23, 25"}}, "what_was_controlled": {"text": "Her body and her schedule, enforced by beatings framed as love ('I only do this for your own good').", "page_authored": true}, "consequence": {"text": "Stage three: she defends her abuser and blames herself. Her own judgement has been replaced by his version of reality.", "page_authored": true}}], "god_respects": [{"text": "God will never violate his own character of love, which means God does not take away freedom or operate contrary to the law of liberty.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedBrain.md", "url": null, "locator": "line 443"}}, {"text": "God’s laws are not like the laws of creatures; God does not govern by made-up rules enforced through coercion and externally inflicted penalties, because such methods violate liberty, damage love, incite rebellion, and destroy individuality.", "speaker": "Jennings", "source": {"file": "posts/2024-11-14--love-compels-to-discipline-but-law-compels-to-punish.md", "url": "https://comeandreason.com/love-compels-discipline-law-compels-punishment/", "locator": "line 27"}}]}, "love": {"intro": {"text": "For Jennings the law of love is not a sentiment but the operating principle of every living system: a circle of giving. Oceans give to clouds, lungs give carbon dioxide to plants, plants give oxygen back. Trace the circle in the widget, then break it and watch what happens.", "page_authored": true}, "circle": [{"text": "The oceans give their waters to the clouds, which rain over the land, giving their waters to form the lakes, rivers and streams, which in turn give their waters to the plants and animals, ultimately giving back to the oceans to start the circle again.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedBrain.md", "url": null, "locator": "line 191"}}, {"text": "We see the circle of love, the law of life, in everything God creates. In every breath we demonstrate giving: we give away carbon dioxide to the plants, and the plants give back oxygen to us.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedBrain.md", "url": null, "locator": "line 193"}}, {"text": "This design—this law of giving—is the foundation of every living system: the water cycle, pollination, citric-acid cycle, nitrogen cycle (plant growth, digestion of plants, fertilization), economies, ecosystems, literally everything that lives—gives. And everything that doesn't give—dies!", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedHeart.md", "url": null, "locator": "line 300"}}], "broken": [{"text": "If a body of water separates from the circle and ceases to flow, it stagnates and everything in it dies. God gave us a powerful illustration in the body of water called the Dead Sea. The Dead Sea takes from the Jordan River but gives nothing in return. What happens in that body of water? The name says it all.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedBrain.md", "url": null, "locator": "line 191"}}, {"text": "Imagine if you were to decide, \"I don't want to be a part of the circle of giving. If my body makes carbon dioxide, it's mine; I have the right to it. You can't have it.\" The only way to do that is to stop breathing—to die. If we hoard the product of our breathing, maybe by putting a bag over our heads, the carbon dioxide becomes the poisoning agent that kills us.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedBrain.md", "url": null, "locator": "line 193"}}], "survival": {"text": "Fear and selfishness are commonly known in the world today as \"survival of the fittest,\" or the drive to survive, or \"kill or be killed,\" or \"watch out for me first.\" It is the polar opposite of giving, love or beneficence, and it is the infection that is destroying God's creation.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedBrain.md", "url": null, "locator": "line 267"}}, "scripture": [{"ref": "1 John 4:8", "remedy": "But whoever does not love others more than self has not been healed and doesn't even know God, as God is love.", "remedy_ref_key": "1John|4|8"}, {"ref": "Acts 20:35", "remedy": "In all my actions, I demonstrated to you how to live in harmony with God's design for life–the law of love. By hard work, we support the weak, remembering the truth the Lord Jesus taught: 'It is a greater blessing to give than to receive.' \"", "remedy_ref_key": "Acts|20|35"}, {"ref": "Luke 6:38", "remedy": "Life is constructed to operate upon giving, so give; and the more you give, the more will be given to you: a great abundance of love — concentrated, intense, overwhelming and all-consuming — will be poured into your being. For the way you treat others reveals the condition of your own character, and your own condition determines your destiny.\"", "remedy_ref_key": "Luke|6|38"}]}, "exertion": {"intro": {"text": "Strength comes by exercise — muscles, skills, reasoning, faith. Jennings reads the parable of the talents as a lesson in this design law: what you use grows, what you neglect withers. Slide the 'use' dial below and watch the capacity respond.", "page_authored": true}, "statement": [{"text": "Law of exertion: strength comes by exercise. If you want something to get stronger, you must exercise it. If you don't use it, you will lose it.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedHeart.md", "url": null, "locator": "line 1967"}}, {"text": "If you want something to grow stronger, you must exercise it; as everyone knows, if you don't use it, you lose it. If you don't exercise a muscle group, an ability, or a talent, it will slowly wither away.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedHeart.md", "url": null, "locator": "line 395"}}], "examples": [{"text": "When a person exercises their abilities, those abilities grow stronger. Those with musical talent who take lessons and practice, athletes who train, mathematicians who pursue higher education and challenge their thinking, artisans—craftsmen of every kind who exercise their craft grow stronger, more capable, and more proficient. Those with raw talent who neglect it will over time lose the ability they have, while those who exert themselves will not only develop their abilities but will also discover new skills they didn't previously possess.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedHeart.md", "url": null, "locator": "line 397"}}, {"text": "Many are stunted in their spiritual growth, in their ability to love, simply by failing to exercise their God-given ability to reason and think.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedHeart.md", "url": null, "locator": "line 391"}}, {"text": "This parable beautifully describes the law of exertion! What happens if you don’t use the talents you possess – if you don’t use it, you lose it. But if you apply yourself, you gain more abilities. No jury, no presentation of evidence, no judge passing sentence – it is the reality of the outcome of our choices.", "speaker": "Jennings", "source": {"file": "posts/2020-08-25--parables-of-jesus-the-overarching-theme.md", "url": "https://comeandreason.com/parables-of-jesus/", "locator": "line 105"}}], "scripture": [{"ref": "Hebrews 5:14", "remedy": "But the solid food of truth is for the mature, who, by constant use, have trained their faculties to distinguish true from false, good from evil, healthy from unhealthy.", "remedy_ref_key": "Hebrews|5|14"}, {"ref": "Matthew 25:29", "remedy": "for everyone who uses what they have will develop more. But whoever doesn't use what they have will lose it, for if you don't use it you lose it.", "remedy_ref_key": "Matthew|25|29"}]}, "worship": {"intro": {"text": "By beholding we are changed. Jennings grounds this in neuroplasticity — the brain rewires toward whatever it admires — and in history: worship a God of love and you grow loving; worship a punishing dictator-god and you grow punitive. Choose an object of worship below and see the trajectory.", "page_authored": true}, "statement": [{"text": "One of God's design laws is the law of worship—by beholding we are changed. We actually become like the God we admire and worship. In psychiatry, this is known as modeling. … worship a God of love and become more loving; worship an authoritarian god and become more abusive.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedHeart.md", "url": null, "locator": "line 910"}}, {"text": "Law of worship: by beholding we are changed; also known as modeling. It is the principle that we become like whatever we spend time admiring, valuing, thinking about, worshiping, or esteeming.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedHeart.md", "url": null, "locator": "line 1957"}}], "examples": [{"label": {"text": "Authoritarian god → Rwanda 1994", "page_authored": true}, "quote": {"text": "In researching what separated those who participated in the killing from those who helped protect the refugees, researchers discovered it came down to one factor: those with authoritarian God concepts participated in the killing, while those with loving God concepts protected the refugees—regardless of denomination.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedHeart.md", "url": null, "locator": "line 693"}}}, {"label": {"text": "Theatrical entertainment, R- or G-rated", "page_authored": true}, "quote": {"text": "Theatrical entertainment activates emotion circuits, diminishes activity in reasoning circuits, and increases inattention and propensity for violence, regardless of whether the programming is R- or G-rated.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedHeart.md", "url": null, "locator": "line 1961"}}}, {"label": {"text": "Self as the standard", "page_authored": true}, "quote": {"text": "We must not make self supreme and claim our feelings as the standard of reality to which all others must submit—that is idolatry, the worship of self.", "speaker": "Jennings", "source": {"file": "posts/2022-10-27--identity-and-the-worship-of-self.md", "url": "https://comeandreason.com/identity-and-the-worship-of-self/", "locator": "line 47"}}}], "scripture": [{"ref": "2 Corinthians 3:18", "remedy": "And we, whose minds are not veiled by confusion, and who reveal the truth about the Lord's glorious character, are being transformed into his likeness with ever-increasing glory which comes from the Lord and is applied in us by the Spirit.", "remedy_ref_key": "2Corinthians|3|18"}, {"ref": "Psalms 115:8", "remedy": "Those who make them will become like them, as will all who worship and trust in them.", "remedy_ref_key": "Psalms|115|8"}]}, "truth": {"intro": {"text": "You cannot avoid the truth, only delay dealing with it. Every truth that arrives is a fork: embrace it and the mind is freed and strengthened; reject it and the heart hardens, the reasoning darkens, and the next truth is harder to see. Walk the fork below.", "page_authored": true}, "statement": [{"text": "One of God’s design laws for intelligent beings is the law of truth. We cannot have health in lies, in falsehood, out of harmony with truth and reality. … Thus, love always operates with the truth, speaks truth, applies truth, moves forward in the truth, for the truth heals and sets free (John 8:32).", "speaker": "Jennings", "source": {"file": "posts/2024-11-14--love-compels-to-discipline-but-law-compels-to-punish.md", "url": "https://comeandreason.com/love-compels-discipline-law-compels-punishment/", "locator": "line 21"}}, {"text": "Therefore, God presents truth, which sets free all those who accept it, but God does not force the will of individuals to either accept or reject the truth. When we reject the truth our hearts harden in proportion to the truth rebuffed.", "speaker": "Jennings", "source": {"file": "posts/2009-06-05--god-s-judgment-part1-did-god-harden-pharaoh-s-heart.md", "url": "https://comeandreason.com/gods-judgement-part-1/", "locator": "line 69"}}], "fork": {"embrace": {"text": "When they choose the truth, no matter the cost, and trust Jesus, a huge burden lifts. Their heart is freed from that struggle, and their brain literally changes, resulting in their spirit shifting to be ever more in harmony with God. They are settled on that point and experience a period of joy, peace, and relief within themselves, even if they lose a relationship, position, or object of value.", "speaker": "Jennings", "source": {"file": "posts/2026-07-02--putting-off-choosing-truth-is-dangerous-to-your-brain-here-s-why.md", "url": "https://comeandreason.com/why-putting-off-choosing-truth-is-dangerous/", "locator": "line 71"}}, "reject": {"text": "If we choose to reject the truth, the only thing left for the mind to rest upon is a lie, and with each subsequent rejection of truth, we go further and further from reality until we eventually become delusional.", "speaker": "Jennings", "source": {"file": "posts/2020-05-20--flat-earthers-a-lesson-in-how-we-deceive-ourselves.md", "url": "https://comeandreason.com/flat-earth-deceived/", "locator": "line 65"}}}, "scripture": [{"ref": "2 Thessalonians 2:10-11", "remedy": "and anything else that deceives and darkens the minds of those who are dying–those who did not develop minds that love the truth, and thereby did not partake of the Remedy. Because they reject the truth, God leaves them to their delusional world built on lies.", "remedy_ref_key": "2Thessalonians|2|10-11"}, {"ref": "John 8:32", "remedy": "Then you will experience the healing power of the truth, and the truth will set your entire being free.\"", "remedy_ref_key": "John|8|32"}, {"ref": "Romans 1:21", "remedy": "For although they knew the truth about God and his methods, they did not appreciate his gracious, humble character nor did they honor him by trusting him and incorporating his methods into their lives. Therefore their reasoning was damaged, their consciences seared, their thoughts became illogical and irrational, and their minds were darkened with lies and falsehoods.", "remedy_ref_key": "Romans|1|21"}]}}, "tract": {"intro": {"text": "Come and Reason also issues the design-laws teaching as a three-page printed tract. Its text repeats the 2019 blog post almost word for word — the same 17 laws in the same order — and its opening paragraph restates the post’s gravity illustration (the 500-foot building and the 5-inch curb) in slightly different wording. The tract’s wording is quoted below.", "page_authored": true}, "opening": {"text": "For instance, if you jump off a 500-foot building, you will die; step off a 5-inch curb and you might twist an ankle — the law of gravity doesn’t care and doesn’t change, but the degree of the violation causes a different degree of injury. Design laws always have a natural consequence; they do not require an external agent to punish someone who violates them.", "speaker": "Jennings", "source": {"file": "Religion/THE DESIGN LAWS OF GOD.pdf", "url": null, "locator": "page 1"}}}, "survival_tab": {"title": {"text": "Survival of the fittest vs the Circle of Giving", "page_authored": true}, "intro": {"text": "Jennings reads the Fall as a change of operating principle: fear and selfishness, the drive to look out for me first, replaced the other-centered giving that life was built to run on. The Remedy makes this contrast explicit, naming the world's principle 'survival-of-the-fittest' and God's principle 'I love you so much that I will give my life in order that you might live'.", "page_authored": true}, "jennings": [{"text": "Fear and selfishness are commonly known in the world today as \"survival of the fittest,\" or the drive to survive, or \"kill or be killed,\" or \"watch out for me first.\" It is the polar opposite of giving, love or beneficence, and it is the infection that is destroying God's creation.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedBrain.md", "url": null, "locator": "line 267"}}, {"text": "Because of God's intercession, there are now two antagonistic principles at war on planet Earth—love and survival of the fittest. … Such godly love is at war with the survival-of-the-fittest principle, which says, \"I love myself so much I will do whatever I have to in order to protect, advance and exalt myself including, if necessary, killing you that I might live.\" Give my life that you might live, or kill you that I might live.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedBrain.md", "url": null, "locator": "line 553"}}, {"text": "The problem in the world today is that selfishness is so deeply wired into our system that scientists and many professed Christians purport this drive to survive is “natural” or “normal.” But the reality is the “survival of the fittest” instinct is Satan’s selfish infection of God’s creation which causes all nature to suffer (Romans 8:22).", "speaker": "Jennings", "source": {"file": "posts/2010-11-12--competitive-sports-spiritually-healthy-or-not.md", "url": "https://comeandreason.com/competitive-sports/", "locator": "line 25"}}, {"text": "My view is that God designed human beings to love, with only altruistic motives for relationship, connection, and mutually uplifting beneficence. He designed us to promote the welfare of others without the knowledge or experience of fear and selfish concern. But Adam and Eve’s choice to believe lies about God broke their bonds of love and trust and caused them to become motivated by fear and selfishness, the survival-of-the-fittest drives.", "speaker": "Jennings", "source": {"file": "posts/2026-03-19--how-and-why-good-people-choose-to-do-evil.md", "url": "https://comeandreason.com/how-and-why-good-people-choose-to-do-evil/", "locator": "line 21"}}], "verses": [{"ref": "Genesis 6:5", "remedy": "The Lord saw how human beings, by choosing to indulge selfishness, had completely corrupted themselves, destroying in themselves his design of love, and how their every desire was totally selfish and their hearts sought evil all the time.", "remedy_ref_key": "Genesis|6|5", "principle": "survival", "why": "the antediluvian heart: every desire totally selfish, God's design of love destroyed", "why_page_authored": true}, {"ref": "Psalms 10:3", "remedy": "The selfish are proud of how they exploit others to get what they want;\n\t\tthey celebrate thievery and despise the Lord of love and truth.", "remedy_ref_key": "Psalms|10|3", "principle": "survival", "why": "the selfish boast of exploiting others to get what they want", "why_page_authored": true}, {"ref": "Psalms 119:150", "remedy": "Those who live for self, pursuing their me-first agenda,\n\t\tare far outside your law of love.", "remedy_ref_key": "Psalms|119|150", "principle": "survival", "why": "the me-first agenda sits far outside the law of love", "why_page_authored": true}, {"ref": "Matthew 5:45", "remedy": "that you may live as sons and daughters of your Father in heaven. He is constantly giving of himself for the good of all, causing the sun to rise on the evil and the good, and sends the rain on the righteous and unrighteous.", "remedy_ref_key": "Matthew|5|45", "principle": "giving", "why": "the Father constantly gives of himself to evil and good alike", "why_page_authored": true}, {"ref": "Matthew 6:24", "remedy": "\"No one can be loyal and true to two antagonistic principles: If you embrace selfishness, you will hate selflessness; and if you love beneficence, you will hate greed. You cannot serve both the God of love and the god of money.", "remedy_ref_key": "Matthew|6|24", "principle": "both", "why": "two antagonistic principles: selfishness versus beneficence; you cannot serve both", "why_page_authored": true}, {"ref": "Matthew 6:33", "remedy": "so seek first to live in harmony with God's kingdom of giving and all its righteousness, and all your needs will be met as well.", "remedy_ref_key": "Matthew|6|33", "principle": "giving", "why": "seek first God's kingdom of giving and needs are met", "why_page_authored": true}, {"ref": "Matthew 16:25", "remedy": "For anyone who follows the survival-of-the-fittest instinct and seeks to save their life, will lose it because the infection of selfishness will not be eliminated; but anyone who loses their life in love for me will find eternal life, for they  will have been restored back to God's design for life–selfless, other-centered love.", "remedy_ref_key": "Matthew|16|25", "principle": "both", "why": "save your life by survival instinct and lose it; lose it in love and find it", "why_page_authored": true}, {"ref": "Matthew 20:28", "remedy": "just as the Son of Man did not come to be served but to serve the needs of humanity, and to give his life as the healing Remedy to set many free from their terminal state.\"", "remedy_ref_key": "Matthew|20|28", "principle": "giving", "why": "the Son of Man came to serve and give his life as Remedy", "why_page_authored": true}, {"ref": "Mark 8:35", "remedy": "For whoever follows the survival-of-the-fittest principle and seeks to save their life will lose it because the infection of selfishness will not be eliminated; but whoever loses their life in love for me will find eternal life, for they will have been restored back to God's design for life — selfless, other-centered love.", "remedy_ref_key": "Mark|8|35", "principle": "both", "why": "the Markan rendering of lose-to-save: infection eliminated only by other-centered love", "why_page_authored": true}, {"ref": "Luke 6:38", "remedy": "Life is constructed to operate upon giving, so give; and the more you give, the more will be given to you: a great abundance of love — concentrated, intense, overwhelming and all-consuming — will be poured into your being. For the way you treat others reveals the condition of your own character, and your own condition determines your destiny.\"", "remedy_ref_key": "Luke|6|38", "principle": "giving", "why": "life is constructed to operate upon giving; the more you give the more is poured in", "why_page_authored": true}, {"ref": "Luke 9:24", "remedy": "Whoever follows the survival-of-the-fittest instinct and seeks to save their life will lose it, because the infection of selfishness will not be eliminated; but whoever loses their life in love for me will find eternal life, for they will have been restored back to God's design for life–to selfless, other-centered love.", "remedy_ref_key": "Luke|9|24", "principle": "both", "why": "the Lukan rendering of lose-to-save: restored to God's design of selfless love", "why_page_authored": true}, {"ref": "Luke 12:23", "remedy": "Life is not built to operate on the survival-of-the-fittest principle — constantly seeking to get food for yourself, or wear the latest fashion.", "remedy_ref_key": "Luke|12|23", "principle": "survival", "why": "life is not built to run on survival-of-the-fittest getting", "why_page_authored": true}, {"ref": "Luke 12:33", "remedy": "So live to give, sell what you don't need, and give to bless the less fortunate. Let your hearts cherish and hold to love and therefore be like a purse that won't decay, filled with an eternal treasure that will never run out, and which no thief can steal.", "remedy_ref_key": "Luke|12|33", "principle": "giving", "why": "live to give; a purse that will not decay", "why_page_authored": true}, {"ref": "John 5:42", "remedy": "but I know you. I know you do not love God's methods of self-sacrificing love. You would not be willing to lay your life down for another. No! Instead, you prefer Satan's methods of survival-of-the-fittest, and you would gladly kill to protect yourself.", "remedy_ref_key": "John|5|42", "principle": "survival", "why": "those who prefer survival-of-the-fittest would gladly kill to protect themselves", "why_page_authored": true}, {"ref": "John 12:25", "remedy": "The person who practices the principle of survival-of-the-fittest, and loves their own life so much that they will kill in order to preserve it, will ultimately destroy themself and lose their life. But the person who loves others more than themself and is willing to give their life freely so that others may live, is back in harmony with the principles of love upon which life is based, and will preserve their life and live eternally.", "remedy_ref_key": "John|12|25", "principle": "both", "why": "the Johannine rendering: kill to preserve self and destroy self, or give life freely and live", "why_page_authored": true}, {"ref": "John 13:34", "remedy": "\"A new understanding of Moses' command I give you: Love one another as I have loved you–freely, not from a sense of obligation, but from a renewed heart of true regard and concern for one another, genuinely loving others more than yourself.", "remedy_ref_key": "John|13|34", "principle": "giving", "why": "love one another as Jesus loved, genuinely loving others more than yourself", "why_page_authored": true}, {"ref": "John 15:13", "remedy": "There is no greater love than this—that a person lay down their life to save their friends. This is the principle of life — the central principle of the kingdom of God. This love is the Remedy for the infection that is destroying mankind, and the infection is this: Satan’s wicked disease of survival-of-the-fittest, which is preferring self so much that a person will kill their friends in order to save themself.", "remedy_ref_key": "John|15|13", "principle": "both", "why": "greater love lays life down; the infection is preferring self so much you would kill a friend", "why_page_authored": true}, {"ref": "Acts 20:35", "remedy": "In all my actions, I demonstrated to you how to live in harmony with God's design for life–the law of love. By hard work, we support the weak, remembering the truth the Lord Jesus taught: 'It is a greater blessing to give than to receive.' \"", "remedy_ref_key": "Acts|20|35", "principle": "giving", "why": "the law of love in practice: it is a greater blessing to give than to receive", "why_page_authored": true}, {"ref": "Romans 5:12", "remedy": "Therefore, the infection of distrust of God — which deformed humanity's heart and mind with selfishness and fear, and which results only in death — infected the human race when Adam accepted Satan's lies about God and broke trust with him. This infection of fear and selfishness is inherited by all human beings, so all are born infected.", "remedy_ref_key": "Romans|5|12", "principle": "survival", "why": "how the infection of fear and selfishness entered and is inherited at birth", "why_page_authored": true}, {"ref": "Romans 8:7", "remedy": "The selfish mind operates on the survival-of-the-fittest principle, which says, \"I love myself so much that I will kill you in order that I may live;\" and such a mind is at war with the God of love, who says, \"I love you so much that I will give my life in order that you might live.\" The mind of the selfish person does not surrender to the principle of love–which requires death to self-interest–nor can it do so;", "remedy_ref_key": "Romans|8|7", "principle": "both", "why": "the two creeds side by side: kill you that I may live versus give my life that you might live", "why_page_authored": true}, {"ref": "Romans 8:20", "remedy": "For this entire creation was infected–not by its own choice, but by the choice of Adam–with the principle of the survival-of-the-fittest.", "remedy_ref_key": "Romans|8|20", "principle": "survival", "why": "all creation infected with the survival-of-the-fittest principle through Adam", "why_page_authored": true}, {"ref": "Romans 12:10", "remedy": "Be devoted to the welfare, healing, advancement and growth of one another in genuine Christlike love. Value others and their needs above yourselves.", "remedy_ref_key": "Romans|12|10", "principle": "giving", "why": "be devoted to one another's welfare; value others above yourselves", "why_page_authored": true}, {"ref": "Romans 13:10", "remedy": "Love is the principle of beneficence and does no harm, but does only what is in the best interest of another, therefore love is the law upon which life is based.", "remedy_ref_key": "Romans|13|10", "principle": "giving", "why": "love is the principle of beneficence, the law upon which life is based", "why_page_authored": true}, {"ref": "1Corinthians 1:18", "remedy": "For the truth about God–his character of absolute love, as revealed by Christ at the cross–makes no sense whatsoever to those who are dying through practicing the world's method of survival-of-the-fittest; but to those of us who are being healed and restored, it is the true power of God, the secret of eternal life.", "remedy_ref_key": "1Corinthians|1|18", "principle": "both", "why": "the cross makes no sense to those dying by survival-of-the-fittest but heals those who trust", "why_page_authored": true}, {"ref": "2Corinthians 5:15", "remedy": "He died to provide Remedy to all humanity so that those who live will not live dominated by selfishness, but in love for him who died to heal them and was raised again!", "remedy_ref_key": "2Corinthians|5|15", "principle": "both", "why": "he died so that the living no longer live dominated by selfishness but in love", "why_page_authored": true}, {"ref": "Galatians 2:20", "remedy": "The old me who lived for self–who sought to get instead of give, the me who lived on the survival-of-the-fittest principle–died when I recognized the true significance of all that Christ has done. That old me no longer lives, but Christ–with his character of self-sacrificing love–now lives in me. The life I now live in this body I live by trust in the Son of God, who loved me and freely gave himself to win me back to trust and to purge humanity from selfishness and death.", "remedy_ref_key": "Galatians|2|20", "principle": "both", "why": "the old me who sought to get instead of give died; Christ's self-sacrificing character lives", "why_page_authored": true}, {"ref": "Galatians 5:15", "remedy": "But if you instead practice the principle of survival of the fittest and attack and destroy others in order to promote yourselves, you will only experience ruin and death.", "remedy_ref_key": "Galatians|5|15", "principle": "survival", "why": "attack and destroy others to promote yourself and reap only ruin and death", "why_page_authored": true}, {"ref": "Galatians 6:8", "remedy": "The one who indulges the selfish nature will experience the natural consequences of a damaged mind — increased fear, broken relationships, separation from God, and eventual death; but the one who chooses to follow the Spirit, from the Spirit they will experience a healed mind, internal peace, unity with God, and eternal life.", "remedy_ref_key": "Galatians|6|8", "principle": "both", "why": "indulge the selfish nature and reap death; follow the Spirit and reap a healed mind", "why_page_authored": true}, {"ref": "Ephesians 2:2", "remedy": "in which you used to live when you followed the survival-of-the-fittest principle of the world instituted by the ruler of the kingdom of the air–the intelligent being whose principles are now at work in all those who reject truth, love, and freedom.", "remedy_ref_key": "Ephesians|2|2", "principle": "survival", "why": "the survival-of-the-fittest principle of the world was instituted by Satan", "why_page_authored": true}, {"ref": "Ephesians 2:3", "remedy": "All of us also were born infected with this destructive survival-of-the-fittest principle and at one time gratified its selfish and unhealthy desires and thoughts. Like the rest of humanity, we were born infected with this principle which — if not removed — would result in our self-destruction.", "remedy_ref_key": "Ephesians|2|3", "principle": "survival", "why": "all of us were born infected with this destructive principle", "why_page_authored": true}, {"ref": "Ephesians 4:22", "remedy": "You were taught that the former ways of life–the survival-of-the-fittest ways, the selfish me-first ways–only lead to self-destruction and death, and that health and life consist of putting off such motives and desires.", "remedy_ref_key": "Ephesians|4|22", "principle": "survival", "why": "the former selfish me-first ways lead only to self-destruction", "why_page_authored": true}, {"ref": "Philippians 2:3", "remedy": "Don't do anything for selfish reasons or seek to promote yourself ahead of others, but in humbleness and love be more concerned for the welfare and good of others than for your own.", "remedy_ref_key": "Philippians|2|3", "principle": "giving", "why": "do nothing for selfish reasons; be more concerned for others' good than your own", "why_page_authored": true}, {"ref": "Philippians 2:4", "remedy": "Each one of you should not only be concerned with your own health and growth, but also work to help others become the healthiest Christians they can be.", "remedy_ref_key": "Philippians|2|4", "principle": "giving", "why": "look beyond your own growth to help others become healthy", "why_page_authored": true}, {"ref": "Colossians 1:13", "remedy": "For he has rescued us from the dominance of selfishness and survival-of-the-fittest methods that darken the mind and lead only to death, and has brought us into the kingdom of truth, righteousness, and self-sacrificing love — the kingdom of the Son he loves", "remedy_ref_key": "Colossians|1|13", "principle": "both", "why": "rescued from the dominance of survival-of-the-fittest methods into the kingdom of self-sacrificing love", "why_page_authored": true}, {"ref": "James 3:16", "remedy": "For selfishness, envy, and all violations of God's law of love break his design for life and cause chaos, disease, suffering, and everything evil.", "remedy_ref_key": "James|3|16", "principle": "survival", "why": "selfishness and envy break God's design and cause chaos, disease and everything evil", "why_page_authored": true}, {"ref": "James 4:1", "remedy": "Why is there so much hostility, fighting and arguments among you? Because the survival-of-the-fittest instinct controls you:", "remedy_ref_key": "James|4|1", "principle": "survival", "why": "fights and quarrels come because the survival-of-the-fittest instinct controls you", "why_page_authored": true}, {"ref": "James 4:2", "remedy": "if you want something but don't get it, you are willing to kill. You are selfish, coveting what you cannot have, constantly fighting, trying to get for yourselves. You do not obtain, because you do not seek God.", "remedy_ref_key": "James|4|2", "principle": "survival", "why": "wanting and not getting, willing to kill; constantly trying to get for yourselves", "why_page_authored": true}, {"ref": "James 4:3", "remedy": "And when you finally do ask God — because your motives are selfish, because you focus only on self-gratification — you don't get what you're asking for, because God doesn't use his power to supply you with means to further damage yourselves.", "remedy_ref_key": "James|4|3", "principle": "survival", "why": "selfish motives in prayer; God will not fund self-damage", "why_page_authored": true}, {"ref": "1John 3:15", "remedy": "Anyone who hates another is a murderer, as murder happens in the mind and heart before it is carried out in action. You know that murder is the end result of the survival-of-the-fittest principle, and no one who remains infected with this self-first principle has God's eternal life recreated within them.", "remedy_ref_key": "1John|3|15", "principle": "survival", "why": "murder is the end result of the survival-of-the-fittest principle", "why_page_authored": true}, {"ref": "1John 3:16", "remedy": "This is how we know what love is: Jesus Christ voluntarily laid his life down for us. And we, who have been restored to Godlike love, will also give all we have, including laying down our lives for our brothers and sisters.", "remedy_ref_key": "1John|3|16", "principle": "giving", "why": "love defined: Jesus laid his life down, and the restored will give all for others", "why_page_authored": true}, {"ref": "Revelation 12:11", "remedy": "They overcame him by partaking of the Remedy–the perfect character of Christ the Lamb, symbolized by his blood–and by the evidence of their self-sacrificing lives, as they no longer loved their own selves so much as to shrink from death: they were healed to love just like Jesus.", "remedy_ref_key": "Revelation|12|11", "principle": "giving", "why": "the overcomers no longer loved themselves so much as to shrink from death", "why_page_authored": true}], "pruned_note": {"text": "Keyword scan of remedy_verses.json: 62 verses matched the narrow terms (survival, fittest, me-first/self-first, lose or save your life, greater love, hoard, look out for), plus 871 containing 'selfish' and 24 pairing give with receive. Each narrow hit was read; 41 verses were kept that plainly voice one of the two principles, the rest were pruned as narrative, duplicate renderings, or only incidental mentions of selfishness.", "page_authored": true}}, "selfcheck": {"title": {"text": "Which principle am I running on?", "page_authored": true}, "pairs": [{"id": "sc01", "theme": "money", "survival": "I keep what I earn; nobody looks after me if I don't.", "giving": "What I have is in circulation; I give because that is how I was built to live.", "page_authored": true}, {"id": "sc02", "theme": "time", "survival": "My hours are mine to protect; interruptions are threats.", "giving": "My time is a gift I can spend on someone else's good.", "page_authored": true}, {"id": "sc03", "theme": "conflict", "survival": "When challenged, I win the argument or I lose standing.", "giving": "When challenged, I want what is actually true and good for us both, even if I lose.", "page_authored": true}, {"id": "sc04", "theme": "praise", "survival": "I need recognition, and someone else's credit feels like my loss.", "giving": "Another person's success is something I can celebrate without keeping score.", "page_authored": true}, {"id": "sc05", "theme": "forgiveness", "survival": "Letting it go would make me weak; they owe me.", "giving": "I release the debt because love does not keep a record of wrongs.", "page_authored": true}, {"id": "sc06", "theme": "sabbath rest", "survival": "If I stop working, I fall behind and lose ground.", "giving": "I can rest because my life does not depend on my own striving.", "page_authored": true}, {"id": "sc07", "theme": "fear", "survival": "I must secure myself first; then I can think about others.", "giving": "Trusting God's care frees me to attend to others without anxiety.", "page_authored": true}, {"id": "sc08", "theme": "success", "survival": "Success means getting ahead of others.", "giving": "Success means others are healthier and freer because I was there.", "page_authored": true}, {"id": "sc09", "theme": "truth-telling", "survival": "I shade the truth when honesty would cost me.", "giving": "I tell the truth even when it costs me, because love and truth go together.", "page_authored": true}, {"id": "sc10", "theme": "love", "survival": "I love those who are useful to me and protect me.", "giving": "I love people for their good, including those who can give nothing back.", "page_authored": true}], "scoring": {"intro": "For each theme, pick the statement that is closer to how you actually think when nobody is watching. Count how many fall on each side.", "mostly_survival": "Mostly survival. The me-first instinct is steering; Jennings would say this is the inherited condition, not a verdict, and that it changes as truth about God is believed and trust returns.", "mixed": "Mixed. Both principles are active, which is what Jennings describes as the war in every heart; notice which themes still run on fear and bring those to God for healing.", "mostly_giving": "Mostly giving. The law of love is increasingly the motive; keep beholding Christ so that other-centered love continues to displace what remains of fear.", "page_authored": true}, "jennings_on_change": [{"text": "It is truth about God that destroys lies and wins us back to trust. In trust we open our hearts and experience God's love, which overcome fear and enable us to give rather than constantly seek to get. This is conversion, the experience of a fundamental switch in the primary motive of the heart—from our inherent survival-of-the-fittest selfishness to other-centered love.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedBrain.md", "url": null, "locator": "line 574"}}, {"text": "So all who accept Christ open their heart/mind in trust and the Holy Spirit comes and recreates in them a new heart and right spirit, restoring God’s law of love again into humanity (Psalms 51:5). This is the new convenant, “I will write my law on your hearts and minds” (Heb 8:10). This is only possible because of what Christ achieved at Calvary.", "speaker": "Jennings", "source": {"file": "posts/2011-09-10--is-the-great-controversy-over-god-s-character-true.md", "url": "https://comeandreason.com/is-the-great-controversy-over-gods-character-true/", "locator": "line 102"}}]}, "breaks": {"love": {"name": "The law of love", "kept": {"text": "Keep giving and the circle keeps turning: breath, water, pollen, time, attention, and the life that depends on them all keep flowing back to you.", "page_authored": true}, "broken": {"text": "Hoard what you were built to give and the circle closes on you; whatever stops giving begins, by that very act, to die.", "page_authored": true}, "jennings": {"text": "But life itself is built upon the law of love. Love is the principle of giving, and all living organisms operate upon it. With every breath, an exhale and inhale, you give away carbon dioxide (CO2) to the plants and the plants give oxygen back to you. If you put a plastic bag over your head and “hoard” your CO2 for yourself, then you will die. Everything that lives gives. Cease to give and one dies.", "speaker": "Jennings", "source": {"file": "posts/2022-06-02--why-i-believe-the-god-of-love-exists.md", "url": "https://comeandreason.com/why-the-god-of-love-exists/", "locator": "line 15"}}, "scripture": {"ref": "1 John 4:16", "remedy": "And thus we have been genuinely transformed from beings motivated and driven by selfishness to fully healed children of God, motivated and energized by the love God has for us. God is love, and those who live a life of love live in unity and oneness with God–and God with them.", "remedy_ref_key": "1John|4|16"}}, "liberty": {"name": "The law of liberty", "kept": {"text": "Leave people genuinely free to agree, disagree, stay or go, and love, trust and individuality have the room they need to grow.", "page_authored": true}, "broken": {"text": "Coerce someone and three things follow on their own: their love for you is damaged, a desire to rebel is planted, and if they stay their individuality slowly erodes.", "page_authored": true}, "jennings": {"text": "The Law of Liberty, one of God’s natural design laws, reveals that love only grows in an atmosphere of freedom. If you violate that freedom and coerce another, love is damaged and a desire to rebel is instilled. If freedom isn’t restored, individuality erodes and those who stay become mindless followers.", "speaker": "Jennings", "source": {"file": "posts/2018-11-29--sincerity-in-rule-keeping-can-destroy.md", "url": "https://comeandreason.com/rule-keeping-can-destroy/", "locator": "line 39"}}, "scripture": {"ref": "2 Corinthians 3:17", "remedy": "We experience Jesus through the Spirit, and where the Spirit of the Lord is, there is freedom from confusion, fear, and selfishness.", "remedy_ref_key": "2Corinthians|3|17"}}, "worship": {"name": "The law of worship", "kept": {"text": "Spend your attention on a God of love and your brain rewires toward love; you gradually become like the One you admire.", "page_authored": true}, "broken": {"text": "Fix your admiration on a punishing, authoritarian or degraded object and you become harder, more fearful and more like it, no sentence required.", "page_authored": true}, "jennings": {"text": "One of God's design laws is the law of worship—by beholding we are changed. We actually become like the God we admire and worship. In psychiatry, this is known as modeling. … We were constructed by God to adapt and change based on the choices we make: worship a God of love and become more loving; worship an authoritarian god and become more abusive.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedHeart.md", "url": null, "locator": "line 910"}}, "scripture": {"ref": "Psalms 135:18", "remedy": "Those who make them will become like them, as will all who worship and trust in them.", "remedy_ref_key": "Psalms|135|18"}}, "exertion": {"name": "The law of exertion", "kept": {"text": "Exercise a muscle, a skill or a faculty of judgment and it grows stronger with use.", "page_authored": true}, "broken": {"text": "Leave an ability idle and it weakens and finally disappears; nobody takes it from you, it simply atrophies.", "page_authored": true}, "jennings": {"text": "This parable beautifully describes the law of exertion! What happens if you don’t use the talents you possess – if you don’t use it, you lose it. But if you apply yourself, you gain more abilities. No jury, no presentation of evidence, no judge passing sentence – it is the reality of the outcome of our choices.", "speaker": "Jennings", "source": {"file": "posts/2020-08-25--parables-of-jesus-the-overarching-theme.md", "url": "https://comeandreason.com/parables-of-jesus/", "locator": "line 105"}}, "scripture": {"ref": "Hebrews 5:14", "remedy": "But the solid food of truth is for the mature, who, by constant use, have trained their faculties to distinguish true from false, good from evil, healthy from unhealthy.", "remedy_ref_key": "Hebrews|5|14"}}, "physics": {"name": "The laws of physics", "kept": {"text": "Build, fly, cook and walk in harmony with gravity, motion and thermodynamics and the material world is reliable and safe to live in.", "page_authored": true}, "broken": {"text": "Step off a height or ignore friction and inertia and the damage arrives by itself, scaled to how far you departed from the law.", "page_authored": true}, "jennings": {"text": "He sustains the laws of physics and the laws of health upon which life operates and in this way, God is involved. But, God does not cause the defects in His creation. Those occur simply because human beings have broken His design …", "speaker": "Jennings", "source": {"file": "posts/2018-09-20--does-god-make-people-deaf-and-blind.md", "url": "https://comeandreason.com/does-god-make-people-deaf-and-blind/", "locator": "line 41"}}, "scripture": {"ref": "Colossians 1:17", "remedy": "He existed before anything, and it is he who holds all things together.", "remedy_ref_key": "Colossians|1|17"}}, "maths": {"name": "The laws of mathematics", "kept": {"text": "Reason from what is actually true and your sums, bridges and conclusions hold up under anyone's scrutiny.", "page_authored": true}, "broken": {"text": "Insist that 2 + 2 is whatever an authority says and reality does not change, but you become easy prey for the next, louder authority.", "page_authored": true}, "jennings": {"text": "If you believe 2+2=4 merely becausethe teacher says so—you may know the right answer, but you are not secure in reality. All a deceiver has to do is be more persuasive, convincing, dynamic, or come from a position of higher authority than the teacher and tell you 2+2=7, and you will believe it.", "speaker": "Jennings", "source": {"file": "posts/2026-08-27--how-the-church-opposes-truth-part-2.md", "url": "https://comeandreason.com/how-the-church-opposes-truth-2/", "locator": "line 59"}, "markdown_emphasis_removed": true}, "scripture": null}, "health": {"name": "The laws of health", "kept": {"text": "Breathe clean air, eat, drink, move, rest and avoid toxins as the body was designed to, and health is the normal result.", "page_authored": true}, "broken": {"text": "Smoke, starve, or stop breathing and no one has to impose cancer, weakness or suffocation; the violation carries its own result.", "page_authored": true}, "jennings": {"text": "Think of God’s law like “the laws of health.” If someone violates the laws of health does anyone have to “impose” penalties on them such as illness, pain, suffering, and/or death? For example, take a person who smokes. Does anyone (including God) have to impose the penalty of cancer or emphysema?", "speaker": "Jennings", "source": {"file": "posts/2008-09-12--questions-about-christ-s-death-part-2.md", "url": "https://comeandreason.com/questions-about-christs-death-part-2/", "locator": "line 45"}}, "scripture": {"ref": "3 John 1:2", "remedy": "Dear friend, I pray that all things are well with you, that your health is good, and your mind is sharp, clear and at peace.", "remedy_ref_key": "3John|1|2"}}, "restoration": {"name": "The law of restoration", "kept": {"text": "Spend yourself, then rest and recover, and you are able to spend again, often with more than before.", "page_authored": true}, "broken": {"text": "Keep drawing on a resource without letting it recover and you burn out, injure yourself and end up unable to give at all.", "page_authored": true}, "jennings": {"text": "One of Satan’s traps, if he cannot get good people to choose evil, is to overwhelm them with so many worthy and good projects, responsibilities, and duties that they forget to love themselves; they stop resting and overwork themselves doing good to the point that they burn out and are no longer useful in God’s cause. Thus, they have not loved themselves by giving what they need in order to stay healthy.", "speaker": "Jennings", "source": {"file": "posts/2024-01-18--how-to-love-oneself.md", "url": "https://comeandreason.com/how-to-love-oneself/", "locator": "line 43"}}, "scripture": {"ref": "Mark 2:27", "remedy": "After giving them a moment to think, he said, \"The Sabbath was created as a gift for humanity — to be a blessing for human beings. Human beings were not created as a gift for the Sabbath.", "remedy_ref_key": "Mark|2|27"}}, "sowing": {"name": "The law of sowing and reaping", "kept": {"text": "Sow truth, healthy habits and your own hard thinking and you harvest character, health and judgment you actually own.", "page_authored": true}, "broken": {"text": "Sow lies, indulgence or borrowed answers and you reap exactly that crop; nobody has to add a penalty to the harvest.", "page_authored": true}, "jennings": {"text": "The law of sowing and reaping is: We reap what we sow. If we sow seeds that violate what is true, what is healthy, that is contrary to what is good, that violates the very protocols of life and health that the Creator built into our universe, then we will reap destruction. Paul in Galatians writes, “The one who sows to please his sinful nature, from that nature will reap destruction” (6:8 NIV84).", "speaker": "Jennings", "source": {"file": "posts/2022-06-30--reaping-the-whirlwind-sowing-the-seeds-for-the-rise-of-the-beast.md", "url": "https://comeandreason.com/reaping-the-whirlwind/", "locator": "line 37"}}, "scripture": {"ref": "Galatians 6:7", "remedy": "But don't delude yourselves: God cannot be tricked or fooled, and his methods cannot be evaded. A person actually reaps what they sow; a person actually receives the results of their own choices.", "remedy_ref_key": "Galatians|6|7"}}, "love_over_fear": {"name": "The law of love overcoming fear", "kept": {"text": "Let love for another fire and it calms your own fear circuitry, freeing you to act for them even at cost to yourself.", "page_authored": true}, "broken": {"text": "Starve the love circuits and fear runs unchecked, shrinking your world to self-protection and raising the risk of despair.", "page_authored": true}, "jennings": {"text": "Neuroscience demonstrates that when the brain’s love circuits activate, they calm the fear/stress circuits. Activities and experiences that increase love, altruism, other-centered connection, and meaning will decrease suicide risk, whereas actions that isolate and increase fear will increase suicide risk.", "speaker": "Jennings", "source": {"file": "posts/2019-07-10--suicide-risk-and-prevention.md", "url": "https://comeandreason.com/suicide-risk-and-prevention/", "locator": "line 64"}}, "scripture": {"ref": "1 John 4:18", "remedy": "In love, there is no fear. Fear is part of the infection of selfishness, but is purged by love, as fear has to do with concern for oneself. The one who remains self-focused and afraid has not been healed by God’s love.", "remedy_ref_key": "1John|4|18"}}, "fear_damages_love": {"name": "The law of fear damaging love and inciting selfishness", "kept": {"text": "Keep fear in its place through trust and you stay able to notice and care for the people around you.", "page_authored": true}, "broken": {"text": "Let fear take the driver's seat and concern for others drains away; you hide, flee or shove past them to save yourself.", "page_authored": true}, "jennings": {"text": "Fear is part of the infection of sin and is the feeling that results from broken trust. Fear causes selfishness. Fearful, self-centered decision-making is the opposite of love; it leads us to seek to save ourselves, to move away from trusting in God with one’s life and from acting in selfless love for others.", "speaker": "Jennings", "source": {"file": "posts/2017-12-18--why-did-god-tell-abraham-to-kill-isaac.md", "url": "https://comeandreason.com/why-did-god-tell-abraham-to-kill-isaac/", "locator": "line 25"}}, "scripture": {"ref": "Genesis 3:10", "remedy": "Adam answered, “I heard you in the garden and I was afraid, because I was naked; so I hid.”", "remedy_ref_key": "Genesis|3|10"}}, "forgiveness": {"name": "The law of forgiveness versus resentment", "kept": {"text": "Forgive the one who wronged you and your own heart and mind are released to heal, whatever the offender does.", "page_authored": true}, "broken": {"text": "Hold the grudge and it is you who carries the toxic stress, inflammation and bitterness everywhere you go.", "page_authored": true}, "jennings": {"text": "Grudge holding, bitterness, resentment are toxic emotions that activate the brain’s stress pathways causing activation of inflammatory factors. Failure to resolve such feelings results in increased oxidative stress and damage to physical, mental and relational health. Forgiving those who have offended us does not mean what they did was okay, but relieves us of carrying the toxic emotions of anger and resentment everywhere we go and over time ruining our own health.", "speaker": "Jennings", "source": {"file": "posts/2012-04-02--10-simple-steps-to-a-healthy-brain.md", "url": "https://comeandreason.com/10-simple-steps-to-a-healthy-brain/", "locator": "line 55"}}, "scripture": {"ref": "Ephesians 4:32", "remedy": "Be kind, gentle, compassionate and forgiving with each other as God is forgiving to you; remember that all humanity suffers with the same infection of selfishness, and God provides the same Remedy for all.", "remedy_ref_key": "Ephesians|4|32"}}, "truth": {"name": "The law of truth", "kept": {"text": "Face the truth about yourself now and it displaces lies, frees you from fear and sets you on the path to healing.", "page_authored": true}, "broken": {"text": "Deny, project and delay and the truth still waits for you; it only arrives later, harder, and to a mind less able to bear it.", "page_authored": true}, "jennings": {"text": "There is a truth I tell my patients, “You can never avoid the truth. You can only delay the day you deal with the truth.” … Or we can delay dealing with the truth, put it off, deny, externalize, project, blame, and scapegoat others, but if we don’t deal with the truth now, one day when Christ comes back each person will then come face to face with ultimate truth.", "speaker": "Jennings", "source": {"file": "posts/2008-06-28--the-truth-a-millstone-and-the-sea.md", "url": "https://comeandreason.com/the-truth-a-millstone-and-the-sea/", "locator": "line 27"}}, "scripture": {"ref": "John 8:32", "remedy": "Then you will experience the healing power of the truth, and the truth will set your entire being free.\"", "remedy_ref_key": "John|8|32"}}, "revelation": {"name": "The law of revelation", "kept": {"text": "Value God's principles in your heart and your words and actions reveal them without any effort at image management.", "page_authored": true}, "broken": {"text": "Whatever you actually love leaks out in what you say and do; a heart full of the world's methods cannot hide it for long.", "page_authored": true}, "jennings": {"text": "Jesus said, “For out of the abundance of the heart the mouth speaks” (Matthew 12:34 NKJV). People reveal their own views and ideas by what they say and do.", "speaker": "Jennings", "source": {"file": "posts/2021-07-08--your-mind-and-media-manipulation-how-to-protect-yourself.md", "url": "https://comeandreason.com/your-mind-and-media-manipulation/", "locator": "line 46"}}, "scripture": {"ref": "Matthew 12:35", "remedy": "The good person speaks and does good out of the wellspring of good stored within them, and the evil person speaks and does evil out of the wellspring of evil stored within them. So, speaking against the Holy Spirit reveals that one's heart is closed to the working of the Spirit.", "remedy_ref_key": "Matthew|12|35"}}, "happiness": {"name": "The law of happiness", "kept": {"text": "Pursue health in body, mind, relationships and spirit and happiness arrives as the by-product.", "page_authored": true}, "broken": {"text": "Chase pleasure instead of health and you trade a moment's relief for the sickness, conflict and guilt that make happiness impossible.", "page_authored": true}, "jennings": {"text": "Happiness is the byproduct of healthiness in all domains—physical, mental, emotional, relational, and spiritual. When we are physically ill, we are not happy; mental or emotional illness—not happy; relationship conflict—not happy; spiritual sickness (guilt, shame, condemnation)—not happy.", "speaker": "Jennings", "source": {"file": "posts/2024-06-27--the-science-of-happiness.md", "url": "https://comeandreason.com/science-of-happiness/", "locator": "line 21"}}, "scripture": {"ref": "James 1:25", "remedy": "But those who examine themselves honestly in the light of God's law of love–the law that heals and frees from fear and selfishness–and continue to do this daily, not ignoring what is learned but applying it diligently, experience happiness as they are healed and transformed.", "remedy_ref_key": "James|1|25"}}, "brokenness": {"name": "The law of brokenness", "kept": {"text": "Accept that healing hurts, choose the treatment that heals rather than the one that hurts least, and recovery becomes possible.", "page_authored": true}, "broken": {"text": "Spend your life on pain relief instead of healing and the wound never closes; you only get worse while avoiding the discomfort.", "page_authored": true}, "jennings": {"text": "Once there is brokenness, woundedness, or injury of any kind—there are no pain-free options! The only options we have after we are wounded are to heal or not heal, but the path of healing, whether setting a bone, cleaning dirt out of an abrasion, or resolving trauma issues, is accompanied by pain and discomfort. If we choose only that which hurts the least and feels the best in the moment, then we persistently choose to avoid healing and things will get worse.", "speaker": "Jennings", "source": {"file": "posts/2024-04-18--codependency-what-it-is-and-how-to-break-free.md", "url": "https://comeandreason.com/codependency-what-it-is-and-how-to-break-free/", "locator": "line 87"}}, "scripture": {"ref": "Psalms 51:17", "remedy": "The sacrifice you desire is a humble and teachable attitude; a broken and repentant heart", "remedy_ref_key": "Psalms|51|17"}}, "sin_death": {"name": "The law of sin and death", "kept": {"text": "There is no keeping this one; it is the anti-law, and life is found only by being healed out of it back into love.", "page_authored": true}, "broken": {"text": "Live by survival of the fittest, saving self at others' expense, and the predictable results follow: fear, pain, broken relationships and finally death.", "page_authored": true}, "jennings": {"text": "The law of sin and death is the survival-of-the-fittest motive driven by fear and the need to protect self—especially at the expense of others. It is doing whatever one needs to do to survive, even if that means killing others to save self.", "speaker": "Jennings", "source": {"file": "posts/2021-07-01--how-every-person-in-the-world-will-choose-for-or-against-jesus.md", "url": "https://comeandreason.com/how-every-person-for-or-against-jesus/", "locator": "line 21"}}, "scripture": {"ref": "Romans 6:23", "remedy": "For the infection of selfishness leads only to death, but the gift of God is eternal life through the healing Remedy procured by Jesus Christ our Lord.", "remedy_ref_key": "Romans|6|23"}}}, "physics_gravity": {"intro": {"text": "Jennings' favourite test case. Gravity never changes and never punishes; what changes is how far you step out of harmony with it. Slide the height and watch the consequence scale while the law stays exactly the same.", "page_authored": true}, "quotes": [{"text": "The only variables would be in the damage that results with various degrees of violating a law. For instance, jump off a 500-foot building and you die; step off a 5-inch curb and you twist an ankle — the law of gravity doesn’t change, but the degree of the violation causes a different degree of injury (note that these laws have a natural consequence; they do not require an external agent to punish someone who violates these laws).", "speaker": "Jennings", "source": {"file": "posts/2019-09-04--the-design-laws-of-god.md", "url": "https://comeandreason.com/design-laws-of-god/", "locator": "line 29"}}, {"text": "For example, the law of gravity is a design law upon which nature is created to operate. If you jump off a building God doesn’t have to inflict a penalty, the penalty is inherent, that is, you will most likely die upon impact with the ground.", "speaker": "Jennings", "source": {"file": "posts/2008-04-11--the-question-of-punishment-part-i.md", "url": "https://comeandreason.com/the-question-of-punishment-part-i/", "locator": "line 31"}}, {"text": "For instance gravity is a natural law. When we transgress natural law there is no need for an imposed punishment, because the penalty is inherent. If you jump off a bridge, then God does not need to send an angel to break your legs when you hit the ground below.", "speaker": "Jennings", "source": {"file": "posts/2009-01-31--why-10-commandments.md", "url": "https://comeandreason.com/why-10-commandments/", "locator": "line 25"}}], "steps": [{"height": "5-inch curb", "label": {"text": "Twisted ankle", "page_authored": true}, "gloss": {"text": "Minor departure, minor injury; a day of limping.", "page_authored": true}}, {"height": "Kitchen chair", "label": {"text": "Sprained wrist or bruised hip", "page_authored": true}, "gloss": {"text": "Same law, slightly more height, noticeably more damage.", "page_authored": true}}, {"height": "Single-storey roof", "label": {"text": "Broken bones", "page_authored": true}, "gloss": {"text": "Weeks in plaster; the consequence now demands real healing.", "page_authored": true}}, {"height": "Ten storeys", "label": {"text": "Almost certainly fatal", "page_authored": true}, "gloss": {"text": "Survival is the rare exception; the body cannot absorb this violation.", "page_authored": true}}, {"height": "500-foot building", "label": {"text": "Death", "page_authored": true}, "gloss": {"text": "Nobody has to be sent to inflict anything; the outcome is inherent in the fall.", "page_authored": true}}], "steps_note": {"text": "Heights and labels are illustrative, written for the slider; Jennings himself names only the 5-inch curb and the 500-foot building.", "page_authored": true}}, "objections": [{"id": "just_natural_law", "objection": {"text": "\"Design law\" is just natural law with a religious label. If gravity and the laws of health run by themselves, where is God in any of this?", "page_authored": true}, "reply": [{"text": "Thus, God is in control of what God controls — and God controls Himself and all His laws. He sustains reality; He keeps the universe running upon the protocols and laws He established.", "speaker": "Jennings", "source": {"file": "posts/2019-09-06--god-is-in-control-of-what.md", "url": "https://comeandreason.com/god-is-in-control-of-what/", "locator": "line 31"}}, {"text": "Why are men without excuse? It is because they have been given the Ten Commandments or other Scripture? No! It is because God’s invisible qualities and divine nature are clearly seen from what has been made, from nature, from the design laws our Creator has built into the operations of reality!", "speaker": "Jennings", "source": {"file": "posts/2026-02-05--discussion-with-an-adventist-pastor-about-design-law.md", "url": "https://comeandreason.com/design-law-discussion-with-sda-pastor/", "locator": "line 69"}}], "strength": "moderate", "strength_note": {"text": "Jennings answers from inside the frame: God is the one who built and sustains the protocols, and Romans 1:20 says the laws themselves reveal Him. That is coherent, but it is a theological claim rather than an argument a naturalist would feel forced to accept; his nearest independent evidence is the fine-tuning passage he borrows from Nancy Pearcey in the 2019 post.", "page_authored": true}}, {"id": "ten_commandments_are_commands", "objection": {"text": "The Ten Commandments are literally commands, thundered from Sinai and written in stone. Surely that is God imposing law.", "page_authored": true}, "reply": [{"text": "Sinful mankind did not comprehend this reality, so God stepped in with a stop-gap measure to help us in two ways. First, the10 Commandments were added, because we needed them to help diagnose how sick we are. And second, they were added to protect us from ourselves and lead us to Christ. Just like a parental rule not to smoke protects the child from harming themselves, the 10 Commandments were “distilled” out of the Law of Love to protect us.", "speaker": "Jennings", "source": {"file": "posts/2009-01-31--why-10-commandments.md", "url": "https://comeandreason.com/why-10-commandments/", "locator": "line 31"}}, {"text": "My point is that verbal commands, edicts, and directives cannot achieve morality. Morality cannot be enforced through imposed law and external law enforcement. To attempt to do this actually causes more sin, more rebellion, more immorality. EGW put it this way:", "speaker": "Jennings", "source": {"file": "posts/2026-02-05--discussion-with-an-adventist-pastor-about-design-law.md", "url": "https://comeandreason.com/design-law-discussion-with-sda-pastor/", "locator": "line 43"}, "markdown_emphasis_removed": true}], "strength": "strong", "strength_note": {"text": "This is the best-developed reply in the corpus. Jennings grants that God gives verbal commands, then distinguishes the written code (added after sin, a diagnostic distillation for immature minds) from the eternal law it describes, and backs it with Galatians 3:19, Romans 5:20 and a long line of Ellen White statements. The weak point is only that his opponents read the same texts the other way.", "page_authored": true}}, {"id": "forgiveness_unnecessary", "objection": {"text": "If sin destroys the sinner all by itself, with no sentence from God, then God is not actually needed to forgive anyone. Forgiveness drops out of the picture.", "page_authored": true}, "reply": [{"text": "God is love and therefore God’s heart is always one of forgiveness, and never needs inducement or requests to be so. Our confession and request to be forgiven is the opening of the heart to receive the forgiveness that God constantly extends.", "speaker": "Jennings", "source": {"file": "posts/2013-09-24--forgiveness-in-the-non-penal-view.md", "url": "https://comeandreason.com/forgiveness-in-the-non-penal-view/", "locator": "line 35"}}, {"text": "Jesus came because God forgives and because God’s forgiveness, extended freely from His heart, is notsufficient to save us from sin. Why? Because God was never the barrier to salvation; sin in us is the barrier.", "speaker": "Jennings", "source": {"file": "posts/2026-07-16--the-ark-of-the-covenant-and-real-intimacy-with-god.md", "url": "https://comeandreason.com/ark-of-covenant-real-intimacy-w-god/", "locator": "line 19"}, "markdown_emphasis_removed": true}], "strength": "strong", "strength_note": {"text": "Jennings largely agrees with the premise and turns it: God's forgiveness is never in doubt and never the obstacle, which is exactly why forgiveness alone cannot save. What is needed is healing of the heart and mind, and that is what Christ provides. The reply is internally consistent; critics will say it quietly redefines forgiveness rather than answering the charge.", "page_authored": true}}, {"id": "sabbath_arbitrary", "objection": {"text": "Whatever you say about love and liberty, the Sabbath is plainly an arbitrary rule. Nothing in nature says the seventh day; it only matters because God said so.", "page_authored": true}, "reply": [{"text": "Thus, after six days of creation, God created a day of freedom, a day where God stops using power and steps back, giving His creatures space and time to consider and think. Day seven is the only day that reveals the character of the One who wields the power: God presented evidence (truth), in love, and left His creatures free to decide for themselves. No coercion, no intimidation, no pressure, just freedom!", "speaker": "Jennings", "source": {"file": "posts/2019-01-01--sabbath-imposed-rule-or-design-for-life.md", "url": "https://comeandreason.com/sabbath-imposed-rule-or-design-for-life/", "locator": "line 89"}}, {"text": "The Sabbath is a day of rest by its creation; it was made by God for this purpose at the end of creation week. The Sabbath is an evidence of design-law — truth, presented in love, while leaving others free — and is a sign of God’s method of governing.", "speaker": "Jennings", "source": {"file": "posts/2019-01-01--sabbath-imposed-rule-or-design-for-life.md", "url": "https://comeandreason.com/sabbath-imposed-rule-or-design-for-life/", "locator": "line 103"}}], "strength": "moderate", "strength_note": {"text": "Jennings relocates the Sabbath from rule to evidence: a built-in weekly reminder of how God governs (truth, love, freedom), tied to the creation-week narrative and to his Great Controversy backstory. The move is attractive, but it leans on his reading of the Hebrew \"it\" as \"yourself\" and on a backstory that non-Adventists will not share; it does not show that the seventh day as such has inherent consequences.", "page_authored": true}}, {"id": "egw_law_of_government", "objection": {"text": "Ellen White repeatedly speaks of God's law as the law of His government, with transgression, penalties and the wrath of God against sin. That sounds like imposed law from an Adventist prophet.", "page_authored": true}, "reply": [{"text": "What do you understand God’s wrath to be? Romans 1:18–32 and many other passages define God’s wrath as letting sinners go to reap what sin causes; it is when God stops using power to protect, restrain, and hold at bay what sin causes. Human law, however, defines wrath as the use of power to inflict punishment for rule-breaking. We will be misled in our understanding if we use this sin-marred human understanding rather than a biblical definition of wrath.", "speaker": "Jennings", "source": {"file": "posts/2025-07-17--e-g-white-design-law-answering-listener-questions.md", "url": "https://comeandreason.com/eg-white-and-design-law/", "locator": "line 59"}}, {"text": "Thus, the entire description by this author is a description of reality, of design law, and there is nothing penal/legal going on in the plan of salvation. It is entirely the outworking of truth and love in an atmosphere of freedom!", "speaker": "Jennings", "source": {"file": "posts/2025-07-17--e-g-white-design-law-answering-listener-questions.md", "url": "https://comeandreason.com/eg-white-and-design-law/", "locator": "line 103"}}], "supporting": [{"text": "We are not to regard God as waiting to punish the sinner for his sin. The sinner brings the punishment upon himself. His own actions start a train of circumstances that bring the sure result. Every act of transgression reacts upon the sinner, works in him a change of character, and makes it more easy for him to transgress again. By choosing to sin, men separate themselves from God, cut themselves off from the channel of blessing, and the sure result is ruin and death", "speaker": "Ellen G. White", "source": {"file": "posts/2026-02-05--discussion-with-an-adventist-pastor-about-design-law.md", "url": "https://comeandreason.com/design-law-discussion-with-sda-pastor/", "locator": "line 111"}, "markdown_emphasis_removed": true}], "strength": "moderate", "strength_note": {"text": "Jennings' strategy is to read Ellen White widely, define wrath biblically as God letting go, and show that her own context speaks of cleansing and healing. He can quote her saying the sinner brings the punishment on himself, which is strong support. But the corpus never engages the specific phrase \"law of His government\" head-on, and the penal-sounding sentences are reinterpreted rather than refuted; the reply convinces those who already accept his lens.", "page_authored": true}}, {"id": "pastor_pushback", "objection": {"text": "An Adventist pastor's pushback: love, liberty and worship are biblical virtues, not laws. Scripture presents God's law as commanded, covenantal and judicial; your model swaps biblical categories for natural-law philosophy and therapy.", "page_authored": true}, "reply": [{"text": "Do you not realize that “principles” is another word for “laws” when the laws are design laws?", "speaker": "Jennings", "source": {"file": "posts/2026-02-05--discussion-with-an-adventist-pastor-about-design-law.md", "url": "https://comeandreason.com/design-law-discussion-with-sda-pastor/", "locator": "line 77"}}, {"text": "The truth is that there is not one imposed law in God’s kingdom; that is why Jesus said His kingdom is not of this world, because all worldly kingdoms operate upon imposed law with imposed punishments. Remember, Jesus said this when Israel and the temple with all the imposed laws were still on the earth. Jesus didn’t say, “My kingdom is not of this world—except for Israel, that is how my kingdom works.”", "speaker": "Jennings", "source": {"file": "posts/2026-02-05--discussion-with-an-adventist-pastor-about-design-law.md", "url": "https://comeandreason.com/design-law-discussion-with-sda-pastor/", "locator": "line 103"}}], "strength": "moderate", "strength_note": {"text": "Jennings is strongest where he marshals Ellen White's language of \"principles\" transgressed before any written law existed, and where he insists that believing in an imposed-law god changes the believer. He is weakest when he tells the pastor his mind is \"ensnared in the imposed-law lie\": that is a diagnosis, not an argument, and the pastor's exegetical point about covenant and judgment is met mainly by redefinition and a referral to another blog.", "page_authored": true}}], "glossary": [{"term": "design law", "meaning": {"text": "A principle or protocol upon which reality is actually built to operate (gravity, respiration, love). It is testable and unchanging, and breaking it damages the breaker without anyone having to add a penalty.", "page_authored": true}, "quote": {"text": "Natural Law being the principles or protocols upon which life is based, like the law of respiration, or gravity, or thermodynamics. Imposed law would be rules put in force by an external authority, such as tax law, speed limits, parking regulations etc.", "speaker": "Jennings", "source": {"file": "posts/2012-09-03--retribution-or-rehabilitation.md", "url": "https://comeandreason.com/retribution-or-rehabilitation/", "locator": "line 29"}}}, {"term": "imposed law", "meaning": {"text": "A made-up rule with no inherent consequence (speed limits, tax codes), which therefore has to be enforced by an external authority through threatened or inflicted punishment. Jennings' claim is that Christianity after Constantine began reading God's law this way.", "page_authored": true}, "quote": {"text": "Human beings cannot create reality, so we make up rules, without inherent consequence (speed limits, tax laws, littering, etc.), and then enforce those laws with threats of inflicted punishment (fines, imprisonment, death penalty).", "speaker": "Jennings", "source": {"file": "posts/2018-03-30--how-do-we-partake-of-the-remedy-to-sin.md", "url": "https://comeandreason.com/take-rememdy/", "locator": "line 33"}}}, {"term": "protocol", "meaning": {"text": "Jennings' preferred synonym for design law: the construction specification the Creator built the universe and life to run on, as opposed to a regulation issued to govern it.", "page_authored": true}, "quote": {"text": "When God built His universe, He constructed it to operate in harmony with His nature and character. The construction protocol upon which the universe is built is commonly known as God’s law.", "speaker": "Jennings", "source": {"file": "posts/2012-02-16--the-gospel-for-today.md", "url": "https://comeandreason.com/the-gospel-for-today/", "locator": "line 13"}}}, {"term": "circle of giving", "meaning": {"text": "The picture Jennings uses for the law of love in nature: breath exchanged with plants, water cycling from ocean to cloud to river, pollen for pollination. Life continues only while the circle of giving is unbroken.", "page_authored": true}, "quote": {"text": "If you break this law, this circle of giving, by tying a plastic bag over your head and selfishly hoarding your body’s CO2, you break the design protocol for life—and the result is death. … This circle of giving is the law that God constructed life to operate upon.", "speaker": "Jennings", "source": {"file": "posts/2025-09-04--a-response-to-eugene-prewitt-s-public-paper.md", "url": "https://comeandreason.com/response-to-eugene-prewitt/", "locator": "line 35"}}}, {"term": "survival of the fittest", "meaning": {"text": "Jennings' name for the law of sin and death: the fear-driven, me-first principle that infected humanity at the fall. The exact opposite of the law of love, and the thing Christ came to destroy in human nature.", "page_authored": true}, "quote": {"text": "Fear and selfishness are commonly known in the world today as \"survival of the fittest,\" or the drive to survive, or \"kill or be killed,\" or \"watch out for me first.\" It is the polar opposite of giving, love or beneficence, and it is the infection that is destroying God's creation.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedBrain.md", "url": null, "locator": "line 267"}}}, {"term": "law of liberty", "meaning": {"text": "Love exists only in an atmosphere of freedom. Violate someone's liberty and love is damaged, rebellion is incited, and individuality erodes; this is why God will not coerce even to save.", "page_authored": true}, "quote": {"text": "Love exists only in an atmosphere of freedom. Thus, as the Bible teaches, “The Lord is the Spirit, and where the Spirit of the Lord is, there is freedom (2 Corinthians 3:17 NIV84). This is the law of liberty, a design law that governs the operations of hearts and minds. Individuality, development, love, and growth occur only in freedom.", "speaker": "Jennings", "source": {"file": "posts/2024-11-14--love-compels-to-discipline-but-law-compels-to-punish.md", "url": "https://comeandreason.com/love-compels-discipline-law-compels-punishment/", "locator": "line 23"}}}, {"term": "law of worship (by beholding)", "meaning": {"text": "Also called modeling. We are changed, neurobiologically and in character, to become like whatever we admire, worship and dwell on. The character of the God you worship therefore matters more than the name.", "page_authored": true}, "quote": {"text": "Law of worship: by beholding we are changed; also known as modeling. It is the principle that we become like whatever we spend time admiring, valuing, thinking about, worshiping, or esteeming.", "speaker": "Jennings", "source": {"file": "_ocr_markdown/GodShapedHeart.md", "url": null, "locator": "line 1957"}}}, {"term": "inherent consequence", "meaning": {"text": "The result that follows from violating a design law by itself, as death follows from suffocation. In Jennings' reading, \"the wages of sin is death\" names an inherent consequence, not a sentence handed down by God.", "page_authored": true}, "quote": {"text": "What I do say is that the penalty is not an external, God-imposed legal sentence, but an inherent consequence (“penalty “) that comes from sin itself.", "speaker": "Jennings", "source": {"file": "posts/2008-09-12--questions-about-christ-s-death-part-2.md", "url": "https://comeandreason.com/questions-about-christs-death-part-2/", "locator": "line 41"}}}]};</script>
+<script>
+/* Come and Reason Knowledge Centre — shared kit (v1)
+   Data-driven renderers shared by every page. No dependencies. */
+window.KC = (function () {
+  'use strict';
+
+  /* ---------- storage (safe when localStorage is unavailable) ---------- */
+  const mem = {};
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return k in mem ? mem[k] : d; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { mem[k] = v; } }
+  };
+
+  /* ---------- DOM helpers ---------- */
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  function el(tag, attrs, ...kids) {
+    const n = document.createElement(tag);
+    if (attrs) for (const k in attrs) {
+      if (k === 'class') n.className = attrs[k];
+      else if (k === 'html') n.innerHTML = attrs[k];
+      else if (k.startsWith('on')) n.addEventListener(k.slice(2), attrs[k]);
+      else if (k === 'style') n.style.cssText = attrs[k];
+      else if (attrs[k] !== null && attrs[k] !== undefined) n.setAttribute(k, attrs[k]);
+    }
+    for (const kid of kids.flat()) if (kid !== null && kid !== undefined && kid !== false) n.append(kid.nodeType ? kid : document.createTextNode(String(kid)));
+    return n;
+  }
+  const $ = (sel, root) => (root || document).querySelector(sel);
+  const nodata = msg => el('p', { class: 'nodata' }, msg || 'No data for this section yet.');
+
+  /* ---------- lens toggle (imposed law / design law), persisted site-wide ---------- */
+  const LENS_KEY = 'cr-lens';
+  function setLens(v) {
+    document.body.dataset.lens = v;
+    store.set(LENS_KEY, v);
+    document.querySelectorAll('.lens-switch button').forEach(b => b.classList.toggle('on', b.dataset.lens === v));
+    document.dispatchEvent(new CustomEvent('kc:lens', { detail: v }));
+  }
+  function lensBar(container, opts) {
+    opts = opts || {};
+    const bar = el('div', { class: 'lens-bar' },
+      el('span', { class: 'lbl' }, opts.label || 'Read every text through'),
+      el('span', { class: 'lens-switch' },
+        el('button', { 'data-lens': 'imposed', class: 'imposed', onclick: () => setLens('imposed') }, opts.imposed || 'Imposed law'),
+        el('button', { 'data-lens': 'design', class: 'design', onclick: () => setLens('design') }, opts.design || 'Design law')));
+    container.append(bar);
+    setLens(store.get(LENS_KEY, opts.initial || 'imposed'));
+    return bar;
+  }
+  const lens = () => document.body.dataset.lens || 'imposed';
+
+  /* ---------- quotes, sources, badges ---------- */
+  function sourceChip(src) {
+    if (!src) return null;
+    if (typeof src === 'string') src = { file: src };
+    const kids = [];
+    if (src.label) kids.push(esc(src.label));
+    if (src.url) kids.push(`<a href="${esc(src.url)}" target="_blank" rel="noopener">${esc(src.label ? 'web' : src.url.replace(/^https?:\/\//, ''))}</a>`);
+    if (src.file) kids.push(`<code title="${esc(src.file)}">${esc(shortPath(src.file))}</code>`);
+    if (src.locator) kids.push(`<span>${esc(src.locator)}</span>`);
+    if (!kids.length) return null;
+    return el('span', { class: 'src', html: '📎 ' + kids.join(' · ') });
+  }
+  function shortPath(p) { const parts = String(p).split(/[\\/]/); return parts.slice(-2).join('/'); }
+  function quote(text, opts) {
+    opts = opts || {};
+    if (!text) return null;
+    const voice = opts.voice || 'scripture';
+    const q = el('blockquote', { class: 'q ' + voice });
+    q.append(el('span', {}, text));
+    const refBits = [];
+    if (opts.ref) refBits.push(opts.ref);
+    if (opts.version) refBits.push(opts.version);
+    if (voice === 'remedy') refBits.push('The Remedy');
+    if (opts.verify) refBits.push('wording from memory, verify');
+    if (refBits.length) q.append(el('span', { class: 'ref' }, refBits.join(' · ')));
+    const chip = sourceChip(opts.source);
+    if (chip) q.append(chip);
+    return q;
+  }
+  const voiceTag = v => el('span', { class: 'tag ' + v }, { scripture: 'Scripture', remedy: 'The Remedy', jennings: 'Jennings', egw: 'E. G. White', cole: 'Cole (study guide)' }[v] || v);
+  const missingBadge = txt => el('span', { class: 'badge-missing' }, txt || 'Not in The Remedy (OT outside Genesis/Psalms)');
+  const caveat = txt => txt ? el('div', { class: 'caveat' }, '⚠ ' + txt) : null;
+
+  /* ---------- verse card: traditional + Remedy + two readings (lens-aware) ---------- */
+  function verseCard(v) {
+    const card = el('div', { class: 'vcard', 'data-id': v.id || '' });
+    const head = el('div', { class: 'vhead' }, el('span', { class: 'vref' }, v.ref));
+    const tags = el('span');
+    if (v.group) tags.append(el('span', { class: 'tag scripture' }, v.group));
+    if (v.hard) tags.append(el('span', { class: 'tag hard' }, 'hard case'));
+    head.append(tags);
+    card.append(head);
+    const t = v.traditional;
+    if (t && t.text) card.append(quote(t.text, { ref: v.ref, version: t.version, verify: t.verify, source: t.source }));
+    if (v.remedy && v.remedy.text) card.append(quote(v.remedy.text, { voice: 'remedy', ref: v.remedy.ref || v.ref }));
+    else card.append(el('div', { style: 'margin:6px 0' }, missingBadge(v.remedy_note)));
+    if (v.imposed) card.append(el('div', { class: 'lens-panel imposed lens-imposed' }, el('span', { class: 'tag imposed' }, 'heard as'), v.imposed));
+    if (v.design) {
+      const d = el('div', { class: 'lens-panel design lens-design' }, el('span', { class: 'tag design' }, 'Jennings reads'), v.design);
+      const chip = sourceChip(v.jennings_source); if (chip) d.append(el('div', {}, chip));
+      card.append(d);
+    }
+    const c = caveat(v.caveat); if (c) card.append(c);
+    return card;
+  }
+  function renderVerseExplorer(container, verses, opts) {
+    opts = opts || {};
+    container.innerHTML = '';
+    if (!verses || !verses.length) { container.append(nodata()); return; }
+    const groups = [...new Set(verses.map(v => v.group).filter(Boolean))];
+    const state = { group: 'all', remedyOnly: false, hardOnly: false, q: '' };
+    const filters = el('div', { class: 'filters' });
+    const chip = (label, on, fn) => { const b = el('button', { class: 'chip' + (on ? ' on' : ''), onclick: () => { fn(); draw(); } }, label); return b; };
+    const list = el('div');
+    const count = el('p', { class: 'small' });
+    function draw() {
+      filters.innerHTML = '';
+      filters.append(chip('All', state.group === 'all', () => state.group = 'all'));
+      groups.forEach(g => filters.append(chip(g, state.group === g, () => state.group = g)));
+      filters.append(chip('Remedy available', state.remedyOnly, () => state.remedyOnly = !state.remedyOnly));
+      filters.append(chip('Hard cases', state.hardOnly, () => state.hardOnly = !state.hardOnly));
+      filters.append(chip('🎲 Random verse', false, () => { const pick = verses[Math.floor(Math.random() * verses.length)]; state.q = pick.ref; state.group = 'all'; state.remedyOnly = false; state.hardOnly = false; }));
+      filters.append(chip('Clear filters', false, () => { state.q = ''; state.group = 'all'; state.remedyOnly = false; state.hardOnly = false; }));
+      list.innerHTML = '';
+      const shown = verses.filter(v => (state.group === 'all' || v.group === state.group) && (!state.remedyOnly || (v.remedy && v.remedy.text)) && (!state.hardOnly || v.hard) && (!state.q || v.ref === state.q));
+      shown.forEach(v => list.append(verseCard(v)));
+      count.textContent = `${shown.length} of ${verses.length} passages` + (state.q ? ` · showing ${state.q}` : '');
+    }
+    container.append(filters, count, list);
+    draw();
+  }
+
+  /* ---------- timeline with "ask before reveal" nodes ---------- */
+  function renderTimeline(container, items, opts) {
+    opts = opts || {};
+    container.innerHTML = '';
+    if (!items || !items.length) { container.append(nodata()); return; }
+    const tl = el('div', { class: 'tl' });
+    items.forEach((it, i) => {
+      const node = el('div', { class: 'node' + (it.hard ? ' hard' : '') });
+      const card = el('div', { class: 'card sub' });
+      card.append(el('h3', { style: 'margin-top:0' }, (opts.numbered ? `${i + 1}. ` : '') + it.title), it.ref ? el('div', { class: 'small' }, it.ref) : null);
+      if (it.text) card.append(quote(it.text, { voice: it.remedy ? 'remedy' : 'scripture', version: it.version, verify: it.verify, source: it.source }));
+      if (opts.body) card.append(opts.body(it));
+      if (opts.ask && opts.ask.length) {
+        const ask = el('div', { class: 'ask' });
+        opts.ask.forEach(a => ask.append(el('span', { class: 'tag scripture' }, a)));
+        card.append(ask);
+        const rev = el('div', { class: 'reveal' }, opts.reveal ? opts.reveal(it) : null);
+        card.append(el('button', { class: 'btn sm ghost', onclick: e => { node.classList.toggle('open'); e.target.textContent = node.classList.contains('open') ? 'Hide' : (opts.revealLabel || 'Reveal'); } }, opts.revealLabel || 'Reveal'), rev);
+      }
+      node.append(card);
+      tl.append(node);
+    });
+    container.append(tl);
+    return tl;
+  }
+
+  /* ---------- sort bins (click to place, no drag needed) ---------- */
+  function renderSortBins(container, cfg) {
+    container.innerHTML = '';
+    if (!cfg || !cfg.items || !cfg.items.length) { container.append(nodata()); return; }
+    const pool = el('div', { class: 'pool' });
+    const bins = el('div', { class: 'bins' });
+    const binEls = {};
+    cfg.bins.forEach(b => { const d = el('div', { class: 'bin', 'data-bin': b.id }, el('h4', {}, b.label)); binEls[b.id] = d; bins.append(d); });
+    const result = el('div', { class: 'result-line' });
+    let picked = null;
+    const tokens = cfg.items.map(it => {
+      const t = el('button', { class: 'token', title: 'Click, then click a bin' }, it.label);
+      t.addEventListener('click', () => { picked = { it, t }; document.querySelectorAll('.token.pick').forEach(x => x.classList.remove('pick')); t.classList.add('pick'); t.style.borderColor = 'var(--accent2)'; result.textContent = `Now click the bin for "${it.label}".`; });
+      pool.append(t); return t;
+    });
+    cfg.bins.forEach(b => binEls[b.id].addEventListener('click', () => {
+      if (!picked) { result.textContent = 'Pick an item first.'; return; }
+      const { it, t } = picked; picked = null; t.style.borderColor = '';
+      binEls[b.id].append(t);
+      const ok = it.answer === b.id;
+      t.classList.remove('ok', 'no'); t.classList.add(ok ? 'ok' : 'no');
+      t.title = it.note || '';
+      result.innerHTML = '';
+      result.append(el('b', { style: ok ? 'color:var(--good)' : 'color:var(--bad)' }, ok ? 'Yes. ' : 'Not where Jennings puts it. '), it.feedback || it.note || '');
+      if (cfg.onPlace) cfg.onPlace(it, b, ok);
+      const done = cfg.items.every(x => pool.contains(tokens[cfg.items.indexOf(x)]) === false);
+      if (done && cfg.onDone) cfg.onDone();
+    }));
+    container.append(el('p', { class: 'small' }, cfg.hint || 'Click an item, then click the bin it belongs in.'), pool, bins, result);
+  }
+
+  /* ---------- flip pairs (said / happened) ---------- */
+  function renderFlipPairs(container, pairs, labels) {
+    labels = labels || { a: 'What God said', b: 'What actually happened' };
+    container.innerHTML = '';
+    if (!pairs || !pairs.length) { container.append(nodata()); return; }
+    pairs.forEach(p => {
+      const f = el('div', { class: 'flip' });
+      const a = el('div', { class: 'side said' }, el('h4', {}, labels.a), p.said ? quote(p.said.text, { ref: p.said.ref, version: p.said.version, verify: p.said.verify }) : null,
+        el('button', { class: 'btn sm ghost', onclick: () => f.classList.toggle('open') }, 'Then what happened?'));
+      const b = el('div', { class: 'side happened' }, el('h4', {}, labels.b), p.happened ? quote(p.happened.text, { ref: p.happened.ref, version: p.happened.version, verify: p.happened.verify, voice: p.happened.remedy ? 'remedy' : 'scripture' }) : null,
+        p.note ? el('div', { class: 'lens-panel design' }, el('span', { class: 'tag design' }, 'Jennings'), p.note, sourceChip(p.source)) : null);
+      f.append(a, b);
+      container.append(f);
+    });
+  }
+
+  /* ---------- accordion (objections desk etc.) ---------- */
+  function renderAccordion(container, items, opts) {
+    opts = opts || {};
+    container.innerHTML = '';
+    if (!items || !items.length) { container.append(nodata()); return; }
+    items.forEach((it, i) => {
+      const d = el('details', { class: 'acc' });
+      const s = el('summary', {}, (opts.numbered ? `${i + 1}. ` : '') + (it.title || it.objection || it.term));
+      if (it.strength) s.append(' ', el('span', { class: 'tag ' + it.strength }, it.strength + ' evidence'));
+      d.append(s);
+      const body = el('div', { class: 'body' });
+      if (opts.body) body.append(opts.body(it, i)); else body.append(it.body || it.meaning || '');
+      d.append(body);
+      container.append(d);
+    });
+  }
+
+  /* ---------- level stepper (shared with the Seven Levels page) ---------- */
+  function renderStepper(container, rows, onPick, initial) {
+    container.innerHTML = '';
+    if (!rows || !rows.length) { container.append(nodata()); return; }
+    const st = el('div', { class: 'stepper' });
+    let cur = initial || rows[0].n;
+    const btns = rows.map(r => el('button', { onclick: () => { cur = r.n; paint(); onPick(r); } }, `${r.n} · ${r.name}`));
+    btns.forEach(b => st.append(b));
+    function paint() { btns.forEach((b, i) => { const on = rows[i].n === cur; b.classList.toggle('on', on); b.classList.toggle('l' + rows[i].n, on); }); }
+    container.append(st, el('div', { class: 'divider-note' }, 'Levels 1–4 hear an imposed law; levels 5–7 hear a design law. The shift is between 4 and 5.'));
+    paint(); onPick(rows.find(r => r.n === cur));
+  }
+
+  /* ---------- glossary popovers ---------- */
+  let pop = null;
+  function glossaryTerm(term, entry) {
+    const s = el('span', { class: 'gl', tabindex: 0 }, term);
+    const show = (ev) => {
+      hidePop();
+      pop = el('div', { class: 'pop' }, el('span', { class: 'x', onclick: hidePop }, '✕'), el('b', {}, entry.term || term), el('div', {}, entry.meaning || entry.gloss || ''));
+      if (entry.greek) pop.append(el('div', { class: 'small' }, 'Greek: ' + entry.greek));
+      if (entry.remedy && entry.remedy.text) pop.append(quote(entry.remedy.text, { voice: 'remedy', ref: entry.remedy.ref }));
+      if (entry.caveat) pop.append(caveat(entry.caveat));
+      document.body.append(pop);
+      const r = s.getBoundingClientRect();
+      const top = Math.min(window.innerHeight - pop.offsetHeight - 10, r.bottom + 8);
+      pop.style.top = Math.max(8, top) + 'px';
+      pop.style.left = Math.max(8, Math.min(window.innerWidth - pop.offsetWidth - 8, r.left)) + 'px';
+      ev.stopPropagation();
+    };
+    s.addEventListener('click', show);
+    s.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') show(e); });
+    return s;
+  }
+  function hidePop() { if (pop) { pop.remove(); pop = null; } }
+  document.addEventListener('click', e => { if (pop && !pop.contains(e.target)) hidePop(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') hidePop(); });
+
+  /* ---------- poll (single question, remembered) ---------- */
+  function renderPoll(container, cfg) {
+    container.innerHTML = '';
+    const key = cfg.key;
+    const saved = store.get(key, null);
+    const note = el('p', { class: 'small' });
+    const opts = cfg.options.map(o => el('button', { class: 'opt' + (saved === o ? ' sel' : ''), onclick: () => { store.set(key, o); opts.forEach(x => x.classList.toggle('sel', x.textContent === o)); note.textContent = cfg.thanks || 'Remembered. You will meet this answer again at the end.'; if (cfg.onPick) cfg.onPick(o); } }, o));
+    container.append(el('div', { class: 'lead', style: 'font-weight:650;color:var(--ink)' }, cfg.question), ...opts, note);
+    if (saved) note.textContent = cfg.thanks || 'Remembered. You will meet this answer again at the end.';
+  }
+
+  /* ---------- journal box (remembered free text) ---------- */
+  function journal(key, placeholder) {
+    const t = el('textarea', { class: 'journal', placeholder: placeholder || 'Your own words…' });
+    t.value = store.get(key, '');
+    t.addEventListener('input', () => store.set(key, t.value));
+    return t;
+  }
+
+  return { store, el, esc, $, nodata, lensBar, setLens, lens, sourceChip, quote, voiceTag, missingBadge, caveat, verseCard, renderVerseExplorer, renderTimeline, renderSortBins, renderFlipPairs, renderAccordion, renderStepper, glossaryTerm, renderPoll, journal };
+})();
+
+</script>
+<script>
+(function(){
+  'use strict';
+  const D = window.PAGE_DATA || {};
+  const { el, quote, sourceChip, caveat, store, nodata } = KC;
+  const stripMd = s => String(s).replace(/\*\*([^*]+)\*\*/g, '$1').replace(/(^|[\s(“"'])\*([^*\n]+)\*(?=[\s).,;:!?”"']|$)/g, '$1$2').replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g, '$1');
+  const txt = x => x == null ? '' : stripMd(typeof x === 'string' ? x : (x.text || ''));
+  const voiceOf = o => { const s = (o && o.speaker) || ''; return !s || /^jennings$/i.test(s) ? 'jennings' : /white/i.test(s) ? 'egw' : /cole/i.test(s) ? 'cole' : 'scripture'; };
+  const J = o => o && txt(o) ? quote(txt(o), { voice: voiceOf(o), ref: o.speaker && !/^jennings$/i.test(o.speaker) ? o.speaker : (o.citation || null), source: o.source }) : null;
+  const Q = (o, voice) => o && txt(o) ? quote(txt(o), { ref: o.ref, version: o.version, verify: o.verify, source: o.source, voice: voice || 'scripture' }) : null;
+  const R = (o, ref) => { const t = txt(o && o.remedy !== undefined ? o.remedy : o); return t ? quote(t, { voice: 'remedy', ref: ref || (o && o.ref) }) : null; };
+  const P = (o, cls) => o && txt(o) ? el('p', { class: cls || 'lead' }, txt(o)) : null;
+  const list = v => Array.isArray(v) ? v : v ? [v] : [];
+  const Js = v => list(v).map(J).filter(Boolean);
+  const Rs = v => list(v).map(x => x && (x.remedy || x.text) ? (x.remedy ? R(x) : Q(x)) : null).filter(Boolean);
+  const sec = id => document.getElementById(id);
+  const fill = (id, fn) => { const node = sec(id); try { fn(node); } catch (e) { node.append(el('p', { class: 'nodata' }, 'This section could not render: ' + e.message)); console.error(id, e); } };
+  const acc = (title, ...kids) => el('details', { class: 'acc' }, el('summary', {}, title), el('div', { class: 'body' }, ...kids));
+  const LL = D.laws_list || {};
+  const LAWS = LL.laws || [];
+  const SLUGS = ['love', 'liberty', 'worship', 'exertion', 'physics', 'maths', 'health', 'restoration', 'sowing', 'love_over_fear', 'fear_damages_love', 'forgiveness', 'truth', 'revelation', 'happiness', 'brokenness', 'sin_death'];
+  const BENCH = { liberty: '#b-liberty', love: '#b-love', exertion: '#b-exertion', worship: '#b-worship', truth: '#b-truth', physics: '#b-gravity' };
+  const BR = D.breaks || {};
+  const DEEP = D.deep || {};
+
+  KC.lensBar(sec('lensbar'), { initial: 'imposed' });
+
+  /* 1. Rule or protocol? */
+  fill('intro', n => {
+    n.append(J(LL.intro), J(LL.definition));
+    const box = el('div', { class: 'card sub' });
+    KC.renderSortBins(box, {
+      hint: 'Page-authored warm-up. Click an item, then the bin it belongs in: a made-up rule that needs enforcing, or a protocol reality runs on.',
+      bins: [{ id: 'rule', label: 'Made-up rule (needs an enforcer)' }, { id: 'protocol', label: 'Design protocol (consequence built in)' }],
+      items: [
+        { label: 'A 50 km/h speed limit', answer: 'rule', feedback: 'Change the sign and the law changes; nothing happens unless someone enforces it.' },
+        { label: 'Gravity', answer: 'protocol', feedback: 'No officer needed: step off the roof and the consequence arrives by itself.' },
+        { label: 'The tax code', answer: 'rule', feedback: 'Legislated, amended, enforced by penalty.' },
+        { label: 'Respiration: breathe or die', answer: 'protocol', feedback: 'Stop breathing and no one has to punish you.' },
+        { label: 'A curfew', answer: 'rule', feedback: 'Arbitrary, local, enforced from outside.' },
+        { label: 'Sowing and reaping', answer: 'protocol', feedback: 'Plant thistles, harvest thistles; the field keeps no court.' },
+        { label: 'Parking fines', answer: 'rule', feedback: 'The fine is the only consequence, and it is added by an authority.' },
+        { label: 'The law of love: give, and life circulates', answer: 'protocol', feedback: 'This is the one Jennings says every other design law hangs on; break the circle and the flow stops.' },
+      ],
+      onDone: () => box.append(el('p', { class: 'counter' }, 'Now ask which kind God’s law is. That is the whole page.')),
+    });
+    n.append(box);
+    if (LL.constantine) n.append(acc('How the two got confused: Constantine and the Roman lawyers', J(LL.constantine)));
+    if (D.tract && D.tract.opening) n.append(acc('The same list as a tract', P(D.tract.intro, 'small'), J(D.tract.opening)));
+  });
+
+  /* 2. The seventeen laws */
+  fill('laws', n => {
+    if (!LAWS.length) { n.append(nodata()); return; }
+    n.append(el('p', { class: 'lead' }, 'Each card states the law in Jennings’ words. "Break it" shows the built-in consequence; "Why?" shows a passage and a Remedy verse. Six laws have a bench below where you can run the experiment.'));
+    const counter = el('p', { class: 'counter' });
+    let brokenCount = 0;
+    const grid = el('div', { class: 'lawgrid' });
+    LAWS.forEach((law, i) => {
+      const slug = SLUGS[i] || ('law' + i);
+      const b = BR[slug] || {};
+      const card = el('div', { class: 'law', id: 'law-' + slug });
+      const state = el('div', { class: 'state kept' }, txt(b.kept) || 'Live in harmony with it and life does what it was designed to do.');
+      let broken = false;
+      const toggle = el('button', { class: 'btn sm', onclick: () => {
+        broken = !broken; card.classList.toggle('broken', broken); state.className = 'state ' + (broken ? 'broken' : 'kept');
+        state.textContent = broken ? (txt(b.broken) || 'The consequence is inherent: nothing is added from outside.') : (txt(b.kept) || 'Live in harmony with it and life does what it was designed to do.');
+        toggle.textContent = broken ? 'Restore it' : 'Break it'; brokenCount += broken ? 1 : -1;
+        counter.textContent = brokenCount ? `${brokenCount} of ${LAWS.length} laws broken. Penalties imposed by God: 0. Consequences: ${brokenCount}.` : '';
+      } }, 'Break it');
+      const more = el('div', { class: 'more' });
+      if (law.examples) more.append(el('ul', { class: 'small' }, law.examples.map(x => el('li', {}, x))));
+      if (law.consequences) more.append(el('ul', { class: 'small' }, law.consequences.map(x => el('li', {}, x))));
+      if (law.detail) list(law.detail).forEach(x => more.append(el('p', { class: 'small' }, x)));
+      if (b.jennings) more.append(J(b.jennings));
+      if (b.scripture) more.append(R(b.scripture));
+      if (law.source && !b.jennings) more.append(sourceChip(law.source));
+      const why = el('button', { class: 'btn ghost sm', onclick: () => { card.classList.toggle('open'); why.textContent = card.classList.contains('open') ? 'Less' : 'Why?'; } }, 'Why?');
+      const ctrl = el('div', { class: 'ctrl' }, toggle, why);
+      if (BENCH[slug]) ctrl.append(el('a', { class: 'bench', href: BENCH[slug] }, 'Open the bench'));
+      card.append(el('h3', {}, law.name), el('div', { class: 'def' }, txt(law.text).replace(/;?\s*examples:\s*$/i, '.')), state, more, ctrl);
+      grid.append(card);
+    });
+    n.append(grid, counter);
+    if (LL.source) n.append(el('p', { class: 'small' }, 'Law statements: ', sourceChip(LL.source)));
+    if (D.reuse_note) n.append(P(D.reuse_note, 'small'));
+  });
+
+  /* 3. Liberty bench */
+  fill('liberty', n => {
+    const L = DEEP.liberty; if (!L) { n.append(nodata()); return; }
+    n.append(P(L.intro), ...Js(L.statement));
+    const cons = list(L.three_consequences);
+    const box = el('div', { class: 'benchbox' });
+    box.append(el('p', { class: 'lead' }, el('b', {}, 'Experiment: '), 'How much do you control the other person? Slide from "free" to "dominated" and watch the three consequences Jennings names arrive.'));
+    const r = el('input', { type: 'range', class: 'kc', min: 0, max: 100, value: 0, 'aria-label': 'Degree of control' });
+    const lbl = el('p', { class: 'counter' });
+    const grid = el('div', { class: 'cons' }, ...cons.map(c => el('div', { class: 'c' }, el('b', {}, txt(c.name) || 'Consequence'), txt(c.quote))));
+    const paint = () => { const v = +r.value; [...grid.children].forEach((c, i) => c.classList.toggle('on', v >= Math.round((i + 1) * 100 / (cons.length + 0.5)))); lbl.textContent = v === 0 ? 'Free: love can be given and returned.' : v < 34 ? 'Pressure: the relationship strains.' : v < 67 ? 'Control: love is being damaged.' : v < 100 ? 'Domination: rebellion rises.' : 'Total control: the person is being erased.'; };
+    r.addEventListener('input', paint); box.append(r, lbl, grid); paint();
+    const cases = list(L.cases);
+    if (cases.length) {
+      const chips = el('div', { class: 'row' }); const out = el('div');
+      cases.forEach(c => chips.append(el('button', { class: 'chip', onclick: e => { chips.querySelectorAll('.chip').forEach(x => x.classList.remove('on')); e.target.classList.add('on'); out.innerHTML = ''; out.append(J(c.quote || c), c.what_was_controlled ? el('p', { class: 'small' }, el('b', {}, 'What was controlled: '), txt(c.what_was_controlled)) : null, c.consequence ? el('p', { class: 'small' }, el('b', {}, 'What followed: '), txt(c.consequence)) : null); } }, txt(c.name) || 'Case')));
+      box.append(el('h4', {}, 'Cases Jennings tells'), chips, out);
+    }
+    n.append(box);
+    if (L.spouse_test) n.append(el('h3', {}, 'Test it at home'), J(L.spouse_test));
+    const gr = Js(L.god_respects); if (gr.length) n.append(el('h3', {}, 'Why God will not do it either'), ...gr);
+    for (const c of cons) { /* quotes already shown inside the grid; add sources */ if (c.quote && c.quote.source) { n.append(el('span', {}, sourceChip(c.quote.source))); break; } }
+  });
+
+  /* 4. Love bench */
+  fill('love', n => {
+    const L = DEEP.love; if (!L) { n.append(nodata()); return; }
+    n.append(P(L.intro));
+    const box = el('div', { class: 'benchbox' });
+    const ring = el('div', { class: 'ring' }, el('div', { class: 'node n0' }, 'oceans give vapour'), el('div', { class: 'node n1' }, 'clouds give rain'), el('div', { class: 'node n2' }, 'rivers give to the sea'), el('div', { class: 'node n3' }, 'the land gives life'), el('div', { class: 'dot' }), el('div', { class: 'dot d2' }));
+    const msg = el('p', { class: 'counter' }, 'The circle is intact: everything gives, so everything receives.');
+    const brokenOut = el('div', { class: 'hidden' }, ...Js(L.broken));
+    const btn = el('button', { class: 'btn', onclick: () => { const b = ring.classList.toggle('broken'); btn.textContent = b ? 'Restore the circle' : 'Break the circle: keep it for yourself'; msg.textContent = b ? 'One link keeps instead of giving. The flow stops for everyone, including the one who kept it.' : 'The circle is intact: everything gives, so everything receives.'; brokenOut.classList.toggle('hidden', !b); } }, 'Break the circle: keep it for yourself');
+    box.append(el('p', { class: 'lead' }, el('b', {}, 'Experiment: '), 'the water cycle as Jennings uses it. Page-authored labels; his words below.'), ring, msg, el('div', { class: 'center' }, btn), brokenOut);
+    n.append(box, ...Js(L.circle));
+    if (L.survival) n.append(el('h3', {}, 'The opposite principle'), J(L.survival), el('p', { class: 'small' }, el('a', { href: '#s9' }, 'Go deeper in section 9')));
+    const rs = Rs(L.scripture); if (rs.length) n.append(el('h3', {}, 'In The Remedy'), ...rs);
+  });
+
+  /* 5. Exertion bench */
+  fill('exertion', n => {
+    const E = DEEP.exertion; if (!E) { n.append(nodata()); return; }
+    n.append(P(E.intro), ...Js(E.statement));
+    const box = el('div', { class: 'benchbox' });
+    const bar = el('div', { class: 'bar' }, el('span', { style: 'width:40%' }));
+    const fillEl = bar.firstChild; const msg = el('p', { class: 'counter' }, 'A faculty at rest: muscle, mind, or faith.');
+    const use = el('button', { class: 'btn sm', onclick: () => { fillEl.style.width = '100%'; msg.textContent = 'Used: it grows stronger over time.'; } }, 'Use it');
+    const rest = el('button', { class: 'btn ghost sm', onclick: () => { fillEl.style.width = '8%'; msg.textContent = 'Neglected: it atrophies. Nobody took it away.'; } }, 'Neglect it');
+    const reset = el('button', { class: 'btn ghost sm', onclick: () => { fillEl.style.transition = 'none'; fillEl.style.width = '40%'; setTimeout(() => { fillEl.style.transition = ''; }, 50); msg.textContent = 'A faculty at rest: muscle, mind, or faith.'; } }, 'Reset');
+    box.append(el('p', { class: 'lead' }, el('b', {}, 'Experiment: '), 'the bar is any faculty. Watch five seconds either way.'), bar, msg, el('div', { class: 'row' }, use, rest, reset));
+    n.append(box, ...Js(E.examples));
+    const rs = Rs(E.scripture); if (rs.length) n.append(el('h3', {}, 'In The Remedy'), ...rs);
+  });
+
+  /* 6. Worship bench */
+  fill('worship', n => {
+    const W = DEEP.worship; if (!W) { n.append(nodata()); return; }
+    n.append(P(W.intro), ...Js(W.statement));
+    const ex = list(W.examples);
+    if (ex.length) {
+      const box = el('div', { class: 'benchbox' });
+      const chips = el('div', { class: 'row' }); const out = el('div');
+      const labelOf = (x, i) => txt(x.label) || txt(x.title) || (txt(x.quote || x).split(/\s+/).slice(0, 5).join(' ') + '…');
+      ex.forEach((x, i) => chips.append(el('button', { class: 'chip', onclick: e => { chips.querySelectorAll('.chip').forEach(c => c.classList.remove('on')); e.target.classList.add('on'); out.innerHTML = ''; out.append(J(x.quote || x), x.becomes ? el('p', { class: 'small' }, el('b', {}, 'What the beholder becomes: '), txt(x.becomes)) : null); } }, labelOf(x, i))));
+      box.append(el('p', { class: 'lead' }, el('b', {}, 'Experiment: '), 'pick what a person beholds, and read what Jennings says they become.'), chips, out);
+      n.append(box);
+    }
+    const rs = Rs(W.scripture); if (rs.length) n.append(el('h3', {}, 'In The Remedy'), ...rs);
+  });
+
+  /* 7. Truth bench */
+  fill('truth', n => {
+    const T = DEEP.truth; if (!T) { n.append(nodata()); return; }
+    n.append(P(T.intro), ...Js(T.statement));
+    const f = T.fork || {};
+    const box = el('div', { class: 'benchbox' });
+    const emb = el('div', { class: 'side embrace' }, el('span', { class: 'tag design' }, 'Embrace it'), J(f.embrace) || el('p', { class: 'nodata' }, 'No passage.'));
+    const rej = el('div', { class: 'side reject' }, el('span', { class: 'tag imposed' }, 'Reject it'), J(f.reject) || el('p', { class: 'nodata' }, 'No passage.'));
+    const fork = el('div', { class: 'fork' }, emb, rej);
+    box.append(el('p', { class: 'lead' }, el('b', {}, 'Experiment: '), 'a truth arrives. Choose.'), el('div', { class: 'row' }, el('button', { class: 'btn sm', onclick: () => { emb.classList.add('on'); rej.classList.remove('on'); } }, 'Embrace the truth'), el('button', { class: 'btn ghost sm', onclick: () => { rej.classList.add('on'); emb.classList.remove('on'); } }, 'Reject the truth')), fork);
+    n.append(box);
+    const tl = LAWS[12]; if (tl && tl.detail) list(tl.detail).forEach(x => n.append(el('p', { class: 'lead' }, x)));
+    const rs = Rs(T.scripture); if (rs.length) n.append(el('h3', {}, 'In The Remedy'), ...rs);
+  });
+
+  /* 8. Gravity bench */
+  fill('gravity', n => {
+    const G = D.physics_gravity; if (!G) { n.append(nodata()); return; }
+    n.append(P(G.intro));
+    const steps = list(G.steps);
+    if (steps.length) {
+      const box = el('div', { class: 'benchbox' });
+      const tower = el('div', { class: 'tower', style: 'height:10px' }, el('span', { class: 'man' }, '🧍'));
+      const say = el('div', { class: 'say' });
+      const r = el('input', { type: 'range', class: 'kc', min: 0, max: steps.length - 1, value: 0, 'aria-label': 'Height' });
+      const paint = () => { const s = steps[+r.value]; tower.style.height = (10 + (+r.value) * (130 / Math.max(1, steps.length - 1))) + 'px'; say.innerHTML = ''; say.append(el('b', {}, txt(s.height || s.name || s)), el('div', {}, txt(s.label || s.consequence || s.result || '')), el('div', { class: 'small' }, txt(s.gloss || ''))); };
+      r.addEventListener('input', paint);
+      box.append(el('p', { class: 'lead' }, el('b', {}, 'Experiment: '), 'same law, different degree of violation. Gravity is not angrier at the top; the consequence just scales.'), el('div', { class: 'grav' }, tower, say), r);
+      if (G.steps_note) box.append(P(G.steps_note, 'small'));
+      n.append(box); paint();
+    }
+    n.append(...Js(G.quotes));
+  });
+
+  /* 9. Survival vs giving */
+  fill('survival', n => {
+    const S = D.survival_tab; if (!S) { n.append(nodata()); return; }
+    n.append(P(S.intro), ...Js(S.jennings));
+    const verses = list(S.verses); if (!verses.length) return;
+    n.append(el('h3', {}, 'The two principles in The Remedy'), P(S.pruned_note, 'small'));
+    const cats = [['all', 'All'], ['survival', 'Survival of the fittest'], ['giving', 'The circle of giving'], ['both', 'Both, contrasted']];
+    let cat = 'all';
+    const chips = el('div', { class: 'row' }); const count = el('p', { class: 'small' }); const grid = el('div', { class: 'wall' });
+    const draw = () => { grid.innerHTML = ''; const l = verses.filter(v => cat === 'all' || v.principle === cat); l.forEach(v => { const c = R(v, v.ref); c.classList.add('vcard'); c.prepend(el('span', { class: 'tag ' + (v.principle || 'both') }, v.principle || '')); if (v.why) c.append(el('div', { class: 'why' }, txt(v.why))); grid.append(c); }); count.textContent = `${l.length} of ${verses.length} verses.`; chips.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c.dataset.cat === cat)); };
+    cats.forEach(([v, label]) => chips.append(el('button', { class: 'chip', 'data-cat': v, onclick: () => { cat = v; draw(); } }, label)));
+    n.append(chips, count, grid); draw();
+  });
+
+  /* 10. Self-check */
+  fill('selfcheck', n => {
+    const SC = D.selfcheck; if (!SC || !list(SC.items || SC.pairs).length) { n.append(nodata()); return; }
+    const KEY = 'cr-lab-selfcheck';
+    let picks = store.get(KEY, {});
+    const items = list(SC.items || SC.pairs);
+    n.append(P(SC.scoring && SC.scoring.intro), el('p', { class: 'small' }, 'Reflective, not psychometric; page-authored statements; nothing leaves this browser.'));
+    const wrap = el('div', { class: 'pairs' }); const verdict = el('div');
+    const render = () => {
+      wrap.innerHTML = '';
+      items.forEach((it, i) => {
+        const pair = el('div', { class: 'pair' }, el('div', { class: 'theme' }, txt(it.theme) || `Pair ${i + 1}`));
+        const opts = [['giving', it.giving], ['survival', it.survival]]; if (i % 2) opts.reverse();
+        opts.forEach(([k, t]) => pair.append(el('button', { class: 'opt' + (picks[i] === k ? ' sel' : ''), onclick: () => { picks[i] = k; store.set(KEY, picks); render(); } }, txt(t))));
+        wrap.append(pair);
+      });
+      verdict.innerHTML = '';
+      const done = Object.keys(picks).length;
+      if (done < items.length) { verdict.append(el('p', { class: 'small center' }, `${done} of ${items.length} answered.`)); return; }
+      const giving = Object.values(picks).filter(v => v === 'giving').length;
+      const cat = giving >= items.length - 2 ? 'mostly_giving' : giving <= 3 ? 'mostly_survival' : 'mixed';
+      const sc = SC.scoring || {};
+      verdict.append(el('div', { class: 'verdict' }, el('h3', {}, cat === 'mostly_giving' ? 'Mostly the circle of giving' : cat === 'mostly_survival' ? 'Mostly survival of the fittest' : 'Running on both'), el('p', { class: 'small' }, `${giving} of ${items.length} first choices were giving choices.`), P(sc[cat]), ...Js(SC.jennings_on_change), el('button', { class: 'btn ghost sm', onclick: () => { picks = {}; store.set(KEY, picks); render(); } }, 'Start over')));
+    };
+    n.append(wrap, verdict); render();
+  });
+
+  /* 11. Objections */
+  fill('objections', n => {
+    const items = list(D.objections); if (!items.length) { n.append(nodata()); return; }
+    n.append(el('p', { class: 'lead' }, 'Write your own answer first, then open Jennings’ reply. The strength tag is this page’s estimate of how directly the local corpus answers it.'));
+    items.forEach(o => {
+      const reveal = el('div', { class: 'hidden' }, ...Js(o.reply), o.strength_note ? P(o.strength_note, 'small') : null);
+      n.append(acc(txt(o.objection), el('span', { class: 'tag ' + (o.strength || 'moderate') }, o.strength || ''), el('p', { class: 'small' }, 'How would you answer?'), KC.journal(`cr-lab-obj-${o.id}`, 'Your answer first…'), el('button', { class: 'btn sm', onclick: () => reveal.classList.toggle('hidden') }, 'Show Jennings’ reply'), reveal));
+    });
+  });
+
+  /* 12. Closing */
+  fill('closing', n => {
+    if (LL.closing) n.append(J(LL.closing));
+    n.append(el('p', { class: 'lead' }, 'Every bench above ran the same experiment: a law was broken and nothing was added from outside. That is the claim this whole centre rests on, and the next pages test it where it is hardest: the fire, the wrath, the judgment.'));
+    n.append(el('div', { class: 'row', style: 'margin-top:12px' }, el('a', { class: 'btn', href: 'dominoes.html' }, 'See the chain of consequences'), el('a', { class: 'btn ghost', href: 'two-lenses.html' }, 'Re-read the Bible words'), el('a', { class: 'btn ghost', href: 'index.html' }, 'Back to the Knowledge Centre')));
+  });
+
+  /* Glossary and sources */
+  fill('glossary', n => {
+    const g = list(D.glossary); if (!g.length) { n.append(nodata()); return; }
+    g.forEach(t => n.append(acc(txt(t.term), P(t.meaning, 'lead'), t.caveat ? caveat(txt({ text: typeof t.caveat === 'string' ? t.caveat : (t.caveat.caveat || t.caveat.text) })) : null, t.quote ? (t.quote.remedy ? R(t.quote) : J(t.quote)) : null)));
+  });
+  fill('sourceList', n => {
+    const seen = new Map();
+    const walk = o => { if (!o || typeof o !== 'object') return; if (Array.isArray(o)) { o.forEach(walk); return; } if (o.source && (o.source.file || o.source.url)) { const k = (o.source.file || '') + '|' + (o.source.url || ''); if (!seen.has(k)) seen.set(k, o.source); } Object.values(o).forEach(walk); };
+    walk(D);
+    const listEl = el('div');
+    [...seen.values()].sort((a, b) => String(a.file || a.url).localeCompare(String(b.file || b.url))).forEach(s => { const c = sourceChip({ file: s.file, url: s.url }); if (c) listEl.append(el('div', { style: 'margin:4px 0' }, c)); });
+    n.append(el('p', { class: 'small' }, `${seen.size} distinct source files. The warm-up sorter, bench labels and self-check statements are page-authored.`), listEl);
+  });
+})();
+</script>
+</body>
+</html>
