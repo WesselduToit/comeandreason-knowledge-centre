@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wrath = Letting Go — God's wrath and Satan's wrath are exact opposites</title>
+<!-- @kit.css -->
+<style>
+/* page-only styles */
+.hands{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.hand-card{border:1px solid var(--line);border-radius:var(--radius);padding:14px;text-align:center;background:var(--card2);position:relative;overflow:hidden;min-height:150px}
+.hand-card.satan{border-top:3px solid var(--bad)}
+.hand-card.god{border-top:3px solid var(--design)}
+.stage{height:74px;position:relative;margin:8px 0 4px;font-size:34px}
+.stage .fist{position:absolute;left:12%;top:14px;transition:transform .5s cubic-bezier(.3,1.6,.6,1)}
+.stage .target{position:absolute;right:16%;top:14px;transition:.3s}
+.hands.play .satan .fist{transform:translateX(150%)}
+.hands.play .satan .target{filter:brightness(1.4) drop-shadow(0 0 8px var(--bad))}
+.stage .rope{position:absolute;left:50%;top:6px;width:4px;height:0;background:var(--accent);transform:translateX(-50%);transition:height .8s}
+.stage .flood{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(180deg,rgba(127,176,224,.2),rgba(127,176,224,.6));transition:height 1.2s .4s}
+.stage .open{position:absolute;left:50%;top:10px;transform:translateX(-50%);transition:.5s}
+.hands.play .god .rope{height:0}
+.hands:not(.play) .god .rope{height:40px}
+.hands.play .god .flood{height:46px}
+.hands.play .god .open{transform:translateX(-50%) translateY(-14px) rotate(-20deg)}
+.hand-card .lbl{font-weight:750;letter-spacing:.04em}
+.hand-card .what{font-size:13px;color:var(--muted);min-height:36px}
+.hot{cursor:pointer;background:rgba(224,177,94,.18);border-radius:4px;padding:0 3px}
+.bowl-track{display:flex;gap:4px;margin:10px 0}
+.bowl-track span{flex:1;height:10px;border-radius:4px;background:var(--line)}
+.bowl-track span.on{background:var(--fire-red)}
+.ptable{width:100%;table-layout:fixed;border-collapse:collapse;font-size:14px;margin:10px 0}
+.ptable th,.ptable td{overflow-wrap:anywhere;word-break:break-word}
+.ptable .src code{white-space:normal;overflow-wrap:anywhere}
+.ptable th.n,.ptable td.n{width:2em}
+.ptable th{text-align:left;color:var(--accent);font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:6px 8px;border-bottom:1px solid var(--line)}
+.ptable td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+.ptable td.n{color:var(--faint);width:2em}
+.ptable blockquote.q{font-size:14px;margin:6px 0;padding:8px 10px}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:10px}
+.wall .vcard{margin:0}
+.wall .why{font-size:12.5px;color:var(--faint);margin-top:6px}
+.qz{border:1px solid var(--line);border-radius:var(--radius-s);padding:12px 14px;margin:10px 0;background:var(--card2)}
+.qz .ev{color:var(--accent);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.qz .ans{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.qz .reveal{margin-top:8px}
+.score{font-family:Georgia,serif;font-size:18px;color:var(--accent);text-align:center;margin:12px 0}
+.contrast{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.contrast .cell{border:1px solid var(--line);border-radius:var(--radius-s);padding:10px 12px;font-size:14px}
+.contrast .cell.d{border-color:var(--design)}
+.contrast .cell.p{border-color:var(--imposed)}
+@media (max-width:640px){.hands{grid-template-columns:1fr}.contrast{grid-template-columns:1fr}.ptable{font-size:13px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="lensbar"></div>
+
+  <header class="hero">
+    <div class="eyebrow">An Interactive Study · Come and Reason Knowledge Centre</div>
+    <h1>Wrath = Letting Go</h1>
+    <p class="sub">"He gave them over." Three times in one chapter Paul says what the wrath of God is: not a hand that strikes, but a hand that stops holding back what we have insisted on. This page follows that mechanism from Romans 1 to the cross to the seven last plagues.</p>
+    <p class="credit"><a href="index.html">&larr; Knowledge Centre</a> &middot; Teaching of Timothy R. Jennings, MD · <a href="https://comeandreason.com" target="_blank" rel="noopener">Come and Reason Ministries</a> · the mechanism beneath <a href="fire.html">The Consuming Fire</a>; see also <a href="two-lenses.html">Two Lenses</a>, <a href="dominoes.html">The Falling Dominoes</a>, <a href="sin-disease.html">Sin Is a Disease</a> and <a href="seven-reasons.html">Same Act, Seven Reasons</a></p>
+    <div class="toc">
+      <a href="#s1">Two hands</a><a href="#s2">Romans 1</a><a href="#s3">Said vs happened</a><a href="#s4">Four winds, seven bowls</a><a href="#s5">Egypt vs the last plagues</a><a href="#s6">The cross</a><a href="#s7">Discipline, not punishment</a><a href="#s8">Why "punish"?</a><a href="#s9">Verse wall</a><a href="#s10">Acting or withdrawing?</a><a href="#s11">Objections</a><a href="#s12">Closing</a><a href="#sources">Glossary &amp; sources</a>
+    </div>
+  </header>
+
+  <section id="s1"><div class="card"><h2><span class="num">1</span>Two wraths, two hands</h2><div id="hands"></div></div></section>
+  <section id="s2"><div class="card"><h2><span class="num">2</span>Romans 1: three times "he gave them over"</h2><div id="romans"></div></div></section>
+  <section id="s3"><div class="card"><h2><span class="num">3</span>What God said, and what actually happened</h2><div id="pairs"></div></div></section>
+  <section id="s4"><div class="card"><h2><span class="num">4</span>The four winds and the seven bowls</h2><div id="bowls"></div></div></section>
+  <section id="s5"><div class="card"><h2><span class="num">5</span>Egypt's plagues are not the seven last plagues</h2><div id="plagues"></div></div></section>
+  <section id="s6"><div class="card"><h2><span class="num">6</span>The cross: "why have you forsaken me?"</h2><div id="cross"></div></div></section>
+  <section id="s7"><div class="card"><h2><span class="num">7</span>Love disciplines; law punishes</h2><div id="discipline"></div></div></section>
+  <section id="s8"><div class="card"><h2><span class="num">8</span>Why does the Bible say "punish"?</h2><div id="punish"></div></div></section>
+  <section id="s9"><div class="card"><h2><span class="num">9</span>The verse wall: every time The Remedy says "let go"</h2><div id="wall"></div></div></section>
+  <section id="s10"><div class="card"><h2><span class="num">10</span>Acting, or withdrawing?</h2><div id="quiz"></div></div></section>
+  <section id="s11"><div class="card"><h2><span class="num">11</span>Objections desk</h2><div id="objections"></div></div></section>
+  <section id="s12"><div class="card"><h2><span class="num">12</span>Closing: what wrath reveals</h2><div id="closing"></div></div></section>
+  <section id="sources"><div class="card"><h2>Glossary and sources</h2><div id="glossary"></div><h3>Sources used on this page</h3><div id="sourceList"></div></div></section>
+
+  <p class="footnote">Built as a study companion for Dr Timothy R. Jennings' teaching. Quotations are verbatim from the cited local files; The Remedy is Jennings' expanded paraphrase. Items marked page-authored are written for this page and are not quotations. Nothing leaves your browser.</p>
+</div>
+
+<!-- @data -->
+<!-- @kit.js -->
+<script>
+(function(){
+  'use strict';
+  const D = window.PAGE_DATA || {};
+  const { el, quote, sourceChip, caveat, store, nodata } = KC;
+  const stripMd = s => String(s).replace(/\*\*([^*]+)\*\*/g, '$1').replace(/(^|[\s(“"'])\*([^*\n]+)\*(?=[\s).,;:!?”"']|$)/g, '$1$2').replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g, '$1');
+  const txt = x => x == null ? '' : stripMd(typeof x === 'string' ? x : (x.text || ''));
+  const voiceOf = o => { const s = (o && o.speaker) || ''; return !s || /^jennings$/i.test(s) ? 'jennings' : /white/i.test(s) ? 'egw' : /cole/i.test(s) ? 'cole' : 'scripture'; };
+  const J = o => o && txt(o) ? quote(txt(o), { voice: voiceOf(o), ref: o.speaker && !/^jennings$/i.test(o.speaker) ? o.speaker : (o.citation || null), source: o.source }) : null;
+  const Q = (o, voice) => o && txt(o) ? quote(txt(o), { ref: o.ref, version: o.version, verify: o.verify, source: o.source, voice: voice || 'scripture' }) : null;
+  const R = (o, ref) => { const t = txt(o && o.remedy !== undefined ? o.remedy : o); return t ? quote(t, { voice: 'remedy', ref: ref || (o && o.ref) }) : null; };
+  const P = (o, cls) => o && txt(o) ? el('p', { class: cls || 'lead' }, txt(o)) : null;
+  const C = o => o && (o.caveat || (o.page_authored && o.text)) ? caveat(txt(o.caveat ? { text: o.caveat } : o)) : null;
+  const passage = o => !o ? null : (o.remedy ? R(o) : Q(o));
+  const sec = id => document.getElementById(id);
+  const fill = (id, fn) => { const node = sec(id); try { fn(node); } catch (e) { node.append(el('p', { class: 'nodata' }, 'This section could not render: ' + e.message)); console.error(id, e); } };
+  const acc = (title, ...kids) => el('details', { class: 'acc' }, el('summary', {}, title), el('div', { class: 'body' }, ...kids));
+  const FW = D.fire_wrath || {};
+  const M = D.mechanism || {};
+
+  KC.lensBar(sec('lensbar'), { initial: 'imposed' });
+
+  /* 1. Two hands */
+  fill('hands', n => {
+    n.append(P(M.intro));
+    const svg = FW.satan_vs_god || {};
+    const hands = el('div', { class: 'hands' },
+      el('div', { class: 'hand-card satan' }, el('div', { class: 'lbl' }, "Satan's wrath"), el('div', { class: 'stage' }, el('span', { class: 'fist' }, '✊'), el('span', { class: 'target' }, '🧍')), el('div', { class: 'what' }, 'Power used to harm: the hand moves toward the person.')),
+      el('div', { class: 'hand-card god' }, el('div', { class: 'lbl' }, "God's wrath"), el('div', { class: 'stage' }, el('span', { class: 'open' }, '🤲'), el('span', { class: 'rope' }), el('span', { class: 'flood' })), el('div', { class: 'what' }, 'Power withdrawn: the hand that was holding the flood back lets go, at the insistence of the one it protected.')));
+    const btn = el('button', { class: 'btn', onclick: () => { hands.classList.toggle('play'); btn.textContent = hands.classList.contains('play') ? 'Reset' : 'Watch both hands'; } }, 'Watch both hands');
+    n.append(hands, el('div', { class: 'center' }, btn), el('p', { class: 'small center' }, 'Both end in harm. Only one of them is doing the harming.'));
+    (M.definition || []).forEach(q => n.append(J(q)));
+    if (svg.god || svg.satan) {
+      n.append(el('h3', {}, 'Exact opposites'), el('div', { class: 'grid2' },
+        el('div', { class: 'card sub' }, el('span', { class: 'tag design' }, "God's wrath"), J(svg.god), svg.god && svg.god.text2 ? J({ text: svg.god.text2, source: svg.god.source }) : null),
+        el('div', { class: 'card sub' }, el('span', { class: 'tag imposed' }, "Satan's wrath"), J(svg.satan))));
+      if (svg.opposites) n.append(J(svg.opposites));
+    }
+    if (svg.restraint || M.restraint) { n.append(el('h3', {}, 'What has been holding the flood back')); if (svg.restraint) n.append(J(svg.restraint)); (M.restraint || []).forEach(q => n.append(J(q))); }
+    const aa = M.angriest_act;
+    if (aa) { n.append(el('h3', {}, 'The angriest act love can take')); if (aa.text) n.append(J(aa)); if (aa.primary) n.append(J(aa.primary)); if (aa.also_in) { n.append(J(aa.also_in)); if (aa.also_in.note) n.append(P(aa.also_in.note, 'small')); } }
+    if (M.love_vs_law_caveat) n.append(caveat(txt({ text: M.love_vs_law_caveat.caveat || M.love_vs_law_caveat.text })));
+  });
+
+  /* 2. Romans 1 */
+  fill('romans', n => {
+    const w = FW; if (!w.romans1 || !w.romans1.length) { n.append(nodata()); return; }
+    if (w.intro) n.append(J(w.intro));
+    n.append(el('p', { class: 'small' }, 'The Remedy, Romans 1:18-32. Tap a highlighted verse: those are the three places the Greek has paradidomi, "handed over".'));
+    const box = el('div', { class: 'card sub' });
+    const info = el('div');
+    w.romans1.forEach(v => {
+      const span = el('span', { class: v.hotspot ? 'hot' : '' }, el('b', { style: 'color:var(--accent);font-size:11px' }, v.verse + ' '), txt(v.remedy || v.text) + ' ');
+      if (v.hotspot) span.addEventListener('click', () => { info.innerHTML = ''; info.append(el('div', { class: 'lens-panel design' }, el('span', { class: 'tag design' }, v.gloss || 'paradidomi: handed over'), el('p', {}, el('b', {}, 'What they chose: '), v.cause || '—'), el('p', {}, el('b', {}, 'What followed: '), v.effect || '—'))); });
+      box.append(span);
+    });
+    n.append(box, info);
+    if (w.romans1_note) n.append(J(w.romans1_note));
+    if (w.hard_sayings_quote) { const h = w.hard_sayings_quote; n.append(acc('A conservative commentary agrees (Hard Sayings of the Bible, as Jennings quotes it)', Q({ text: [h.text, h.text_continued, h.text_close].filter(Boolean).join(' '), ref: h.citation, source: h.source }, 'egw'))); }
+    if (w.sda_commentary) n.append(acc('How the SDA Bible Commentary defines wrath (as Jennings quotes it)', Q({ text: [w.sda_commentary.text, w.sda_commentary.text_continued].filter(Boolean).join(' '), ref: w.sda_commentary.citation, source: w.sda_commentary.source }, 'egw'), J(w.sda_commentary.jennings_frame)));
+  });
+
+  /* 3. Said vs happened */
+  fill('pairs', n => {
+    if (!FW.pairs || !FW.pairs.length) { n.append(nodata()); return; }
+    n.append(el('p', { class: 'lead' }, 'Tap a card. The left side is the declaration, in the language of threat; the right side is the narrative, which reports what God actually did.'));
+    const b = el('div'); KC.renderFlipPairs(b, FW.pairs); n.append(b);
+  });
+
+  /* 4. Four winds and bowls */
+  fill('bowls', n => {
+    const w = FW, pl = D.plagues || {};
+    if (!w.bowls || !w.bowls.length) { n.append(nodata()); return; }
+    if (pl.winds) { if (pl.winds.text) n.append(J(pl.winds)); if (pl.winds.jennings) n.append(J(pl.winds.jennings)); if (pl.winds.job_parallel_2024) n.append(J(pl.winds.job_parallel_2024)); }
+    const bowls = w.bowls.filter(b => b.n >= 1).sort((a, b) => a.n - b.n);
+    const pre = w.bowls.find(b => b.n === 0), winds = w.bowls.find(b => b.n === -1);
+    if (winds) n.append(R(winds, winds.ref));
+    n.append(el('p', { class: 'small' }, 'Drag the slider. Each bowl is one more thing God stops holding back.'));
+    const track = el('div', { class: 'bowl-track' }, ...bowls.map(() => el('span')));
+    const out = el('div');
+    const r = el('input', { type: 'range', class: 'kc', min: 0, max: bowls.length, value: 0, 'aria-label': 'Bowl' });
+    const paint = () => { const v = +r.value; [...track.children].forEach((s, i) => s.classList.toggle('on', i < v)); out.innerHTML = ''; const b = v === 0 ? pre : bowls[v - 1]; if (b) { out.append(el('p', { class: 'lead' }, el('b', {}, v === 0 ? 'Before the bowls: ' : `Bowl ${b.n}: `), b.caption || ''), R(b, b.ref)); if (b.jennings) out.append(J(b.jennings)); } };
+    r.addEventListener('input', paint); n.append(r, track, out); paint();
+    if (w.bowls_why_seven) n.append(J(w.bowls_why_seven));
+    (pl.purpose || []).forEach(q => n.append(J(q)));
+    if (pl.purpose_note) n.append(P(pl.purpose_note, 'small'));
+    const ew = [pl.ellen_white, pl.ellen_white_14mr].filter(Boolean);
+    if (ew.length) n.append(acc('Ellen White on who the destroyer is (as Jennings quotes her)', ...ew.map(q => Q({ text: q.text, ref: q.citation, source: q.source }, 'egw'))));
+  });
+
+  /* 5. Egypt vs last plagues */
+  fill('plagues', n => {
+    const pl = D.plagues; if (!pl) { n.append(nodata()); return; }
+    n.append(P(pl.intro));
+    (pl.not_same || []).forEach(q => n.append(J(q)));
+    if (pl.egypt_purpose_verse) n.append(Q(pl.egypt_purpose_verse));
+    if (pl.legal_model_aside) n.append(acc('Even on the legal model, Egypt cannot be punishment', J(pl.legal_model_aside), pl.legal_model_aside.note ? P(pl.legal_model_aside.note, 'small') : null));
+    const rows = (pl.egypt_rows || []), last = (pl.last_rows || []);
+    if (rows.length || last.length) {
+      if (pl.last_rows_intro) n.append(J(pl.last_rows_intro));
+      const t = el('table', { class: 'ptable' }, el('thead', {}, el('tr', {}, el('th', { class: 'n' }, ''), el('th', {}, 'Egypt (Exodus 7–12)'), el('th', {}, 'The seven last plagues (Revelation 16, The Remedy)'))));
+      const tb = el('tbody');
+      const N = Math.max(rows.length, last.length);
+      for (let i = 0; i < N; i++) {
+        const e = rows[i], l = last[i];
+        const rem = l && (l.remedy && typeof l.remedy === 'object' ? l.remedy : l.remedy ? l : null);
+        tb.append(el('tr', {}, el('td', { class: 'n' }, String(i + 1)),
+          el('td', {}, e ? [el('b', {}, txt(e.plague)), e.plague && e.plague.ref ? el('div', { class: 'small' }, e.plague.ref) : null, e.jennings ? J(e.jennings) : null] : ''),
+          el('td', {}, l ? [el('b', {}, txt(l.plague || l.title)), rem ? R(rem, rem.ref) : null, l.jennings ? J(l.jennings) : null] : '')));
+      }
+      t.append(tb); n.append(t);
+      if (pl.egypt_rows_note) n.append(P(pl.egypt_rows_note, 'small'));
+    }
+    const pc = FW.plagues_contrast;
+    if (pc) n.append(acc('The same contrast on the Fire page', J(pc), el('div', { class: 'grid2' }, el('div', { class: 'card sub' }, el('span', { class: 'tag scripture' }, 'Egypt'), J(pc.egypt)), el('div', { class: 'card sub' }, el('span', { class: 'tag imposed' }, 'The last plagues'), J(pc.last_plagues))), J(pc.wrath_defined)));
+  });
+
+  /* 6. The cross */
+  fill('cross', n => {
+    const c = D.cross; if (!c) { n.append(nodata()); return; }
+    n.append(P(c.intro));
+    const f = c.forsaken || {};
+    const list = v => Array.isArray(v) ? v : v ? [v] : [];
+    list(f.remedy || f.verses).forEach(v => n.append(R(v, v.ref)));
+    list(f.quotes || f.jennings).forEach(q => n.append(J(q)));
+    const g = c.gave_him_up || {};
+    if (g.remedy || g.verses || g.quotes || g.note) {
+      n.append(el('h3', {}, '"He did not spare his own Son, but gave him up": the same word as Romans 1'));
+      list(g.remedy || g.verses).forEach(v => n.append(R(v, v.ref)));
+      list(g.quotes || g.jennings).forEach(q => n.append(J(q)));
+      if (g.note) n.append(C(g.note) || P(g.note, 'small'));
+      if (g.caveat) n.append(caveat(txt({ text: g.caveat })));
+    }
+    const sd = c.second_death || {};
+    if (sd.quotes || Array.isArray(sd)) { n.append(el('h3', {}, 'Did Christ die the second death?')); list(sd.quotes || sd).forEach(q => n.append(J(q))); if (sd.gloss) n.append(P(sd.gloss)); }
+  });
+
+  /* 7. Discipline vs punishment */
+  fill('discipline', n => {
+    const d = D.discipline || {};
+    n.append(P(d.intro));
+    if (d.contrast && d.contrast.length) {
+      const grid = el('div', { class: 'contrast' }, el('div', { class: 'cell d' }, el('span', { class: 'tag design' }, 'Discipline')), el('div', { class: 'cell p' }, el('span', { class: 'tag imposed' }, 'Punishment')));
+      const cell = (o, cls) => { const c = el('div', { class: 'cell ' + cls }); if (!o) return c; const isQ = o && o.source; c.append(txt(o)); if (o.page_authored) c.append(el('span', { class: 'pill' }, 'page-authored')); if (isQ) c.append(el('div', {}, sourceChip(o.source))); return c; };
+      d.contrast.forEach(r => { if (r.label) grid.append(el('div', { class: 'small', style: 'grid-column:1/-1;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;font-size:11px;margin-top:4px' }, txt(r.label))); grid.append(cell(r.discipline, 'd'), cell(r.punishment, 'p')); });
+      n.append(grid);
+      if (d.contrast_note) n.append(P(d.contrast_note, 'small'));
+    }
+    (d.quotes || []).forEach(q => n.append(J(q)));
+    (M.love_vs_law || []).forEach(q => n.append(J(q)));
+    const pa = d.parent;
+    if (pa) { n.append(el('h3', {}, 'A parent, not a magistrate')); if (pa.text) n.append(J(pa)); ['doctor_parent', 'why_angry', 'children_in_street'].forEach(k => { if (pa[k]) n.append(J(pa[k])); }); if (pa.note) n.append(P(pa.note, 'small')); }
+    if (d.anger && d.anger.length) { n.append(el('h3', {}, 'Is God angry? Righteous indignation and love')); d.anger.forEach(q => n.append(J(q))); }
+    if (d.anger_is_not_sin) { if (d.anger_is_not_sin.verse) n.append(Q(d.anger_is_not_sin.verse)); if (d.anger_is_not_sin.jennings) n.append(J(d.anger_is_not_sin.jennings)); }
+    if (M.not_passive && M.not_passive.length) { n.append(el('h3', {}, '"But letting go is passive"')); M.not_passive.forEach(q => n.append(J(q))); }
+  });
+
+  /* 8. Why "punish"? */
+  fill('punish', n => {
+    const pw = D.punish_word || {};
+    n.append(P(pw.intro));
+    (Array.isArray(pw) ? pw : pw.quotes || []).forEach(q => n.append(J(q)));
+    const s = D.fire_shout || {};
+    if (s.settings && s.settings.length) {
+      n.append(el('h3', {}, 'One truth, tuned to the listener'), el('p', { class: 'small' }, 'From the Fire page: the message never changes, the volume does. Pick a listener.'));
+      const dial = el('div', { class: 'dial' }); const out = el('div');
+      const show = st => { out.innerHTML = ''; out.append(el('p', { class: 'lead' }, el('b', {}, st.audience || ''), ' ', st.explain || ''), Q(st)); };
+      s.settings.forEach((st, i) => dial.append(el('button', { class: 'chip' + (i === 0 ? ' on' : ''), onclick: e => { dial.querySelectorAll('.chip').forEach(c => c.classList.remove('on')); e.target.classList.add('on'); show(st); } }, st.label)));
+      n.append(dial, out); show(s.settings[0]);
+    }
+    if (s.jesus_lens && s.jesus_lens.length) n.append(el('h3', {}, 'Read every declarative text through Jesus'), ...s.jesus_lens.map(v => R(v, v.ref)));
+  });
+
+  /* 9. Verse wall */
+  fill('wall', n => {
+    const verses = D.wall || []; if (!verses.length) { n.append(nodata()); return; }
+    n.append(P(D.wall_intro), P(D.pruned_note, 'small'));
+    const cats = ['all', ...new Set(verses.map(v => v.category).filter(Boolean))];
+    let cat = 'all';
+    const chips = el('div', { class: 'filters row' });
+    const grid = el('div', { class: 'wall' });
+    const count = el('p', { class: 'small' });
+    const draw = () => {
+      grid.innerHTML = '';
+      const list = verses.filter(v => cat === 'all' || v.category === cat);
+      list.forEach(v => { const card = R(v, v.ref); card.classList.add('vcard'); if (v.why) card.append(el('div', { class: 'why' }, txt(v.why))); grid.append(card); });
+      count.textContent = `${list.length} of ${verses.length} verses.`;
+      chips.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c.dataset.cat === cat));
+    };
+    cats.forEach(c => chips.append(el('button', { class: 'chip', 'data-cat': c, onclick: () => { cat = c; draw(); } }, c === 'all' ? 'All' : c)));
+    n.append(chips, count, grid); draw();
+  });
+
+  /* 10. Acting or withdrawing? */
+  fill('quiz', n => {
+    const items = D.quiz || []; if (!items.length) { n.append(nodata()); return; }
+    const KEY = 'cr-wrath-quiz';
+    let picks = store.get(KEY, {});
+    n.append(el('p', { class: 'lead' }, 'Ten passages. For each, decide before you look: is God acting to harm, or withdrawing protection so that consequences follow? Then read how Jennings reads it.'));
+    const score = el('div', { class: 'score' });
+    const LBL = { acting: 'God acts to harm', withdrawing: 'God withdraws', 'both-readings': 'It can be read both ways' };
+    const paints = [];
+    const tally = () => { const done = Object.keys(picks).length; const right = items.filter((it, i) => picks[i] === it.answer).length; score.textContent = done ? `${right} of ${done} answered the way Jennings reads them.` : ''; };
+    items.forEach((it, i) => {
+      const box = el('div', { class: 'qz' }, el('div', { class: 'ev' }, `${i + 1}. ${txt(it.event)}`));
+      box.append(passage(it.passage));
+      box.append(el('div', { class: 'prompt' }, txt(it.question) || 'Acting, or withdrawing?'));
+      const reveal = el('div', { class: 'reveal hidden' });
+      const ans = el('div', { class: 'ans' });
+      const btns = {};
+      ['withdrawing', 'acting', 'both-readings'].forEach(k => {
+        btns[k] = el('button', { class: 'chip', onclick: () => { picks[i] = k; store.set(KEY, picks); paint(); } }, LBL[k]);
+        ans.append(btns[k]);
+      });
+      const paint = () => {
+        const p = picks[i];
+        Object.keys(btns).forEach(k => { btns[k].classList.toggle('on', p === k); });
+        reveal.classList.toggle('hidden', !p);
+        if (p) { reveal.innerHTML = ''; reveal.append(el('p', { class: p === it.answer ? 'small' : 'small', style: p === it.answer ? 'color:var(--good)' : 'color:var(--warn)' }, p === it.answer ? 'That is how Jennings reads it.' : `Jennings reads this as: ${LBL[it.answer] || it.answer}.`), P(it.explain, 'small'), J(it.jennings)); }
+        tally();
+      };
+      box.append(ans, reveal); n.append(box); paints.push(paint); paint();
+    });
+    n.append(score, el('div', { class: 'center' }, el('button', { class: 'btn ghost sm', onclick: () => { picks = {}; store.set(KEY, picks); paints.forEach(p => p()); } }, 'Start over')));
+    tally();
+  });
+
+  /* 11. Objections */
+  fill('objections', n => {
+    const items = D.objections || []; if (!items.length) { n.append(nodata()); return; }
+    n.append(el('p', { class: 'lead' }, 'Each objection has a journal box: write your own answer first, then open Jennings’ reply. The strength tag is this page’s estimate of how directly the local corpus answers it.'));
+    items.forEach(o => {
+      const replies = Array.isArray(o.reply) ? o.reply : o.reply ? [o.reply] : [];
+      const reveal = el('div', { class: 'hidden' }, ...replies.map(J), o.strength_note ? P(o.strength_note, 'small') : null);
+      n.append(acc(txt(o.objection), el('span', { class: 'tag ' + (o.strength || 'moderate') }, o.strength || ''), el('p', { class: 'small' }, 'How would you answer?'), KC.journal(`cr-wrath-obj-${o.id}`, 'Your answer first…'), el('button', { class: 'btn sm', onclick: () => reveal.classList.toggle('hidden') }, 'Show Jennings’ reply'), reveal));
+    });
+  });
+
+  /* 12. Closing */
+  fill('closing', n => {
+    const c = D.closing || {};
+    n.append(P(c.intro));
+    (c.quotes || []).forEach(q => n.append(J(q)));
+    if (c.quotes_also && c.quotes_also.length) n.append(acc('More of Jennings’ closing lines', ...c.quotes_also.map(J)));
+    (c.remedy_wall || []).forEach(v => n.append(R(v, v.ref)));
+    if (c.poll && c.poll.options) { const box = el('div', { class: 'card sub' }); KC.renderPoll(box, { key: 'cr-wrath-poll', question: txt(c.poll.question), options: c.poll.options, thanks: 'Remembered in this browser only.' }); n.append(box); }
+    n.append(el('div', { class: 'row', style: 'margin-top:12px' }, el('a', { class: 'btn', href: 'fire.html#s6' }, 'Now see the fire'), el('a', { class: 'btn ghost', href: 'index.html' }, 'Back to the Knowledge Centre')));
+  });
+
+  /* Glossary and sources */
+  fill('glossary', n => {
+    const g = D.glossary || []; if (!g.length) { n.append(nodata()); return; }
+    g.forEach(t => n.append(acc(txt(t.term), P(t.meaning, 'lead'), t.caveat ? caveat(txt({ text: typeof t.caveat === 'string' ? t.caveat : (t.caveat.caveat || t.caveat.text) })) : null, t.quote ? (t.quote.remedy ? R(t.quote) : J(t.quote)) : null)));
+  });
+  fill('sourceList', n => {
+    const seen = new Map();
+    const walk = o => { if (!o || typeof o !== 'object') return; if (Array.isArray(o)) { o.forEach(walk); return; } if (o.source && (o.source.file || o.source.url)) { const k = (o.source.file || '') + '|' + (o.source.url || ''); if (!seen.has(k)) seen.set(k, o.source); } Object.values(o).forEach(walk); };
+    walk(D);
+    if (D.reuse_note) n.append(P(D.reuse_note, 'small'));
+    const list = el('div');
+    [...seen.values()].sort((a, b) => String(a.file || a.url).localeCompare(String(b.file || b.url))).forEach(s => { const c = sourceChip({ file: s.file, url: s.url }); if (c) list.append(el('div', { style: 'margin:4px 0' }, c)); });
+    n.append(el('p', { class: 'small' }, `${seen.size} distinct source files.`), list);
+  });
+})();
+</script>
+</body>
+</html>

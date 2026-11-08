@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Seven Levels of Moral Development — An Interactive Study</title>
+<style>
+  :root{
+    --bg:#0f1419; --bg2:#161d26; --card:#1b2430; --card2:#212c3a;
+    --ink:#e9edf2; --muted:#9fb0c3; --faint:#6f8298;
+    --line:#2c3a4c; --accent:#e0b15e; --accent2:#7fb0e0;
+    --good:#79c99e; --warn:#e0956a; --up:#c98bd6; --down:#6f8298;
+    --l1:#c56a5c; --l2:#cf8a55; --l3:#d7b859; --l4:#8fb56a; --l5:#5fb0a3; --l6:#6a92cf; --l7:#a982d6;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:linear-gradient(180deg,#0d1218,#121a24 40%,#0f1419);
+    color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.62; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:24px 18px 80px}
+  header.hero{text-align:center; padding:34px 8px 20px}
+  .eyebrow{letter-spacing:.22em; text-transform:uppercase; font-size:12px; color:var(--accent); font-weight:700}
+  h1{font-family:Georgia,"Times New Roman",serif; font-weight:600; font-size:clamp(28px,7vw,44px); line-height:1.12; margin:.35em 0 .2em}
+  .sub{color:var(--muted); font-size:16px; max-width:600px; margin:0 auto}
+  .credit{color:var(--faint); font-size:13px; margin-top:14px}
+  .credit a{color:var(--accent2); text-decoration:none}
+  section{margin-top:38px}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px 20px; margin:16px 0; box-shadow:0 6px 24px rgba(0,0,0,.22)}
+  h2{font-family:Georgia,serif; font-size:clamp(22px,5vw,30px); margin:0 0 6px; font-weight:600}
+  h2 .num{color:var(--accent); font-size:.7em; letter-spacing:.1em}
+  .lead{color:var(--muted); font-size:15.5px}
+  .toothline{background:linear-gradient(90deg,rgba(224,177,94,.14),rgba(127,176,224,.06)); border-left:3px solid var(--accent); border-radius:8px; padding:12px 14px; margin:14px 0; font-style:italic; color:#f0e4cb}
+  .toothline b{font-style:normal; color:var(--accent)}
+
+  /* ladder */
+  .ladder{display:flex; flex-direction:column-reverse; gap:8px; margin:18px 0}
+  .rung{display:flex; align-items:center; gap:12px; padding:11px 13px; border-radius:12px; border:1px solid var(--line);
+        background:var(--card2); cursor:pointer; transition:.18s; text-align:left; color:inherit; font:inherit; width:100%}
+  .rung:hover{transform:translateX(4px); border-color:var(--accent)}
+  .badge{flex:0 0 34px; height:34px; border-radius:9px; display:grid; place-items:center; font-weight:800; color:#10161d}
+  .rung .rname{font-weight:650}
+  .rung .rmot{color:var(--muted); font-size:13.5px}
+  .l1{background:var(--l1)}.l2{background:var(--l2)}.l3{background:var(--l3)}.l4{background:var(--l4)}.l5{background:var(--l5)}.l6{background:var(--l6)}.l7{background:var(--l7)}
+
+  /* quiz */
+  .q{margin:22px 0; padding-bottom:6px; border-bottom:1px dashed var(--line)}
+  .q:last-of-type{border-bottom:none}
+  .qtext{font-weight:650; font-size:16.5px; margin-bottom:10px}
+  .qtext .qn{color:var(--accent); margin-right:8px}
+  .opt{display:block; width:100%; text-align:left; background:var(--card2); border:1px solid var(--line);
+       color:var(--ink); border-radius:11px; padding:12px 14px; margin:8px 0; cursor:pointer; font:inherit; transition:.15s}
+  .opt:hover{border-color:var(--accent2)}
+  .opt.sel{border-color:var(--accent); background:rgba(224,177,94,.13); box-shadow:0 0 0 1px var(--accent) inset}
+  .btn{display:inline-block; background:linear-gradient(120deg,var(--accent),#d09a3f); color:#14100a; border:none;
+       font-weight:750; font-size:16px; padding:13px 26px; border-radius:12px; cursor:pointer; transition:.15s}
+  .btn:hover{filter:brightness(1.07); transform:translateY(-1px)}
+  .btn.ghost{background:transparent; color:var(--accent); border:1px solid var(--accent)}
+  .center{text-align:center}
+  .hidden{display:none}
+  #result .rbig{font-family:Georgia,serif; font-size:30px; font-weight:650; margin:6px 0}
+  .meter{display:flex; gap:5px; margin:16px 0; align-items:flex-end; height:80px}
+  .mbar{flex:1; border-radius:6px 6px 0 0; position:relative; min-height:6px; opacity:.85}
+  .mbar span{position:absolute; bottom:-20px; left:0; right:0; text-align:center; font-size:11px; color:var(--faint)}
+
+  /* explorer */
+  .selrow{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0}
+  .chip{border:1px solid var(--line); background:var(--card2); color:var(--muted); border-radius:20px;
+        padding:7px 13px; cursor:pointer; font:inherit; font-size:13.5px; transition:.15s}
+  .chip.on{color:#10161d; font-weight:750; border-color:transparent}
+  .verdict{margin-top:14px; padding:16px; border-radius:13px; border:1px solid var(--line); background:var(--card2)}
+  .verdict .tag{display:inline-block; font-size:11px; letter-spacing:.12em; text-transform:uppercase; font-weight:750; padding:3px 9px; border-radius:20px; margin-bottom:8px}
+  .tag.up{background:rgba(201,139,214,.18); color:var(--up)}
+  .tag.down{background:rgba(111,130,152,.18); color:#9fb0c3}
+  .tag.same{background:rgba(121,201,158,.18); color:var(--good)}
+  .verdict .vquote{font-family:Georgia,serif; font-size:18px; font-style:italic; margin:4px 0 8px; color:#f0e9db}
+  details{margin:10px 0; border:1px solid var(--line); border-radius:11px; overflow:hidden; background:var(--card2)}
+  summary{cursor:pointer; padding:12px 14px; font-weight:650; list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"＋"; float:right; color:var(--accent)}
+  details[open] summary::after{content:"－"}
+  .dbody{padding:0 14px 14px; color:var(--muted); font-size:14.5px}
+  .reflect{margin:10px 0 2px; padding-left:2px}
+  .reflect li{margin:7px 0; color:#d7e0ea}
+  .meta{display:flex; flex-wrap:wrap; gap:8px 18px; font-size:13px; color:var(--faint); margin-top:8px}
+  .meta b{color:var(--muted)}
+  .footnote{color:var(--faint); font-size:12.5px; text-align:center; margin-top:40px; line-height:1.7}
+  .footnote a{color:var(--accent2); text-decoration:none}
+  .toc{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:18px}
+  .toc a{font-size:13px; color:var(--muted); border:1px solid var(--line); border-radius:20px; padding:6px 12px; text-decoration:none}
+  .toc a:hover{border-color:var(--accent); color:var(--ink)}
+  .pill{display:inline-block; font-size:11px; padding:2px 8px; border-radius:20px; background:rgba(127,176,224,.14); color:var(--accent2); margin-left:6px; vertical-align:middle}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">An Interactive Study</div>
+    <h1>The Seven Levels of Moral Development</h1>
+    <p class="sub">Why do you do what's right? The same act — even something as small as brushing your teeth — can spring from seven very different motives. Discover where you tend to reason from, and why each level struggles to see the others.</p>
+    <p class="credit"><a href="index.html">&larr; Knowledge Centre</a> &middot; Framework by Timothy R. Jennings, MD — <a href="https://comeandreason.com/the-seven-levels-of-moral-decision-making/">Come and Reason Ministries</a></p>
+    <div class="toc">
+      <a href="#tooth">🪥 The toothbrush test</a>
+      <a href="#quiz">✍️ Find your level</a>
+      <a href="#levels">📖 The seven levels</a>
+      <a href="#explorer">🔭 Why levels can't see each other</a>
+    </div>
+  </header>
+
+  <!-- TOOTHBRUSH INTRO -->
+  <section id="tooth">
+    <div class="card">
+      <h2>Start here: why does a child brush their teeth? 🪥</h2>
+      <p class="lead">Dr. Jennings uses a wonderfully ordinary picture. Picture the same child brushing their teeth — the <em>action</em> is identical every time. But <em>why</em> they do it can climb through all seven levels. Tap each rung to hear the child's reason.</p>
+      <div class="ladder" id="toothLadder"></div>
+      <p class="lead">Notice the pattern: fear and bribery at the bottom, then the crowd, then the rule, then love for others, then understanding <em>reality itself</em>, and finally a settled friendship with the Designer where doing right is simply who you are. Same toothbrush. Seven different hearts.</p>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz">
+    <div class="card">
+      <h2><span class="num">✍️</span> Find your level</h2>
+      <p class="lead">Answer honestly — not with the "best" answer, but with the reason that actually moves <em>you</em>. There are no wrong answers, only revealing ones. <span class="pill">8 questions</span></p>
+      <div id="quizForm"></div>
+      <div class="center" style="margin-top:14px">
+        <button class="btn" id="scoreBtn">Reveal my level</button>
+        <p class="lead" id="quizNote" style="margin-top:10px; font-size:13px"></p>
+      </div>
+
+      <div id="result" class="hidden">
+        <hr style="border:none; border-top:1px solid var(--line); margin:20px 0">
+        <div class="center">
+          <div class="lead">You tend to reason from</div>
+          <div class="rbig" id="rTitle">—</div>
+          <div class="badge" id="rBadge" style="margin:6px auto; width:44px; height:44px; font-size:18px">?</div>
+          <p class="lead" id="rDesc"></p>
+        </div>
+        <div class="meter" id="meter"></div>
+        <div class="verdict" id="rInsight" style="margin-top:26px"></div>
+        <div class="center" style="margin-top:16px">
+          <button class="btn ghost" id="retakeBtn">Take it again</button>
+          <a class="btn" href="#levels" style="text-decoration:none">Read about my level →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEVELS -->
+  <section id="levels">
+    <div class="card">
+      <h2><span class="num">📖</span> The seven levels, one by one</h2>
+      <p class="lead">Each level answers "why do right?" a little more maturely than the last. For each you'll find the toothbrush version, the deeper motive, the view of God and the cross it tends to produce, a Scripture that fits, and questions to sit with.</p>
+    </div>
+    <div id="levelCards"></div>
+  </section>
+
+  <!-- EXPLORER -->
+  <section id="explorer">
+    <div class="card">
+      <h2><span class="num">🔭</span> Why you can't easily see the other levels</h2>
+      <p class="lead">Here's the sobering part. From wherever you stand, the levels <em>below</em> look obvious and childish, and the levels <em>above</em> look naïve, reckless, or even sinful. You literally interpret higher reasoning through your own lens — which is exactly why the Pharisees (Level 4) watched Jesus heal on the Sabbath (Levels 6–7) and concluded He was a lawbreaker. Choose where <em>you</em> stand, then look at another level through your eyes.</p>
+
+      <div style="margin-top:16px"><b style="color:var(--muted); font-size:13px">I am reasoning from…</b>
+        <div class="selrow" id="fromRow"></div>
+      </div>
+      <div><b style="color:var(--muted); font-size:13px">Looking at…</b>
+        <div class="selrow" id="toRow"></div>
+      </div>
+      <div class="verdict" id="explainOut">
+        <div class="lead">Pick your level and a level to look at.</div>
+      </div>
+    </div>
+  </section>
+
+  <p class="footnote">
+    Built as a study companion for Dr. Timothy R. Jennings' teaching on the seven levels of moral development.<br>
+    Level names and framework: <a href="https://comeandreason.com/the-seven-levels-of-moral-decision-making/">comeandreason.com</a> · Full PDF: <a href="https://comeandreason.com/files/share/SevenLevels_Complete.pdf">The Seven Levels of Moral Development (PDF)</a><br>
+    The toothbrush illustration and cross-level insights are paraphrased for study and reflection.
+  </p>
+
+</div>
+
+<script>
+/* ---------- DATA ---------- */
+const LEVELS = [
+  {n:1, cls:'l1', color:'#c56a5c', name:'Reward & Punishment',
+   motto:'I do right to avoid pain and get rewards.',
+   tooth:'"I brush my teeth so I won\'t get in trouble — and because I get a sticker if I do."',
+   desc:'The most primitive level — so basic Jennings notes it "doesn\'t even require a brain." Right and wrong are set by whoever holds the power to punish or reward. Behaviour is pure conditioning: avoid the pain, chase the treat.',
+   god:'God is mainly to be feared. Obedience is about dodging hell and earning heaven.',
+   atone:'Appeasement / Satisfaction — an angry power must be paid off before it stops threatening.',
+   verse:'"…through fear of death were all their lifetime subject to bondage." — Hebrews 2:15',
+   reflect:['When no one could ever find out, does your reason to do right still hold?','Is your obedience to God driven more by fear of punishment or by trust in His character?','Can love actually grow in a heart that mostly fears consequences?']},
+  {n:2, cls:'l2', color:'#cf8a55', name:'Marketplace Exchange',
+   motto:'I do right if there\'s something in it for me.',
+   tooth:'"I\'ll brush my teeth if you pay me a dollar. What do I get out of the deal?"',
+   desc:'Morality as bargaining: "I\'ll do for you if you do for me." Fairness means an even trade, and vengeance becomes a duty — an eye for an eye, a wrong repaid in equal measure. Relationships are transactions.',
+   god:'God is a business partner: keep your end (tithe, service, prayer) and He owes you blessing.',
+   atone:'Ransom — a price is paid to a captor to buy the transaction back into balance.',
+   verse:'"If you love those who love you, what reward have you? Do not even the tax collectors do the same?" — Matthew 5:46',
+   reflect:['Do you keep score in your relationships — with people, or with God?','Is there anyone you serve with no expectation of return?','Does "God owes me" ever sneak into your prayers when life goes wrong?']},
+  {n:3, cls:'l3', color:'#d7b859', name:'Social Conformity',
+   motto:'I do right so my group approves of me.',
+   tooth:'"I brush my teeth because everybody does — my friends would think I\'m gross if I didn\'t."',
+   desc:'Right and wrong are whatever the peer group approves. The classic tell is the child\'s "But everyone else is doing it!" Belonging is the highest good; standing out is the deepest fear.',
+   god:'Faith is about fitting the church culture — dressing, speaking, and believing like "our people" do.',
+   atone:'Governmental — the cross mainly protects the reputation and order of the moral community.',
+   verse:'"They loved the praise of men more than the praise of God." — John 12:43',
+   reflect:['Would you keep a conviction if your whole community turned against it?','Is any of your "obedience" really just fear of what people would say?','Have you ever mistaken group agreement for actually being right?']},
+  {n:4, cls:'l4', color:'#8fb56a', name:'Law & Order',
+   motto:'I do right because it\'s the rule.',
+   tooth:'"I brush my teeth because it\'s the rule — the dentist said twice a day, and rules are rules."',
+   desc:'A real step up: the person honours codified law and legitimate authority, even against the crowd. But the rule becomes an end in itself. Right is proper reward for good work and prescribed punishment for breaking rules. This is where most sincere, moral religion lives.',
+   god:'God is the Lawgiver and Judge; salvation is a legal transaction — the penalty of a broken law must be paid.',
+   atone:'Penal Substitution — a legal debt is transferred and the law\'s penalty is executed on a substitute.',
+   verse:'"You pay tithe of mint and anise… and have neglected the weightier matters: justice, mercy, and faith." — Matthew 23:23',
+   reflect:['Have you ever kept a rule so rigidly that a person got hurt by your "faithfulness"?','Would you know what to do if love and the letter of the rule pointed different directions?','Do you obey the rule, or understand the reason the rule exists?']},
+  {n:5, cls:'l5', color:'#5fb0a3', name:'Love for Others',
+   motto:'I do right because it\'s truly good for people.',
+   tooth:'"I brush my teeth partly out of consideration — fresh breath and a healthy smile for the people I\'m close to."',
+   desc:'Motive shifts from the rulebook to the person. Right is what genuinely serves others\' good, "realizing people have value." This is why Jesus touched lepers and healed on the Sabbath — meeting real need even when it broke Level-4 expectations.',
+   god:'God is love, and He is out for people\'s actual healing — not merely enforcing a code.',
+   atone:'Moral Influence — the self-giving love shown at the cross wins and transforms the heart.',
+   verse:'"The Sabbath was made for man, and not man for the Sabbath." — Mark 2:27',
+   reflect:['Can you break a lesser rule to meet a greater need — and be at peace about it?','Do you love people as ends in themselves, or as chances to look good?','Where is love asking you to move toward someone the "rules" let you ignore?']},
+  {n:6, cls:'l6', color:'#6a92cf', name:'Principle-Based Living',
+   motto:'I do right because it\'s how reality actually works.',
+   tooth:'"I brush because I understand plaque and decay genuinely destroy the enamel my body was designed with — I\'d do it even if there were no rule and no one watching."',
+   desc:'The person now sees the design laws beneath the rules — health, truth, love, freedom — the way life is actually built to run. Jennings: "God says what is right because it is right, because it is the way things actually are." Rules become helpful signposts, not the point.',
+   god:'God is the Designer whose "law" describes reality, like gravity — not arbitrary rules He could revoke.',
+   atone:'Christus Victor / Design-Law — Christ defeats the lie about God and restores life to its true design.',
+   verse:'"You shall know the truth, and the truth shall make you free." — John 8:32',
+   reflect:['Do you obey God because He\'ll punish you, or because His ways are simply how life works best?','Can you tell the difference between a design law (reality) and a mere house rule?','What would change if you saw sin as self-destruction rather than rule-breaking?']},
+  {n:7, cls:'l7', color:'#a982d6', name:'Friend of God',
+   motto:'Doing right is simply who I am, in partnership with God.',
+   tooth:'"Brushing isn\'t even a decision anymore — caring for the body God gave me is just a natural, joyful expression of living in harmony with my Designer. And I\'d gladly help others see it too."',
+   desc:'The summit: reasoning is so united with God\'s heart that obedience is effortless, free, and creative. The person grasps God\'s larger purposes and cooperates intelligently in them — not a servant keeping terms, but a trusted friend sharing the mission.',
+   god:'God is a trusted Friend; you understand His character so well that His will and yours are one.',
+   atone:'Healing / Remedial Reality — Christ restores humanity fully to God\'s original design and secures the universe in love.',
+   verse:'"No longer do I call you servants… but I have called you friends, for all that I have heard from My Father I have made known to you." — John 15:15',
+   reflect:['Is obedience becoming lighter and freer for you over time, or heavier?','Do you do right because you have to, or because you love to and simply want to?','Whom could you help climb — patiently, the way a friend of God would?']}
+];
+
+/* Quiz questions: each option maps to a level (lv) */
+const QUESTIONS = [
+  {q:'Deep down, why do you tell the truth?', opts:[
+    {t:'So I don\'t get caught in a lie and punished.', lv:1},
+    {t:'People will trust me back if I\'m honest with them.', lv:2},
+    {t:'Honest people are respected; liars get shunned.', lv:3},
+    {t:'Because lying is against the rules / the commandments.', lv:4},
+    {t:'Lies wound people, and I care about them.', lv:5},
+    {t:'Truth is simply how trust and reality are built to work.', lv:6},
+    {t:'I love truth the way God does; deceit is foreign to who I\'m becoming.', lv:7}]},
+  {q:'Someone genuinely wrongs you. What feels "right"?', opts:[
+    {t:'Make sure they suffer the same — an eye for an eye.', lv:2},
+    {t:'Do whatever keeps the peace so people don\'t take sides.', lv:3},
+    {t:'Report it and let the proper authority/rules handle it.', lv:4},
+    {t:'Seek their good anyway, even while protecting myself.', lv:5},
+    {t:'Understand that unforgiveness poisons me — so I release it for real healing.', lv:6}]},
+  {q:'Why do you keep the Sabbath / go to worship?', opts:[
+    {t:'God commands it and I don\'t want the consequences of skipping.', lv:1},
+    {t:'It\'s expected in my church; I\'d feel out of place if I didn\'t.', lv:3},
+    {t:'It\'s the fourth commandment — obedience to the law.', lv:4},
+    {t:'It restores me and lets me be present for others.', lv:5},
+    {t:'Rest is woven into how humans are actually designed to thrive.', lv:6},
+    {t:'It\'s joyful time with a Friend I love being with.', lv:7}]},
+  {q:'A child asks you, "Why should I be good?" Your gut reply:', opts:[
+    {t:'"Because you\'ll get in trouble / get a reward."', lv:1},
+    {t:'"Because if you\'re good to others, they\'ll be good to you."', lv:2},
+    {t:'"Because that\'s what good people like us do."', lv:3},
+    {t:'"Because those are the rules, and we follow them."', lv:4},
+    {t:'"Because it truly helps people, and people matter."', lv:5},
+    {t:'"Because it\'s how life actually works best — for you and everyone."', lv:6}]},
+  {q:'You realize a church rule is quietly hurting someone. You…', opts:[
+    {t:'Keep quiet — rocking the boat could get me in trouble.', lv:1},
+    {t:'Go along; I don\'t want to be the odd one out.', lv:3},
+    {t:'Follow the rule anyway — order matters more than exceptions.', lv:4},
+    {t:'Set the rule aside to meet the person\'s real need.', lv:5},
+    {t:'Ask what principle the rule was meant to serve, and honour that.', lv:6}]},
+  {q:'What is sin, really?', opts:[
+    {t:'Doing things that make God angry enough to punish me.', lv:1},
+    {t:'Breaking a contract with God that I need to repay.', lv:2},
+    {t:'Breaking the law / commandments.', lv:4},
+    {t:'Harming others and failing to love.', lv:5},
+    {t:'A self-destructive departure from how God designed life to work.', lv:6},
+    {t:'Anything that breaks the trust and friendship God offers.', lv:7}]},
+  {q:'Why give to someone in need?', opts:[
+    {t:'So God (or others) will bless me back.', lv:2},
+    {t:'It\'s what respectable, generous people are seen to do.', lv:3},
+    {t:'Scripture commands generosity.', lv:4},
+    {t:'Because that person matters and I want their good.', lv:5},
+    {t:'Because open-handedness is simply how love and abundance actually flow.', lv:6}]},
+  {q:'When you imagine God looking at you, you mostly sense…', opts:[
+    {t:'A Judge tallying my rights and wrongs.', lv:1},
+    {t:'An accountant weighing whether I\'ve held up my end.', lv:2},
+    {t:'An authority whose rules I must keep.', lv:4},
+    {t:'A loving Parent who wants my healing.', lv:5},
+    {t:'A Designer whose ways are reality itself.', lv:6},
+    {t:'A Friend who knows me and shares everything with me.', lv:7}]}
+];
+
+/* ---------- RENDER: tooth ladder ---------- */
+const toothLadder = document.getElementById('toothLadder');
+LEVELS.forEach(L=>{
+  const b=document.createElement('button');
+  b.className='rung';
+  b.innerHTML=`<span class="badge ${L.cls}">${L.n}</span>
+    <span><span class="rname">${L.name}</span><br>
+    <span class="rmot" data-tooth>${L.motto}</span></span>`;
+  b.addEventListener('click',()=>{
+    const s=b.querySelector('[data-tooth]');
+    if(s.dataset.open==='1'){ s.textContent=L.motto; s.dataset.open='0'; s.style.color=''; }
+    else{ s.textContent='🪥 '+L.tooth; s.dataset.open='1'; s.style.color=L.color; }
+  });
+  toothLadder.appendChild(b);
+});
+
+/* ---------- RENDER: quiz ---------- */
+const quizForm=document.getElementById('quizForm');
+const answers=new Array(QUESTIONS.length).fill(null);
+QUESTIONS.forEach((Q,qi)=>{
+  const wrap=document.createElement('div'); wrap.className='q';
+  wrap.innerHTML=`<div class="qtext"><span class="qn">${qi+1}.</span>${Q.q}</div>`;
+  Q.opts.forEach((o)=>{
+    const btn=document.createElement('button');
+    btn.className='opt'; btn.textContent=o.t;
+    btn.addEventListener('click',()=>{
+      wrap.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));
+      btn.classList.add('sel'); answers[qi]=o.lv; updateNote();
+    });
+    wrap.appendChild(btn);
+  });
+  quizForm.appendChild(wrap);
+});
+const quizNote=document.getElementById('quizNote');
+function updateNote(){
+  const done=answers.filter(a=>a!==null).length;
+  quizNote.textContent = done<QUESTIONS.length ? `${done} of ${QUESTIONS.length} answered` : 'All answered — reveal away!';
+}
+updateNote();
+
+document.getElementById('scoreBtn').addEventListener('click',()=>{
+  const given=answers.filter(a=>a!==null);
+  if(given.length<4){ quizNote.textContent='Answer at least 4 questions for a meaningful read.'; return; }
+  // distribution
+  const counts=[0,0,0,0,0,0,0,0]; // index 1..7
+  given.forEach(l=>counts[l]++);
+  const avg=given.reduce((a,b)=>a+b,0)/given.length;
+  let home=Math.round(avg);
+  home=Math.max(1,Math.min(7,home));
+  const L=LEVELS[home-1];
+  document.getElementById('rTitle').textContent=`Level ${L.n} — ${L.name}`;
+  const rb=document.getElementById('rBadge'); rb.textContent=L.n; rb.className='badge '+L.cls;
+  rb.style.width='44px'; rb.style.height='44px'; rb.style.fontSize='18px'; rb.style.margin='6px auto';
+  document.getElementById('rDesc').textContent=L.motto+' '+L.desc.split('. ')[0]+'.';
+  // meter
+  const meter=document.getElementById('meter'); meter.innerHTML='';
+  const max=Math.max(...counts.slice(1));
+  for(let i=1;i<=7;i++){
+    const bar=document.createElement('div'); bar.className='mbar';
+    const h=max? (counts[i]/max)*100 : 0;
+    bar.style.height=Math.max(6,h)+'%';
+    bar.style.background=LEVELS[i-1].color;
+    bar.style.opacity=counts[i]?'0.9':'0.25';
+    bar.innerHTML=`<span>${i}</span>`;
+    meter.appendChild(bar);
+  }
+  // insight about spread
+  const spread=Math.max(...counts.slice(1)) - given.length/7;
+  const ins=document.getElementById('rInsight');
+  let range = home<=2? 'the lower, fear-and-exchange levels' : home<=4? 'the middle, community-and-law levels' : 'the higher, love-and-design levels';
+  ins.innerHTML=`<span class="tag same">What this means</span>
+    <div class="vquote">You most often reason from ${range}.</div>
+    <div class="lead">This isn\'t a verdict on your worth — it\'s a snapshot of the <em>motive</em> that tends to move you right now. Most of us are a mix (see the bars above), and we can be higher in one area of life than another. Growth means the same good actions flowing from ever-freer, more understanding motives. Read your level below, then try the explorer to see why the levels just above yours can be so hard to make sense of.</div>`;
+  document.getElementById('result').classList.remove('hidden');
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+});
+document.getElementById('retakeBtn').addEventListener('click',()=>{
+  answers.fill(null);
+  document.querySelectorAll('.opt.sel').forEach(x=>x.classList.remove('sel'));
+  document.getElementById('result').classList.add('hidden');
+  updateNote();
+  document.getElementById('quiz').scrollIntoView({behavior:'smooth'});
+});
+
+/* ---------- RENDER: level cards ---------- */
+const lc=document.getElementById('levelCards');
+LEVELS.forEach(L=>{
+  const card=document.createElement('div'); card.className='card';
+  card.id='level'+L.n;
+  card.innerHTML=`
+    <h2><span class="badge ${L.cls}" style="display:inline-grid; width:30px; height:30px; vertical-align:middle; font-size:15px; margin-right:8px">${L.n}</span>${L.name}</h2>
+    <p class="lead" style="margin-top:2px"><b style="color:var(--accent)">${L.motto}</b></p>
+    <div class="toothline"><b>🪥 Toothbrush test:</b> ${L.tooth}</div>
+    <p>${L.desc}</p>
+    <div class="meta">
+      <span><b>View of God:</b> ${L.god}</span>
+    </div>
+    <div class="meta"><span><b>Cross seen as:</b> ${L.atone}</span></div>
+    <p class="lead" style="margin-top:10px"><b style="color:var(--accent2)">Scripture:</b> ${L.verse}</p>
+    <details><summary>Questions to sit with</summary>
+      <div class="dbody"><ul class="reflect">${L.reflect.map(r=>`<li>${r}</li>`).join('')}</ul></div>
+    </details>`;
+  lc.appendChild(card);
+});
+
+/* ---------- RENDER: explorer ---------- */
+let fromLv=4, toLv=6;
+const fromRow=document.getElementById('fromRow'), toRow=document.getElementById('toRow');
+LEVELS.forEach(L=>{
+  const a=document.createElement('button'); a.className='chip'; a.textContent=L.n+' · '+L.name;
+  a.addEventListener('click',()=>{fromLv=L.n; renderChips(); explain();});
+  fromRow.appendChild(a);
+  const b=document.createElement('button'); b.className='chip'; b.textContent=L.n+' · '+L.name;
+  b.addEventListener('click',()=>{toLv=L.n; renderChips(); explain();});
+  toRow.appendChild(b);
+});
+function renderChips(){
+  [...fromRow.children].forEach((c,i)=>{c.classList.toggle('on',i+1===fromLv); c.style.background=(i+1===fromLv)?LEVELS[i].color:''; });
+  [...toRow.children].forEach((c,i)=>{c.classList.toggle('on',i+1===toLv); c.style.background=(i+1===toLv)?LEVELS[i].color:''; });
+}
+
+/* how a lower level misreads a specific higher level */
+const UPVIEW={
+  // key: `${from}-${to}` optional specific; else generic
+  '4-5':'"He broke the rule to help that person. That\'s compromise — the law is the law."',
+  '4-6':'"He questions the very commandments! That\'s dangerous, lawless thinking." (This is exactly how the Pharisees read Jesus.)',
+  '4-7':'"He acts like the rules don\'t even apply to him. Who does he think he is?"',
+  '1-6':'"Doing right when nobody\'s watching and no reward is coming? That makes no sense — why bother?"',
+  '3-6':'"He\'ll stand alone against the whole group for some abstract principle. That\'s just arrogant."',
+  '2-5':'"He gave and expects nothing back? He\'s being used — that\'s foolish."',
+  '5-7':'"Such freedom looks almost careless to me — I still feel I must try so hard to love."'
+};
+const DOWNVIEW={
+  '6-4':'"Rule-keeping for its own sake — they\'re missing the reason underneath the rule."',
+  '6-1':'"Doing right only to dodge punishment — that\'s barely morality at all, just conditioning."',
+  '5-2':'"Everything\'s a transaction for them. They\'ve never tasted love that asks nothing back."',
+  '7-4':'"Bless them — they\'re guarding the fence, not yet enjoying the garden."',
+  '4-3':'"They just follow the crowd; they haven\'t committed to a real standard yet."'
+};
+function explain(){
+  const out=document.getElementById('explainOut');
+  const F=LEVELS[fromLv-1], T=LEVELS[toLv-1];
+  if(fromLv===toLv){
+    out.innerHTML=`<span class="tag same">Home ground</span>
+      <div class="vquote">This is where you\'re standing.</div>
+      <div class="lead">From inside <b style="color:${F.color}">Level ${F.n} — ${F.name}</b>, this reasoning feels simply like "the way things are." It\'s the water you swim in, so it\'s the hardest level to see objectively at all.</div>`;
+    return;
+  }
+  const up = toLv>fromLv;
+  const key=`${fromLv}-${toLv}`;
+  let quote = up ? (UPVIEW[key]||`"That kind of reasoning seems naïve or reckless from where I stand — I\'d handle it more like: ${F.motto.toLowerCase()}"`)
+                 : (DOWNVIEW[key]||`"That\'s a more basic way of thinking than mine — I can see why they do it, but they\'re missing what I now understand: ${F.motto.toLowerCase()}"`);
+  out.innerHTML=`
+    <span class="tag ${up?'up':'down'}">${up?'Looking UP — harder to grasp':'Looking DOWN — easy to judge'}</span>
+    <div class="vquote">${quote}</div>
+    <div class="lead">Standing in <b style="color:${F.color}">Level ${F.n} (${F.name})</b> and looking at <b style="color:${T.color}">Level ${T.n} (${T.name})</b>:
+    ${up
+      ? `higher reasoning gets <em>filtered through your own motive</em>, so genuine maturity can look like weakness, compromise, or rebellion. You can\'t yet see the principle they\'re acting on — only that they\'re not doing what <em>you</em> would do. This is why growth usually requires trusting someone a rung or two ahead before you can understand them.`
+      : `lower reasoning looks obvious, even a little childish — you remember thinking that way. The risk here is contempt: judging people "behind" you instead of patiently helping them climb, the way a friend of God would.`}
+    </div>`;
+}
+renderChips(); explain();
+</script>
+</body>
+</html>

@@ -1,0 +1,1205 @@
+{
+ "map": {
+  "intro": {
+   "text": "Jennings reads the whole Bible through one causal chain. A lie about God is believed; that breaks the circle of love and trust; broken trust breeds fear and selfishness; and from that condition flow sin, suffering and death. Once the lie is in place, everything else gets misread too: God's law looks like imposed rules, wrath and fire look like inflicted punishment, and the cross looks like appeasement. The remedy runs the chain backwards: truth restores trust, love is poured in, the heart is healed, and the believer grows up through the levels of moral maturity. Follow the eight nodes in order, or jump to the one that is troubling you.",
+   "page_authored": true
+  },
+  "chain_quote": {
+   "text": "This is what happened in Eden. Satan told lies about God. Adam and Eve believed those lies and the circle of love and trust was broken. Broken love and trust result in fear and selfishness (also known as survival-of-the-fittest). Fear and selfishness result in acts of sin (destructive behaviors). Acts of sin result in damage to mind, character and body – a terminal condition.",
+   "speaker": "Jennings",
+   "source": {
+    "file": "posts/2007-12-21--the-power-of-a-lie.md",
+    "url": "https://comeandreason.com/the-power-of-a-lie/",
+    "locator": "line 27"
+   }
+  },
+  "nodes": [
+   {
+    "id": "lie",
+    "title": {
+     "text": "A lie about God is believed",
+     "page_authored": true
+    },
+    "gloss": {
+     "text": "Everything starts with the serpent's five words in Eden: \"you will not surely die.\" Jennings traces every downstream distortion back to one believed lie about God's character and about what sin does.",
+     "page_authored": true
+    },
+    "quotes": [
+     {
+      "text": "God created everything in the universe to operate on love, unmitigated giving, beneficence and regard for others more than oneself. God created all beings to be in unity and harmony. But this unity, harmony and love was broken. How? A lie was told. A lie was believed and pain, suffering and death followed.",
+      "speaker": "Jennings",
+      "source": {
+       "file": "posts/2007-12-21--the-power-of-a-lie.md",
+       "url": "https://comeandreason.com/the-power-of-a-lie/",
+       "locator": "line 23"
+      }
+     },
+     {
+      "text": "Inspiration is clear, God is love and the source of life. Sin breaks the circle of love and separates us from the source of life. Because of this we die. When we accept the “lie” and say God must kill, not only do we make God out to be the source of death, but we support Satan’s original lie that sin does not result in death.",
+      "speaker": "Jennings",
+      "source": {
+       "file": "posts/2011-08-18--the-never-ending-lie-you-will-not-surely-die.md",
+       "url": "https://comeandreason.com/the-never-ending-lie-you-will-not-surely-die/",
+       "locator": "line 77"
+      }
+     }
+    ],
+    "scripture": {
+     "ref": "Genesis 3:4",
+     "remedy": "“You most certainly will not decay and die!” the serpent said to the woman.",
+     "remedy_ref_key": "Genesis|3|4"
+    }
+   },
+   {
+    "id": "trust",
+    "title": {
+     "text": "The circle of love and trust breaks",
+     "page_authored": true
+    },
+    "gloss": {
+     "text": "Believing the lie does something inside us: trust in God collapses and distrust takes its place. Jennings calls this the broken \"circle of love and trust\", and everything after it is downstream damage.",
+     "page_authored": true
+    },
+    "quotes": [
+     {
+      "text": "Imagine you are married and someone tells you a lie that your spouse is having an affair. If you believe the lie, will something in you change? Will the circle of love and trust get broken? Will the broken love and trust lead to a change in behavior?",
+      "speaker": "Jennings",
+      "source": {
+       "file": "posts/2007-12-21--the-power-of-a-lie.md",
+       "url": "https://comeandreason.com/the-power-of-a-lie/",
+       "locator": "line 25"
+      }
+     },
+     {
+      "text": "When Adam believed the lies about God and broke the circle of love and trust, his rule of love changed to one of fear and selfishness—and nature followed. The drive to survive—kill or be killed, Satan's antagonistic principle of me-first—infected the entire world.",
+      "speaker": "Jennings",
+      "source": {
+       "file": "_ocr_markdown/GodShapedBrain.md",
+       "url": null,
+       "locator": "line 311"
+      }
+     }
+    ],
+    "scripture": {
+     "ref": "Genesis 3:10",
+     "remedy": "Adam answered, “I heard you in the garden and I was afraid, because I was naked; so I hid.”",
+     "remedy_ref_key": "Genesis|3|10"
+    }
+   },
+   {
+    "id": "fear",
+    "title": {
+     "text": "Fear and selfishness take the heart",
+     "page_authored": true
+    },
+    "gloss": {
+     "text": "Without trust, the mind defaults to self-protection: fear drives selfishness, which Jennings equates with the survival-of-the-fittest instinct. This is the condition the Bible calls sin, and it is terminal if not healed.",
+     "page_authored": true
+    },
+    "quotes": [
+     {
+      "text": "The more fearful we become, the more self-focused we become. Fear impairs relational growth!",
+      "speaker": "Jennings",
+      "source": {
+       "file": "posts/2014-03-16--fear-the-medium-of-death-love-the-elixir-of-life.md",
+       "url": "https://comeandreason.com/fear-the-medium-of-death-love-the-elixir-of-life/",
+       "locator": "line 21"
+      }
+     },
+     {
+      "text": "Fear and selfishness in the world today is commonly known as survival-of-the-fittest. The me-first, survival of the fittest mindset is destructive and leads only to death.",
+      "speaker": "Jennings",
+      "source": {
+       "file": "posts/2008-09-27--does-sin-contaminate-the-sanctuary-part-2.md",
+       "url": "https://comeandreason.com/does-sin-contaminate-the-sanctuary-part-2/",
+       "locator": "line 29"
+      }
+     }
+    ],
+    "scripture": {
+     "ref": "1 John 4:18",
+     "remedy": "In love, there is no fear. Fear is part of the infection of selfishness, but is purged by love, as fear has to do with concern for oneself. The one who remains self-focused and afraid has not been healed by God’s love.",
+     "remedy_ref_key": "1John|4|18"
+    }
+   },
+   {
+    "id": "law",
+    "title": {
+     "text": "God's law misread as imposed rules",
+     "page_authored": true
+    },
+    "gloss": {
+     "text": "Once God is distrusted, His law gets read like human law: made-up rules enforced by threatened punishment. Jennings insists God's laws are design laws, the protocols life is built to run on, where breaking them causes the damage directly.",
+     "page_authored": true
+    },
+    "quotes": [
+     {
+      "text": "God as Creator built space, time, matter, energy, and life. His laws are the constants — the protocols, the principles — upon which the universe and life is constructed to operate.",
+      "speaker": "Jennings",
+      "source": {
+       "file": "posts/2019-09-04--the-design-laws-of-god.md",
+       "url": "https://comeandreason.com/design-laws-of-god/",
+       "locator": "line 15"
+      }
+     },
+     {
+      "text": "Human beings did not and cannot create reality as God did; instead, when we make up rules, we must enforce those rules externally, most often through the infliction of punishment. Sadly, after Constantine “converted,” the idea that God’s law functions in the same way that human laws do was embraced; the idea that God’s law is imposed (imperial) began to infect Christianity — corrupting the saving truths that Jesus brought.",
+      "speaker": "Jennings",
+      "source": {
+       "file": "posts/2019-09-04--the-design-laws-of-god.md",
+       "url": "https://comeandreason.com/design-laws-of-god/",
+       "locator": "line 23"
+      }
+     }
+    ],
+    "scripture": {
+     "ref": "James 1:15",
+     "remedy": "Then, when the selfish desire is accepted by the will, it results in choices that deviate from God's design for life; and choices that deviate from God's design for life result in death.",
+     "remedy_ref_key": "James|1|15"
+    }
+   },
+   {
+    "id": "wrath",
+    "title": {
+     "text": "Wrath, fire and judgment misread",
+     "page_authored": true
+    },
+    "gloss": {
+     "text": "Under imposed law, wrath becomes God hurting people, fire becomes torture and judgment becomes a verdict. In design law, wrath is God reluctantly letting go, fire is the life-giving glory of His own presence, and judgment is an accurate diagnosis of what is.",
+     "page_authored": true
+    },
+    "quotes": [
+     {
+      "text": "This letting go by God, this setting free to reap the consequences of our own persistent, rebellious choices, is what the Bible calls “God’s wrath.” Paul tells us the “wrath” of God occurs because of persistently rejecting God, refusing the knowledge of Him, and preferring our own way over God’s.",
+      "speaker": "Jennings",
+      "source": {
+       "file": "posts/2011-10-21--god-s-wrath-what-does-it-mean.md",
+       "url": "https://comeandreason.com/gods-wrath-what-does-it-mean/",
+       "locator": "line 39"
+      }
+     },
+     {
+      "text": "God’s judgment is not a legal finding but an accurate diagnosis of what is. His judgment does not determine who is saved or lost but confirms who chose to be saved or lost.",
+      "speaker": "Jennings",
+      "source": {
+       "file": "posts/2023-06-29--a-summary-list-of-what-we-believe-at-come-and-reason-with-resource-links.md",
+       "url": "https://comeandreason.com/a-summary-list-of-what-we-believe-at-come-and-reason-with-resource-links/",
+       "locator": "line 242"
+      }
+     }
+    ],
+    "scripture": {
+     "ref": "Hebrews 12:29",
+     "remedy": "for our \"God is a consuming fire\"–a consuming fire of love, holiness, purity, righteousness, goodness, and truth.",
+     "remedy_ref_key": "Hebrews|12|29"
+    }
+   },
+   {
+    "id": "remedy",
+    "title": {
+     "text": "The remedy misread as appeasement",
+     "page_authored": true
+    },
+    "gloss": {
+     "text": "If the problem is an angry God, the cross becomes a legal payment to calm Him down. Jennings' healing substitution reads it the other way: Christ took our terminal condition into Himself to cure humanity, not to pay a penalty.",
+     "page_authored": true
+    },
+    "quotes": [
+     {
+      "text": "Similarly, we also believe the Penal Substitution Model (PSM) is laden with pagan ideology from the Dark Ages. The PSM shifts the sin problem away from the sinner’s terminal condition, which is in need of healing, to an offended and angry God who needs appeasing.",
+      "speaker": "Jennings",
+      "source": {
+       "file": "posts/2010-06-04--the-healing-substitution-model.md",
+       "url": "https://comeandreason.com/the-healing-substitution-model/",
+       "locator": "line 23"
+      }
+     },
+     {
+      "text": "Christ is our substitute. He became human and took sinful mankind’s position. He took our terminal condition upon Himself. He “became sin who knew no sin,” in order to cure mankind from sinfulness.",
+      "speaker": "Jennings",
+      "source": {
+       "file": "posts/2010-06-04--the-healing-substitution-model.md",
+       "url": "https://comeandreason.com/the-healing-substitution-model/",
+       "locator": "line 65"
+      }
+     }
+    ],
+    "scripture": {
+     "ref": "1 Peter 2:24",
+     "remedy": "He took upon himself our sinfulness (our terminal condition) and in his own person carried it upon the cross so that we could be freed from sin and live the right way — loving God and others more than ourselves. You have been healed by the Remedy procured by his painful ordeal.",
+     "remedy_ref_key": "1Peter|2|24"
+    }
+   },
+   {
+    "id": "healing",
+    "title": {
+     "text": "Truth restores trust; love heals",
+     "page_authored": true
+    },
+    "gloss": {
+     "text": "The chain runs in reverse. The truth about God seen in Jesus removes the lie, trust returns, and in trust the heart opens so God can pour His love in (Romans 5:5). The result is a new heart with the law of love written back into it.",
+     "page_authored": true
+    },
+    "quotes": [
+     {
+      "text": "When we trust in God, we open the heart and the Holy Spirit takes the victory of Christ and reproduces it in us. We get a new heart and right spirit, are reborn, have the law written into the heart/mind, … This is salvation, healing, renewal, regeneration, which only comes by faith in Jesus.",
+      "speaker": "Jennings",
+      "source": {
+       "file": "posts/2023-06-29--a-summary-list-of-what-we-believe-at-come-and-reason-with-resource-links.md",
+       "url": "https://comeandreason.com/a-summary-list-of-what-we-believe-at-come-and-reason-with-resource-links/",
+       "locator": "line 203"
+      }
+     },
+     {
+      "text": "When we come to know God, as revealed in Jesus, the lies are removed and trust is restored. In this state, God pours His love into our hearts (Romans 5:5) and this love removes our concern for self thus casting out fear of what happens to us.",
+      "speaker": "Jennings",
+      "source": {
+       "file": "posts/2009-08-07--does-perfect-love-remove-fear-of-my-child-going-astray.md",
+       "url": "https://comeandreason.com/does-perfect-love-remove-fear-of-my-child-going-astray/",
+       "locator": "line 29"
+      }
+     }
+    ],
+    "scripture": {
+     "ref": "Romans 5:5",
+     "remedy": "And our hope will not be disappointed, because God pours out his love into our hearts and thereby matures, ennobles, and restores us into his image by the Holy Spirit, whom he has given to us.",
+     "remedy_ref_key": "Romans|5|5"
+    }
+   },
+   {
+    "id": "growing",
+    "title": {
+     "text": "Growing up: seven moral levels",
+     "page_authored": true
+    },
+    "gloss": {
+     "text": "Healing is also maturing. Jennings describes seven levels of moral decision-making; the same act can be done at any level, but for a different reason. The key shift is from level four (rules and imposed punishment) to level five (love for others), where the law finally lives in the heart.",
+     "page_authored": true
+    },
+    "quotes": [
+     {
+      "text": "There are seven levels of understanding right and wrong (moral decision-making). Because God is love, God speaks to each person at their level of development, just as a parent speaks to their children in different ways at various stages of development. A parent explains things differently to a 3 year old than to a 30 year old. So does God.",
+      "speaker": "Jennings",
+      "source": {
+       "file": "posts/2014-12-12--why-did-god-use-law.md",
+       "url": "https://comeandreason.com/why-did-god-use-law/",
+       "locator": "line 49"
+      }
+     },
+     {
+      "text": "Finally, those operating at level four and below are not trustworthy, because they require some external threat to do what is right. Only level five and above can be trusted, because those levels are where the law is written on the heart, when we actually love God and others, understand and value His methods and willingly participate in His purposes.",
+      "speaker": "Jennings",
+      "source": {
+       "file": "posts/2014-12-12--why-did-god-use-law.md",
+       "url": "https://comeandreason.com/why-did-god-use-law/",
+       "locator": "line 107"
+      }
+     }
+    ],
+    "scripture": {
+     "ref": "Hebrews 5:14",
+     "remedy": "But the solid food of truth is for the mature, who, by constant use, have trained their faculties to distinguish true from false, good from evil, healthy from unhealthy.",
+     "remedy_ref_key": "Hebrews|5|14"
+    }
+   }
+  ]
+ },
+ "ch6": {
+  "baylor": {
+   "text": "…the predominant view of God is that he is authoritarian, dictator-like. Less than one in four see him as a God of love.",
+   "speaker": "Jennings",
+   "source": {
+    "file": "_ocr_markdown/GodShapedHeart.md",
+    "url": null,
+    "locator": "line 683"
+   },
+   "ocr_note": {
+    "text": "The OCR line reads 'survey of views of God in 4 America' (stray footnote digit) and ends 'love.-' (footnote mark). Quote starts after the digit; the trailing hyphen artefact is not included.",
+    "page_authored": true
+   }
+  },
+  "rwanda": {
+   "finding": {
+    "text": "In researching what separated those who participated in the killing from those who helped protect the refugees, researchers discovered it came down to one factor: those with authoritarian God concepts participated in the killing, while those with loving God concepts protected the refugees—regardless of denomination.",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 693"
+    }
+   },
+   "context": {
+    "text": "Over one million people were killed in four months, and the primary killing zones were churches!",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 689"
+    }
+   },
+   "what_mattered": {
+    "text": "What mattered was whether they saw God as love—the One who is the designer, or whether they worshiped a dictator—one who makes up rules and enforces them by imposed punishments!",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 693"
+    }
+   }
+  },
+  "love_unites": {
+   "text": "It is love and love only that unites, that overcomes rules, that transcends arbitrary laws, and that supersedes doctrinal differences. It is love that heals the heart!",
+   "speaker": "Jennings",
+   "source": {
+    "file": "_ocr_markdown/GodShapedHeart.md",
+    "url": null,
+    "locator": "line 697"
+   },
+   "also_at": "line 728 (repeated as a KEY POINTS FROM CHAPTER 5 bullet, ending with a full stop)"
+  },
+  "four_questions": {
+   "intro": {
+    "text": "Keith Johnson is an online friend who has worked for years in prison ministry teaching inmates about God's design law, helping them to move past imposedlaw constructs of right, wrong, and justice. He developed four questions to help them understand more clearly what justice is from God's viewpoint.",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 846"
+    }
+   },
+   "prompt": {
+    "text": "Take a moment and answer each of the following questions for yourself:",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 846"
+    }
+   },
+   "questions": [
+    {
+     "text": "1. What if I told you that your youngest child was murdered? Would you want mercy or justice for the perpetrator?",
+     "speaker": "Keith Johnson (quoted by Jennings)",
+     "source": {
+      "file": "_ocr_markdown/GodShapedHeart.md",
+      "url": null,
+      "locator": "line 848"
+     }
+    },
+    {
+     "text": "2. What if I told you that the murderer was your oldest child? Would you want mercy or justice for the perpetrator?",
+     "speaker": "Keith Johnson (quoted by Jennings)",
+     "source": {
+      "file": "_ocr_markdown/GodShapedHeart.md",
+      "url": null,
+      "locator": "line 848"
+     }
+    },
+    {
+     "text": "3. What if I told you that you are guilty of the murder of the only begotten Son of God? Would you want mercy or justice as the perpetrator?",
+     "speaker": "Keith Johnson (quoted by Jennings)",
+     "source": {
+      "file": "_ocr_markdown/GodShapedHeart.md",
+      "url": null,
+      "locator": "line 848"
+     }
+    },
+    {
+     "text": "4. What if I told you that you had a daughter, your only daughter, the apple of your eye, who has never given you a moment's grief. Tonight you happen to have a tux hanging in the closet because tomorrow, as her father, you are scheduled to walk your daughter down the aisle and give her away to someone of whom you approve. If you're the mother, you have a new dress hanging next to her wedding gown, a wedding you have been planning and preparing for since the first time you held her in your arms. But tonight, your daughter is at a bachelorette party with her peers, and they talk her into having \"one for the road,\" the first ever in her life. Two, three, four, five, six, seven (drinks) later, while on her way home, she wipes out a school bus full of little children on their way to camp. Everybody aboard the bus dies in a fiery inferno, but your daughter survives. Do you want mercy or justice for your daughter? And ... what do those who are related to the victims who were on the bus want?",
+     "speaker": "Keith Johnson (quoted by Jennings)",
+     "source": {
+      "file": "_ocr_markdown/GodShapedHeart.md",
+      "url": null,
+      "locator": "line 848"
+     }
+    }
+   ],
+   "commentary": {
+    "text": "Human justice is based on human law, imposed rules, is motivated by selfishness, and seeks vengeance in the name of justice. The selfish heart has an ingrained sense of justice that in reality is nothing more than vengeance, which is easily exposed because such justice is sought only so long as it doesn't apply to them or theirs.",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 850"
+    }
+   },
+   "gods_justice": {
+    "text": "ustice in God's universe is entirely different. God's justice always seeks to deliver,heal,restore, setright, fix, and save everyone who will allow God to dp o. It is the justice of love—the law of God on which God's government runs",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 850"
+    }
+   },
+   "gods_justice_ocr_note": {
+    "text": "OCR artefacts kept as-is: 'ustice' (dropped initial J), 'deliver,heal,restore, setright', 'allow God to dp o' (= 'do so'), and a missing full stop after 'runs'.",
+    "page_authored": true
+   },
+   "newtown": {
+    "text": "Consider the justice those grieving parents of the children murdered in Newtown, Connecticut, on December 14, 2012, would choose, if they had the choice: punishment for the perpetrator or resurrection and restoration of their children and restoration of a Christlike heart into the perpetrator?",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 850"
+    }
+   },
+   "newtown_continuation": {
+    "text": "ice is the justice of love, and love always does what is right; ifwe let him, he will restore all that has been taken and more—he will set things right again (Joel 2:23-27)!",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 853"
+    }
+   },
+   "newtown_continuation_note": {
+    "text": "Line 850 ends 'God's just-' and the sentence resumes on line 853 as 'ice is the justice of love...' (OCR page break). 'ifwe' is an OCR artefact.",
+    "page_authored": true
+   }
+  },
+  "key_points": [
+   {
+    "text": "The human imposed-law construct infects all of Christianity regardless of denomination.",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 869"
+    }
+   },
+   {
+    "text": "Biblical justice is delivering the oppressed, not punishing the oppressor.",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 871"
+    }
+   },
+   {
+    "text": "Legal adjustment of one's account doesn't matter, what matters is love—transforming love that reshapes the heart, that casts out fear, that overwrites selfishness, that overcomes survival instincts, and that bridges the gulf between heaven and earth and connects us again to our Father of love.",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 873"
+    }
+   },
+   {
+    "text": "Christ is longing to return for his bride—the church. But he isn't coming backfor a child bride.",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 875"
+    }
+   },
+   {
+    "text": "God is not the enemy we must fear—God is our Creator who longs to heal us from the terminal sin-condition that is killing us.",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 877"
+    }
+   }
+  ],
+  "chapter_statements": {
+   "intro": {
+    "text": "Following are just a few doctrinal statements demonstrating that the infection of imposed law, with its false idea that God is the problem that needs fixing, can be found across the landscape of Christianity—regardless of denomination:",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 739"
+    }
+   },
+   "intro_context": {
+    "text": "Further, this evidence is not intended to represent the off- Cial position of any one denomination, person, or group but to demonstrate that the infection of imposed law is common, deeply rooted, and accepted within Christianity as a whole.",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 739"
+    }
+   },
+   "intro_context_note": {
+    "text": "'off- Cial' is an OCR artefact for 'official'.",
+    "page_authored": true
+   },
+   "items": [
+    {
+     "heading": {
+      "text": "Roman Catholic theology:",
+      "speaker": "Jennings",
+      "source": {
+       "file": "_ocr_markdown/GodShapedHeart.md",
+       "url": null,
+       "locator": "line 741"
+      }
+     },
+     "quote": {
+      "text": "God is personally offended by sin and thus he needs to be personally appeased in order to offer a personal forgiveness.",
+      "speaker": "Roman Catholic theology (Robert Sungenis, Not By Faith Alone; quoted by Jennings)",
+      "source": {
+       "file": "_ocr_markdown/GodShapedHeart.md",
+       "url": null,
+       "locator": "line 743"
+      }
+     }
+    },
+    {
+     "heading": {
+      "text": "Evangelical theology:",
+      "speaker": "Jennings",
+      "source": {
+       "file": "_ocr_markdown/GodShapedHeart.md",
+       "url": null,
+       "locator": "line 747"
+      }
+     },
+     "quote": {
+      "text": "We affrm that the atonement of Christ by which, in his obedience, he offered a perfect sacrifice, propitiating the Father by paying for our sins and satisfying divine justice on our behalf according to God's eternal plan, is an essential element of the Gospel.",
+      "speaker": "Evangelical theology (D. Neff, 'A Call to Evangelical Unity', Christianity Today; quoted by Jennings)",
+      "source": {
+       "file": "_ocr_markdown/GodShapedHeart.md",
+       "url": null,
+       "locator": "line 749"
+      }
+     },
+     "ocr_note": {
+      "text": "'affrm' is an OCR artefact for 'affirm'; the trailing 'g' endnote mark is not included.",
+      "page_authored": true
+     }
+    },
+    {
+     "heading": {
+      "text": "Southern Baptist theology:",
+      "speaker": "Jennings",
+      "source": {
+       "file": "_ocr_markdown/GodShapedHeart.md",
+       "url": null,
+       "locator": "line 755"
+      }
+     },
+     "quote": {
+      "text": "The wrath of God was satisfied.... All other understandings of the cross in the Bible are themselves dependent on penal substitution.",
+      "speaker": "Southern Baptist theology (Albert Mohler, 'The Wrath of God Was Satisfied'; quoted by Jennings)",
+      "source": {
+       "file": "_ocr_markdown/GodShapedHeart.md",
+       "url": null,
+       "locator": "line 757"
+      }
+     },
+     "ocr_note": {
+      "text": "Line begins with a stray '4' endnote digit and ends with '-'; both omitted.",
+      "page_authored": true
+     }
+    },
+    {
+     "heading": {
+      "text": "Seventh-day Adventist theology:",
+      "speaker": "Jennings",
+      "source": {
+       "file": "_ocr_markdown/GodShapedHeart.md",
+       "url": null,
+       "locator": "line 765"
+      }
+     },
+     "quote": {
+      "text": "For a loving God to maintain His justice and righteousness, the atoning death of Jesus Christ became \"a moral and legal necessity.\" God's justice requires that sin be carried to judgment. God must therefore execute judgment on sin and thus on the sinner.",
+      "speaker": "Seventh-day Adventist theology (Seventh-day Adventists Believe, 1988; quoted by Jennings)",
+      "source": {
+       "file": "_ocr_markdown/GodShapedHeart.md",
+       "url": null,
+       "locator": "line 767"
+      }
+     }
+    },
+    {
+     "heading": null,
+     "quote": {
+      "text": "Instead of turning his angry face upon us, God turned his angry face upon his son. God's eyes flashed fire, his nose compressed like a spring under pressure and, with locked jaw and clenched teeth he poured out upon Jesus the wrath we deserve.",
+      "speaker": "Baptist pastor David King, 'God Isn't Looking at Us with an Angry Face' (quoted by Jennings)",
+      "source": {
+       "file": "_ocr_markdown/GodShapedHeart.md",
+       "url": null,
+       "locator": "line 763"
+      }
+     },
+     "context": {
+      "text": "An article by a Baptist pastor recently appeared in my local paper revealing this infection in layman's terms. The article was titled \"God Isn't Looking at Us with an Angry Face.\"",
+      "speaker": "Jennings",
+      "source": {
+       "file": "_ocr_markdown/GodShapedHeart.md",
+       "url": null,
+       "locator": "line 759"
+      }
+     }
+    }
+   ],
+   "callback": {
+    "text": "Review the statements of theology at the beginning of the chapter, and note how each of them teaches that God, in some way, is the one we must fear, the one who is the source of inflicted pain and suffering, the one we need something done to in order to avoid death. But this is not true. God is not like this.",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 861"
+    }
+   },
+   "attribution_note": {
+    "text": "Speaker attributions for these denominational statements come from the endnotes block for this chapter (line 2083 of the OCR file), matched in order; the endnote markers themselves are OCR-garbled.",
+    "page_authored": true
+   }
+  },
+  "ch5_imposed_law_doctrines": {
+   "scope_note": {
+    "text": "These bullets are Jennings' own words but sit at the end of chapter 5 ('5 Law, Love, and Healing', heading line 608), not chapter 6. Included because they match the brief's description and location (lines 560-660).",
+    "page_authored": true
+   },
+   "intro": {
+    "text": "When God's law is understood to be an imposed list of rules, the following doctrines result:",
+    "speaker": "Jennings",
+    "source": {
+     "file": "_ocr_markdown/GodShapedHeart.md",
+     "url": null,
+     "locator": "line 624"
+    }
+   },
+   "items": [
+    {
+     "text": "Breaking God's imposed rules requires God to inflict just punishment, which is the death penalty.",
+     "speaker": "Jennings",
+     "source": {
+      "file": "_ocr_markdown/GodShapedHeart.md",
+      "url": null,
+      "locator": "line 626"
+     }
+    },
+    {
+     "text": "Justice is the infliction of punishment on the disobedient.",
+     "speaker": "Jennings",
+     "source": {
+      "file": "_ocr_markdown/GodShapedHeart.md",
+      "url": null,
+      "locator": "line 628"
+     }
+    },
+    {
+     "text": "God, not sin, is the source of inflicted suffering and death.",
+     "speaker": "Jennings",
+     "source": {
+      "file": "_ocr_markdown/GodShapedHeart.md",
+      "url": null,
+      "locator": "line 630"
+     }
+    },
+    {
+     "text": "God executed Jesus on the cross.",
+     "speaker": "Jennings",
+     "source": {
+      "file": "_ocr_markdown/GodShapedHeart.md",
+      "url": null,
+      "locator": "line 636"
+     }
+    },
+    {
+     "text": "God is the cosmic executioner who will one day kill all those who don't accept the legal payment Jesus made to him.",
+     "speaker": "Jennings",
+     "source": {
+      "file": "_ocr_markdown/GodShapedHeart.md",
+      "url": null,
+      "locator": "line 638"
+     }
+    },
+    {
+     "text": "God is the one from whom sinners must be protected.",
+     "speaker": "Jennings",
+     "source": {
+      "file": "_ocr_markdown/GodShapedHeart.md",
+      "url": null,
+      "locator": "line 640"
+     }
+    }
+   ]
+  },
+  "source_note": {
+   "text": "Chapters 5 and 6 of The God-Shaped Heart (OCR text; the OCR dropped the chapter-6 heading, so the Baylor survey, Rwanda and the contrast table fall in chapter 5 and the Four Questions and key points in chapter 6; locators are line numbers in the OCR file).",
+   "page_authored": true
+  }
+ },
+ "meta": {
+  "title": "Come and Reason Knowledge Centre",
+  "subtitle": "Interactive studies of Dr Timothy R. Jennings' teaching, built from the blog, The Remedy, the tracts and the two God-Shaped books. Start with a sixty-second diagnostic, follow the chain, or search everything.",
+  "page_authored": true
+ },
+ "pages": {
+  "intro": {
+   "text": "Five pages so far. Each is a single file that opens from disk, remembers your answers in this browser, and shares one imposed-law / design-law switch with the others.",
+   "page_authored": true
+  },
+  "built": [
+   {
+    "slug": "seven-levels",
+    "title": "The Seven Levels of Moral Development",
+    "short": "Seven Levels",
+    "pitch": "Why does a child brush their teeth? The toothbrush ladder, an eight-question quiz, the seven levels one by one, and why one level cannot easily see another.",
+    "pillar": "Growing up",
+    "nodes": [
+     "growing"
+    ],
+    "status": "hand-made first page",
+    "page_authored": true
+   },
+   {
+    "slug": "two-lenses",
+    "title": "Two Lenses: the Biblical Keyword Switcher",
+    "short": "Two Lenses",
+    "pitch": "Twelve Bible words (justice, wrath, judgment, forgiveness, atonement…) re-defined under imposed law and under design law, with an entry quiz, flip-card doctrines and Newton's test of what a law is.",
+    "pillar": "Foundations",
+    "nodes": [
+     "law",
+     "remedy",
+     "wrath"
+    ],
+    "status": "built",
+    "page_authored": true
+   },
+   {
+    "slug": "dominoes",
+    "title": "The Falling Dominoes and the Healing Cascade",
+    "short": "Dominoes",
+    "pitch": "One lie about God knocks over trust, then love, then motive, then behaviour, then the body. Watch the four dominoes fall and stand again, run the marriage thought experiment, and sort twelve case files.",
+    "pillar": "The problem",
+    "nodes": [
+     "lie",
+     "trust",
+     "fear",
+     "healing"
+    ],
+    "status": "built",
+    "page_authored": true
+   },
+   {
+    "slug": "fire",
+    "title": "The Consuming Fire",
+    "short": "Fire",
+    "pitch": "Who can dwell with everlasting burning? Sixteen sections on the fire that is God's own presence: the combustion test, the fire gallery, forty-nine verses under two lenses, wrath as letting go, the two deaths, the lake of fire timeline and an objections desk.",
+    "pillar": "God's character",
+    "nodes": [
+     "wrath",
+     "law",
+     "healing"
+    ],
+    "status": "built",
+    "page_authored": true
+   },
+   {
+    "slug": "seven-reasons",
+    "title": "Same Act, Seven Reasons",
+    "short": "Seven Reasons",
+    "pitch": "Seven people brush their teeth, seven condemn a wife-beater, seven say Jesus died for them: the act is the same, the reason is not. Pick an act and a level and hear it re-voiced; see the seven theories of why Jesus had to die.",
+    "pillar": "Growing up",
+    "nodes": [
+     "growing",
+     "remedy"
+    ],
+    "status": "built",
+    "page_authored": true
+   },
+   {
+    "slug": "sin-disease",
+    "title": "Sin Is a Disease: symptom or condition?",
+    "short": "Sin Is a Disease",
+    "pitch": "A frightened fifteen-year-old asks what sin is, and a psychiatrist answers with cystic fibrosis: bad acts are symptoms, the fearful selfish heart is the condition. Sort symptoms from the disease, choose what the dying patient needs, then turn the Atonement Prism and read every metaphor of the cross under imposed law and design law.",
+    "pillar": "The Remedy",
+    "nodes": [
+     "remedy",
+     "healing"
+    ],
+    "status": "built",
+    "page_authored": true
+   },
+   {
+    "slug": "wrath",
+    "title": "Wrath = Letting Go",
+    "short": "Wrath",
+    "pitch": "\"He gave them over.\" God's wrath as the withdrawal of protection and Satan's wrath as power used to harm: two animated hands, Romans 1 hotspots, what God said against what happened, the four winds and seven bowls, Egypt's plagues against the last plagues, the cross, a verse wall of every \"let go\" in The Remedy, and an acting-or-withdrawing quiz.",
+    "pillar": "God's character",
+    "nodes": [
+     "wrath",
+     "law"
+    ],
+    "status": "built",
+    "page_authored": true
+   }
+  ],
+  "planned_intro": {
+   "text": "Nineteen more pages are specified in the roadmap. They are listed here so the chain shows where each will sit; none is built yet.",
+   "page_authored": true
+  },
+  "planned": [
+   {
+    "title": "Why Another Paraphrase? The Preface timeline",
+    "pillar": "Foundations",
+    "nodes": [
+     "law"
+    ],
+    "effort": "S",
+    "page_authored": true
+   },
+   {
+    "title": "Scripture, Science, Experience: the evidence Venn",
+    "pillar": "Foundations",
+    "nodes": [
+     "law"
+    ],
+    "effort": "S",
+    "page_authored": true
+   },
+   {
+    "title": "God's Design Laws Lab",
+    "pillar": "Foundations",
+    "nodes": [
+     "law"
+    ],
+    "effort": "M",
+    "page_authored": true
+   },
+   {
+    "title": "Genesis 3: what changed in Eden",
+    "pillar": "The problem",
+    "nodes": [
+     "lie",
+     "trust"
+    ],
+    "effort": "S",
+    "page_authored": true
+   },
+   {
+    "title": "Fear vs Love: interactive brain map",
+    "pillar": "The problem",
+    "nodes": [
+     "fear"
+    ],
+    "effort": "M-L",
+    "page_authored": true
+   },
+   {
+    "title": "Six Kinds of Power: what breaks each one",
+    "pillar": "The problem",
+    "nodes": [
+     "fear",
+     "growing"
+    ],
+    "effort": "S",
+    "page_authored": true
+   },
+   {
+    "title": "The Law as Diagnostic Instrument (Romans 3 and 7)",
+    "pillar": "The Remedy",
+    "nodes": [
+     "law",
+     "remedy"
+    ],
+    "effort": "S-M",
+    "page_authored": true
+   },
+   {
+    "title": "The Little Theater: sanctuary walkthrough",
+    "pillar": "The Remedy",
+    "nodes": [
+     "remedy"
+    ],
+    "effort": "M-L",
+    "page_authored": true
+   },
+   {
+    "title": "Heavenly Records: rap sheet or medical chart?",
+    "pillar": "The Remedy",
+    "nodes": [
+     "wrath",
+     "remedy"
+    ],
+    "effort": "S-M",
+    "page_authored": true
+   },
+   {
+    "title": "The Four Judgments timeline",
+    "pillar": "God's character",
+    "nodes": [
+     "wrath"
+    ],
+    "effort": "S-M",
+    "page_authored": true
+   },
+   {
+    "title": "Hard Passages hub: did God kill?",
+    "pillar": "God's character",
+    "nodes": [
+     "wrath"
+    ],
+    "effort": "L",
+    "page_authored": true
+   },
+   {
+    "title": "Parables as Design Law",
+    "pillar": "Growing up",
+    "nodes": [
+     "law",
+     "growing"
+    ],
+    "effort": "S",
+    "page_authored": true
+   },
+   {
+    "title": "Two Covenants, Two Laws (with Sabbath by design)",
+    "pillar": "Growing up",
+    "nodes": [
+     "law"
+    ],
+    "effort": "S-M",
+    "page_authored": true
+   },
+   {
+    "title": "Forgiveness and Guilt walkthrough",
+    "pillar": "Living it",
+    "nodes": [
+     "healing"
+    ],
+    "effort": "M",
+    "page_authored": true
+   },
+   {
+    "title": "Justice: deliver the oppressed, not punish the oppressor",
+    "pillar": "Living it",
+    "nodes": [
+     "wrath",
+     "healing"
+    ],
+    "effort": "M",
+    "page_authored": true
+   },
+   {
+    "title": "Clinic self-checks: four scored tools",
+    "pillar": "Living it",
+    "nodes": [
+     "healing"
+    ],
+    "effort": "M",
+    "page_authored": true
+   },
+   {
+    "title": "The Cosmic Conflict in 13 weeks",
+    "pillar": "Cosmic conflict",
+    "nodes": [
+     "lie"
+    ],
+    "effort": "M-L",
+    "page_authored": true
+   },
+   {
+    "title": "Revelation Decoded: symbols, Babylon, the three angels",
+    "pillar": "Cosmic conflict",
+    "nodes": [
+     "wrath"
+    ],
+    "effort": "M",
+    "page_authored": true
+   }
+  ]
+ },
+ "diagnostic": {
+  "intro": {
+   "text": "Seven quick choices. Five are everyday Bible phrases; two are lines from Jennings' own two-column contrast of design law and imposed law. Pick what comes to you first. The result places you on the imposed-law / design-law axis and suggests where to start reading.",
+   "page_authored": true
+  },
+  "disclaimer": {
+   "text": "Reflective, not psychometric. Nothing leaves your browser; your answers are kept only in this browser's local storage.",
+   "page_authored": true
+  },
+  "jennings_question": {
+   "text": "Which list above more closely summarizes the Christianity with which you are familiar?",
+   "speaker": "Jennings",
+   "source": {
+    "file": "_ocr_markdown/GodShapedHeart.md",
+    "url": null,
+    "locator": "line 683"
+   }
+  },
+  "items": [
+   {
+    "prompt": "When you read 'the wrath of God', your first thought is...",
+    "answers": [
+     {
+      "text": "God is about to inflict pain and punishment from outside on the people who provoked Him.",
+      "lens": "imposed",
+      "page_authored": true
+     },
+     {
+      "text": "God is letting people go to reap what their own choices naturally produce.",
+      "lens": "design",
+      "page_authored": true
+     }
+    ],
+    "from": "wrath",
+    "page_authored": true,
+    "reused_from": "two-lenses entry quiz"
+   },
+   {
+    "prompt": "When a preacher says God is 'just', you hear...",
+    "answers": [
+     {
+      "text": "The guilty are going to get the punishment they have coming.",
+      "lens": "imposed",
+      "page_authored": true
+     },
+     {
+      "text": "The oppressed are going to be delivered and set right.",
+      "lens": "design",
+      "page_authored": true
+     }
+    ],
+    "from": "justice",
+    "page_authored": true,
+    "reused_from": "two-lenses entry quiz"
+   },
+   {
+    "prompt": "'Judgment day' makes you picture...",
+    "answers": [
+     {
+      "text": "A courtroom where a verdict is read and a sentence is handed down.",
+      "lens": "imposed",
+      "page_authored": true
+     },
+     {
+      "text": "A physician's diagnosis that reveals each heart's true condition and its natural outcome.",
+      "lens": "design",
+      "page_authored": true
+     }
+    ],
+    "from": "judgment",
+    "page_authored": true,
+    "reused_from": "two-lenses entry quiz"
+   },
+   {
+    "prompt": "When God 'forgives' you, what has actually happened?",
+    "answers": [
+     {
+      "text": "A pardon was entered because a payment was made on your behalf.",
+      "lens": "imposed",
+      "page_authored": true
+     },
+     {
+      "text": "God's free forgiveness met your repentance and the relationship was actually reconciled.",
+      "lens": "design",
+      "page_authored": true
+     }
+    ],
+    "from": "forgiveness",
+    "page_authored": true,
+    "reused_from": "two-lenses entry quiz"
+   },
+   {
+    "prompt": "The word 'atonement' means to you...",
+    "answers": [
+     {
+      "text": "A penalty was paid to settle the account and calm the offended party.",
+      "lens": "imposed",
+      "page_authored": true
+     },
+     {
+      "text": "Being made at-one with God again.",
+      "lens": "design",
+      "page_authored": true
+     }
+    ],
+    "from": "atonement",
+    "page_authored": true,
+    "reused_from": "two-lenses entry quiz"
+   },
+   {
+    "prompt": "Which line more closely summarizes the Christianity you grew up with? (Jennings' own question, asked of his two-column contrast.)",
+    "answers": [
+     {
+      "text": "Kills one's enemies (e.g., the Crusades).",
+      "lens": "imposed",
+      "source": {
+       "file": "_ocr_markdown/GodShapedHeart.md",
+       "url": null,
+       "locator": "lines 675-677"
+      }
+     },
+     {
+      "text": "Loves one's enemies.",
+      "lens": "design",
+      "source": {
+       "file": "_ocr_markdown/GodShapedHeart.md",
+       "url": null,
+       "locator": "lines 675-677"
+      }
+     }
+    ],
+    "from": "contrast",
+    "page_authored": true
+   },
+   {
+    "prompt": "Which line more closely summarizes the Christianity you grew up with? (Jennings' own question, asked of his two-column contrast.)",
+    "answers": [
+     {
+      "text": "Demands obedience by threat.",
+      "lens": "imposed",
+      "source": {
+       "file": "_ocr_markdown/GodShapedHeart.md",
+       "url": null,
+       "locator": "lines 679-681"
+      }
+     },
+     {
+      "text": "Wins loyalty with love.",
+      "lens": "design",
+      "source": {
+       "file": "_ocr_markdown/GodShapedHeart.md",
+       "url": null,
+       "locator": "lines 679-681"
+      }
+     }
+    ],
+    "from": "contrast",
+    "page_authored": true
+   }
+  ],
+  "results": {
+   "imposed": {
+    "title": "You read through the imposed-law lens",
+    "start": "two-lenses",
+    "text": "Most of your first readings heard a ruler who makes rules and enforces them by inflicted punishment. That is the default most of Christianity inherited, so it is a good place to begin: the Two Lenses page shows twelve Bible words switching meaning when the lens changes.",
+    "page_authored": true
+   },
+   "mixed": {
+    "title": "You switch lenses without noticing",
+    "start": "dominoes",
+    "text": "Some of your readings heard a ruler, some a physician. The Falling Dominoes page shows why the two readings cannot both be true, because they describe different causal chains: one where God inflicts, one where sin destroys and God heals.",
+    "page_authored": true
+   },
+   "design": {
+    "title": "You read through the design-law lens",
+    "start": "fire",
+    "text": "Your first readings heard a Designer whose laws describe how life works and whose judgment diagnoses rather than sentences. The Consuming Fire page is where that lens is tested hardest: every fire text in Scripture, read both ways.",
+    "page_authored": true
+   }
+  },
+  "set_lens_label": {
+   "text": "Set every page to this lens",
+   "page_authored": true
+  }
+ },
+ "progress": {
+  "intro": {
+   "text": "Each page keeps your quiz answers, poll choices and journal notes in this browser only. Here is what is stored, and a way to clear it page by page.",
+   "page_authored": true
+  }
+ }
+}

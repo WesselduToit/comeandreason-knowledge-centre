@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Falling Dominoes and the Healing Cascade</title>
+<!-- @kit.css -->
+<style>
+  .dom-stage{position:relative;padding:26px 10px 10px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.15));overflow:hidden}
+  .dom-row{display:flex;justify-content:space-around;align-items:flex-end;height:190px;gap:4px}
+  .dom{position:relative;width:16%;max-width:84px;height:150px;transform-origin:bottom right;transition:transform .55s cubic-bezier(.5,0,.8,.3),background .4s,border-color .4s;border-radius:10px;background:linear-gradient(180deg,#e9edf2,#b9c4d2);border:2px solid #6f8298;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px;font-size:12px;font-weight:700;color:#10161d;line-height:1.2;box-shadow:0 10px 18px rgba(0,0,0,.35)}
+  .dom .no{position:absolute;top:6px;left:8px;font-size:11px;color:#6f8298}
+  .dom.down{transform:rotate(80deg)}
+  .dom.heal{background:linear-gradient(180deg,#f7e2b0,#e0b15e);border-color:#f0c060}
+  .dom.lit{box-shadow:0 0 0 3px var(--accent2),0 10px 18px rgba(0,0,0,.35)}
+  .dom-floor{height:4px;background:var(--line);border-radius:2px;margin-top:10px}
+  .dom-ctrl{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:14px 0 6px}
+  .captions{margin-top:10px}
+  .captions .cap{opacity:0;transform:translateY(6px);transition:.4s;margin:8px 0;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card2)}
+  .captions .cap.show{opacity:1;transform:none}
+  .captions .cap.fall{border-left:3px solid var(--bad)}
+  .captions .cap.heal{border-left:3px solid var(--accent)}
+  .captions .cap b{display:block;font-family:Georgia,serif;font-size:16px;margin-bottom:4px}
+  .captions .cap .who{font-size:12px;color:var(--faint)}
+  .branch{border:1px solid var(--line);border-radius:var(--radius);padding:16px;background:var(--card2)}
+  .branch .path{font-size:12.5px;color:var(--faint);margin-bottom:8px}
+  .casegrid{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+  .linktag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;margin:2px 4px 2px 0;border:1px solid var(--line);color:var(--muted)}
+  .linktag.fall{border-color:rgba(217,115,106,.5);color:var(--bad)}.linktag.heal{border-color:rgba(224,177,94,.5);color:var(--accent)}
+  .contents li{margin:3px 0;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">An Interactive Study · Come and Reason Knowledge Centre</div>
+    <h1>The Falling Dominoes</h1>
+    <p class="sub">One lie about God, believed, knocks over everything else: trust, then love, then the heart's motive, then behaviour, then the body itself. Jennings tells the chain in four steps. Then he tells it backwards.</p>
+    <p class="credit"><a href="index.html">&larr; Knowledge Centre</a> &middot; Teaching of Timothy R. Jennings, MD · <a href="https://comeandreason.com" target="_blank" rel="noopener">Come and Reason Ministries</a> · see also <a href="two-lenses.html">Two Lenses</a>, <a href="fire.html">The Consuming Fire</a>, <a href="seven-levels.html">The Seven Levels</a>, <a href="seven-reasons.html">Same Act, Seven Reasons</a>, <a href="sin-disease.html">Sin Is a Disease</a> and <a href="wrath.html">Wrath = Letting Go</a></p>
+    <div class="toc">
+      <a href="#s1">The two cascades</a><a href="#s2">The thought experiment</a><a href="#s3">The lie, named</a><a href="#s4">Case files</a><a href="#s5">In the brain</a><a href="#s6">The texts</a><a href="#s7">Where is the lie in my life?</a>
+    </div>
+  </header>
+
+  <section id="s1"><div class="card"><h2><span class="num">1</span>Believe the lie, or believe the truth</h2><div id="cascade"></div></div></section>
+  <section id="s2"><div class="card"><h2><span class="num">2</span>The thought experiment: a healthy marriage and one lie</h2><div id="experiment"></div></div></section>
+  <section id="s3"><div class="card"><h2><span class="num">3</span>The lie, named</h2><div id="lie"></div></div></section>
+  <section id="s4"><div class="card"><h2><span class="num">4</span>Case files: which domino is this?</h2><p class="lead">Pick a story Jennings tells. The dominoes it illustrates light up above, and the chain is spelled out.</p><div id="cases"></div></div></section>
+  <section id="s5"><div class="card"><h2><span class="num">5</span>What this does in the brain</h2><div id="neuro"></div></div></section>
+  <section id="s6"><div class="card"><h2><span class="num">6</span>The texts behind the chain</h2><div id="verses"></div></div></section>
+  <section id="s7"><div class="card"><h2><span class="num">7</span>Where is the lie in my life?</h2><div id="selfcheck"></div></div></section>
+  <section id="sources"><div class="card"><h2>Glossary and sources</h2><div id="glossary"></div><h3>Sources used on this page</h3><div id="sourceList"></div></div></section>
+
+  <p class="footnote">Built as a study companion for Dr Timothy R. Jennings' teaching. Quotations are verbatim from the cited local files; The Remedy is Jennings' expanded paraphrase. Items marked page-authored are summaries or prompts, not quotations.</p>
+</div>
+
+<!-- @data -->
+<!-- @kit.js -->
+<script>
+(function(){
+  'use strict';
+  const D = window.PAGE_DATA || {};
+  const { el, quote, sourceChip, caveat, store, nodata } = KC;
+  const stripMd = s => String(s).replace(/\*\*([^*]+)\*\*/g, '$1').replace(/(^|[\s(“"'])\*([^*\n]+)\*(?=[\s).,;:!?”"']|$)/g, '$1$2').replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g, '$1');
+  const txt = x => x == null ? '' : stripMd(typeof x === 'string' ? x : (x.text || ''));
+  const voiceOf = o => { const s = (o && o.speaker) || ''; return /white/i.test(s) ? 'egw' : /cole/i.test(s) ? 'cole' : /email|listener|reader|news|report|police|cbs|post/i.test(s) ? 'scripture' : 'jennings'; };
+  const J = o => o && txt(o) ? quote(txt(o), { voice: voiceOf(o), ref: o.speaker || null, source: o.source }) : null;
+  const Q = (o, voice) => o && txt(o) ? quote(txt(o), { ref: o.ref, version: o.version, verify: o.verify, source: o.source, voice: voice || 'scripture' }) : null;
+  const R = (o, ref) => { const t = txt(o && o.remedy !== undefined ? o.remedy : o); return t ? quote(t, { voice: 'remedy', ref: ref || (o && o.ref) }) : null; };
+  const sec = id => document.getElementById(id);
+  const fill = (id, fn) => { const node = sec(id); try { fn(node); } catch (e) { node.append(el('p', { class: 'nodata' }, 'This section could not render: ' + e.message)); console.error(id, e); } };
+
+  const fallLinks = (D.fall && D.fall.links) || [];
+  const healLinks = (D.heal && D.heal.links) || [];
+  const N = Math.max(fallLinks.length, healLinks.length, 4);
+  let tiles = [];
+
+  /* 1. Cascade */
+  fill('cascade', n => {
+    if (!fallLinks.length) { n.append(nodata()); return; }
+    if (D.fall.intro) n.append(J(D.fall.intro));
+    if (D.fall.dominoes_lead) n.append(J(D.fall.dominoes_lead));
+    const stage = el('div', { class: 'dom-stage' });
+    const row = el('div', { class: 'dom-row' });
+    tiles = Array.from({ length: N }, (_, i) => el('div', { class: 'dom', 'data-i': i }, el('span', { class: 'no' }, i + 1), el('span', { class: 'lbl' }, (fallLinks[i] && fallLinks[i].short) || `Link ${i + 1}`)));
+    tiles.forEach(t => row.append(t));
+    stage.append(row, el('div', { class: 'dom-floor' }));
+    const caps = el('div', { class: 'captions' });
+    const status = el('p', { class: 'small center' }, 'Standing. Nothing has happened yet.');
+    let timers = [];
+    const clear = () => { timers.forEach(clearTimeout); timers = []; caps.innerHTML = ''; };
+    const setLabels = links => tiles.forEach((t, i) => { t.querySelector('.lbl').textContent = (links[i] && links[i].short) || `Link ${i + 1}`; });
+    const capNode = (l, kind, i) => { const c = el('div', { class: 'cap ' + kind }, el('b', {}, `${i + 1}. ${txt(l.title)}`)); if (l.caption && txt(l.caption)) c.append(el('div', {}, '“' + txt(l.caption) + '”')); if (l.spouse && txt(l.spouse)) c.append(el('div', { class: 'who' }, 'Marriage version: ' + txt(l.spouse))); const chip = sourceChip((l.caption && l.caption.source) || l.source); if (chip) c.append(el('div', {}, chip)); return c; };
+    const fall = () => { clear(); setLabels(fallLinks); tiles.forEach(t => t.classList.remove('heal', 'down')); status.textContent = 'A lie about God is believed…'; fallLinks.forEach((l, i) => { const c = capNode(l, 'fall', i); caps.append(c); timers.push(setTimeout(() => { if (tiles[i]) tiles[i].classList.add('down'); c.classList.add('show'); if (i === fallLinks.length - 1) status.textContent = 'All down. “The wages of sin is death.”'; }, 350 + i * 650)); }); };
+    const heal = () => { clear(); setLabels(healLinks); tiles.forEach(t => t.classList.add('down')); status.textContent = 'The truth about God is believed…'; healLinks.forEach((l, i) => { const c = capNode(l, 'heal', i); caps.append(c); timers.push(setTimeout(() => { if (tiles[i]) { tiles[i].classList.add('heal'); tiles[i].classList.remove('down'); } c.classList.add('show'); if (i === healLinks.length - 1) status.textContent = 'Standing again, and stronger: truth and love together cannot be broken.'; }, 350 + i * 650)); }); };
+    const reset = () => { clear(); setLabels(fallLinks); tiles.forEach(t => t.classList.remove('down', 'heal', 'lit')); status.textContent = 'Standing. Nothing has happened yet.'; };
+    n.append(stage, el('div', { class: 'dom-ctrl' }, el('button', { class: 'btn', style: 'background:linear-gradient(120deg,#d9736a,#b24a40);color:#fff', onclick: fall }, 'Believe the lie'), el('button', { class: 'btn', onclick: heal }, 'Believe the truth'), el('button', { class: 'btn ghost sm', onclick: reset }, 'Reset')), status, caps);
+    if (D.fall.diagnosis) n.append(J(D.fall.diagnosis));
+    const h = D.heal || {};
+    if (h.first_step || h.intro) n.append(el('h3', {}, 'The chain in reverse'), J(h.first_step), J(h.intro), J(h.conversion));
+    if (h.hinge) n.append(el('p', { class: 'small' }, 'The sentence that turns the page in The God-Shaped Heart runs straight into the four healing links above:'), J(h.hinge));
+    if (h.coda) n.append(J(h.coda));
+    if (h.why_truth) n.append(el('details', { class: 'acc' }, el('summary', {}, 'Why truth first, and not behaviour first'), el('div', { class: 'body' }, J(h.why_truth))));
+    if (h.at_long_last) n.append(J(h.at_long_last));
+  });
+
+  /* 2. Experiment */
+  fill('experiment', n => {
+    const x = D.experiment; if (!x) { n.append(nodata()); return; }
+    if (x.setup) n.append(J(x.setup));
+    if (x.lie) n.append(J(x.lie));
+    if (x.steps && x.steps.length) {
+      n.append(el('h3', {}, 'Play it through'));
+      const box = el('div', { class: 'branch' });
+      const path = [];
+      const show = key => {
+        box.innerHTML = '';
+        if (key === 'truth') {
+          const tb = x.truth_branch || {};
+          const h1 = healLinks[0];
+          box.append(el('div', { class: 'path' }, path.join(' → ')), el('p', { class: 'lead', style: 'font-size:17px;color:var(--ink)' }, tb.prompt || 'You checked. The lie never took hold, and the circle stayed whole.'), tb.effect && txt(tb.effect) ? el('div', { class: 'cap heal show' }, '“' + txt(tb.effect) + '”', sourceChip(tb.effect.source)) : (h1 ? el('div', { class: 'cap heal show' }, el('b', {}, txt(h1.title))) : null), el('button', { class: 'btn ghost sm', onclick: () => { path.length = 0; show(1); } }, 'Start again'));
+          return;
+        }
+        if (key === 'end') {
+          box.append(el('div', { class: 'path' }, path.join(' → ')), x.end_note ? el('div', { class: 'cap fall show' }, txt(x.end_note), sourceChip(x.end_note.source)) : null, el('p', { class: 'lead' }, 'The chain has run its course. Press “Believe the truth” above to see it reversed.'), el('button', { class: 'btn ghost sm', onclick: () => { path.length = 0; show(1); } }, 'Start again'));
+          return;
+        }
+        const st = x.steps.find(s => s.n === key) || x.steps[0];
+        box.append(el('div', { class: 'path' }, path.join(' → ') || 'Start'), el('p', { class: 'lead', style: 'font-size:17px;color:var(--ink)' }, st.prompt));
+        if (st.effect && txt(st.effect)) box.append(el('div', { class: 'cap fall show' }, '“' + txt(st.effect) + '”', sourceChip(st.effect.source)));
+        (st.choices || []).forEach(c => box.append(el('button', { class: 'opt', onclick: () => { path.push(c.label); box.querySelectorAll('.opt').forEach(b => b.disabled = true); if (c.effect && txt(c.effect)) { box.append(el('div', { class: 'cap ' + (c.next === 'truth' ? 'heal' : 'fall') + ' show' }, '“' + txt(c.effect) + '”', sourceChip(c.effect && c.effect.source))); } const nxt = (c.next === undefined || c.next === null) ? 'end' : c.next; setTimeout(() => show(nxt), 900); } }, c.label)));
+        if (!(st.choices || []).length) box.append(el('button', { class: 'btn ghost sm', onclick: () => { path.length = 0; show(1); } }, 'Start again'));
+      };
+      n.append(box); show(1);
+      if (x.page_authored || (x.steps[0] && x.steps[0].page_authored)) n.append(el('p', { class: 'small' }, 'The prompts and choices are page-authored; the quoted effects are Jennings\' own lines from the two versions of the experiment.'));
+    }
+    if (x.gsh_version) n.append(el('details', { class: 'acc' }, el('summary', {}, 'The same experiment as told in The God-Shaped Heart'), el('div', { class: 'body' }, J(x.gsh_deceit), J(x.gsh_version))));
+    if (x.email) n.append(el('h3', {}, 'A listener wrote back'), J(x.email_lead), J(x.email), J(x.email_reply));
+  });
+
+  /* 3. The lie named */
+  fill('lie', n => {
+    const L = D.the_lie; if (!L) { n.append(nodata()); return; }
+    if (L.named) n.append(J(L.named));
+    const sr = L.scriptures_remedy || {};
+    const gen = sr['Genesis 3:4'] || sr['Genesis 3:4-5'];
+    if (gen) n.append(R(gen, 'Genesis 3:4')); else { const g2 = (D.verses || []).find(v => /Genesis 3/.test(v.ref)); if (g2 && g2.remedy) n.append(R(g2.remedy, g2.ref)); }
+    if (L.gsb_origin_of_fear && L.gsb_origin_of_fear.length) n.append(el('details', { class: 'acc' }, el('summary', {}, 'The origin of fear (The God-Shaped Brain)'), el('div', { class: 'body' }, ...L.gsb_origin_of_fear.map(J))));
+    if (L.never_ending && L.never_ending.length) n.append(el('details', { class: 'acc' }, el('summary', {}, 'The never-ending lie, traced through history'), el('div', { class: 'body' }, ...L.never_ending.map(J))));
+    if (L.penal) n.append(el('details', { class: 'acc' }, el('summary', {}, 'The lie that led to penal substitution'), el('div', { class: 'body' }, J(L.penal))));
+    if (L.power_of_a_lie) n.append(J(L.power_of_a_lie));
+    if (L.fear_medium) n.append(J(L.fear_medium));
+    if (L.magazine) {
+      const m = L.magazine;
+      n.append(el('details', { class: 'acc' }, el('summary', {}, 'From the magazine “' + (m.title || 'The Lie That Deceived Angels, Infects Christianity…') + '”'), el('div', { class: 'body' }, (m.contents || []).length ? el('ul', { class: 'contents' }, ...m.contents.map(c => el('li', {}, c))) : null, (m.the_lie_chapter || []).length ? el('h3', {}, 'The Lie') : null, ...(m.the_lie_chapter || []).map(J), (m.church_corrupted || []).length ? el('h3', {}, 'The Church Corrupted') : null, ...(m.church_corrupted || []).map(J), sourceChip(m.source && (m.source.pdf ? { file: m.source.pdf } : m.source)))));
+    }
+    if (L.cole) n.append(el('details', { class: 'acc' }, el('summary', {}, 'Study guide, weeks 1 and 2: “In the very beginning” and “The poisonous lie”'), el('div', { class: 'body' }, ...['week1', 'week2'].flatMap(w => { const k = L.cole[w]; if (!k) return []; return [el('h3', {}, w === 'week1' ? 'Week 1' : 'Week 2'), k.living_words ? Q(k.living_words, 'cole') : null, k.bottom_line ? J(k.bottom_line) : null, sourceChip(k.source)]; }))));
+  });
+
+  /* 4. Cases */
+  fill('cases', n => {
+    const C = D.cases; if (!C || !C.length) { n.append(nodata()); return; }
+    if (D.intro) n.append(el('p', { class: 'lead' }, typeof D.intro === 'string' ? D.intro : txt(D.intro)));
+    const grid = el('div', { class: 'casegrid' });
+    const out = el('div');
+    const linkLabel = id => { const m = /^(fall|heal)-(\d+)$/.exec(id); if (!m) return id; const arr = m[1] === 'fall' ? fallLinks : healLinks; const l = arr[+m[2] - 1]; return (m[1] === 'fall' ? 'fall ' : 'heal ') + m[2] + (l ? ': ' + (l.short || '') : ''); };
+    const show = c => {
+      grid.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', x.dataset.id === c.id));
+      tiles.forEach(t => t.classList.remove('lit'));
+      (c.links || []).forEach(id => { const m = /^(fall|heal)-(\d+)$/.exec(id); if (m && tiles[+m[2] - 1]) tiles[+m[2] - 1].classList.add('lit'); });
+      out.innerHTML = '';
+      const scr = (c.scripture || []).map(s => { const t = Array.isArray(s.remedy) ? s.remedy.map(r => txt(r)).join(' ') : txt(s.remedy); return t ? quote(t, { voice: 'remedy', ref: s.ref }) : null; });
+      out.append(el('div', { class: 'vcard' }, el('div', { class: 'vref' }, c.title), c.where ? el('div', { class: 'small' }, c.where) : null, el('div', {}, ...(c.links || []).map(id => el('span', { class: 'linktag ' + (id.startsWith('heal') ? 'heal' : 'fall') }, linkLabel(id)))), J(c.excerpt), c.witness ? J(c.witness) : null, c.lesson ? J(c.lesson) : null, c.chain ? el('p', { class: 'lead' }, el('b', {}, 'The chain: '), c.chain) : null, scr.length ? el('details', { class: 'acc' }, el('summary', {}, 'The texts Jennings reaches for here'), el('div', { class: 'body' }, ...scr)) : null));
+    };
+    C.forEach(c => grid.append(el('button', { class: 'chip', 'data-id': c.id, onclick: () => show(c) }, c.title)));
+    n.append(grid, out);
+    show(C[0]);
+    if (D.outcome_quotes && D.outcome_quotes.length) n.append(el('details', { class: 'acc' }, el('summary', {}, 'The turning point, in one line each'), el('div', { class: 'body' }, ...D.outcome_quotes.map(q => J(q)))));
+  });
+
+  /* 5. Neuro */
+  fill('neuro', n => {
+    const f = D.fall || {}, h = D.heal || {};
+    const items = [f.neuro, f.paul, f.survival, f.symptoms, h.truth_and_love, h.prevailing].filter(Boolean);
+    if (!items.length) { n.append(nodata()); return; }
+    items.forEach(q => n.append(J(q)));
+  });
+
+  /* 6. Verses */
+  fill('verses', n => {
+    const V = D.verses; if (!V || !V.length) { n.append(nodata()); return; }
+    V.forEach(v => n.append(el('div', { class: 'vcard' }, el('div', { class: 'vref' }, v.ref), v.traditional && v.traditional.text ? Q({ text: v.traditional.text, ref: v.ref, version: v.traditional.version, verify: v.traditional.verify, source: v.traditional.source }) : null, v.remedy && v.remedy.text ? R(v.remedy, v.ref) : KC.missingBadge(), v.point && txt(v.point) ? el('p', { class: 'small' }, txt(v.point)) : null)));
+  });
+
+  /* 7. Self-check */
+  fill('selfcheck', n => {
+    const s = D.self_check; if (!s) { n.append(nodata()); return; }
+    if (s.intro) n.append(el('p', { class: 'lead' }, txt(s.intro)));
+    const gs = s.guidance || [];
+    gs.slice(0, 4).forEach(g => n.append(J(g)));
+    if (gs.length > 4) n.append(el('details', { class: 'acc' }, el('summary', {}, `More of Jennings' guidance (${gs.length - 4})`), el('div', { class: 'body' }, ...gs.slice(4).map(J))));
+    (s.prompts || []).forEach((p, i) => n.append(el('div', {}, el('p', { class: 'lead', style: 'margin-bottom:4px' }, `${i + 1}. ${p}`), KC.journal('cr-dominoes-prompt-' + i))));
+    n.append(el('p', { class: 'small' }, 'Your notes stay in this browser only. The prompts are page-authored; the guidance above is Jennings.'));
+  });
+
+  fill('glossary', n => KC.renderAccordion(n, D.glossary || [], { body: it => el('div', {}, it.meaning, sourceChip(it.source)) }));
+  fill('sourceList', n => { const s = D.sources; if (!s || !s.length) { n.append(nodata()); return; } n.append(el('ul', {}, ...s.map(x => el('li', {}, x.label || x.id, ' ', sourceChip(x))))); });
+})();
+</script>
+</body>
+</html>

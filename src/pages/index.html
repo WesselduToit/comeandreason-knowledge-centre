@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Come and Reason Knowledge Centre</title>
+<!-- @kit.css -->
+<style>
+/* hub-only styles */
+.hero .sub{max-width:680px}
+.axis{position:relative;height:14px;border-radius:7px;margin:22px 8px 30px;background:linear-gradient(90deg,var(--imposed),#8a7a6a 50%,var(--design))}
+.axis .mark{position:absolute;top:-8px;width:30px;height:30px;border-radius:50%;background:#fff;border:3px solid #10161d;transform:translateX(-50%);box-shadow:0 2px 10px rgba(0,0,0,.5);transition:left .5s}
+.axis .end{position:absolute;top:20px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.axis .end.l{left:0}.axis .end.r{right:0}
+.diag-item{border:1px solid var(--line);border-radius:var(--radius-s);padding:12px 14px;margin:10px 0;background:var(--card2)}
+.diag-item .qn{color:var(--accent);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.diag-item .prompt{font-weight:650;margin:4px 0 6px}
+.diag-item .opt{margin:6px 0}
+.result{border:1px solid var(--accent);border-radius:var(--radius);padding:18px;margin:14px 0;background:rgba(224,177,94,.06)}
+.result h3{margin-top:0}
+.chain{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:14px 0 8px;counter-reset:node}
+.node{position:relative;border:1px solid var(--line);background:var(--card2);border-radius:12px;padding:12px 8px 10px;text-align:center;cursor:pointer;font:inherit;color:var(--muted);transition:.15s;min-height:92px}
+.node:hover{border-color:var(--accent2);color:var(--ink)}
+.node.on{color:var(--ink);box-shadow:0 0 0 2px var(--accent) inset;background:var(--card3)}
+.node .n{display:block;font-size:11px;letter-spacing:.14em;color:var(--faint)}
+.node .t{display:block;font-weight:700;font-size:13.5px;line-height:1.25;margin-top:4px}
+.node:not(:last-child)::after{content:"→";position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:var(--faint);font-size:14px;z-index:2}
+.node.problem{border-top:3px solid var(--bad)}
+.node.misread{border-top:3px solid var(--imposed);background:rgba(217,115,106,.07)}
+.node.healing{border-top:3px solid var(--design);background:rgba(224,177,94,.08)}
+.node.growing{border-top:3px solid var(--up)}
+.rail{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 14px}
+.rail .node{min-height:0;flex:0 0 auto;padding:8px 14px;text-align:left}
+.rail .node::after{content:none}
+.rail .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.detail{border:1px solid var(--line);border-radius:var(--radius);padding:18px;background:var(--card2);margin-top:8px}
+.detail h3{margin:0 0 4px}
+.pagelinks{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.pagelinks a{text-decoration:none}
+.pagelinks .planned{font-size:12.5px;color:var(--faint);border:1px dashed var(--line);border-radius:20px;padding:5px 10px}
+.pgcard{display:flex;flex-direction:column;gap:8px}
+.pgcard h3{margin:0;font-size:19px}
+.pgcard h3 a{color:var(--ink);text-decoration:none}
+.pgcard h3 a:hover{color:var(--accent)}
+.pgcard .secs{display:flex;flex-wrap:wrap;gap:6px}
+.pgcard .secs a{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:14px;padding:3px 9px;text-decoration:none}
+.pgcard .secs a:hover{border-color:var(--accent);color:var(--ink)}
+.plan-list{columns:2;column-gap:24px;font-size:14px;color:var(--muted)}
+.plan-list div{break-inside:avoid;padding:4px 0;border-bottom:1px dotted var(--line)}
+.plan-list .eff{float:right;font-size:11px;color:var(--faint);letter-spacing:.1em}
+.search input{width:100%;font:inherit;font-size:17px;padding:13px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card2);color:var(--ink)}
+.search input:focus{outline:none;border-color:var(--accent)}
+.kinds{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.hits{margin-top:10px}
+.hitgroup{margin:14px 0}
+.hitgroup h4{margin:0 0 6px;font-size:15px}
+.hitgroup h4 a{color:var(--accent);text-decoration:none}
+.hit{display:block;text-decoration:none;color:var(--ink);padding:8px 10px;border-radius:10px;border:1px solid transparent}
+.hit:hover{border-color:var(--line);background:var(--card2)}
+.hit .tag{margin:0 8px 0 0;font-size:10px}
+.hit .snip{display:block;color:var(--faint);font-size:12.5px;margin-top:2px}
+.hit mark{background:rgba(224,177,94,.35);color:inherit;border-radius:3px;padding:0 1px}
+.prog{display:grid;grid-template-columns:1fr auto auto;gap:8px 14px;align-items:center;font-size:14.5px}
+.prog .k{color:var(--muted)}
+@media (max-width:720px){
+  .chain{grid-template-columns:1fr 1fr}
+  .node:not(:last-child)::after{content:none}
+  .plan-list{columns:1}
+  .prog{grid-template-columns:1fr auto}
+  .prog .cnt{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="lensbar"></div>
+
+  <header class="hero">
+    <div class="eyebrow">Come and Reason Knowledge Centre</div>
+    <h1 id="heroTitle">Start here</h1>
+    <p class="sub" id="heroSub"></p>
+    <p class="credit">Teaching of Timothy R. Jennings, MD · <a href="https://comeandreason.com" target="_blank" rel="noopener">Come and Reason Ministries</a> · a personal study companion built from the local corpus</p>
+    <div class="toc">
+      <a href="#s1">Which lens?</a><a href="#s2">The chain</a><a href="#s3">The pages</a><a href="#s4">Search</a><a href="#s5">Your saved answers</a><a href="#sources">Sources</a>
+    </div>
+  </header>
+
+  <section id="s1"><div class="card"><h2><span class="num">1</span>Which lens do you read through?</h2><div id="diag"></div></div></section>
+  <section id="s2"><div class="card"><h2><span class="num">2</span>The chain: one lie, and everything it knocks over</h2><div id="chain"></div></div></section>
+  <section id="s3"><div class="card"><h2><span class="num">3</span>The pages</h2><div id="pages"></div></div></section>
+  <section id="s4"><div class="card"><h2><span class="num">4</span>Search everything</h2><div id="search" class="search"></div></div></section>
+  <section id="s5"><div class="card"><h2><span class="num">5</span>Your saved answers</h2><div id="progress"></div></div></section>
+  <section id="sources"><div class="card"><h2>Sources used on this page</h2><div id="sourceList"></div></div></section>
+
+  <p class="footnote">Built as a study companion for Dr Timothy R. Jennings' teaching. Quotations are verbatim from the cited local files; The Remedy is Jennings' expanded paraphrase. Items marked page-authored are written for this page and are not quotations. Nothing leaves your browser.</p>
+</div>
+
+<!-- @data -->
+<!-- @index -->
+<!-- @kit.js -->
+<script>
+(function(){
+  'use strict';
+  const D = window.PAGE_DATA || {};
+  const IDX = window.SEARCH_INDEX || { pages: {}, entries: [] };
+  const { el, quote, sourceChip, caveat, store, nodata, setLens } = KC;
+  const stripMd = s => String(s).replace(/\*\*([^*]+)\*\*/g, '$1').replace(/(^|[\s(“"'])\*([^*\n]+)\*(?=[\s).,;:!?”"']|$)/g, '$1$2').replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g, '$1');
+  const txt = x => x == null ? '' : stripMd(typeof x === 'string' ? x : (x.text || ''));
+  const voiceOf = o => { const s = (o && o.speaker) || ''; return !s || /^jennings$/i.test(s) ? 'jennings' : /white/i.test(s) ? 'egw' : /cole/i.test(s) ? 'cole' : 'scripture'; };
+  const J = o => o && txt(o) ? quote(txt(o), { voice: voiceOf(o), ref: o.speaker && !/^jennings$/i.test(o.speaker) ? o.speaker : null, source: o.source }) : null;
+  const R = (o) => { const t = txt(o && o.remedy !== undefined ? o.remedy : o); return t ? quote(t, { voice: 'remedy', ref: o && o.ref }) : null; };
+  const P = (o, cls) => o && txt(o) ? el('p', { class: cls || 'lead' }, txt(o)) : null;
+  const sec = id => document.getElementById(id);
+  const fill = (id, fn) => { const node = sec(id); try { fn(node); } catch (e) { node.append(el('p', { class: 'nodata' }, 'This section could not render: ' + e.message)); console.error(id, e); } };
+  const pageHref = (slug, anchor) => `${slug}.html${anchor || ''}`;
+  const pageTitle = slug => { const b = (D.pages && D.pages.built || []).find(p => p.slug === slug); return b ? b.short || b.title : (IDX.pages[slug] && IDX.pages[slug].title) || slug; };
+  const sectionsOf = slug => IDX.entries.filter(e => e.page === slug && e.kind === 'section');
+
+  /* saved-answer helpers (used by sections 3 and 5) */
+  const PREFIX = { fire: 'cr-fire-', 'two-lenses': 'cr-twolenses-', dominoes: 'cr-dominoes-', 'seven-reasons': 'cr-seven-reasons-', 'sin-disease': 'cr-sin-disease-', wrath: 'cr-wrath-', hub: 'cr-hub-' };
+  function allKeys() { const out = []; try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith('cr-')) out.push(k); } } catch (e) { /* storage unavailable */ } return out; }
+  function savedKeys(slug) { const p = PREFIX[slug]; return p ? allKeys().filter(k => k.startsWith(p)) : []; }
+  KC.lensBar(sec('lensbar'), { initial: 'imposed' });
+  if (D.meta) { if (D.meta.title) document.title = D.meta.title; if (D.meta.subtitle) sec('heroSub').textContent = txt(D.meta.subtitle); }
+
+  /* ---------- 1. Diagnostic ---------- */
+  fill('diag', n => {
+    const dg = D.diagnostic; if (!dg || !dg.items || !dg.items.length) { n.append(nodata()); return; }
+    n.append(P(dg.intro), P(dg.disclaimer, 'small'));
+    const KEY = 'cr-hub-diag';
+    let picks = store.get(KEY, {});
+    const items = dg.items;
+    const list = el('div');
+    const out = el('div');
+    const render = () => {
+      list.innerHTML = '';
+      items.forEach((it, i) => {
+        const box = el('div', { class: 'diag-item' }, el('div', { class: 'qn' }, `Question ${i + 1} of ${items.length}`), el('div', { class: 'prompt' }, txt(it.prompt)));
+        const answers = it.answers.slice(); if (i % 2) answers.reverse();
+        answers.forEach(a => {
+          const b = el('button', { class: 'opt' + (picks[i] === a.lens ? ' sel' : ''), onclick: () => { picks[i] = a.lens; store.set(KEY, picks); render(); } }, txt(a.text));
+          if (a.source) b.append(el('div', { class: 'small', style: 'margin-top:4px' }, 'Jennings’ wording, The God-Shaped Heart ch. 5 contrast table'));
+          box.append(b);
+        });
+        list.append(box);
+      });
+      result();
+    };
+    const result = () => {
+      out.innerHTML = '';
+      const answered = Object.keys(picks).length;
+      if (answered < items.length) { out.append(el('p', { class: 'small center' }, `${answered} of ${items.length} answered.`)); return; }
+      const design = Object.values(picks).filter(v => v === 'design').length;
+      const cat = design >= items.length - 2 ? 'design' : design <= 2 ? 'imposed' : 'mixed';
+      const res = (dg.results || {})[cat] || {};
+      const axis = el('div', { class: 'axis' }, el('div', { class: 'mark', style: `left:${Math.round(100 * design / items.length)}%` }), el('span', { class: 'end l' }, 'Imposed law'), el('span', { class: 'end r' }, 'Design law'));
+      const card = el('div', { class: 'result' }, el('h3', {}, txt(res.title) || 'Your result'), axis, el('p', { class: 'small center' }, `${design} of ${items.length} first readings were design-law readings.`), P(res.text));
+      if (D.ch6 && D.ch6.baylor) card.append(el('p', { class: 'small' }, 'For comparison, Jennings on where most readers start (The God-Shaped Heart, ch. 5):'), J(D.ch6.baylor));
+      const row = el('div', { class: 'row', style: 'margin-top:10px' });
+      if (res.start) row.append(el('a', { class: 'btn', href: pageHref(res.start) }, `Open ${pageTitle(res.start)}`));
+      const lensTo = cat === 'imposed' ? 'imposed' : 'design';
+      row.append(el('button', { class: 'btn ghost', onclick: () => { setLens(lensTo); row.append(el('span', { class: 'small' }, ` Every page will now open in the ${lensTo}-law lens.`)); } }, cat === 'mixed' ? 'Try the design-law lens' : txt(dg.set_lens_label) || 'Set every page to this lens'));
+      row.append(el('button', { class: 'btn ghost sm', onclick: () => { picks = {}; store.set(KEY, picks); render(); } }, 'Start over'));
+      card.append(row);
+      out.append(card);
+    };
+    n.append(list, out);
+    render();
+    if (dg.jennings_question) n.append(el('p', { class: 'small' }, 'Questions 6 and 7 use the two columns of Jennings’ contrast table (The God-Shaped Heart, ch. 5); his own question about them was:'), J(dg.jennings_question));
+
+    const c6 = D.ch6 || {};
+    const acc = (title, ...kids) => el('details', { class: 'acc' }, el('summary', {}, title), el('div', { class: 'body' }, ...kids));
+    /* Why the lens matters: Baylor survey and Rwanda (God-Shaped Heart ch. 5) */
+    if (c6.rwanda || c6.love_unites) {
+      const rw = c6.rwanda || {};
+      n.append(acc('Why the lens matters: the Baylor survey and Rwanda',
+        P({ text: 'Jennings’ evidence that the picture of God, not the denomination, decides behaviour (The God-Shaped Heart, ch. 5).' }, 'small'),
+        J(c6.baylor), J(rw.context), J(rw.finding), J(rw.what_mattered), J(c6.love_unites)));
+    }
+    /* Keith Johnson's Four Questions (God-Shaped Heart ch. 6) */
+    const fq = c6.four_questions;
+    if (fq && fq.questions && fq.questions.length) {
+      const kids = [P({ text: 'Not scored. Jennings borrows four questions from a prison chaplain to show what the word "justice" is really asking for (The God-Shaped Heart, ch. 6). Answer each honestly before opening his comment.' }, 'small'), J(fq.intro), J(fq.prompt)];
+      fq.questions.forEach((q, i) => kids.push(J(q), KC.journal(`cr-hub-fq-${i}`, 'Mercy or justice? Your honest answer…')));
+      const reveal = el('div', { class: 'hidden' });
+      [fq.commentary, fq.gods_justice, fq.newtown, fq.newtown_continuation].forEach(q => { const node = J(q); if (node) reveal.append(node); });
+      if (fq.gods_justice_ocr_note) reveal.append(P(fq.gods_justice_ocr_note, 'small'));
+      kids.push(el('button', { class: 'btn sm', onclick: () => reveal.classList.toggle('hidden') }, 'Show what Jennings says these answers expose'), reveal);
+      n.append(acc('Keith Johnson’s Four Questions: mercy, or justice?', ...kids));
+    }
+    /* The statements of theology (ch. 6) and Jennings' imposed-law doctrine list (ch. 5) */
+    const cs = c6.chapter_statements;
+    if (cs && cs.items && cs.items.length) {
+      const kids = [J(cs.intro_context), J(cs.intro)];
+      cs.items.forEach(it => { const q = it.quote || it; if (it.heading) kids.push(el('h4', { style: 'margin:12px 0 2px' }, txt(it.heading))); kids.push(J(q)); });
+      if (cs.callback) kids.push(J(cs.callback));
+      if (cs.attribution_note) kids.push(P(cs.attribution_note, 'small'));
+      n.append(acc('The statements of theology Jennings says teach us to fear God', ...kids));
+    }
+    const d5 = c6.ch5_imposed_law_doctrines;
+    if (d5 && d5.items && d5.items.length) {
+      const kids = [P(d5.scope_note, 'small'), J(d5.intro)]; d5.items.forEach(q => kids.push(J(q)));
+      n.append(acc('Jennings’ list of doctrines built on imposed law', ...kids));
+    }
+    if (c6.key_points && c6.key_points.length) {
+      const kids = []; c6.key_points.forEach(q => kids.push(J(q)));
+      n.append(acc('Key points from The God-Shaped Heart, chapter 6', ...kids));
+    }
+  });
+
+  /* ---------- 2. The chain ---------- */
+  fill('chain', n => {
+    const m = D.map; if (!m || !m.nodes || !m.nodes.length) { n.append(nodata()); return; }
+    n.append(P(m.intro));
+    if (m.chain_quote) n.append(J(m.chain_quote));
+    const kindOf = id => ({ lie: 'problem', trust: 'problem', fear: 'problem', law: 'misread', wrath: 'misread', remedy: 'misread', healing: 'healing', growing: 'growing' })[id] || '';
+    const main = m.nodes.filter(x => x.id !== 'growing');
+    const side = m.nodes.filter(x => x.id === 'growing');
+    const grid = el('div', { class: 'chain' });
+    const detail = el('div', { class: 'detail' });
+    const built = (D.pages && D.pages.built) || [];
+    const planned = (D.pages && D.pages.planned) || [];
+    let buttons = [];
+    const open = node => {
+      buttons.forEach(b => b.classList.toggle('on', b.dataset.id === node.id));
+      detail.innerHTML = '';
+      detail.append(el('h3', {}, txt(node.title)), P(node.gloss));
+      (node.quotes || []).forEach(q => { const qn = J(q); if (qn) detail.append(qn); });
+      if (node.scripture && (node.scripture.remedy || node.scripture.text)) detail.append(R(node.scripture));
+      const links = el('div', { class: 'pagelinks' });
+      built.filter(p => (p.nodes || []).includes(node.id)).forEach(p => links.append(el('a', { class: 'chip on', href: pageHref(p.slug) }, p.short || p.title)));
+      planned.filter(p => (p.nodes || []).includes(node.id)).forEach(p => links.append(el('span', { class: 'planned', title: 'Specified in the roadmap; not built yet' }, txt(p.title) + ' · planned')));
+      if (links.childElementCount) detail.append(el('h4', {}, 'Pages on this node'), links);
+      store.set('cr-hub-node', node.id);
+    };
+    main.forEach((node, i) => {
+      const b = el('button', { class: 'node ' + kindOf(node.id), 'data-id': node.id, onclick: () => open(node) }, el('span', { class: 'n' }, String(i + 1)), el('span', { class: 't' }, txt(node.title)));
+      buttons.push(b); grid.append(b);
+    });
+    n.append(grid);
+    if (side.length) {
+      const rail = el('div', { class: 'rail' }, el('span', { class: 'lbl' }, 'Alongside the chain'));
+      side.forEach(node => { const b = el('button', { class: 'node ' + kindOf(node.id), 'data-id': node.id, onclick: () => open(node) }, el('span', { class: 't' }, txt(node.title))); buttons.push(b); rail.append(b); });
+      n.append(rail);
+    }
+    n.append(el('p', { class: 'small' }, 'Red-topped nodes are where the lie does its damage; the three with a red tint are the readings of Scripture it produces; gold is the healing model. Click a node.'), detail);
+    const saved = store.get('cr-hub-node', null);
+    open(m.nodes.find(x => x.id === saved) || m.nodes[0]);
+  });
+
+  /* ---------- 3. The pages ---------- */
+  fill('pages', n => {
+    const pg = D.pages; if (!pg || !pg.built) { n.append(nodata()); return; }
+    n.append(P(pg.intro));
+    const grid = el('div', { class: 'grid2' });
+    pg.built.forEach(p => {
+      const card = el('div', { class: 'card sub pgcard' });
+      card.append(el('div', {}, el('span', { class: 'tag ' + (p.pillar === 'God’s character' || p.pillar === "God's character" ? 'imposed' : p.pillar === 'Growing up' ? 'cole' : p.pillar === 'The problem' ? 'hard' : 'design') }, p.pillar || 'page'), p.status && p.status !== 'built' ? el('span', { class: 'pill' }, p.status) : null));
+      card.append(el('h3', {}, el('a', { href: pageHref(p.slug) }, txt(p.title))), P(p.pitch, 'small'));
+      const secs = sectionsOf(p.slug).slice(0, 9);
+      if (secs.length) card.append(el('div', { class: 'secs' }, secs.map(s => el('a', { href: pageHref(p.slug, s.anchor) }, s.title.length > 42 ? s.title.slice(0, 40) + '…' : s.title))));
+      const saved = savedKeys(p.slug).length;
+      card.append(el('div', { class: 'row' }, el('a', { class: 'btn sm', href: pageHref(p.slug) }, 'Open'), saved ? el('span', { class: 'small' }, `${saved} saved answer${saved === 1 ? '' : 's'} in this browser`) : null));
+      grid.append(card);
+    });
+    n.append(grid);
+    if (pg.planned && pg.planned.length) {
+      n.append(el('h3', {}, 'On the roadmap'), P(pg.planned_intro, 'small'));
+      const byPillar = {};
+      pg.planned.forEach(p => { (byPillar[p.pillar] = byPillar[p.pillar] || []).push(p); });
+      const list = el('div', { class: 'plan-list' });
+      Object.keys(byPillar).forEach(pillar => { list.append(el('div', { style: 'color:var(--accent);font-weight:700;border:none;padding-top:10px' }, pillar)); byPillar[pillar].forEach(p => list.append(el('div', {}, txt(p.title), el('span', { class: 'eff', title: 'Effort estimate from the proposal: S half a day, M one to two days, L three days or more' }, p.effort || '')))); });
+      n.append(list);
+    }
+  });
+
+  /* ---------- 4. Search ---------- */
+  const ABBR = { gen: 'genesis', ex: 'exodus', exod: 'exodus', lev: 'leviticus', num: 'numbers', deut: 'deuteronomy', ps: 'psalms', psalm: 'psalms', prov: 'proverbs', isa: 'isaiah', jer: 'jeremiah', ezek: 'ezekiel', dan: 'daniel', hos: 'hosea', mal: 'malachi', matt: 'matthew', mt: 'matthew', mk: 'mark', lk: 'luke', jn: 'john', rom: 'romans', cor: 'corinthians', gal: 'galatians', eph: 'ephesians', phil: 'philippians', col: 'colossians', thess: 'thessalonians', tim: 'timothy', heb: 'hebrews', pet: 'peter', rev: 'revelation' };
+  const normQ = q => q.toLowerCase().replace(/[–—]/g, '-').replace(/\s+/g, ' ').trim().replace(/^((?:[123] ?)?)([a-z]+)\.?(?=\s*\d|$)/, (m, num, b) => (num ? num.trim() + ' ' : '') + (ABBR[b] || b));
+  const normT = t => t.toLowerCase().replace(/[–—]/g, '-');
+  fill('search', n => {
+    const entries = IDX.entries || [];
+    if (!entries.length) { n.append(nodata('The search index was not built. Run tools/build_index.py and rebuild the hub.')); return; }
+    const input = el('input', { type: 'search', placeholder: 'A verse (Romans 5:5), a word (wrath, design law), a story (Nadab), a section…', 'aria-label': 'Search all pages' });
+    const kinds = [['all', 'Everything'], ['section', 'Sections'], ['term', 'Glossary'], ['verse', 'Verses'], ['topic', 'Topics']];
+    let kind = 'all', pageF = 'all';
+    const kindRow = el('div', { class: 'kinds' });
+    const pageRow = el('div', { class: 'kinds' });
+    const hits = el('div', { class: 'hits' });
+    const count = el('p', { class: 'small' }, `${entries.length} entries across ${Object.keys(IDX.pages || {}).length} pages: section headings, glossary terms, scripture references and topic titles.`);
+    const chips = (row, opts, get, set) => { row.innerHTML = ''; opts.forEach(([v, label]) => row.append(el('button', { class: 'chip' + (get() === v ? ' on' : ''), onclick: () => { set(v); chips(row, opts, get, set); run(); } }, label))); };
+    const pageOpts = [['all', 'All pages']].concat(Object.keys(IDX.pages).map(s => [s, pageTitle(s)]));
+    const hl = (text, q) => { const i = normT(text).indexOf(q); if (i < 0 || !q) return el('span', {}, text); return el('span', {}, text.slice(0, i), el('mark', {}, text.slice(i, i + q.length)), text.slice(i + q.length)); };
+    let timer;
+    const run = () => {
+      const q = normQ(input.value);
+      hits.innerHTML = '';
+      if (q.length < 2) { hits.append(el('p', { class: 'small' }, 'Try: '), el('div', { class: 'row' }, ['wrath', 'Romans 5:5', 'design law', 'second death', 'Nadab', 'forgiveness', 'level four', 'brimstone'].map(s => el('button', { class: 'chip', onclick: () => { input.value = s; run(); } }, s)))); return; }
+      const scored = [];
+      for (const e of entries) {
+        if (kind !== 'all' && e.kind !== kind) continue;
+        if (pageF !== 'all' && e.page !== pageF) continue;
+        const t = normT(e.title), x = normT(e.text || '');
+        let s = 0;
+        if (t === q) s = 100; else if (t.startsWith(q)) s = 60; else if (t.includes(q)) s = 40; else if (x.includes(q)) s = 15;
+        if (s) scored.push([s + (e.kind === 'section' ? 5 : e.kind === 'term' ? 4 : 0), e]);
+      }
+      scored.sort((a, b) => b[0] - a[0] || a[1].title.localeCompare(b[1].title));
+      const groups = {};
+      scored.slice(0, 120).forEach(([, e]) => (groups[e.page] = groups[e.page] || []).push(e));
+      if (!scored.length) { hits.append(el('p', { class: 'nodata' }, 'Nothing matched. Try a shorter word, or a verse reference like "Rev 20:10".')); return; }
+      hits.append(el('p', { class: 'small' }, `${scored.length} match${scored.length === 1 ? '' : 'es'}${scored.length > 120 ? ', showing the first 120' : ''}.`));
+      Object.keys(groups).forEach(slug => {
+        const g = el('div', { class: 'hitgroup' }, el('h4', {}, el('a', { href: pageHref(slug) }, pageTitle(slug))));
+        groups[slug].slice(0, 15).forEach(e => g.append(el('a', { class: 'hit', href: pageHref(slug, e.anchor) }, el('span', { class: 'tag ' + (e.kind === 'verse' ? 'scripture' : e.kind === 'term' ? 'remedy' : e.kind === 'section' ? 'jennings' : 'egw') }, e.kind), hl(e.title, q), e.text && e.kind === 'term' ? el('span', { class: 'snip' }, e.text) : null)));
+        if (groups[slug].length > 15) g.append(el('p', { class: 'small' }, `and ${groups[slug].length - 15} more on this page`));
+        hits.append(g);
+      });
+    };
+    input.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(run, 120); });
+    chips(kindRow, kinds, () => kind, v => { kind = v; });
+    chips(pageRow, pageOpts, () => pageF, v => { pageF = v; });
+    n.append(input, kindRow, pageRow, count, hits);
+    run();
+  });
+
+  /* ---------- 5. Saved answers ---------- */
+  fill('progress', n => {
+    n.append(P(D.progress && D.progress.intro));
+    const grid = el('div', { class: 'prog' });
+    const draw = () => {
+      grid.innerHTML = '';
+      const keys = allKeys();
+      grid.append(el('span', { class: 'k' }, 'Reading lens shared by every page'), el('span', { class: 'cnt' }, store.get('cr-lens', 'imposed') + ' law'), el('span', {}, ''));
+      Object.keys(PREFIX).forEach(slug => {
+        const ks = keys.filter(k => k.startsWith(PREFIX[slug]));
+        grid.append(el('span', { class: 'k' }, slug === 'hub' ? 'This page (diagnostic, four questions, chosen node)' : pageTitle(slug)), el('span', { class: 'cnt' }, `${ks.length} item${ks.length === 1 ? '' : 's'}`),
+          el('button', { class: 'btn ghost sm', disabled: ks.length ? null : 'disabled', onclick: () => { if (confirm(`Clear ${ks.length} saved item${ks.length === 1 ? '' : 's'} for ${slug === 'hub' ? 'this page' : pageTitle(slug)}? This cannot be undone.`)) { ks.forEach(k => localStorage.removeItem(k)); draw(); if (slug === 'hub') location.reload(); } } }, 'Clear'));
+      });
+      grid.append(el('span', { class: 'k small' }, 'The Seven Levels page keeps nothing between visits.'), el('span', {}, ''), el('span', {}, ''));
+    };
+    draw();
+    n.append(grid);
+  });
+
+  /* ---------- Sources ---------- */
+  fill('sourceList', n => {
+    const seen = new Map();
+    const walk = o => { if (!o || typeof o !== 'object') return; if (Array.isArray(o)) { o.forEach(walk); return; } if (o.source && (o.source.file || o.source.url)) { const k = (o.source.file || '') + '|' + (o.source.url || ''); if (!seen.has(k)) seen.set(k, o.source); } Object.values(o).forEach(walk); };
+    walk(D);
+    if (!seen.size) { n.append(nodata()); return; }
+    const list = el('div');
+    [...seen.values()].sort((a, b) => String(a.file || a.url).localeCompare(String(b.file || b.url))).forEach(s => { const c = sourceChip({ file: s.file, url: s.url }); if (c) list.append(el('div', { style: 'margin:4px 0' }, c)); });
+    n.append(el('p', { class: 'small' }, `${seen.size} distinct source files. Diagnostic questions 1 to 5 are page-authored and were copied from the Two Lenses entry quiz; the search index is generated from the other pages' data by tools/build_index.py.`), list);
+    if (D.ch6 && D.ch6.source_note) n.append(P(D.ch6.source_note, 'small'));
+  });
+})();
+</script>
+</body>
+</html>

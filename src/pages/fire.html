@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Consuming Fire — who can dwell with everlasting burning?</title>
+<!-- @kit.css -->
+<style>
+  /* page-specific */
+  .isa-card{position:relative;text-align:center;padding:30px 18px}
+  .isa-card .v{font-family:Georgia,serif;font-size:clamp(18px,3.6vw,24px);line-height:1.5;color:#f3ecd9;margin:12px auto;max-width:600px}
+  .isa-card .v.hidden-v{display:none}
+  .hl{padding:0 3px;border-radius:4px;cursor:pointer;transition:.2s}
+  .hl.red.on{background:rgba(226,84,63,.35)}
+  .hl.gold.on{background:rgba(240,192,96,.35)}
+  .bowl-track{display:flex;gap:4px;margin:10px 0}
+  .bowl-track span{flex:1;height:10px;border-radius:4px;background:var(--line)}
+  .bowl-track span.on{background:var(--fire-red)}
+  .hand{font-size:40px;text-align:center;margin:6px 0}
+  .ring{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+  .ring .card.sub{border-top:3px solid var(--accent)}
+  .ring .card.sub:nth-child(2){border-top-color:var(--imposed)}
+  .ring .card.sub:nth-child(3){border-top-color:var(--accent2)}
+  .conc{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+  .conc button{font:inherit;font-size:12.5px;border-radius:8px;border:1px solid var(--line);padding:6px 9px;cursor:pointer;background:var(--card2);color:var(--muted)}
+  .conc button.lamb{border-color:var(--accent);color:var(--accent)}
+  .conc button.dragon{border-color:var(--bad);color:var(--bad)}
+  .conc button.human{border-color:var(--warn);color:var(--warn)}
+  .conc button.symbolic{border-color:var(--accent2);color:var(--accent2)}
+  .conc button.dim{opacity:.25}
+  .legend span{display:inline-block;margin-right:12px;font-size:12.5px}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
+  .clip{position:relative;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;overflow:hidden;font-family:Georgia,serif;font-size:16px}
+  .clip .more{display:none;color:#f3ecd9}
+  .clip.step1 .more.m1,.clip.step2 .more.m1,.clip.step2 .more.m2{display:inline}
+  .layer-toggles{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+  .et-step{border-left:3px solid var(--accent);padding:10px 14px;background:var(--card2);border-radius:10px;margin:10px 0}
+  .et-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:8px 0}
+  .et-grid div{background:var(--card3);border-radius:8px;padding:8px 10px;font-size:13px}
+  .et-grid b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  .lake{font-weight:750}
+  .lake.no{color:var(--muted)}.lake.presence{color:var(--fire-gold)}.lake.combustion{color:var(--fire-red)}
+  .ctable{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+  .ctable th,.ctable td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+  .ctable th{color:var(--faint);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase}
+  .ctable td:nth-child(2){color:var(--accent)}
+  .ctable td:nth-child(3){color:var(--muted)}
+  .timer{font-family:Georgia,serif;font-size:34px;text-align:center;color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="lensbar"></div>
+
+  <header class="hero">
+    <div class="eyebrow">An Interactive Study · Come and Reason Knowledge Centre</div>
+    <h1>The Consuming Fire</h1>
+    <p class="sub" id="heroSub">Who of us can dwell with everlasting burning? The Bible answers in the very next verse, and the answer turns the usual picture of hell inside out.</p>
+    <p class="credit"><a href="index.html">&larr; Knowledge Centre</a> &middot; Teaching of Timothy R. Jennings, MD · <a href="https://comeandreason.com" target="_blank" rel="noopener">Come and Reason Ministries</a> · companion to <a href="seven-levels.html">The Seven Levels of Moral Development</a> , <a href="two-lenses.html">Two Lenses</a> and <a href="dominoes.html">The Falling Dominoes</a> and <a href="seven-reasons.html">Same Act, Seven Reasons</a>, <a href="sin-disease.html">Sin Is a Disease</a> and <a href="wrath.html">Wrath = Letting Go</a></p>
+    <div class="toc">
+      <a href="#s0">Who lives in the fire?</a><a href="#s1">Same fire, two experiences</a><a href="#s2">What is sin made of?</a><a href="#s3">Fire gallery</a><a href="#s4">Nadab &amp; Abihu</a><a href="#s5">Verse explorer</a><a href="#s6">Wrath = letting go</a><a href="#s7">Why the Bible shouts</a><a href="#s8">Brimstone, smoke, for ever</a><a href="#s9">End-time timeline</a><a href="#s10">Two deaths</a><a href="#s11">The angel with the fire</a><a href="#s12">Two fires in Revelation</a><a href="#s13">Your brain</a><a href="#s14">Through the seven levels</a><a href="#s15">Objections desk</a><a href="#s16">Closing</a>
+    </div>
+  </header>
+
+  <section id="s0"><div class="card isa-card" id="opening"></div><div class="card" id="poll"></div></section>
+  <section id="s1"><div class="card"><h2><span class="num">1</span>Same fire, two experiences</h2><div id="sameFire"></div></div></section>
+  <section id="s2"><div class="card"><h2><span class="num">2</span>What is sin made of? The combustion test</h2><div id="combustion"></div></div></section>
+  <section id="s3"><div class="card"><h2><span class="num">3</span>The fire gallery</h2><p class="lead">Every time God's fire shows up in Scripture, ask two questions before you read Jennings' comment: what burned, and who was harmed?</p><div class="row" style="margin-bottom:8px"><button class="chip" id="hardOnly">Only events where someone was hurt</button></div><div id="gallery"></div></div></section>
+  <section id="s4"><div class="card"><h2><span class="num">4</span>Case file: Nadab and Abihu</h2><div id="nadab"></div></div></section>
+  <section id="s5"><div class="card"><h2><span class="num">5</span>Verse explorer: every fire text, two readings</h2><p class="lead">Flip the lens at the top of the page and every card below re-reads itself. Red is how the text sounds under an imposed, penal law; gold is how Jennings reads it under design law.</p><div id="explorer"></div></div></section>
+  <section id="s6"><div class="card"><h2><span class="num">6</span>Wrath explorer: "gave them over"</h2><div id="wrath"></div></div></section>
+  <section id="s7"><div class="card"><h2><span class="num">7</span>Why does the Bible shout?</h2><div id="shout"></div></div></section>
+  <section id="s8"><div class="card"><h2><span class="num">8</span>Brimstone, smoke and "for ever"</h2><div id="terms"></div></div></section>
+  <section id="s9"><div class="card"><h2><span class="num">9</span>End-time timeline: where exactly is the lake of fire?</h2><div id="endtime"></div></div></section>
+  <section id="s10"><div class="card"><h2><span class="num">10</span>Two deaths: sleep, and the wages of sin</h2><div id="deaths"></div></div></section>
+  <section id="s11"><div class="card"><h2><span class="num">11</span>The angel in charge of the fire</h2><div id="angel"></div></div></section>
+  <section id="s12"><div class="card"><h2><span class="num">12</span>Two fires in Revelation: the Lamb's and the dragon's</h2><div id="revFires"></div></div></section>
+  <section id="s13"><div class="card"><h2><span class="num">13</span>What an angry-God picture does to your brain</h2><div id="brain"></div></div></section>
+  <section id="s14"><div class="card"><h2><span class="num">14</span>Judgment through the seven levels</h2><div id="levels"></div></div></section>
+  <section id="s15"><div class="card"><h2><span class="num">15</span>Objections desk</h2><p class="lead">Try answering each one yourself before opening Jennings' reply. The tag shows how strong the local evidence is for his answer.</p><div id="objections"></div></div></section>
+  <section id="s16"><div class="card"><h2><span class="num">16</span>Closing</h2><div id="closing"></div></div></section>
+  <section id="sources"><div class="card"><h2>Glossary and sources</h2><div id="glossary"></div><h3>Sources used on this page</h3><div id="sourceList"></div></div></section>
+
+  <p class="footnote">Built as a study companion for Dr Timothy R. Jennings' teaching. Scripture quotations are given in the wording Jennings uses in the cited sources; The Remedy is his expanded paraphrase (<a href="https://comeandreason.com/rem/" target="_blank" rel="noopener">comeandreason.com/rem</a>). Readings marked ⚠ are contested or rest on thin local evidence.</p>
+</div>
+
+<!-- @data -->
+<!-- @kit.js -->
+<script>
+(function(){
+  'use strict';
+  const D = window.PAGE_DATA || {};
+  const { el, quote, sourceChip, caveat, missingBadge, store, nodata } = KC;
+  const stripMd = s => String(s).replace(/\*\*([^*]+)\*\*/g, '$1').replace(/(^|[\s(“"'])\*([^*\n]+)\*(?=[\s).,;:!?”"']|$)/g, '$1$2');
+  const txt = x => x == null ? '' : stripMd(typeof x === 'string' ? x : (x.text || ''));
+  const Q = (o, voice) => o && txt(o) ? quote(txt(o), { ref: o.ref, version: o.version, verify: o.verify, source: o.source, voice: voice || o.voice || 'scripture' }) : null;
+  const R = (o, ref) => { const t = txt(o && o.remedy !== undefined ? o.remedy : o); return t ? quote(t, { voice: 'remedy', ref: ref || (o && o.remedy_ref) || (o && o.ref) }) : null; };
+  const voiceOf = o => { const s = (o && o.speaker) || ''; return /white/i.test(s) ? 'egw' : /cole/i.test(s) ? 'cole' : 'jennings'; };
+  const J = o => o && txt(o) ? quote(txt(o), { voice: voiceOf(o), ref: o.speaker || null, source: o.source }) : null;
+  const sec = id => document.getElementById(id);
+  const fill = (id, fn) => { const node = sec(id); try { fn(node); } catch (e) { node.append(el('p', { class: 'nodata' }, 'This section could not render: ' + e.message)); console.error(id, e); } };
+
+  KC.lensBar(sec('lensbar'), { initial: 'imposed' });
+
+  /* 0. Opening */
+  fill('opening', n => {
+    const o = D.opening; if (!o) { n.append(nodata()); return; }
+    const flame = el('div', { class: 'flame red' }, el('div', { class: 'f f1' }), el('div', { class: 'f f2' }));
+    const v14 = el('div', { class: 'v' }, '“' + txt(o.v14) + '”', el('div', { class: 'small' }, (o.v14 && o.v14.ref) || 'Isaiah 33:14', o.v14 && o.v14.version ? ' · ' + o.v14.version : ''));
+    const v15 = el('div', { class: 'v hidden-v' }, '“' + txt(o.v15) + '”', el('div', { class: 'small' }, (o.v15 && o.v15.ref) || 'Isaiah 33:15', o.v15 && o.v15.version ? ' · ' + o.v15.version : ''));
+    const after = el('div', { class: 'hidden' });
+    if (o.jennings_reaction_lead) after.append(J(o.jennings_reaction_lead));
+    if (o.jennings_reaction) after.append(J(o.jennings_reaction));
+    if (o.thesis_line) after.append(el('p', { class: 'lead', style: 'font-size:17px;color:var(--ink)' }, o.thesis_line));
+    if (o.v11) after.append(el('details', { class: 'acc' }, el('summary', {}, 'And three verses earlier: who lit the fire?'), el('div', { class: 'body' }, Q(o.v11), o.v11.note ? el('p', { class: 'small' }, o.v11.note) : null)));
+    const btn = el('button', { class: 'btn', onclick: () => { v15.classList.remove('hidden-v'); flame.classList.remove('red'); after.classList.remove('hidden'); btn.remove(); } }, 'So who lives there?');
+    n.append(el('div', { class: 'eyebrow' }, 'Isaiah 33'), flame, v14, v15, btn, after);
+    const srcs = [o.v14 && o.v14.source, o.v15 && o.v15.source].filter(Boolean);
+    srcs.forEach(s => n.append(sourceChip(s)));
+  });
+  fill('poll', n => {
+    const o = D.opening && D.opening.poll; if (!o) { n.remove(); return; }
+    KC.renderPoll(n, { key: 'cr-fire-poll', question: o.question, options: o.options });
+  });
+
+  /* 1. Same fire slider */
+  fill('sameFire', n => {
+    const s = D.sameFire; if (!s || !s.stops || !s.stops.length) { n.append(nodata()); return; }
+    if (s.intro) n.append(el('p', { class: 'lead' }, s.intro));
+    const figures = { radiant: ['🧑‍🦱✨', 'Radiant: face shining like Moses'], veiled: ['🙈', 'Shielding the face, begging for a veil'], shielding: ['🙈', 'Shielding the face, begging for a veil'], fleeing: ['🏃💨', 'Fleeing to the rocks (Revelation 6)'], steady: ['🧍', 'Standing in the fire, at peace'], refined: ['🧑‍🔬', 'Errors burned away, the person saved'] };
+    const flame = el('div', { class: 'flame' }, el('div', { class: 'f f1' }), el('div', { class: 'f f2' }));
+    const fig = el('div', { class: 'figure' });
+    const qbox = el('div');
+    const counter = el('div', { class: 'counter' }, s.caption || 'Fire: 0 changes. Heart: 1 change.');
+    const range = el('input', { type: 'range', class: 'kc', min: 0, max: 100, value: 0 });
+    const labels = el('div', { class: 'row', style: 'justify-content:space-between;font-size:12.5px;color:var(--faint)' }, el('span', {}, 'Healed: loves truth, other-centred'), el('span', {}, 'Unhealed: clings to lies, self'));
+    function paint() {
+      const v = +range.value;
+      const stop = s.stops.reduce((best, st) => Math.abs(st.pos - v) < Math.abs(best.pos - v) ? st : best, s.stops[0]);
+      const f = figures[stop.figure] || figures.steady;
+      fig.innerHTML = ''; fig.append(f[0], el('span', { class: 'cap' }, stop.label || f[1]));
+      qbox.innerHTML = ''; if (stop.quote) qbox.append(Q(stop.quote, stop.quote.voice));
+    }
+    range.addEventListener('input', paint);
+    n.append(el('div', { class: 'scene' }, flame, fig), el('p', { class: 'small center' }, 'State of the heart'), range, labels, qbox, counter);
+    paint();
+    if (s.key_line) n.append(J(s.key_line));
+    if (s.egw && s.egw.length) n.append(el('details', { class: 'acc' }, el('summary', {}, 'The Ellen White lines Jennings cites'), el('div', { class: 'body' }, ...s.egw.map(e => Q(e, 'egw')))));
+  });
+
+  /* 2. Combustion lab */
+  fill('combustion', n => {
+    const c = D.combustion; if (!c) { n.append(nodata()); return; }
+    if (c.intro) n.append(J(c.intro));
+    if (c.intro_2021) n.append(J(c.intro_2021));
+    const table = el('table', { class: 'ctable' }, el('tr', {}, el('th', {}, 'Put in the fire'), el('th', {}, 'Fire of combustion'), el('th', {}, 'Fire of truth and love')));
+    const rows = {};
+    (c.tokens || []).forEach(t => { rows[t.label] = el('tr', {}, el('td', {}, t.label), el('td', {}, '—'), el('td', {}, '—')); table.append(rows[t.label]); });
+    const box = el('div');
+    KC.renderSortBins(box, {
+      hint: 'Click an item, then click a burner. Each item can go in both: try it in the second burner afterwards.',
+      bins: [{ id: 'combustion', label: '🔥 Burner A: combustion' }, { id: 'truthlove', label: '✨ Burner B: truth and love' }],
+      items: (c.tokens || []).map(t => ({ label: t.label, answer: t.kind === 'sin' ? 'truthlove' : 'combustion', note: t.note, feedback: `In combustion: ${t.combustion}. In truth and love: ${t.truthlove}.`, _t: t })),
+      onPlace: (it, b) => { const r = rows[it.label]; if (!r) return; r.children[b.id === 'combustion' ? 1 : 2].textContent = b.id === 'combustion' ? it._t.combustion : it._t.truthlove; }
+    });
+    n.append(box, el('h3', {}, 'Results'), table);
+    if (c.fire_texts && c.fire_texts.length) n.append(el('h3', {}, 'The positive fire: baptised with the Spirit and with fire'), ...c.fire_texts.map(f => el('div', { class: 'vcard' }, el('div', { class: 'vref' }, f.ref), R(f, f.ref) || missingBadge(), f.point ? el('p', { class: 'lead' }, f.point) : null)));
+    if (c.altar_fire) n.append(el('details', { class: 'acc' }, el('summary', {}, 'The same fire on the sanctuary altar (God-Shaped Heart)'), el('div', { class: 'body' }, J(c.altar_fire))));
+    n.append(el('p', { class: 'lead' }, el('b', {}, 'So which fire cleanses the earth of sin?'), ' If sin is made of lies and selfishness, only a fire made of truth and love can burn it. That is the fire of God\'s presence.'));
+  });
+
+  /* 3. Gallery */
+  fill('gallery', n => {
+    const g = D.gallery; if (!g || !g.length) { n.append(nodata()); return; }
+    let hard = false;
+    const draw = () => KC.renderTimeline(n, hard ? g.filter(x => x.hard || (x.who_harmed && x.who_harmed !== 'none')) : g, {
+      ask: ['What burned?', 'Who was harmed?'], revealLabel: 'Show the answers and Jennings\' comment',
+      body: it => it.remedy && it.remedy.text && it.remedy.text !== it.text ? R(it.remedy, it.ref) : null,
+      reveal: it => el('div', {}, el('p', {}, el('b', {}, 'What burned: '), it.what_burned || '—'), el('p', {}, el('b', {}, 'Who was harmed: '), ({ none: 'No one.', 'first-death': 'People died, which Jennings classes as a first-death act (see section 10).', 'wicked-at-end': 'The unrepentant, at the end.' })[it.who_harmed] || it.who_harmed || '—'), J(it.jennings), caveat(it.caveat))
+    });
+    draw();
+    document.getElementById('hardOnly').addEventListener('click', e => { hard = !hard; e.target.classList.toggle('on', hard); draw(); });
+  });
+
+  /* 4. Nadab and Abihu */
+  fill('nadab', n => {
+    const d = D.nadab; if (!d) { n.append(nodata()); return; }
+    let html = KC.esc(txt(d));
+    (d.highlights || []).forEach(h => { html = html.replace(KC.esc(h.phrase), `<span class="hl ${h.color}" data-note="${KC.esc(h.note || '')}">${KC.esc(h.phrase)}</span>`); });
+    const doc = el('div', { class: 'clip', html: html });
+    const note = el('p', { class: 'lead' }, 'Tap the highlighted phrases.');
+    doc.querySelectorAll('.hl').forEach(h => h.addEventListener('click', () => { h.classList.toggle('on'); note.textContent = h.dataset.note || ''; }));
+    n.append(el('p', { class: 'small' }, (d.ref || 'Leviticus 10:1-5') + (d.version ? ' · ' + d.version : '')), doc, note, sourceChip(d.source));
+    if (d.jennings) n.append(J(d.jennings));
+    if (d.jennings_2008 || d.picture_of_the_end || d.sequence) n.append(el('details', { class: 'acc' }, el('summary', {}, 'Jennings\' full reading: from the tunics to the end of the wicked'), el('div', { class: 'body' }, J(d.jennings_2008), J(d.picture_of_the_end), J(d.sequence))));
+    if (d.question) {
+      const fb = el('p', { class: 'lead' });
+      n.append(el('h3', {}, d.question), ...(d.options || []).map(o => el('button', { class: 'opt', onclick: e => { n.querySelectorAll('.opt').forEach(x => x.classList.remove('correct', 'wrong')); e.target.classList.add(o.correct ? 'correct' : 'wrong'); fb.textContent = o.feedback || ''; } }, o.label)), fb);
+    }
+    if (d.caveat) n.append(el('details', { class: 'acc' }, el('summary', {}, 'First death or second death? The honest footnote'), el('div', { class: 'body' }, J(d.caveat))));
+  });
+
+  /* 5. Verse explorer */
+  fill('explorer', n => KC.renderVerseExplorer(n, D.verses));
+
+  /* 6. Wrath */
+  fill('wrath', n => {
+    const w = D.wrath; if (!w) { n.append(nodata()); return; }
+    if (w.intro) n.append(J(w.intro));
+    if (w.romans1 && w.romans1.length) {
+      n.append(el('h3', {}, 'Romans 1: three times "he gave them over"'), el('p', { class: 'small' }, 'Tap a highlighted verse.'));
+      const box = el('div', { class: 'card sub' });
+      const info = el('div');
+      w.romans1.forEach(v => {
+        const span = el('span', { style: v.hotspot ? 'cursor:pointer;background:rgba(224,177,94,.18);border-radius:4px;padding:0 3px' : '' }, el('b', { style: 'color:var(--accent);font-size:11px' }, v.verse + ' '), txt(v.remedy || v.text) + ' ');
+        if (v.hotspot) span.addEventListener('click', () => { info.innerHTML = ''; info.append(el('div', { class: 'lens-panel design' }, el('span', { class: 'tag design' }, (v.gloss || 'paradidomi: handed over')), el('p', {}, el('b', {}, 'What they chose: '), v.cause || '—'), el('p', {}, el('b', {}, 'What followed: '), v.effect || '—'))); });
+        box.append(span);
+      });
+      n.append(box, info);
+      if (w.romans1_note) n.append(J(w.romans1_note));
+    }
+    if (w.hard_sayings_quote) n.append(Q(w.hard_sayings_quote, 'jennings'));
+    if (w.satan_vs_god) n.append(el('h3', {}, 'Two wraths, exact opposites'), el('div', { class: 'grid2' }, el('div', { class: 'card sub' }, el('span', { class: 'tag design' }, "God's wrath"), J(w.satan_vs_god.god), el('div', { class: 'hand' }, '🪢➡️🌊'), el('p', { class: 'small center' }, 'A hand lets go of the rope that held the flood back.')), el('div', { class: 'card sub' }, el('span', { class: 'tag imposed' }, "Satan's wrath"), J(w.satan_vs_god.satan), el('div', { class: 'hand' }, '👊'), el('p', { class: 'small center' }, 'A hand that strikes.'))));
+    if (w.pairs && w.pairs.length) { n.append(el('h3', {}, 'What God said, and what actually happened')); const b = el('div'); KC.renderFlipPairs(b, w.pairs); n.append(b); }
+    if (w.bowls && w.bowls.length) {
+      n.append(el('h3', {}, 'The seven last plagues as a stepwise release'));
+      const bowls = w.bowls.filter(b => b.n >= 1).sort((a, b) => a.n - b.n);
+      const pre = w.bowls.find(b => b.n === 0);
+      const track = el('div', { class: 'bowl-track' }, ...bowls.map(() => el('span')));
+      const out = el('div');
+      const r = el('input', { type: 'range', class: 'kc', min: 0, max: bowls.length, value: 0 });
+      const paint = () => { const v = +r.value; [...track.children].forEach((s, i) => s.classList.toggle('on', i < v)); out.innerHTML = ''; const b = v === 0 ? pre : bowls[v - 1]; if (b) out.append(el('p', { class: 'lead' }, el('b', {}, v === 0 ? 'Before the bowls: ' : `Bowl ${b.n}: `), b.caption || ''), R(b, b.ref)); };
+      r.addEventListener('input', paint); n.append(r, track, out); paint();
+      if (w.bowls_why_seven) n.append(J(w.bowls_why_seven));
+    }
+    if (w.plagues_contrast) n.append(el('details', { class: 'acc' }, el('summary', {}, 'Egypt\'s plagues versus the seven last plagues'), el('div', { class: 'body' }, J(w.plagues_contrast))));
+    if (w.sda_commentary) n.append(el('details', { class: 'acc' }, el('summary', {}, 'How the SDA Bible Commentary defines wrath (as Jennings quotes it)'), el('div', { class: 'body' }, Q(w.sda_commentary, 'egw'))));
+  });
+
+  /* 7. Shout */
+  fill('shout', n => {
+    const s = D.shout; if (!s) { n.append(nodata()); return; }
+    if (s.intro) n.append(J(s.intro));
+    if (s.settings && s.settings.length) {
+      n.append(el('h3', {}, 'One truth, tuned to the listener'), el('p', { class: 'small' }, 'The message never changes: "leaving Me will destroy you." The volume does.'));
+      const dial = el('div', { class: 'dial' }); const out = el('div');
+      s.settings.forEach((st, i) => dial.append(el('button', { class: 'chip' + (i === 0 ? ' on' : ''), onclick: e => { dial.querySelectorAll('.chip').forEach(c => c.classList.remove('on')); e.target.classList.add('on'); show(st); } }, st.label)));
+      const show = st => { out.innerHTML = ''; out.append(el('p', { class: 'lead' }, el('b', {}, st.audience || ''), ' ', st.explain || ''), Q(st)); };
+      n.append(dial, out); show(s.settings[0]);
+    }
+    if (s.examples && s.examples.length) n.append(el('h3', {}, 'Examples Jennings uses'), ...s.examples.map(x => el('details', { class: 'acc' }, el('summary', {}, x.title + (x.ref ? ' · ' + x.ref : '')), el('div', { class: 'body' }, x.text && x.source ? J(x) : Q(x)))));
+    if (s.jesus_lens && s.jesus_lens.length) n.append(el('h3', {}, 'Read every declarative text through Jesus'), ...s.jesus_lens.map(v => R(v, v.ref)));
+  });
+
+  /* 8. Terms */
+  fill('terms', n => {
+    const t = D.terms; if (!t || !t.length) { n.append(nodata()); return; }
+    const sample = (D.locatives || []);
+    n.append(el('p', { class: 'lead' }, 'The scary vocabulary of Revelation 14, 19, 20 and 21, one word at a time. Tap a term.'));
+    const p = el('p', { style: 'font-size:17px;line-height:2' });
+    t.forEach((e, i) => { p.append(KC.glossaryTerm(e.term, { term: e.term, meaning: txt(e.jennings) || e.meaning || '', greek: e.greek, remedy: e.remedy, caveat: e.caveat }), i < t.length - 1 ? ' · ' : ''); });
+    n.append(p);
+    t.forEach(e => n.append(el('details', { class: 'acc' }, el('summary', {}, e.term + (e.greek ? ' (' + e.greek + ')' : '')), el('div', { class: 'body' }, J(e.jennings), J(e.jennings_alt_lead), J(e.jennings_alt), e.remedy ? R(e.remedy, e.remedy.ref) : null, e.remedy_alt ? R(e.remedy_alt, e.remedy_alt.ref) : null, e.remedy_note ? el('p', { class: 'small' }, e.remedy_note) : null, e.cole ? Q(e.cole, 'cole') : null, e.cole_isa34 ? Q(e.cole_isa34, 'cole') : null, caveat(e.caveat)))));
+    if (sample.length) n.append(el('h3', {}, 'Where? Every locative phrase'), el('ul', {}, ...sample.map(l => el('li', {}, el('b', {}, l.ref + ': '), '"' + l.phrase + '"'))));
+  });
+
+  /* 9. End-time timeline */
+  fill('endtime', n => {
+    const e = D.endtime; if (!e || !e.steps) { n.append(nodata()); return; }
+    if (e.intro) n.append(el('p', { class: 'lead' }, e.intro));
+    const layers = { what_burning: 'What is burning', who_alive: 'Who is alive', where_satan: 'Where is Satan', judgment: 'Which judgment' };
+    const on = { what_burning: true, who_alive: true, where_satan: false, judgment: false };
+    const tog = el('div', { class: 'layer-toggles' });
+    const out = el('div');
+    const r = el('input', { type: 'range', class: 'kc', min: 1, max: e.steps.length, value: 1 });
+    const draw = () => {
+      tog.innerHTML = ''; Object.keys(layers).forEach(k => tog.append(el('button', { class: 'chip' + (on[k] ? ' on' : ''), onclick: () => { on[k] = !on[k]; draw(); } }, layers[k])));
+      out.innerHTML = '';
+      const st = e.steps[+r.value - 1];
+      const grid = el('div', { class: 'et-grid' });
+      Object.keys(layers).forEach(k => { if (on[k]) grid.append(el('div', {}, el('b', {}, layers[k]), st[k] || '—')); });
+      const ly = String(st.lake_yet || 'no');
+      const lakeCls = /^no/i.test(ly) ? 'no' : /second|cauldron|combust|melt/i.test(ly) ? 'combustion' : 'presence';
+      out.append(el('div', { class: 'et-step' }, el('h3', { style: 'margin-top:0' }, `${st.n}. ${st.title}`), grid, el('p', { class: 'lake ' + lakeCls }, 'Is this the lake of fire yet? ' + ly.charAt(0).toUpperCase() + ly.slice(1)), st.text ? el('p', { class: 'lead' }, st.text) : null, sourceChip(st.source), ...(st.refs || []).map(x => R(x, x.ref) || Q(x))));
+    };
+    r.addEventListener('input', draw);
+    n.append(r, tog, out); draw();
+    if (e.two_unveilings_note) n.append(caveat(e.two_unveilings_note));
+  });
+
+  /* 10. Two deaths */
+  fill('deaths', n => {
+    const d = D.deaths; if (!d) { n.append(nodata()); return; }
+    if (d.intro) n.append(J(d.intro));
+    const box = el('div');
+    KC.renderSortBins(box, { hint: 'Click a death in the Bible, then the bin Jennings puts it in.', bins: [{ id: 'first', label: '😴 First death: sleep' }, { id: 'second', label: '⚫ Second death: the wages of sin' }], items: (d.items || []).map(it => ({ label: it.label + (it.ref ? ' (' + it.ref + ')' : ''), answer: it.answer, note: it.note, feedback: (it.cause ? 'Cause: ' + it.cause + '. ' : '') + (it.note || '') })) });
+    n.append(box);
+    if (d.heb2_14) n.append(R(d.heb2_14, 'Hebrews 2:14-15'));
+    if (d.contrast && d.contrast.length) {
+      const t = el('table', { class: 'ctable' }, el('tr', {}, el('th', {}, ''), el('th', {}, 'Christ on the cross'), el('th', {}, 'The wicked at the end')));
+      d.contrast.forEach(c => t.append(el('tr', {}, el('td', {}, c.aspect), el('td', {}, c.christ), el('td', {}, c.wicked))));
+      n.append(el('h3', {}, 'Christ\'s death and the second death are not the same death'), J(d.contrast_frame), t, sourceChip(d.contrast_source || d.contrast[0].source));
+    }
+  });
+
+  /* 11. Angel of Rev 14:18 */
+  fill('angel', n => {
+    const a = D.angel; if (!a) { n.append(nodata()); return; }
+    if (a.intro) n.append(J(a.intro));
+    const clip = el('div', { class: 'clip' }, el('span', {}, a.v18_clipped || ''), el('span', { class: 'more m1' }, ' ' + txt(a.v18_full).replace(a.v18_clipped || '\u0000', '')), el('span', { class: 'more m2' }, ' ' + txt(a.v19_20)));
+    let step = 0;
+    const btn = el('button', { class: 'btn sm', onclick: () => { step = Math.min(2, step + 1); clip.className = 'clip step' + step; btn.textContent = step === 1 ? 'Keep reading (vv. 19-20)' : 'That is the whole passage'; if (step === 2) btn.disabled = true; } }, 'Read the rest of verse 18');
+    n.append(el('h3', {}, 'The clipped verse'), el('p', { class: 'small' }, 'As the 2023 quarterly printed it, then as Revelation has it.'), a.quarterly_gloss ? el('p', { class: 'lead' }, el('b', {}, 'The quarterly\'s gloss: '), '"' + txt(a.quarterly_gloss) + '"') : null, clip, btn);
+    if (a.isa6) n.append(el('h3', {}, 'Where that altar fire was last seen'), Q(a.isa6), J(a.altar_does));
+    if (a.altar_fire_gsh) n.append(el('details', { class: 'acc' }, el('summary', {}, 'What the altar fire stands for (God-Shaped Heart)'), el('div', { class: 'body' }, J(a.altar_fire_gsh))));
+    if (a.remedy_14_18) n.append(R(a.remedy_14_18, 'Revelation 14:18'));
+    if (a.remedy_14_19_20) n.append(R(a.remedy_14_19_20, 'Revelation 14:19-20'));
+    if (a.no_one_left) n.append(J(a.no_one_left));
+    if (a.why_harvest) n.append(J(a.why_harvest));
+    if (a.three_angels && a.three_angels.length) n.append(el('h3', {}, 'The three angels, read as design law'), el('div', { class: 'ring' }, ...a.three_angels.map(t => el('div', { class: 'card sub' }, el('span', { class: 'tag design' }, t.angel + ' angel'), el('div', { class: 'small' }, t.ref), el('p', {}, el('b', {}, t.design_term)), R(t.remedy, t.ref), t.note ? el('p', { class: 'small' }, t.note) : null))));
+    if (a.source_3angels) n.append(sourceChip(a.source_3angels));
+  });
+
+  /* 12. Two fires in Revelation */
+  fill('revFires', n => {
+    const f = D.revFires; if (!f || !f.length) { n.append(nodata()); return; }
+    n.append(el('p', { class: 'lead' }, 'Every "fire" in Revelation. Tap a reference to read it, and dim a source to see what remains.'));
+    const legend = el('div', { class: 'legend' }, ...[['lamb', 'from the Lamb / God\'s presence', 'var(--accent)'], ['dragon', 'from the dragon / beast', 'var(--bad)'], ['human', 'human agents', 'var(--warn)'], ['symbolic', 'symbolic / other', 'var(--accent2)']].map(l => el('span', {}, el('i', { style: 'background:' + l[2] }), l[1])));
+    const dim = {}; const conc = el('div', { class: 'conc' }); const out = el('div');
+    const dims = el('div', { class: 'row' }, ...['lamb', 'dragon', 'human', 'symbolic'].map(s => el('button', { class: 'chip', onclick: e => { dim[s] = !dim[s]; e.target.classList.toggle('on', dim[s]); paint(); } }, 'Dim ' + s)));
+    const paint = () => { conc.innerHTML = ''; f.forEach(x => conc.append(el('button', { class: x.source + (dim[x.source] ? ' dim' : ''), onclick: () => { out.innerHTML = ''; out.append(el('div', { class: 'vcard' }, el('div', { class: 'vref' }, x.ref), el('span', { class: 'tag ' + (x.source === 'lamb' ? 'design' : x.source === 'dragon' ? 'imposed' : 'scripture') }, x.source), R(x, x.ref) || missingBadge(), x.note ? el('p', { class: 'lead' }, x.note) : null, x.guide_assignment ? el('p', { class: 'small' }, 'Study guide: ' + x.guide_assignment) : null)); } }, x.ref.replace('Revelation ', '')))); };
+    n.append(legend, conc, dims, out); paint();
+  });
+
+  /* 13. Brain */
+  fill('brain', n => {
+    const b = D.brain; if (!b) { n.append(nodata()); return; }
+    if (b.intro) n.append(J(b.intro));
+    if (b.intro_alt) n.append(J(b.intro_alt));
+    if (b.regions_defined) n.append(el('details', { class: 'acc' }, el('summary', {}, 'The regions, in Jennings\' words'), el('div', { class: 'body' }, ...Object.keys(b.regions_defined).map(k => J(b.regions_defined[k])))));
+    const out = el('div', { class: 'brain' });
+    const names = { amygdala: 'Amygdala (alarm)', pfc: 'Prefrontal cortex (reason, love)', acc: 'Anterior cingulate (empathy, compassion)' };
+    const pick = el('div', { class: 'row' });
+    const show = c => { out.innerHTML = ''; const good = /love/i.test(c.label); out.append(el('div', {}, ...Object.keys(names).map(k => el('div', { class: 'region' + (good ? ' good' : '') }, names[k], el('span', { class: 'lvl ' + ((c.regions || {})[k] || 'low') }, (c.regions || {})[k] || '—')))), el('div', {}, el('ul', {}, ...(c.effects || []).map(x => el('li', {}, x))), sourceChip(c.source))); };
+    (b.concepts || []).forEach((c, i) => pick.append(el('button', { class: 'chip' + (i === 0 ? ' on' : ''), onclick: e => { pick.querySelectorAll('.chip').forEach(x => x.classList.remove('on')); e.target.classList.add('on'); show(c); } }, c.label)));
+    n.append(el('p', { class: 'small' }, 'Pick the picture of God a person holds:'), pick, out);
+    if (b.concepts && b.concepts.length) show(b.concepts[0]);
+    if (b.tv_parallel) n.append(J(b.tv_parallel));
+    if (b.newberg) n.append(J(b.newberg));
+    if (b.newberg_contrast) n.append(J(b.newberg_contrast));
+    if (b.newberg_2014) n.append(el('details', { class: 'acc' }, el('summary', {}, 'The same finding, as Jennings retold it later'), el('div', { class: 'body' }, J(b.newberg_2014))));
+    if (b.rom1_tv) n.append(J(b.rom1_tv));
+    if (b.rom1_21) n.append(R(b.rom1_21, 'Romans 1:21'));
+    if (b.love_lies) n.append(J(b.love_lies));
+    if (b.caveat) n.append(caveat(b.caveat));
+    const timer = el('div', { class: 'timer' }, '12:00'); let left = 720, h = null;
+    const tbtn = el('button', { class: 'btn sm ghost', onclick: () => { if (h) { clearInterval(h); h = null; tbtn.textContent = 'Resume'; return; } tbtn.textContent = 'Pause'; h = setInterval(() => { left = Math.max(0, left - 1); timer.textContent = String(Math.floor(left / 60)).padStart(2, '0') + ':' + String(left % 60).padStart(2, '0'); if (!left) { clearInterval(h); h = null; tbtn.textContent = 'Done'; } }, 1000); } }, 'Start 12 minutes');
+    n.append(el('h3', {}, 'Twelve minutes on a God who is a consuming fire of love'), el('p', { class: 'small' }, 'Jennings cites Newberg: twelve minutes a day of meditation on a God of love changed the brain in thirty days. Sit with Hebrews 12:29 in The Remedy.'), timer, el('div', { class: 'center' }, tbtn));
+    if (b.citations && b.citations.length) n.append(el('details', { class: 'acc' }, el('summary', {}, 'Citations as Jennings gives them'), el('div', { class: 'body' }, el('ul', {}, ...b.citations.map(c => el('li', {}, c))))));
+  });
+
+  /* 14. Levels */
+  fill('levels', n => {
+    const L = D.levels; if (!L || !L.rows) { n.append(nodata()); return; }
+    if (L.intro) n.append(J(L.intro));
+    if (L.my_blood) n.append(el('div', { class: 'grid2' }, el('div', { class: 'card sub' }, el('span', { class: 'tag imposed' }, 'Levels 1–4 hear'), J(L.my_blood), J(L.level_four), J(L.one_through_four)), el('div', { class: 'card sub' }, el('span', { class: 'tag design' }, 'Levels 5–7 hear'), J(L.diagnosis), L.hosea_4_17 ? Q(L.hosea_4_17) : null)));
+    const out = el('div');
+    const texts = { rev14_10: 'Revelation 14:10 (tormented in the presence of the Lamb)', rev20_12: 'Revelation 20:12 (the books were opened)', heb12_29: 'Hebrews 12:29 (our God is a consuming fire)' };
+    const step = el('div');
+    KC.renderStepper(step, L.rows, r => { out.innerHTML = ''; out.append(el('p', { class: 'lead' }, el('b', {}, 'The question this level asks: '), r.question || '—'), r.handout ? J(r.handout) : null, ...Object.keys(texts).map(k => el('div', { class: 'lens-panel ' + (r.n <= 4 ? 'imposed' : 'design') }, el('b', {}, texts[k]), el('div', {}, (r.hears || {})[k] || '—'), r.n >= 5 && L.remedy_for_revoiced && L.remedy_for_revoiced[k] ? quote(L.remedy_for_revoiced[k], { voice: 'remedy', ref: (L.verses_revoiced || {})[k] }) : null))); }, 4);
+    n.append(el('h3', {}, 'Re-voice three fire texts at each level'), step, out);
+    if (L.voice_note) n.append(caveat(L.voice_note));
+    if (L.anger_management) n.append(J(L.anger_management));
+    if (L.qop_misunderstandings) n.append(el('details', { class: 'acc' }, el('summary', {}, 'The three misunderstandings underneath the penal view'), el('div', { class: 'body' }, J(L.qop_misunderstandings))));
+    if (L.leukemia) n.append(el('details', { class: 'acc' }, el('summary', {}, 'The leukaemia parable'), el('div', { class: 'body' }, J(L.leukemia), J(L.leukemia_refusal))));
+    n.append(el('p', { class: 'center' }, el('a', { class: 'btn ghost', href: 'seven-levels.html' }, 'Open the Seven Levels page →')));
+  });
+
+  /* 15. Objections */
+  fill('objections', n => {
+    const o = D.objections; if (!o || !o.length) { n.append(nodata()); return; }
+    KC.renderAccordion(n, o, { numbered: true, body: (it, i) => el('div', {}, el('p', { class: 'small' }, 'How would you answer?'), KC.journal('cr-fire-obj-' + (it.id || i), 'Write your own answer first…'), el('details', { class: 'acc' }, el('summary', {}, 'Show Jennings\' reply'), el('div', { class: 'body' }, el('p', { style: 'color:var(--ink)' }, it.reply), ...(it.quotes || []).map(q => J(q)), ...(it.verses || []).map(v => v.remedy ? R(v.remedy, v.ref) : (v.text ? Q(v) : null)), it.why_strength ? el('p', { class: 'small' }, 'Evidence: ' + it.why_strength) : null))) });
+  });
+
+  /* 16. Closing */
+  fill('closing', n => {
+    const c = D.closing; if (!c) { n.append(nodata()); return; }
+    if (c.quote) n.append(J(c.quote));
+    if (c.here_or_there) n.append(J(c.here_or_there));
+    if (c.entire_universe) n.append(J(c.entire_universe));
+    if (c.not_external_penalty) n.append(J(c.not_external_penalty));
+    if (c.cole_courage) n.append(Q(c.cole_courage, 'cole'));
+    const poll = store.get('cr-fire-poll', null);
+    if (poll) n.append(el('div', { class: 'lens-panel design' }, el('b', {}, 'At the top you said: '), '"' + poll + '". ', 'Isaiah 33:15 answers: the one who walks righteously. The fire never changed; the question is what the heart loves.'));
+    if (c.verses && c.verses.length) n.append(el('h3', {}, 'What the fire makes of the healed'), ...c.verses.map(v => R(v, v.ref)));
+    if (c.prompts && c.prompts.length) n.append(el('h3', {}, 'Five prompts to sit with'), ...c.prompts.map((p, i) => el('div', {}, el('p', { class: 'lead', style: 'margin-bottom:4px' }, `${i + 1}. ${p}`), KC.journal('cr-fire-prompt-' + i))));
+    if (c.prompts_source) n.append(J(c.prompts_source));
+    if (c.simeon) n.append(Q(c.simeon, 'cole'));
+    if (c.gsb_final_question) n.append(J(c.gsb_final_question));
+    if (c.gsb_last_line) n.append(J(c.gsb_last_line));
+    n.append(el('p', { class: 'center', style: 'margin-top:16px' }, el('a', { class: 'btn ghost', href: '#s1' }, 'Return to the slider'), ' ', el('a', { class: 'btn', href: 'seven-levels.html' }, 'The Seven Levels page')));
+  });
+
+  /* Glossary + sources */
+  fill('glossary', n => KC.renderAccordion(n, D.glossary || [], { body: it => el('div', {}, it.meaning, sourceChip(it.source)) }));
+  fill('sourceList', n => { const s = D.sources; if (!s || !s.length) { n.append(nodata()); return; } n.append(el('ul', {}, ...s.map(x => el('li', {}, x.label || x.id, ' ', sourceChip(x))))); });
+})();
+</script>
+</body>
+</html>

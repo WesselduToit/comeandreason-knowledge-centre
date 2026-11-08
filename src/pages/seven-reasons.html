@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Same Act, Seven Reasons</title>
+<!-- @kit.css -->
+<style>
+  .ptabs{display:flex;gap:8px;justify-content:center;margin:18px 0 0;flex-wrap:wrap}
+  .ptabs button{font:inherit;font-size:14px;font-weight:700;padding:10px 18px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--muted);cursor:pointer}
+  .ptabs button.on{background:var(--accent);color:#10161d;border-color:transparent}
+  .ptab{display:none}.ptab.on{display:block}
+  .scen-chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+  .scen-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:14px;align-items:start;margin-top:10px}
+  @media(max-width:720px){.scen-grid{grid-template-columns:1fr}}
+  .why{border:1px solid var(--line);border-radius:var(--radius);padding:16px;background:var(--card2);min-height:160px}
+  .why-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+  .why-head b{font-family:Georgia,serif;font-size:19px}
+  .why-text{font-family:Georgia,serif;font-size:17.5px;line-height:1.55;color:#eef2f7;margin:6px 0 10px;transition:opacity .25s}
+  .why-text.fade{opacity:0}
+  .lvl-badge{display:inline-flex;width:30px;height:30px;border-radius:50%;align-items:center;justify-content:center;font-weight:800;color:#10161d;font-size:14px;flex:none}
+  .rail{border:1px solid var(--line);border-radius:var(--radius);padding:14px;background:rgba(255,255,255,.02)}
+  .rail h4{margin:0 0 6px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+  .rail .vcard{padding:12px;margin:8px 0}
+  .rail blockquote.q{font-size:14.5px;padding:9px 12px}
+  .trust{display:inline-block;font-size:12px;padding:3px 10px;border-radius:20px;border:1px solid var(--line)}
+  .trust.needs{color:var(--bad);border-color:rgba(217,115,106,.5)}.trust.ok{color:var(--good);border-color:rgba(121,201,158,.5)}
+  .shift{border:1px dashed var(--warn);border-radius:var(--radius-s);padding:10px 12px;margin:10px 0;background:rgba(224,149,106,.06);font-size:14px}
+  .ladder{margin:10px 0}
+  .ladder .rung{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;padding:9px 0;border-bottom:1px solid var(--line)}
+  .ladder .rung .nm{font-size:12px;color:var(--faint);letter-spacing:.06em;text-transform:uppercase}
+  .ladder .rung .tx{font-family:Georgia,serif;font-size:15.5px}
+  .ladder .rung.lo .tx{color:#f0d9d6}.ladder .rung.hi .tx{color:#f3e6c8}
+  .ladder .gap{text-align:center;font-size:12px;color:var(--warn);padding:8px 0;letter-spacing:.08em;text-transform:uppercase}
+  .theory{border:1px solid var(--line);border-radius:var(--radius);background:var(--card2);padding:14px;margin:10px 0}
+  .theory .th{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .theory .th b{font-family:Georgia,serif;font-size:18px}
+  .theory .th .nm{color:var(--faint);font-size:13px}
+  .theory .lens7{display:none;margin-top:8px}
+  .theory.open .lens7,.lens7-all .theory .lens7{display:block}
+  .powers{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:12px 0}
+  .power{border:1px solid var(--line);border-radius:var(--radius);background:var(--card2);padding:14px}
+  .power h3{margin:0 0 6px;font-size:18px}
+  .dots{display:flex;gap:5px;margin:6px 0 10px}
+  .dots span{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#10161d;opacity:.18}
+  .dots span.on{opacity:1}
+  .breaks{margin:8px 0 0;padding-left:18px;font-size:14px;color:var(--muted)}
+  .breaks li{margin:2px 0}
+  .roads{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:12px 0}
+  .road{border:1px solid var(--line);border-radius:var(--radius);background:var(--card2);padding:16px;display:flex;flex-direction:column}
+  .road h3{margin:0 0 4px;font-size:19px}
+  .road .sum{color:var(--muted);font-size:14px;margin:0 0 8px}
+  .road .ask{font-size:14px;color:var(--ink);background:rgba(127,176,224,.08);border-radius:8px;padding:8px 10px;margin:8px 0}
+  .road.mine{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+  .road .foot{margin-top:auto;padding-top:8px}
+  .kp{margin:6px 0 0;padding-left:18px}.kp li{margin:3px 0}
+  .inline-ref{font-size:12.5px;color:var(--faint)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">An Interactive Study · Come and Reason Knowledge Centre</div>
+    <h1>Same Act, Seven Reasons</h1>
+    <p class="sub" id="subtitle">The same action can spring from any of seven levels of moral reasoning. Which level you reason from decides what you think is right, and what you think the cross did.</p>
+    <p class="credit"><a href="index.html">&larr; Knowledge Centre</a> &middot; Teaching of Timothy R. Jennings, MD · <a href="https://comeandreason.com" target="_blank" rel="noopener">Come and Reason Ministries</a> · companion to <a href="seven-levels.html">The Seven Levels of Moral Development</a> · see also <a href="fire.html#s14">The Consuming Fire, section 14</a>, <a href="two-lenses.html">Two Lenses</a> and <a href="dominoes.html">The Falling Dominoes</a>, <a href="sin-disease.html">Sin Is a Disease</a> and <a href="wrath.html">Wrath = Letting Go</a></p>
+    <div class="ptabs" id="ptabs">
+      <button data-tab="reasons" class="on">Seven reasons</button>
+      <button data-tab="roads">Roads of the Journey</button>
+    </div>
+    <div class="toc" id="toc">
+      <a href="#s1">Same act, different reason</a><a href="#s2">Pick an act, pick a level</a><a href="#s3">The shift at 4 | 5</a><a href="#s4">Why Jesus had to die</a><a href="#s5">You cannot skip levels</a><a href="#s6">Which power persuades whom?</a><a href="#s7">Where would you land?</a>
+    </div>
+  </header>
+
+  <div class="ptab on" id="tab-reasons">
+    <section id="s1"><div class="card"><h2><span class="num">1</span>Same act, different reason</h2><div id="intro"></div></div></section>
+    <section id="s2"><div class="card"><h2><span class="num">2</span>Pick an act, pick a level</h2><p class="lead">Choose one of Jennings' five cases, then step through the seven levels. The panel re-voices why the act is right or wrong at that level; the rail shows what the level is, where Israel stood at it, and the texts that belong to it.</p><div id="scenario"></div></div></section>
+    <section id="s3"><div class="card"><h2><span class="num">3</span>The shift at 4 | 5: who can be trusted?</h2><div id="divider"></div></div></section>
+    <section id="s4"><div class="card"><h2><span class="num">4</span>Why Jesus had to die: seven theories, one healing message</h2><p class="lead">The same cross, read from seven levels, yields seven theories of atonement. Jennings then re-reads each theory through the level-seven lens, where every metaphor says the same thing.</p><div id="atonement"></div></div></section>
+    <section id="s5"><div class="card"><h2><span class="num">5</span>You cannot skip levels: the law of exertion</h2><div id="exertion"></div></div></section>
+    <section id="s6"><div class="card"><h2><span class="num">6</span>Which power persuades whom?</h2><div id="powers"></div></div></section>
+    <section id="s7"><div class="card"><h2><span class="num">7</span>Where would you land?</h2><div id="reflection"></div></div></section>
+  </div>
+
+  <div class="ptab" id="tab-roads">
+    <section id="r1"><div class="card"><h2><span class="num">↝</span>Roads of the Journey: eight ways to walk</h2><div id="roads"></div></div></section>
+  </div>
+
+  <section id="sources"><div class="card"><h2>Glossary and sources</h2><div id="glossary"></div><h3>Sources used on this page</h3><div id="sourceList"></div></div></section>
+
+  <p class="footnote">Built as a study companion for Dr Timothy R. Jennings' teaching. Quotations are verbatim from the cited local files (OCR ligatures repaired); The Remedy is Jennings' expanded paraphrase. Items marked page-authored are summaries, prompts or extrapolations, not quotations.</p>
+</div>
+
+<!-- @data -->
+<!-- @kit.js -->
+<script>
+(function(){
+  'use strict';
+  const D = window.PAGE_DATA || {};
+  const { el, quote, sourceChip, caveat, store, nodata } = KC;
+  const stripMd = s => String(s).replace(/\*\*([^*]+)\*\*/g, '$1').replace(/(^|[\s(“"'])\*([^*\n]+)\*(?=[\s).,;:!?”"']|$)/g, '$1$2').replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g, '$1');
+  const txt = x => x == null ? '' : stripMd(typeof x === 'string' ? x : (x.text || ''));
+  const J = o => o && txt(o) ? quote(txt(o), { voice: 'jennings', ref: o.speaker && !/jennings/i.test(o.speaker) ? o.speaker : null, source: o.source }) : null;
+  const Q = o => o && txt(o) ? quote(txt(o), { ref: o.ref, version: o.version, verify: o.verify, source: o.source, voice: 'scripture' }) : null;
+  const R = (o, ref) => { const t = txt(o && o.remedy !== undefined ? o.remedy : o); return t ? quote(t, { voice: 'remedy', ref: ref || (o && o.ref) }) : null; };
+  const PA = note => el('span', { class: 'tag hard', title: note || 'Written for this page, not a quotation' }, 'page-authored');
+  const sec = id => document.getElementById(id);
+  const fill = (id, fn) => { const node = sec(id); if (!node) return; try { fn(node); } catch (e) { node.append(el('p', { class: 'nodata' }, 'This section could not render: ' + e.message)); console.error(id, e); } };
+  const levels = D.levels || [];
+  const levelByN = n => levels.find(l => String(l.n) === String(n)) || { n, name: 'Level ' + n, short: 'Level ' + n };
+  const badge = n => el('span', { class: 'lvl-badge l' + n }, n);
+  const scriptureCard = s => el('div', { class: 'vcard' }, el('div', { class: 'vref' }, s.ref), s.traditional && s.traditional.text ? Q({ text: s.traditional.text, ref: s.ref, version: s.traditional.version, verify: s.traditional.verify, source: s.traditional.source }) : null, s.remedy && s.remedy.text ? R(s.remedy, s.remedy.ref || s.ref) : KC.missingBadge(s.remedy_note), s.why ? el('p', { class: 'small' }, txt(s.why), s.page_authored_why ? ' ' : null, s.page_authored_why ? PA() : null) : null);
+
+  if (D.meta && D.meta.subtitle) sec('subtitle').textContent = txt(D.meta.subtitle);
+
+  /* page tabs */
+  (function(){
+    const key = 'cr-seven-reasons-tab';
+    const btns = [...document.querySelectorAll('#ptabs button')];
+    const show = t => { btns.forEach(b => b.classList.toggle('on', b.dataset.tab === t)); document.querySelectorAll('.ptab').forEach(p => p.classList.toggle('on', p.id === 'tab-' + t)); sec('toc').style.display = t === 'reasons' ? '' : 'none'; store.set(key, t); };
+    btns.forEach(b => b.addEventListener('click', () => { show(b.dataset.tab); window.scrollTo({ top: sec('tab-' + b.dataset.tab).offsetTop - 20, behavior: 'smooth' }); }));
+    show(location.hash === '#roads' ? 'roads' : store.get(key, 'reasons'));
+    document.querySelectorAll('#toc a').forEach(a => a.addEventListener('click', () => show('reasons')));
+  })();
+
+  /* 1. Intro */
+  fill('intro', n => {
+    const I = D.intro; if (!I) { n.append(nodata()); return; }
+    n.append(J(I.toothbrush_lead), J(I.notice), el('h3', {}, 'Or take a harder case'), J(I.eric_hook), I.god_speaks_to_each_level ? el('details', { class: 'acc' }, el('summary', {}, 'Why God speaks to each level differently'), el('div', { class: 'body' }, J(I.god_speaks_to_each_level))) : null);
+  });
+
+  /* 2. Scenario explorer */
+  fill('scenario', n => {
+    const S = D.scenarios || []; if (!S.length || !levels.length) { n.append(nodata()); return; }
+    const LS = D.level_scripture || {};
+    const chips = el('div', { class: 'scen-chips' });
+    const setup = el('div');
+    const stepperBox = el('div');
+    const main = el('div', { class: 'why' });
+    const rail = el('div', { class: 'rail' });
+    const below = el('div');
+    const ladderBox = el('div');
+    let cur = S[0], lvl = 1, showAll = false;
+    const shiftNote = () => {
+      if (lvl !== 4 && lvl !== 5) return null;
+      const q = (D.divider && D.divider.quotes && D.divider.quotes[0]) || null;
+      return el('div', { class: 'shift' }, el('b', {}, lvl === 4 ? 'You are standing just below the shift. ' : 'You have crossed the shift. '), 'Levels 1 to 4 hear law as imposed and need oversight; levels 5 to 7 hear it as design and can be trusted. ', el('a', { href: '#s3' }, 'Why Jennings draws the line here'), q ? el('div', { class: 'small', style: 'margin-top:6px' }, '“' + txt(q) + '”') : null);
+    };
+    const paintMain = () => {
+      const L = (cur.levels || {})[String(lvl)] || {};
+      const lv = levelByN(lvl);
+      main.innerHTML = '';
+      const t = el('p', { class: 'why-text fade' }, txt(L.text) || 'No text for this level yet.');
+      main.append(el('div', { class: 'why-head' }, badge(lvl), el('b', {}, lv.name), L.theory ? el('span', { class: 'tag remedy' }, L.theory) : null, L.page_authored ? PA(cur.caveat) : el('span', { class: 'tag jennings' }, 'Jennings, verbatim')), el('div', { class: 'small' }, cur.question || ''), t, sourceChip(L.source), shiftNote());
+      requestAnimationFrame(() => t.classList.remove('fade'));
+    };
+    const paintRail = () => {
+      const lv = levelByN(lvl);
+      rail.innerHTML = '';
+      rail.append(el('h4', {}, 'Level ' + lvl + ' · ' + lv.name), el('div', {}, el('span', { class: 'trust ' + (lv.trust === 'trustworthy' ? 'ok' : 'needs') }, lv.trust === 'trustworthy' ? 'can be trusted' : 'needs oversight'), ' ', el('span', { class: 'tag ' + (lv.law_heard_as === 'design' ? 'design' : 'imposed') }, lv.law_heard_as === 'design' ? 'hears design law' : 'hears imposed law')));
+      if (lv.definition) rail.append(J(lv.definition));
+      if (lv.israel) rail.append(el('h4', {}, 'Israel at this level'), J(lv.israel));
+      (lv.extra || []).forEach(x => rail.append(J(x)));
+      const sc = LS[String(lvl)] || [];
+      if (sc.length) { rail.append(el('h4', {}, 'Texts that belong here')); sc.forEach(s => rail.append(scriptureCard(s))); }
+    };
+    const paintBelow = () => {
+      below.innerHTML = '';
+      (cur.afterword || []).forEach(q => below.append(J(q)));
+      if ((cur.reflection_questions || []).length) below.append(el('h3', {}, cur.kind === 'dilemma' ? 'Jennings asks' : 'Questions'), el('ul', { class: 'kp' }, ...cur.reflection_questions.map(q => el('li', {}, txt(q)))));
+      if ((cur.jennings_verdict || []).length) below.append(el('details', { class: 'acc' }, el('summary', {}, 'What Jennings himself says about the officials'), el('div', { class: 'body' }, ...cur.jennings_verdict.map(J))));
+      if (cur.caveat) below.append(caveat(txt(cur.caveat)));
+    };
+    const paintLadder = () => {
+      ladderBox.innerHTML = '';
+      if (!showAll) return;
+      const lad = el('div', { class: 'ladder' });
+      for (let i = 1; i <= 7; i++) {
+        if (i === 5) lad.append(el('div', { class: 'gap' }, '— imposed law above · design law below —'));
+        const L = (cur.levels || {})[String(i)] || {};
+        lad.append(el('div', { class: 'rung ' + (i <= 4 ? 'lo' : 'hi') }, badge(i), el('div', {}, el('div', { class: 'nm' }, levelByN(i).name, L.theory ? ' · ' + L.theory : ''), el('div', { class: 'tx' }, txt(L.text)))));
+      }
+      ladderBox.append(lad);
+    };
+    const paintAll = () => { paintMain(); paintRail(); paintBelow(); paintLadder(); };
+    const pickScenario = s => {
+      cur = s; store.set('cr-seven-reasons-scenario', s.id);
+      chips.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c.dataset.id === s.id));
+      setup.innerHTML = '';
+      if (s.setup) setup.append(J(s.setup));
+      paintAll();
+    };
+    S.forEach(s => chips.append(el('button', { class: 'chip', 'data-id': s.id, onclick: () => pickScenario(s) }, s.title)));
+    const rows = levels.map(l => ({ n: l.n, name: l.short || l.name }));
+    const saved = store.get('cr-seven-reasons-level', 1);
+    KC.renderStepper(stepperBox, rows, r => { lvl = r.n; store.set('cr-seven-reasons-level', lvl); paintMain(); paintRail(); }, rows.some(r => r.n === saved) ? saved : 1);
+    const allBtn = el('button', { class: 'btn ghost sm', onclick: () => { showAll = !showAll; allBtn.textContent = showAll ? 'Hide the ladder' : 'Show all seven at once'; paintLadder(); } }, 'Show all seven at once');
+    n.append(chips, setup, stepperBox, el('div', { class: 'scen-grid' }, main, rail), el('div', { class: 'row', style: 'margin:12px 0 4px' }, allBtn), ladderBox, below);
+    const savedId = store.get('cr-seven-reasons-scenario', S[0].id);
+    pickScenario(S.find(s => s.id === savedId) || S[0]);
+  });
+
+  /* 3. Divider */
+  fill('divider', n => {
+    const V = D.divider; if (!V || !(V.quotes || []).length) { n.append(nodata()); return; }
+    if (V.title) n.append(el('p', { class: 'lead' }, txt(V.title), ' ', PA()));
+    V.quotes.forEach(q => n.append(J(q)));
+  });
+
+  /* 4. Atonement */
+  fill('atonement', n => {
+    const A = D.atonement; if (!A || !(A.theories || []).length) { n.append(nodata()); return; }
+    if (A.intro) n.append(J(A.intro));
+    const wrap = el('div');
+    const toggle = el('button', { class: 'btn ghost sm', onclick: () => { wrap.classList.toggle('lens7-all'); toggle.textContent = wrap.classList.contains('lens7-all') ? 'Hide the level-seven re-readings' : 'Re-read all seven through the level-seven lens'; } }, 'Re-read all seven through the level-seven lens');
+    A.theories.forEach(t => {
+      const card = el('div', { class: 'theory' });
+      const btn = el('button', { class: 'btn ghost sm', onclick: () => card.classList.toggle('open') }, 'Read it at level 7');
+      card.append(el('div', { class: 'th' }, badge(t.n), el('b', {}, t.theory), el('span', { class: 'nm' }, 'level ' + t.n + ' · ' + (t.level || levelByN(t.n).name))),
+        t.gsh ? J(t.gsh) : null,
+        t.handout ? el('details', { class: 'acc' }, el('summary', {}, 'The handout\'s wording'), el('div', { class: 'body' }, J(t.handout))) : null,
+        t.level7_rereading ? el('div', {}, btn, el('div', { class: 'lens7' }, el('div', { class: 'lens-panel design' }, el('span', { class: 'tag design' }, 'through the level-seven lens'), J(t.level7_rereading)))) : null,
+        (t.scripture || []).length ? el('div', { class: 'inline-ref' }, 'Texts: ' + t.scripture.join(' · ')) : null);
+      wrap.append(card);
+    });
+    n.append(el('div', { class: 'row', style: 'margin:10px 0' }, toggle), wrap);
+    if ((A.level_seven_includes || []).length) n.append(el('h3', {}, 'Level seven keeps five and six'), ...A.level_seven_includes.map(J));
+    if ((A.unity || []).length) n.append(el('h3', {}, 'At-one-ment'), ...A.unity.map(J));
+    n.append(el('p', { class: 'small' }, 'The healing-model page (Sin Is a Disease / Atonement Prism) will pick this bridge up; the theory names here are the handout\'s.'));
+  });
+
+  /* 5. Exertion */
+  fill('exertion', n => {
+    const X = D.exertion; if (!X) { n.append(nodata()); return; }
+    [X.intro, X.law].forEach(q => n.append(J(q)));
+    if ((X.talents || []).length) n.append(el('h3', {}, 'The parable of the talents'), ...X.talents.map(J));
+    if (X.neuro) n.append(J(X.neuro));
+    n.append(el('h3', {}, 'Why the ladder has no lift'), J(X.cannot_skip), J(X.danger), J(X.one_level_up));
+    if (X.aunt_sandy) n.append(el('details', { class: 'acc' }, el('summary', {}, 'Two kinds of untrustworthiness: the thief and the seven-year-old'), el('div', { class: 'body' }, J(X.aunt_sandy))));
+    if ((X.verses || []).length) n.append(el('details', { class: 'acc' }, el('summary', {}, 'The texts (' + X.verses.length + ')'), el('div', { class: 'body' }, ...X.verses.map(scriptureCard))));
+    if ((X.key_points || []).length) n.append(el('h3', {}, 'Key points from the chapter'), el('ul', { class: 'kp' }, ...X.key_points.map(k => el('li', {}, txt(k)))));
+  });
+
+  /* 6. Powers */
+  fill('powers', n => {
+    const P = D.powers; if (!P || !(P.kinds || []).length) { n.append(nodata()); return; }
+    if (P.intro) n.append(J(P.intro));
+    const grid = el('div', { class: 'powers' });
+    P.kinds.forEach(k => {
+      const dots = el('div', { class: 'dots' });
+      for (let i = 1; i <= 7; i++) dots.append(el('span', { class: 'l' + i + ((k.levels || []).includes(i) ? ' on' : ''), title: 'level ' + i }, i));
+      grid.append(el('div', { class: 'power' }, el('h3', {}, k.name), dots, k.levels ? null : el('div', { class: 'small' }, txt(k.levels_note || 'Jennings assigns no level to this power.'), k.levels_note ? ' ' : null, k.levels_note ? PA() : null), J(k.definition), k.levels_quote ? J(k.levels_quote) : null, (k.breaks || []).length ? el('div', {}, el('div', { class: 'small' }, 'What breaks it:'), el('ul', { class: 'breaks' }, ...k.breaks.map(b => el('li', {}, txt(b)))), k.breaks_quote ? J(k.breaks_quote) : null) : (k.unbreakable ? el('div', { class: 'small', style: 'color:var(--good)' }, 'Nothing breaks it.') : null), (k.cascade || []).length ? el('details', { class: 'acc' }, el('summary', {}, 'The cascade of destruction when a lie is believed'), el('div', { class: 'body' }, el('ul', { class: 'breaks' }, ...k.cascade.map(b => el('li', {}, txt(b)))), sourceChip(k.cascade_source), el('p', { class: 'small' }, 'The full chain is the subject of ', el('a', { href: 'dominoes.html' }, 'The Falling Dominoes'), '.'))) : null, ...(k.more || []).map(J)));
+    });
+    n.append(grid);
+    if (P.sovereignty) n.append(J(P.sovereignty));
+  });
+
+  /* 7. Reflection */
+  fill('reflection', n => {
+    const Rf = D.reflection; if (!Rf) { n.append(nodata()); return; }
+    if (Rf.intro) n.append(el('p', { class: 'lead' }, txt(Rf.intro), ' ', PA()));
+    if (Rf.poll && (Rf.poll.options || []).length) { const pb = el('div'); KC.renderPoll(pb, { key: 'cr-seven-reasons-poll', question: Rf.poll.question, options: Rf.poll.options, thanks: 'Remembered in this browser only.' }); n.append(pb); }
+    (Rf.guidance || []).forEach(g => n.append(J(g)));
+    (Rf.prompts || []).forEach((p, i) => n.append(el('div', {}, el('p', { class: 'lead', style: 'margin-bottom:4px' }, (i + 1) + '. ' + txt(p)), KC.journal('cr-seven-reasons-prompt-' + i))));
+    n.append(el('p', { class: 'small' }, 'Your notes stay in this browser only. The prompts are page-authored; the guidance above is Jennings.'));
+  });
+
+  /* Roads tab */
+  fill('roads', n => {
+    const Rd = D.roads; if (!Rd || !(Rd.walks || []).length) { n.append(nodata()); return; }
+    if (Rd.frame_caveat) n.append(caveat(txt(Rd.frame_caveat)));
+    if (Rd.intro) n.append(J(Rd.intro));
+    const key = 'cr-seven-reasons-road';
+    const grid = el('div', { class: 'roads' });
+    const paint = () => { const mine = store.get(key, null); grid.querySelectorAll('.road').forEach(c => c.classList.toggle('mine', c.dataset.id === mine)); grid.querySelectorAll('.road .pick').forEach(b => b.textContent = b.dataset.id === mine ? 'This is my road today ✓' : 'This is my road today'); };
+    Rd.walks.forEach(w => {
+      const pick = el('button', { class: 'btn ghost sm pick', 'data-id': w.id, onclick: () => { store.set(key, store.get(key, null) === w.id ? null : w.id); paint(); } }, 'This is my road today');
+      grid.append(el('div', { class: 'road', 'data-id': w.id }, el('h3', {}, w.title), el('div', { class: 'small' }, 'Part ' + (w.part || '')), w.summary ? el('p', { class: 'sum' }, txt(w.summary), ' ', PA()) : null, J(w.quote), ...(w.scripture || []).map(s => el('details', { class: 'acc' }, el('summary', {}, s.ref), el('div', { class: 'body' }, s.traditional && s.traditional.text ? Q({ text: s.traditional.text, ref: s.ref, version: s.traditional.version, verify: s.traditional.verify }) : null, s.remedy && s.remedy.text ? R(s.remedy, s.ref) : KC.missingBadge(s.remedy_note)))), w.self_check ? el('div', { class: 'ask' }, txt(w.self_check)) : null, el('div', { class: 'foot' }, pick, ' ', sourceChip(w.source))));
+    });
+    n.append(grid); paint();
+    n.append(el('p', { class: 'small' }, 'Your pick stays in this browser only. The one-line summaries and self-check questions are page-authored; the quoted descriptions are from the two blog posts.'));
+  });
+
+  fill('glossary', n => KC.renderAccordion(n, D.glossary || [], { body: it => el('div', {}, txt(it.meaning), it.page_authored_meaning ? ' ' : null, it.page_authored_meaning ? PA() : null, it.quote ? quote(txt(it.quote), { voice: 'jennings', source: it.source }) : sourceChip(it.source)) }));
+  fill('sourceList', n => { const s = D.sources; if (!s || !s.length) { n.append(nodata()); return; } n.append(el('ul', {}, ...s.map(x => el('li', {}, x.label || x.id, ' ', sourceChip(x))))); });
+})();
+</script>
+</body>
+</html>

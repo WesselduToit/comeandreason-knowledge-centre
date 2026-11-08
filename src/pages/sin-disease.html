@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sin Is a Disease: symptom or condition?</title>
+<!-- @kit.css -->
+<style>
+  .ptabs{display:flex;gap:8px;justify-content:center;margin:18px 0 0;flex-wrap:wrap}
+  .ptabs button{font:inherit;font-size:14px;font-weight:700;padding:10px 18px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--muted);cursor:pointer}
+  .ptabs button.on{background:var(--accent);color:#10161d;border-color:transparent}
+  .ptab{display:none}.ptab.on{display:block}
+  /* dialogue player */
+  .dlg{border:1px solid var(--line);border-radius:var(--radius);background:var(--card2);padding:14px;max-height:520px;overflow:auto}
+  .turn{display:flex;gap:10px;margin:8px 0;opacity:0;transform:translateY(6px);transition:.35s}
+  .turn.show{opacity:1;transform:none}
+  .turn .who{flex:0 0 72px;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding-top:6px;color:var(--faint)}
+  .turn.j .who{color:var(--accent)}.turn.s .who{color:#7fb0e0}.turn.n .who{color:var(--faint)}
+  .turn.n .bub{font-style:italic;color:var(--muted);border-style:dashed}
+  .turn .bub{flex:1;padding:9px 12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:15px;line-height:1.5}
+  .turn.j .bub{border-left:3px solid var(--accent)}.turn.s .bub{border-left:3px solid #7fb0e0}
+  .dlg-ctrl{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0 4px}
+  /* clinic chart */
+  .chart{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+  .chart .col{border:1px solid var(--line);border-radius:var(--radius);padding:12px;background:var(--card2)}
+  .chart .col h4{margin:0 0 6px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+  .chart .col.imp{border-top:3px solid var(--bad)}.chart .col.des{border-top:3px solid var(--accent)}
+  /* polls */
+  .polls{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+  .poll{border:1px solid var(--line);border-radius:var(--radius);padding:14px;background:var(--card2)}
+  .poll .after{display:none;margin-top:8px}.poll.done .after{display:block}
+  /* metaphor + caution cards */
+  .cardgrid{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+  .lesson{font-size:14px;color:var(--ink);background:rgba(224,177,94,.08);border-left:3px solid var(--accent);border-radius:8px;padding:8px 10px;margin:8px 0}
+  /* branch tree */
+  .branch{border:1px solid var(--line);border-radius:var(--radius);padding:16px;background:var(--card2)}
+  .branch .path{font-size:12.5px;color:var(--faint);margin-bottom:8px}
+  .cap{margin:8px 0;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card2)}
+  /* matrix */
+  .matrix{display:grid;grid-template-columns:110px 1fr 1fr;gap:6px;margin:12px 0;align-items:stretch}
+  .matrix .hd{font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);display:flex;align-items:center;justify-content:center;text-align:center;padding:6px}
+  .matrix .cell{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--card2);cursor:pointer;font-size:14px;font-weight:700;color:var(--ink);min-height:70px;display:flex;align-items:center;justify-content:center;text-align:center}
+  .matrix .cell:hover{border-color:var(--accent2)}
+  .matrix .cell.on{background:var(--accent);color:#10161d;border-color:transparent}
+  .matrix .cell.both{box-shadow:0 0 0 1px var(--accent) inset}
+  @media(max-width:560px){.matrix{grid-template-columns:70px 1fr 1fr}.matrix .cell{font-size:12.5px;padding:8px;min-height:56px}.chart{grid-template-columns:1fr}}
+  /* prism */
+  .prism{display:flex;gap:3px;margin:14px 0 4px;border-radius:12px;overflow:hidden;flex-wrap:wrap}
+  .band{flex:1 1 60px;min-width:60px;height:46px;border:0;cursor:pointer;font:inherit;font-size:11px;font-weight:800;color:#10161d;opacity:.55;transition:.2s;display:flex;align-items:flex-end;justify-content:center;padding:4px 2px;line-height:1.1;text-align:center}
+  .band:hover{opacity:.85}.band.on{opacity:1;transform:translateY(-3px);box-shadow:0 6px 14px rgba(0,0,0,.4)}
+  .band.theory{height:38px;border-top:3px dashed rgba(0,0,0,.35)}
+  .bandbox{border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-top:10px;background:var(--card2);border-top-width:5px}
+  .bandbox h3{margin:0 0 6px;font-size:22px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+  .two .pane{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:rgba(255,255,255,.02);font-size:14px}
+  .two .pane.imp{border-top:3px solid var(--bad)}.two .pane.des{border-top:3px solid var(--accent)}
+  body[data-lens="imposed"] .two .pane.des,body[data-lens="design"] .two .pane.imp{opacity:.45}
+  @media(max-width:560px){.two{grid-template-columns:1fr}}
+  .legend{font-size:12.5px;color:var(--faint);margin:4px 0 10px}
+  /* three questions */
+  .steps3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:12px 0}
+  .step3{border:1px solid var(--line);border-radius:var(--radius);padding:14px;background:var(--card2)}
+  .step3 h3{margin:0 0 8px;font-size:18px}
+  .step3 .ans{border-radius:10px;padding:8px 10px;font-size:14px;margin:6px 0}
+  .step3 .ans.imp{background:rgba(217,115,106,.1);border-left:3px solid var(--bad)}
+  .step3 .ans.des{background:rgba(224,177,94,.1);border-left:3px solid var(--accent)}
+  /* seven-level ladder */
+  .ladder .theory{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;background:var(--card2)}
+  .ladder .theory h4{margin:0 0 4px;font-size:16px}
+  .ladder .lens7{display:none;margin-top:8px}.ladder .theory.open .lens7{display:block}
+  .lvl-badge{display:inline-flex;width:24px;height:24px;border-radius:50%;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#10161d;background:var(--accent);margin-right:8px}
+  /* infinite cards */
+  .inf{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:12px 0}
+  .inf .card.sub h3{margin-top:0;font-size:17px}
+  .contents li{margin:3px 0;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">An Interactive Study · Come and Reason Knowledge Centre</div>
+    <h1>Sin Is a Disease</h1>
+    <p class="sub" id="subtitle">Symptom or condition? A fifteen-year-old patient, a doctor who does not punish, and the question that re-reads the whole plan of salvation: is the problem sin in us, or wrath in God? Then the Atonement Prism: every metaphor and theory of the cross, read under both laws.</p>
+    <p class="credit"><a href="index.html">&larr; Knowledge Centre</a> &middot; Teaching of Timothy R. Jennings, MD · <a href="https://comeandreason.com" target="_blank" rel="noopener">Come and Reason Ministries</a> · see also <a href="seven-reasons.html">Same Act, Seven Reasons</a>, <a href="two-lenses.html">Two Lenses</a>, <a href="dominoes.html">The Falling Dominoes</a>, <a href="fire.html">The Consuming Fire</a>, <a href="seven-levels.html">The Seven Levels</a> and <a href="wrath.html">Wrath = Letting Go</a></p>
+    <div class="ptabs" id="ptabs">
+      <button data-tab="clinic" class="on">The clinic</button>
+      <button data-tab="prism">The Atonement Prism</button>
+      <button data-tab="texts">Texts, objections, glossary</button>
+    </div>
+    <div class="toc" id="toc">
+      <a href="#s1" data-tab="clinic">Savannah's question</a><a href="#s2" data-tab="clinic">Symptom or condition?</a><a href="#s3" data-tab="clinic">Three quick questions</a><a href="#s4" data-tab="clinic">Sin in us, or wrath in God?</a><a href="#s5" data-tab="clinic">A doctor's metaphors</a><a href="#s6" data-tab="clinic">What does the patient need?</a><a href="#s7" data-tab="clinic">Two cautions, one medicine</a>
+      <a href="#p1" data-tab="prism">The prism</a><a href="#p2" data-tab="prism">What changed in Eden?</a><a href="#p3" data-tab="prism">Seven levels, seven theories</a><a href="#p4" data-tab="prism">Myth-buster</a><a href="#p5" data-tab="prism">The infinite sacrifice</a>
+      <a href="#t1" data-tab="texts">The texts</a><a href="#t2" data-tab="texts">Objections desk</a><a href="#sources" data-tab="texts">Glossary and sources</a>
+    </div>
+  </header>
+
+  <div class="ptab on" id="tab-clinic">
+    <section id="s1"><div class="card"><h2><span class="num">1</span>Savannah's question: what is sin?</h2><p class="lead">A psychiatrist's consulting room, a frightened fifteen-year-old, and a conversation that starts with "doing bad stuff". Play it one turn at a time.</p><div id="dialogue"></div></div></section>
+    <section id="s2"><div class="card"><h2><span class="num">2</span>Symptom or condition?</h2><p class="lead">Cough, fever and chills are not the disease. Jennings says lust, anger and adultery are not the disease either. Sort each item where he would put it.</p><div id="sorter"></div></div></section>
+    <section id="s3"><div class="card"><h2><span class="num">3</span>Three quick questions from the consulting room</h2><div id="polls"></div></div></section>
+    <section id="s4"><div class="card"><h2><span class="num">4</span>Is the problem sin in us, or wrath in God?</h2><p class="lead">One axiom decides everything downstream. Read it through each lens.</p><div id="axiom"></div></div></section>
+    <section id="s5"><div class="card"><h2><span class="num">5</span>A doctor's metaphors</h2><p class="lead">Jennings argues from the ward: cystic fibrosis, a delayed cancer diagnosis, a leukaemia cured by a sister's marrow, an infected heart and a man who would rather drink than live. Pick a card.</p><div id="metaphors"></div></div></section>
+    <section id="s6"><div class="card"><h2><span class="num">6</span>What does the patient need?</h2><div id="patient"></div></div></section>
+    <section id="s7"><div class="card"><h2><span class="num">7</span>Two cautions, and the brand-name medicine</h2><div id="cautions"></div></div></section>
+  </div>
+
+  <div class="ptab" id="tab-prism">
+    <section id="p1"><div class="card"><h2><span class="num">8</span>The Atonement Prism</h2><p class="lead">Ransom, adoption, reconciliation, sacrifice, substitution, debt, advocate, remission: Jennings says the metaphors are colours split from one white light. Choose a band, then switch the lens and watch the same band change meaning.</p><div id="lensbar"></div><div id="prism"></div></div></section>
+    <section id="p2"><div class="card"><h2><span class="num">9</span>What changed when Adam sinned?</h2><p class="lead">Three questions decide which atonement you need: did God change, did the law change, did humans change?</p><div id="tree3"></div></div></section>
+    <section id="p3"><div class="card"><h2><span class="num">10</span>Seven levels, seven theories</h2><p class="lead">Reused from the companion page <a href="seven-reasons.html">Same Act, Seven Reasons</a>: why Jesus had to die, as each level of moral development explains it, with Jennings' level-seven re-reading.</p><div id="ladder"></div></div></section>
+    <section id="p4"><div class="card"><h2><span class="num">11</span>Myth-buster: what the healing model does not say</h2><div id="myths"></div></div></section>
+    <section id="p5"><div class="card"><h2><span class="num">12</span>The infinite sacrifice</h2><div id="infinite"></div></div></section>
+  </div>
+
+  <div class="ptab" id="tab-texts">
+    <section id="t1"><div class="card"><h2><span class="num">13</span>The texts, two readings each</h2><div id="lensbar2"></div><div id="verses"></div></div></section>
+    <section id="t2"><div class="card"><h2><span class="num">14</span>Objections desk</h2><p class="lead">The strongest objections to "sin is a disease", Jennings' own answers, and a space for yours.</p><div id="objections"></div></div></section>
+    <section id="sources"><div class="card"><h2>Glossary and sources</h2><div id="glossary"></div><h3>Sources used on this page</h3><div id="sourceList"></div></div></section>
+  </div>
+
+  <p class="footnote">Built as a study companion for Dr Timothy R. Jennings' teaching. Quotations are verbatim from the cited local files (OCR spelling left as printed); The Remedy is Jennings' expanded paraphrase. Items marked page-authored are summaries, prompts or choice labels, not quotations. Contested readings carry a ⚠ caveat.</p>
+</div>
+
+<!-- @data -->
+<!-- @kit.js -->
+<script>
+(function(){
+  'use strict';
+  const D = window.PAGE_DATA || {};
+  const { el, quote, sourceChip, caveat, store, nodata } = KC;
+  const stripMd = s => String(s).replace(/\*\*([^*]+)\*\*/g, '$1').replace(/(^|[\s(“"'])\*([^*\n]+)\*(?=[\s).,;:!?”"']|$)/g, '$1$2').replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g, '$1').replace(/^>\s?/gm, '');
+  const txt = x => x == null ? '' : stripMd(typeof x === 'string' ? x : (x.text || ''));
+  const voiceOf = o => { const s = (o && o.speaker) || ''; return /white/i.test(s) ? 'egw' : /cole/i.test(s) ? 'cole' : /scripture|bible|niv|nkjv|kjv/i.test(s) ? 'scripture' : /listener|reader|email|question|chatgpt|lewis|commentator|savannah|greg|jesse|patient/i.test(s) ? 'scripture' : 'jennings'; };
+  const J0 = o => o && txt(o) ? quote(txt(o), { voice: voiceOf(o), ref: o.speaker && !/^jennings$/i.test(o.speaker) ? o.speaker : null, version: o.version, source: o.source }) : null;
+  /* quotation plus its page-authored note / OCR note / caveat, when present */
+  const J = o => { const q = J0(o); if (!q) return null; const extras = []; const nt = o.note || o.ocr_note; if (nt && txt(nt)) extras.push(el('p', { class: 'small' }, txt(nt), ' ', PA())); if (o.caveat) extras.push(caveat(txt(o.caveat))); return extras.length ? el('div', {}, q, ...extras) : q; };
+  const RV = list => (list || []).map(s => s && s.remedy && s.remedy.text ? R(s.remedy, s.ref) : null);
+  const Q = (o, voice) => o && txt(o) ? quote(txt(o), { ref: o.ref, version: o.version, verify: o.verify, source: o.source, voice: voice || 'scripture' }) : null;
+  const R = (o, ref) => { const t = txt(o && o.remedy !== undefined ? o.remedy : o); if (!t) return null; const r = o && o.remedy !== undefined ? o.remedy : o; const rr = ref || (r && r.book ? `${r.book.replace(/^(\d)([A-Z])/, '$1 $2')} ${r.chapter}:${r.verses || r.verse}` : (o && o.ref)); return quote(t, { voice: 'remedy', ref: rr }); };
+  const PA = note => el('span', { class: 'tag hard', title: note || 'Written for this page, not a quotation' }, 'page-authored');
+  const sec = id => document.getElementById(id);
+  const fill = (id, fn) => { const node = sec(id); if (!node) return; try { fn(node); } catch (e) { node.append(el('p', { class: 'nodata' }, 'This section could not render: ' + e.message)); console.error(id, e); } };
+  const acc = (title, ...kids) => el('details', { class: 'acc' }, el('summary', {}, title), el('div', { class: 'body' }, ...kids));
+  const K = 'cr-sin-disease-';
+
+  if (D.meta && D.meta.subtitle) sec('subtitle').textContent = txt(D.meta.subtitle);
+
+  /* page tabs */
+  const showTab = (function(){
+    const btns = [...document.querySelectorAll('#ptabs button')];
+    const show = t => { btns.forEach(b => b.classList.toggle('on', b.dataset.tab === t)); document.querySelectorAll('.ptab').forEach(p => p.classList.toggle('on', p.id === 'tab-' + t)); document.querySelectorAll('#toc a').forEach(a => a.style.display = a.dataset.tab === t ? '' : 'none'); store.set(K + 'tab', t); };
+    btns.forEach(b => b.addEventListener('click', () => { show(b.dataset.tab); window.scrollTo({ top: sec('tab-' + b.dataset.tab).offsetTop - 20, behavior: 'smooth' }); }));
+    const byHash = h => { const a = document.querySelector(`#toc a[href="${h}"]`); return a ? a.dataset.tab : null; };
+    show(byHash(location.hash) || store.get(K + 'tab', 'clinic'));
+    document.querySelectorAll('#toc a').forEach(a => a.addEventListener('click', () => show(a.dataset.tab)));
+    window.addEventListener('hashchange', () => { const t = byHash(location.hash); if (t) show(t); });
+    return show;
+  })();
+
+  const C = D.clinic || {};
+  const P = D.patient || {};
+  const PR = D.prism || {};
+
+  /* 1. Dialogue */
+  fill('dialogue', n => {
+    const T = C.dialogue || []; if (!T.length) { n.append(nodata()); return; }
+    if (C.opening) n.append(J(C.opening));
+    const box = el('div', { class: 'dlg' });
+    if (C.dialogue_note) n.append(el('p', { class: 'small' }, txt(C.dialogue_note), ' ', PA()));
+    const turns = T.map(t => { const who = t.narration ? 'n' : /savannah/i.test(t.who || t.speaker) ? 's' : 'j'; return el('div', { class: 'turn ' + who }, el('div', { class: 'who' }, who === 's' ? 'Savannah' : who === 'n' ? 'narration' : 'Jennings'), el('div', { class: 'bub' }, txt(t), t.ocr_note ? el('div', { class: 'small' }, txt(t.ocr_note), ' ', PA()) : null)); });
+    let i = 0;
+    const status = el('p', { class: 'small center' }, `Turn 0 of ${turns.length}`);
+    const next = () => { if (i >= turns.length) return; const t = turns[i++]; box.append(t); setTimeout(() => t.classList.add('show'), 20); box.scrollTop = box.scrollHeight; status.textContent = `Turn ${i} of ${turns.length}` + (i === turns.length ? ' · the end of the exchange' : ''); };
+    const all = () => { while (i < turns.length) next(); };
+    const reset = () => { box.innerHTML = ''; i = 0; status.textContent = `Turn 0 of ${turns.length}`; };
+    n.append(box, el('div', { class: 'dlg-ctrl' }, el('button', { class: 'btn', onclick: next }, 'Next turn'), el('button', { class: 'btn ghost', onclick: all }, 'Play the whole exchange'), el('button', { class: 'btn ghost sm', onclick: reset }, 'Reset')), status);
+    const src = T[0] && T[0].source; if (src) n.append(el('p', { class: 'small' }, 'Every turn is verbatim from ', sourceChip(src), T[T.length - 1] && T[T.length - 1].source && T[T.length - 1].source.locator ? ' through ' + T[T.length - 1].source.locator : ''));
+    next(); next();
+    if (C.matthew5 || C.misdiagnosis) n.append(el('h3', {}, 'The diagnosis Jesus gave'), J(C.matthew5), J(C.misdiagnosis), J(C.pardon_not_enough));
+    if (C.gsh_acts_vs_heart) n.append(acc('The same point in The God-Shaped Heart', J(C.gsh_acts_vs_heart)));
+  });
+
+  /* 2. Sorter */
+  fill('sorter', n => {
+    const S = C.sorter; if (!S || !S.items || !S.items.length) { n.append(nodata()); return; }
+    const box = el('div');
+    const done = el('div');
+    KC.renderSortBins(box, { hint: S.hint, bins: S.bins, items: S.items.map(it => ({ label: it.label, answer: it.answer, feedback: it.feedback, note: it.feedback })), onDone: () => { done.innerHTML = ''; done.append(el('p', { class: 'lead', style: 'color:var(--ink)' }, 'All sorted. Now the sentence the whole page turns on:'), J(C.wrong_diagnosis)); } });
+    n.append(box, done, el('p', { class: 'small' }, 'Bin labels and feedback lines are page-authored; the placement follows the dialogue above. ', PA()));
+    if (C.born_terminal || C.symptoms_matter) n.append(el('h3', {}, 'Not your fault, still fatal, and the symptoms still matter'), J(C.born_terminal), J(C.symptoms_matter));
+    if (!done.childNodes.length && C.wrong_diagnosis) n.append(acc('Skip ahead: the sentence the page turns on', J(C.wrong_diagnosis)));
+  });
+
+  /* 3. Polls */
+  fill('polls', n => {
+    const PL = C.polls || []; if (!PL.length) { n.append(nodata()); return; }
+    const grid = el('div', { class: 'polls' });
+    PL.forEach(p => {
+      const card = el('div', { class: 'poll' });
+      const turn = t => t && txt(t) ? el('div', { class: 'turn show ' + (/savannah/i.test(t.who || t.speaker) ? 's' : 'j') }, el('div', { class: 'who' }, /savannah/i.test(t.who || t.speaker) ? 'Savannah' : 'Jennings'), el('div', { class: 'bub' }, txt(t), t.ocr_note ? el('div', { class: 'small' }, txt(t.ocr_note), ' ', PA()) : null)) : null;
+      const lead = (p.lead_in || []).map(turn);
+      const after = el('div', { class: 'after' }, ...lead, J(p.jennings), J(p.savannah), (p.followup || []).length ? acc('How the conversation went on', ...p.followup.map(turn), p.followup[0] && p.followup[0].source ? sourceChip(p.followup[0].source) : null) : null);
+      const pollBox = el('div');
+      KC.renderPoll(pollBox, { key: K + 'poll-' + p.key, question: p.question, options: p.options || ['Yes', 'No'], thanks: 'Remembered. Here is how the conversation went:', onPick: () => card.classList.add('done') });
+      if (store.get(K + 'poll-' + p.key, null)) card.classList.add('done');
+      card.append(pollBox, after);
+      grid.append(card);
+    });
+    n.append(grid, el('p', { class: 'small' }, 'Questions and options are page-authored rewordings of what Jennings asked; the answers quoted are verbatim. Your picks stay in this browser. ', PA()));
+  });
+
+  /* 4. Axiom */
+  fill('axiom', n => {
+    const A = C.axiom; if (!A) { n.append(nodata()); return; }
+    const chart = el('div', { class: 'chart' },
+      el('div', { class: 'col imp' }, el('h4', {}, 'Imposed law construct'), J(A.keywords_imposed) || el('p', { class: 'nodata' }, 'No text')),
+      el('div', { class: 'col des' }, el('h4', {}, 'Design law construct'), J(A.keywords_design) || el('p', { class: 'nodata' }, 'No text')));
+    n.append(chart);
+    n.append(J(A.appeasing), J(A.hsm_sin));
+    const more = [A.penal_deny, A.speed_limit, A.hsm_psm, ...(A.more || [])].filter(Boolean);
+    if (more.length) n.append(acc(`Jennings on the penal alternative (${more.length})`, ...more.map(J)));
+  });
+
+  /* 5. Metaphors */
+  fill('metaphors', n => {
+    const M = C.metaphors || []; if (!M.length) { n.append(nodata()); return; }
+    const grid = el('div', { class: 'cardgrid' }); const out = el('div');
+    const show = m => { grid.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', x.dataset.id === m.id)); out.innerHTML = ''; out.append(el('div', { class: 'vcard' }, el('div', { class: 'vref' }, m.title), ...(m.quotes || []).map(J), m.lesson && txt(m.lesson) ? el('div', { class: 'lesson' }, txt(m.lesson), ' ', PA()) : null, caveat(m.caveat))); };
+    M.forEach(m => grid.append(el('button', { class: 'chip', 'data-id': m.id, onclick: () => show(m) }, m.title.split(':')[0])));
+    n.append(grid, out); show(M[0]);
+  });
+
+  /* 6. Patient: intro, tree, matrix */
+  fill('patient', n => {
+    if (!P || !Object.keys(P).length) { n.append(nodata()); return; }
+    n.append(J(P.intro), J(P.doctor_side));
+    if (P.two_views) n.append(acc('Why the arguments happen: two points of view', J(P.two_views)));
+    const T = P.tree;
+    if (T && T.nodes && T.nodes.length) {
+      n.append(el('h3', {}, 'You are the patient'));
+      const box = el('div', { class: 'branch' }); const path = [];
+      const node = id => T.nodes.find(x => x.id === id);
+      const show = id => {
+        box.innerHTML = '';
+        const st = node(id) || T.nodes[0];
+        box.append(el('div', { class: 'path' }, path.join(' → ') || 'Start'), el('p', { class: 'lead', style: 'font-size:17px;color:var(--ink)' }, st.prompt || st.summary || ''));
+        if (st.end) { if (st.summary && st.prompt) box.append(el('p', { class: 'lead' }, st.summary)); if (st.quote) box.append(J(st.quote)); box.append(el('button', { class: 'btn ghost sm', onclick: () => { path.length = 0; show(T.start || T.nodes[0].id); } }, 'Start again')); return; }
+        (st.choices || []).forEach(c => box.append(el('button', { class: 'opt', onclick: () => { path.push(c.label); box.querySelectorAll('.opt').forEach(b => b.disabled = true); if (c.effect && txt(c.effect)) box.append(el('div', { class: 'cap' }, J(c.effect))); setTimeout(() => show(c.next || 'end'), c.effect ? 1800 : 300); } }, c.label)));
+        if (!(st.choices || []).length) box.append(el('button', { class: 'btn ghost sm', onclick: () => { path.length = 0; show(T.start || T.nodes[0].id); } }, 'Start again'));
+      };
+      n.append(box); show(T.start || T.nodes[0].id);
+      n.append(el('p', { class: 'small' }, 'Prompts and choices are page-authored; every quoted effect is Jennings. ', PA()));
+    }
+    if (P.two_goals) n.append(el('h3', {}, 'Two goals, not one'), J(P.two_goals));
+    const MX = P.matrix;
+    if (MX && MX.cells && MX.cells.length) {
+      n.append(el('h3', {}, 'Trust × Remedy'), MX.intro ? el('p', { class: 'lead' }, MX.intro, ' ', PA()) : null);
+      const g = el('div', { class: 'matrix' }); const out = el('div');
+      const cell = (trust, remedy) => MX.cells.find(c => !!c.trust === trust && !!c.remedy === remedy);
+      const show = c => { g.querySelectorAll('.cell').forEach(x => x.classList.toggle('on', x.dataset.id === c.id)); out.innerHTML = ''; out.append(el('div', { class: 'vcard' }, el('div', { class: 'vref' }, c.title), J(c.quote), c.result ? el('div', { class: 'lesson' }, c.result, ' ', PA()) : null)); };
+      g.append(el('div', { class: 'hd' }, ''), el('div', { class: 'hd' }, 'No remedy'), el('div', { class: 'hd' }, 'A remedy that cures'));
+      [[true, 'Trust'], [false, 'No trust']].forEach(([t, lbl]) => { g.append(el('div', { class: 'hd' }, lbl)); [false, true].forEach(r => { const c = cell(t, r); g.append(c ? el('div', { class: 'cell' + (t && r ? ' both' : ''), 'data-id': c.id, onclick: () => show(c) }, c.title) : el('div', { class: 'cell' }, '—')); }); });
+      n.append(g, out); const first = cell(false, true) || MX.cells[0]; show(first);
+      if (MX.conclusion) n.append(J(MX.conclusion));
+      if (MX.conclusion_spectrum) n.append(acc('The same point in the Healing Substitution Model summary', J(MX.conclusion_spectrum)));
+      n.append(caveat(MX.caveat));
+    }
+    if (T && T.caveat) n.append(caveat(T.caveat));
+    const W = P.why_death;
+    if (W && (W.question || (W.reasons || []).length)) n.append(acc('A listener asks: why was Jesus\' death necessary for God to heal me?', J(W.question), W.question_note ? el('p', { class: 'small' }, txt(W.question_note), ' ', PA()) : null, J(W.preface), ...(W.reasons || []).map(J), J(W.egw), ...RV(W.remedy_verses), caveat(W.caveat)));
+  });
+
+  /* 7. Cautions + generic + imputed */
+  fill('cautions', n => {
+    const CA = P.cautions || [];
+    if (CA.length) { const grid = el('div', { class: 'cardgrid' }); const out = el('div'); const show = c => { grid.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', x.dataset.id === c.id)); out.innerHTML = ''; out.append(el('div', { class: 'vcard' }, el('div', { class: 'vref' }, c.title), ...(c.quotes || []).map(J), c.lesson && txt(c.lesson) ? el('div', { class: 'lesson' }, txt(c.lesson), ' ', PA()) : null)); }; CA.forEach(c => grid.append(el('button', { class: 'chip', 'data-id': c.id, onclick: () => show(c) }, c.title))); n.append(grid, out); show(CA[0]); }
+    const G = P.generic;
+    if (G) {
+      n.append(el('h3', {}, 'Brand-name or generic?'), J(G.brand), J(G.brand_warning));
+      if ((G.jelly_beans || []).length) n.append(acc('Red jelly beans or blue?', ...G.jelly_beans.map(J)));
+      if ((G.aslan_emeth || []).length || G.good_not_safe) n.append(acc('Aslan and Emeth', ...(G.aslan_emeth || []).map(J), J(G.good_not_safe), J(G.good_not_safe_more)));
+      n.append(caveat(G.caveat));
+    }
+    const I = P.imputed_imparted;
+    if (I && ((I.hardware_software || []).length || (I.imputed || []).length)) n.append(acc('Hardware, software, and imputed versus imparted righteousness', ...(I.hardware_software || []).map(J), ...(I.imputed || []).map(J), ...RV(I.remedy_verses), caveat(I.caveat)));
+    if (!n.childNodes.length) n.append(nodata());
+  });
+
+  /* 8. Prism */
+  KC.lensBar(sec('lensbar'), { initial: 'imposed' });
+  fill('prism', n => {
+    const B = PR.bands || []; if (!B.length) { n.append(nodata()); return; }
+    (PR.intro || []).slice(0, 2).forEach(q => n.append(J(q)));
+    if ((PR.intro || []).length > 2 || PR.metaphor_rule) n.append(acc('More from “Metaphors of the Atonement”', ...(PR.intro || []).slice(2).map(J), J(PR.metaphor_rule)));
+    const strip = el('div', { class: 'prism' }); const out = el('div');
+    const show = b => {
+      strip.querySelectorAll('.band').forEach(x => x.classList.toggle('on', x.dataset.id === b.id));
+      store.set(K + 'band', b.id);
+      out.innerHTML = '';
+      const statusTag = b.status === 'rejected' ? el('span', { class: 'tag hard' }, 'a theory Jennings rejects') : b.status === 'partial' ? el('span', { class: 'tag moderate' }, 'kept in part') : el('span', { class: 'tag design' }, b.kind === 'theory' ? 'the reading Jennings holds' : 'a biblical metaphor Jennings keeps');
+      const box = el('div', { class: 'bandbox', style: 'border-top-color:' + (b.color || 'var(--accent)') });
+      box.append(el('h3', {}, b.label, ' ', statusTag, ' ', el('span', { class: 'tag scripture' }, b.kind === 'theory' ? 'theory of atonement' : 'metaphor in Scripture')));
+      box.append(el('div', { class: 'two' },
+        el('div', { class: 'pane imp' }, el('span', { class: 'tag imposed' }, 'under imposed law'), ' ', b.imposed ? txt(b.imposed) : '—', ' ', PA()),
+        el('div', { class: 'pane des' }, el('span', { class: 'tag design' }, 'under design law'), ' ', b.design ? txt(b.design) : '—', ' ', PA())));
+      if (b.reality) box.append(el('h4', { style: 'margin:10px 0 2px' }, 'The reality behind the ' + (b.kind === 'theory' ? 'theory' : 'metaphor')), J(b.reality));
+      if (b.distortion) box.append(el('h4', { style: 'margin:10px 0 2px' }, 'When the ' + (b.kind === 'theory' ? 'theory' : 'metaphor') + ' is taken as the reality'), J(b.distortion));
+      if (b.note) box.append(el('p', { class: 'small' }, txt(b.note), ' ', PA()));
+      if ((b.more || []).length) box.append(acc(`More from Jennings on this band (${b.more.length})`, ...b.more.map(J)));
+      const scr = (b.scripture || []).filter(s => s.remedy && s.remedy.text);
+      if ((b.scripture || []).length) box.append(acc(`Scripture for this band (${b.scripture.length})`, ...b.scripture.map(s => el('div', { class: 'vcard' }, el('div', { class: 'vref' }, s.ref), s.remedy && s.remedy.text ? R(s.remedy, s.ref) : KC.missingBadge(s.remedy_note), s.traditional && s.traditional.text ? Q({ text: s.traditional.text, ref: s.ref, version: s.traditional.version, verify: s.traditional.verify, source: s.traditional.source }) : null))));
+      box.append(caveat(b.caveat));
+      out.append(box);
+    };
+    B.forEach(b => strip.append(el('button', { class: 'band' + (b.kind === 'theory' ? ' theory' : ''), 'data-id': b.id, style: 'background:' + (b.color || '#ccc'), onclick: () => show(b), title: b.label }, b.label)));
+    n.append(strip, el('p', { class: 'legend' }, 'Solid bands: metaphors Scripture itself uses. Dashed bands: theories theologians built. The lens switch above dims the reading you are not using; both are page-authored one-liners, the quotes beneath are Jennings.'), out);
+    const saved = B.find(b => b.id === store.get(K + 'band', null)); show(saved || B[0]);
+  });
+
+  /* 9. Three questions */
+  fill('tree3', n => {
+    const T = PR.tree; if (!T || !(T.steps || []).length) { n.append(nodata()); return; }
+    if (T.question) n.append(el('p', { class: 'lead', style: 'color:var(--ink);font-weight:650' }, T.question, ' ', PA()));
+    const grid = el('div', { class: 'steps3' });
+    T.steps.forEach((s, i) => grid.append(el('div', { class: 'step3' }, el('h3', {}, `${i + 1}. ${s.question}`), el('div', { class: 'ans imp lens-imposed' }, el('span', { class: 'tag imposed' }, 'imposed law answers'), ' ', s.imposed || '—'), el('div', { class: 'ans des lens-design' }, el('span', { class: 'tag design' }, 'design law answers'), ' ', s.design || '—'), el('button', { class: 'btn sm ghost', onclick: e => { const p = e.target.parentNode; p.querySelectorAll('.ans').forEach(a => a.classList.remove('lens-imposed', 'lens-design')); e.target.remove(); } }, 'Show both answers'), J(s.quote))));
+    n.append(grid);
+    if (T.conclusion) n.append(el('h3', {}, 'So the remedy must act where the change happened'), J(T.conclusion));
+    n.append(el('p', { class: 'small' }, 'The questions and the two one-line answers are page-authored; the quotations are Jennings. The lens switch in section 8 decides which answer shows first. ', PA()));
+  });
+
+  /* 10. Ladder (reused) */
+  fill('ladder', n => {
+    const A = D.atonement_levels; if (!A || !(A.theories || []).length) { n.append(nodata()); return; }
+    if (A.intro) n.append(J(A.intro));
+    const wrap = el('div', { class: 'ladder' });
+    const allBtn = el('button', { class: 'btn sm ghost', onclick: () => { const open = !wrap.classList.contains('all'); wrap.classList.toggle('all', open); wrap.querySelectorAll('.theory').forEach(t => t.classList.toggle('open', open)); allBtn.textContent = open ? 'Hide the level-seven re-readings' : 'Show every level-seven re-reading'; } }, 'Show every level-seven re-reading');
+    A.theories.forEach(t => {
+      const card = el('div', { class: 'theory' });
+      card.append(el('h4', {}, el('span', { class: 'lvl-badge' }, t.n), `${t.level}: ${t.theory}`), J(t.handout || t.gsh));
+      const l7 = el('div', { class: 'lens7' }, el('span', { class: 'tag design' }, 'level seven re-reads it'), J(t.level7_rereading), t.scripture && t.scripture.length ? el('div', {}, ...t.scripture.map(s => s.remedy && s.remedy.text ? R(s.remedy, s.ref) : null)) : null);
+      card.append(el('button', { class: 'btn sm ghost', onclick: () => card.classList.toggle('open') }, 'Level seven re-reading'), l7);
+      wrap.append(card);
+    });
+    n.append(allBtn, wrap);
+    if ((A.level_seven_includes || []).length) n.append(acc('What level seven includes', ...A.level_seven_includes.map(J)));
+    if (A.unity) n.append(J(A.unity));
+    n.append(el('p', { class: 'small' }, `Copied verbatim from the verified data of ${A.reused_from === 'seven-reasons' ? 'Same Act, Seven Reasons' : A.reused_from}.`));
+  });
+
+  /* 11. Myths */
+  fill('myths', n => {
+    const M = PR.myths || []; if (!M.length) { n.append(nodata()); return; }
+    KC.renderAccordion(n, M.map(m => ({ title: m.allegation })), { numbered: true, body: (it, i) => { const m = M[i]; return el('div', {}, m.allegation_quote ? el('div', {}, el('span', { class: 'tag hard' }, 'the allegation, as Jennings quotes it'), J(m.allegation_quote)) : null, el('span', { class: 'tag design' }, 'his reply'), ...(m.reply || []).map(J), caveat(m.caveat)); } });
+    n.append(el('p', { class: 'small' }, 'Allegation headings are page-authored summaries; the quotations are Jennings. ', PA()));
+  });
+
+  /* 12. Infinite */
+  fill('infinite', n => {
+    const I = PR.infinite; if (!I || !((I.cards || []).length || I.legal)) { n.append(nodata()); return; }
+    const grid = el('div', { class: 'inf' });
+    (I.cards || []).forEach(c => grid.append(el('div', { class: 'card sub' }, el('h3', {}, c.title, ' ', PA()), J(c.quote))));
+    n.append(grid);
+    if (I.legal || I.cost_not_judicial) n.append(el('h3', {}, 'Infinite price, not legal penalty'), J(I.cost_not_judicial), J(I.legal));
+    n.append(caveat(I.caveat));
+  });
+
+  /* 13. Verses */
+  KC.lensBar(sec('lensbar2'), { initial: 'imposed' });
+  fill('verses', n => {
+    const V = D.verses || []; if (!V.length) { n.append(nodata()); return; }
+    const cards = V.map(v => {
+      const des = el('span', {}, v.design ? txt(v.design) : '');
+      if (v.design_quote) des.append(J(v.design_quote));
+      const tr = v.traditional ? Object.assign({}, v.traditional, { version: [v.traditional.version && v.traditional.version !== 'unspecified' ? v.traditional.version : null, v.traditional.speaker && /as quoted by/i.test(v.traditional.speaker) ? 'as quoted by Jennings' : null].filter(Boolean).join(', ') || null }) : null;
+      return { id: v.id, ref: v.ref, group: v.group, hard: v.hard, traditional: tr, remedy: v.remedy, remedy_note: v.remedy_note, imposed: v.imposed ? el('span', {}, txt(v.imposed), ' ', PA()) : null, design: des, jennings_source: v.design_quote ? null : v.jennings_source, caveat: v.caveat };
+    });
+    KC.renderVerseExplorer(n, cards);
+  });
+
+  /* 14. Objections */
+  fill('objections', n => {
+    const O = D.objections || []; if (!O.length) { n.append(nodata()); return; }
+    KC.renderAccordion(n, O.map(o => ({ title: o.objection, strength: o.strength })), { numbered: true, body: (it, i) => { const o = O[i]; return el('div', {}, ...(o.reply || []).map(J), caveat(o.caveat), o.prompt ? el('div', {}, el('p', { class: 'lead', style: 'margin-bottom:4px' }, o.prompt, ' ', PA()), KC.journal(K + 'prompt-' + (o.id || i))) : null); } });
+    n.append(el('p', { class: 'small' }, 'Your notes stay in this browser only. Objection wording and prompts are page-authored; the replies are Jennings.'));
+  });
+
+  fill('glossary', n => KC.renderAccordion(n, D.glossary || [], { body: it => el('div', {}, it.meaning, it.page_authored_meaning ? [' ', PA()] : null, it.quote ? quote(txt(it.quote), { voice: voiceOf(it), ref: it.speaker && !/^jennings$/i.test(it.speaker) ? it.speaker : null, source: it.source }) : null, it.remedy && it.remedy.text ? quote(it.remedy.text, { voice: 'remedy', ref: it.remedy.ref }) : null, caveat(it.caveat)) }));
+  fill('sourceList', n => { const s = D.sources; if (!s || !s.length) { n.append(nodata()); return; } n.append(el('ul', {}, ...s.map(x => el('li', {}, x.label || x.id, ' ', sourceChip(x))))); });
+})();
+</script>
+</body>
+</html>

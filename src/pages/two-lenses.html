@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Two Lenses — the Biblical Keyword Switcher</title>
+<!-- @kit.css -->
+<style>
+  .axioms{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:600px){.axioms{grid-template-columns:1fr}}
+  .axioms .card.sub{margin:0}
+  .axioms.imposed-first .design{order:2}
+  .ax h3{margin-top:0}
+  .ax.imposed{border-top:3px solid var(--imposed)}
+  .ax.design{border-top:3px solid var(--design)}
+  .ax li{margin:6px 0}
+  .termgrid{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+  .termgrid .chip{font-size:14px}
+  .def{font-family:Georgia,serif;font-size:17.5px;line-height:1.55}
+  .both .lens-imposed,.both .lens-design{display:block !important}
+  .ctr{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+  @media(max-width:600px){.ctr{grid-template-columns:1fr}}
+  .ctr .cell{border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14.5px;background:var(--card2)}
+  .ctr .cell.design{border-color:rgba(224,177,94,.45)}
+  .ctr .cell.imposed{border-color:rgba(217,115,106,.45)}
+  body[data-lens="imposed"] .ctr .cell.design,body[data-lens="design"] .ctr .cell.imposed{opacity:.45}
+  .ctr .cell:hover{opacity:1 !important}
+  .mcard{border:1px solid var(--line);border-radius:var(--radius);background:var(--card2);padding:14px 16px;margin:10px 0;cursor:pointer;transition:.15s}
+  .mcard:hover{border-color:var(--accent2)}
+  .mcard h3{margin:0 0 6px}
+  .mcard .face{display:none}
+  .mcard[data-face="imposed"] .face.imposed,.mcard[data-face="design"] .face.design{display:block}
+  .mcard .hint{font-size:12px;color:var(--faint);margin-top:6px}
+  .score{font-family:Georgia,serif;font-size:22px;color:var(--accent);text-align:center;margin:10px 0}
+  .pairs td:nth-child(2){color:var(--imposed)}.pairs td:nth-child(3){color:var(--design)}
+  .qitem{border:1px solid var(--line);border-radius:var(--radius-s);padding:12px 14px;margin:10px 0;background:var(--card2)}
+  .qitem .st{font-family:Georgia,serif;font-size:16.5px;margin-bottom:8px}
+  .qitem .ans{display:flex;gap:8px;flex-wrap:wrap}
+  .qitem .fb{font-size:13.5px;margin-top:8px;color:var(--muted)}
+  .ctable{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+  .ctable th,.ctable td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+  .ctable th{color:var(--faint);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="lensbar"></div>
+
+  <header class="hero">
+    <div class="eyebrow">An Interactive Study · Come and Reason Knowledge Centre</div>
+    <h1>Two Lenses</h1>
+    <p class="sub">The same Bible words, justice, wrath, atonement, judgment, forgiveness, mean two different things depending on what kind of law you think God's law is. Flip the switch at the top and watch every definition on this page change.</p>
+    <p class="credit"><a href="index.html">&larr; Knowledge Centre</a> &middot; Teaching of Timothy R. Jennings, MD · <a href="https://comeandreason.com" target="_blank" rel="noopener">Come and Reason Ministries</a> · see also <a href="fire.html">The Consuming Fire</a>, <a href="dominoes.html">The Falling Dominoes</a> and <a href="seven-levels.html">The Seven Levels</a> and <a href="seven-reasons.html">Same Act, Seven Reasons</a>, <a href="sin-disease.html">Sin Is a Disease</a> and <a href="wrath.html">Wrath = Letting Go</a></p>
+    <div class="toc">
+      <a href="#s1">Which lens do you default to?</a><a href="#s2">The two constructs</a><a href="#s3">Keyword switcher</a><a href="#s4">The contrast</a><a href="#s5">Doctrines that flip</a><a href="#s6">Newton's laws</a><a href="#s7">Two pictures of God</a><a href="#s8">Spot the lens</a><a href="#s9">Why it matters</a><a href="#s10">The design laws</a>
+    </div>
+  </header>
+
+  <section id="s1"><div class="card"><h2><span class="num">1</span>Which lens do you default to?</h2><div id="entry"></div></div></section>
+  <section id="s2"><div class="card"><h2><span class="num">2</span>The two constructs</h2><div id="constructs"></div></div></section>
+  <section id="s3"><div class="card"><h2><span class="num">3</span>The keyword switcher</h2><p class="lead">Pick a word. Its definition follows the lens at the top of the page; "show both" lays the two side by side. Each card also carries Jennings' longer explanation, a verse where the word occurs read both ways, and how The Remedy renders the idea.</p><div id="terms"></div></div></section>
+  <section id="s4"><div class="card"><h2><span class="num">4</span>The contrast</h2><div id="contrast"></div></div></section>
+  <section id="s5"><div class="card"><h2><span class="num">5</span>Doctrines that flip</h2><p class="lead">The same doctrine or story told under each law. Click a card to turn it over; the lens at the top sets which face is up first.</p><div id="doctrines"></div></div></section>
+  <section id="s6"><div class="card"><h2><span class="num">6</span>Are laws rules or descriptions? Newton's test</h2><div id="newton"></div></div></section>
+  <section id="s7"><div class="card"><h2><span class="num">7</span>Two pictures of God</h2><div id="pictures"></div></div></section>
+  <section id="s8"><div class="card"><h2><span class="num">8</span>Spot the lens</h2><p class="lead">Twelve real statements. Tag each one: is it reading God's law as imposed, or as design?</p><div id="spot"></div></div></section>
+  <section id="s9"><div class="card"><h2><span class="num">9</span>Why it matters</h2><div id="why"></div></div></section>
+  <section id="s10"><div class="card"><h2><span class="num">10</span>The design laws, listed</h2><div id="designLaws"></div></div></section>
+  <section id="sources"><div class="card"><h2>Glossary and sources</h2><div id="glossary"></div><h3>Sources used on this page</h3><div id="sourceList"></div></div></section>
+
+  <p class="footnote">Built as a study companion for Dr Timothy R. Jennings' teaching. Keyword definitions are quoted verbatim from Come and Reason's "Biblical Keywords: Comparing Definitions"; The Remedy is Jennings' expanded paraphrase. Quiz items marked as page-authored are re-phrasings for practice, not quotations.</p>
+</div>
+
+<!-- @data -->
+<!-- @kit.js -->
+<script>
+(function(){
+  'use strict';
+  const D = window.PAGE_DATA || {};
+  const { el, quote, sourceChip, caveat, store, nodata } = KC;
+  const stripMd = s => String(s).replace(/\*\*([^*]+)\*\*/g, '$1').replace(/(^|[\s(“"'])\*([^*\n]+)\*(?=[\s).,;:!?”"']|$)/g, '$1$2').replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g, '$1');
+  const txt = x => x == null ? '' : stripMd(typeof x === 'string' ? x : (x.text || ''));
+  const voiceOf = o => { const s = (o && o.speaker) || ''; return /white/i.test(s) ? 'egw' : /cole/i.test(s) ? 'cole' : 'jennings'; };
+  const J = o => o && txt(o) ? quote(txt(o), { voice: voiceOf(o), ref: o.speaker || null, source: o.source }) : null;
+  const Q = (o, voice) => o && txt(o) ? quote(txt(o), { ref: o.ref, version: o.version, verify: o.verify, source: o.source, voice: voice || 'scripture' }) : null;
+  const R = (o, ref) => { const t = txt(o && o.remedy !== undefined ? o.remedy : o); return t ? quote(t, { voice: 'remedy', ref: ref || (o && o.remedy_ref) || (o && o.ref) }) : null; };
+  const sec = id => document.getElementById(id);
+  const fill = (id, fn) => { const node = sec(id); try { fn(node); } catch (e) { node.append(el('p', { class: 'nodata' }, 'This section could not render: ' + e.message)); console.error(id, e); } };
+  const lensName = l => l === 'imposed' ? 'imposed law' : 'design law';
+
+  KC.lensBar(sec('lensbar'), { initial: 'imposed' });
+
+  /* 1. Entry quiz */
+  fill('entry', n => {
+    const q = D.entry_quiz; if (!q || !q.items) { n.append(nodata()); return; }
+    if (q.intro) n.append(el('p', { class: 'lead' }, q.intro));
+    const picks = store.get('cr-twolenses-entry', {});
+    const out = el('div');
+    const items = q.items.map((it, i) => {
+      const box = el('div', { class: 'qitem' }, el('div', { class: 'st' }, `${i + 1}. ${it.prompt}`));
+      const ans = el('div', { class: 'ans' });
+      const order = i % 2 ? [...it.answers].reverse() : it.answers;
+      order.forEach(a => ans.append(el('button', { class: 'opt' + (picks[i] === a.lens ? ' sel' : ''), style: 'width:auto;flex:1 1 220px', onclick: e => { picks[i] = a.lens; store.set('cr-twolenses-entry', picks); ans.querySelectorAll('.opt').forEach(x => x.classList.remove('sel')); e.target.classList.add('sel'); score(); } }, a.text)));
+      box.append(ans);
+      return box;
+    });
+    n.append(...items, out);
+    function score() {
+      const vals = Object.values(picks); if (vals.length < 4) { out.innerHTML = ''; out.append(el('p', { class: 'small' }, `${vals.length} of ${q.items.length} answered; answer at least 4.`)); return; }
+      const d = vals.filter(v => v === 'design').length, im = vals.length - d;
+      const key = d >= vals.length * 0.7 ? 'design' : im >= vals.length * 0.7 ? 'imposed' : 'mixed';
+      out.innerHTML = '';
+      out.append(el('div', { class: 'score' }, key === 'mixed' ? `Mixed: ${im} imposed, ${d} design` : `You default to ${lensName(key)} (${key === 'design' ? d : im} of ${vals.length})`), el('p', { class: 'lead' }, (q.results || {})[key] || ''),
+        key !== 'mixed' ? el('p', { class: 'center' }, el('button', { class: 'btn sm', onclick: () => KC.setLens(key) }, `Set the page to the ${lensName(key)} lens`), ' ', el('button', { class: 'btn sm ghost', onclick: () => KC.setLens(key === 'design' ? 'imposed' : 'design') }, 'Set it to the other lens')) : null);
+    }
+    score();
+  });
+
+  /* 2. Constructs */
+  fill('constructs', n => {
+    const c = D.constructs; if (!c) { n.append(nodata()); return; }
+    if (c.intro) n.append(J(c.intro));
+    const card = (k, o) => el('div', { class: 'card sub ax ' + k }, el('h3', {}, o.label || k), el('ul', {}, ...(o.axioms || []).map(a => el('li', {}, a))), sourceChip(o.source));
+    const grid = el('div', { class: 'axioms' });
+    const paint = () => { grid.innerHTML = ''; const first = KC.lens() === 'design' ? ['design', 'imposed'] : ['imposed', 'design']; first.forEach(k => c[k] && grid.append(card(k, c[k]))); };
+    paint(); document.addEventListener('kc:lens', paint);
+    n.append(grid);
+    if (c.pdf_url) n.append(el('p', { class: 'small' }, 'Printable original: ', el('a', { href: c.pdf_url, target: '_blank', rel: 'noopener' }, 'BiblicalKeywords_ComparingDefinitions.pdf')));
+  });
+
+  /* 3. Keyword switcher */
+  fill('terms', n => {
+    const T = D.terms; if (!T || !T.length) { n.append(nodata()); return; }
+    const grid = el('div', { class: 'termgrid' });
+    const detail = el('div');
+    const both = el('label', { class: 'small', style: 'display:inline-flex;gap:6px;align-items:center;cursor:pointer' }, el('input', { type: 'checkbox', onchange: e => detail.classList.toggle('both', e.target.checked) }), 'show both definitions');
+    let cur = T[0];
+    const show = t => {
+      cur = t;
+      grid.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c.dataset.id === t.id));
+      detail.innerHTML = '';
+      const box = el('div', { class: 'vcard' });
+      box.append(el('div', { class: 'vref', style: 'font-size:24px' }, t.term));
+      box.append(el('div', { class: 'lens-panel imposed lens-imposed' }, el('span', { class: 'tag imposed' }, 'under imposed law'), el('div', { class: 'def' }, t.imposed || '—')));
+      box.append(el('div', { class: 'lens-panel design lens-design' }, el('span', { class: 'tag design' }, 'under design law'), el('div', { class: 'def' }, t.design || '—')));
+      box.append(el('div', {}, sourceChip(t.source)));
+      if (t.elaboration && t.elaboration.length) box.append(el('details', { class: 'acc' }, el('summary', {}, 'Jennings unpacks it'), el('div', { class: 'body' }, ...t.elaboration.map(J))));
+      if (t.verse) {
+        const v = t.verse;
+        box.append(el('h3', {}, 'The word in a verse: ' + (v.ref || '')));
+        if (v.traditional && v.traditional.text) box.append(Q({ text: v.traditional.text, ref: v.ref, version: v.traditional.version, verify: v.traditional.verify, source: v.traditional.source }));
+        if (v.remedy && v.remedy.text) box.append(R(v.remedy, v.ref)); else box.append(KC.missingBadge());
+        if (v.imposed_reading) box.append(el('div', { class: 'lens-panel imposed lens-imposed' }, el('span', { class: 'tag imposed' }, 'heard as'), v.imposed_reading));
+        if (v.design_reading) box.append(el('div', { class: 'lens-panel design lens-design' }, el('span', { class: 'tag design' }, 'Jennings reads'), v.design_reading));
+        if (v.page_authored) box.append(el('p', { class: 'small' }, 'The two one-line readings are page-authored summaries; the quotes above are the sources.'));
+      }
+      if (t.remedy_hits && t.remedy_hits.length) box.append(el('details', { class: 'acc' }, el('summary', {}, 'How The Remedy renders it elsewhere'), el('div', { class: 'body' }, ...t.remedy_hits.map(h => R(h, h.ref)))));
+      detail.append(box);
+    };
+    T.forEach(t => grid.append(el('button', { class: 'chip', 'data-id': t.id, onclick: () => show(t) }, t.term)));
+    n.append(grid, el('div', { class: 'row', style: 'justify-content:flex-end' }, both), detail);
+    show(T[0]);
+    // all-terms table
+    const tbl = el('table', { class: 'ctable' }, el('tr', {}, el('th', {}, 'Word'), el('th', { class: 'lens-imposed' }, 'Imposed law'), el('th', { class: 'lens-design' }, 'Design law')));
+    T.forEach(t => tbl.append(el('tr', {}, el('td', { style: 'color:var(--accent);font-weight:650;cursor:pointer', onclick: () => { show(t); detail.scrollIntoView({ behavior: 'smooth' }); } }, t.term), el('td', { class: 'lens-imposed' }, t.imposed), el('td', { class: 'lens-design' }, t.design))));
+    n.append(el('details', { class: 'acc' }, el('summary', {}, 'All words at once (follows the lens)'), el('div', { class: 'body' }, tbl)));
+  });
+
+  /* 4. Contrast table */
+  fill('contrast', n => {
+    const c = D.contrast; if (!c || !c.rows) { n.append(nodata()); return; }
+    if (c.intro) n.append(J(c.intro));
+    const h = c.header || {};
+    n.append(el('div', { class: 'ctr' }, el('div', { class: 'cell design', style: 'font-weight:750;color:var(--design)' }, h.design || 'Design law'), el('div', { class: 'cell imposed', style: 'font-weight:750;color:var(--imposed)' }, h.imposed || 'Imposed law')));
+    c.rows.forEach(r => n.append(el('div', { class: 'ctr' }, el('div', { class: 'cell design' }, r.design), el('div', { class: 'cell imposed' }, r.imposed))));
+    if (c.follow_up) n.append(J(c.follow_up));
+    if (c.note) n.append(el('p', { class: 'small' }, c.note));
+    if (c.source) n.append(sourceChip(c.source));
+  });
+
+  /* 5. Doctrines */
+  fill('doctrines', n => {
+    const g = D.level_four_gospel;
+    if (g) n.append(el('details', { class: 'acc' }, el('summary', {}, 'Start here: a sermon Jennings heard, and his reply'), el('div', { class: 'body' }, J(g.sermon), J(g.reply), J(g.closing))));
+    const M = D.metaphors; if (!M || !M.length) { n.append(nodata()); return; }
+    const cards = M.map(m => {
+      const c = el('div', { class: 'mcard', 'data-face': KC.lens() });
+      c.append(el('h3', {}, m.title), el('div', { class: 'face imposed' }, el('span', { class: 'tag imposed' }, 'imposed law'), el('div', {}, m.imposed || '—')), el('div', { class: 'face design' }, el('span', { class: 'tag design' }, 'design law'), el('div', {}, m.design || '—')), el('div', { class: 'hint' }, (m.refs || []).join(', ') + ' · click to flip'));
+      if (m.page_authored || m.imposed_page_authored) c.append(el('div', { class: 'hint' }, 'The imposed-law face is a page-authored summary, not Jennings\' wording.'));
+      if (m.imposed_note) c.append(el('div', { class: 'hint' }, m.imposed_note));
+      if (m.imposed_source) c.append(el('div', { class: 'hint' }, 'Imposed face from: ', sourceChip(m.imposed_source)));
+      if (m.note) c.append(el('div', { class: 'hint' }, m.note));
+      if (m.traditional && m.traditional.text) c.append(el('details', { class: 'acc', onclick: e => e.stopPropagation() }, el('summary', {}, 'The verse as Jennings quotes it'), el('div', { class: 'body' }, Q({ text: m.traditional.text, ref: (m.refs || [])[0], version: m.traditional.version }))));
+      if (m.remedy && m.remedy.text) c.append(el('details', { class: 'acc', onclick: e => e.stopPropagation() }, el('summary', {}, 'The Remedy'), el('div', { class: 'body' }, R(m.remedy, m.remedy.ref))));
+      c.append(el('div', {}, sourceChip(m.source)));
+      c.addEventListener('click', () => c.dataset.face = c.dataset.face === 'imposed' ? 'design' : 'imposed');
+      return c;
+    });
+    n.append(...cards);
+    document.addEventListener('kc:lens', e => cards.forEach(c => c.dataset.face = e.detail));
+  });
+
+  /* 6. Newton */
+  fill('newton', n => {
+    const w = D.newton; if (!w) { n.append(nodata()); return; }
+    if (w.setup) n.append(J(w.setup));
+    if (w.laws) n.append(J(w.laws));
+    if (w.questions && w.questions.length) {
+      n.append(el('h3', {}, 'Now answer the following questions about Newton\'s laws'));
+      const picks = store.get('cr-twolenses-newton', {});
+      w.questions.forEach((q, i) => {
+        const row = el('div', { class: 'qitem' }, el('div', { class: 'st' }, q));
+        const ans = el('div', { class: 'ans' });
+        ['Yes', 'No', 'It depends'].forEach(a => ans.append(el('button', { class: 'opt' + (picks[i] === a ? ' sel' : ''), style: 'width:auto', onclick: e => { picks[i] = a; store.set('cr-twolenses-newton', picks); ans.querySelectorAll('.opt').forEach(x => x.classList.remove('sel')); e.target.classList.add('sel'); } }, a)));
+        row.append(ans); n.append(row);
+      });
+    }
+    if (w.conclusion) n.append(el('details', { class: 'acc' }, el('summary', {}, 'Jennings\' answer'), el('div', { class: 'body' }, J(w.conclusion))));
+    if (w.angels) n.append(el('details', { class: 'acc' }, el('summary', {}, 'Angels and the law'), el('div', { class: 'body' }, J(w.angels))));
+    if (w.diagnostic) n.append(J(w.diagnostic));
+    if (w.parent) n.append(J(w.parent));
+    if (w.key_points && w.key_points.length) n.append(el('details', { class: 'acc' }, el('summary', {}, 'Key points from the chapter'), el('div', { class: 'body' }, el('ul', {}, ...w.key_points.map(k => el('li', {}, k))), sourceChip(w.key_points_source))));
+  });
+
+  /* 7. Two pictures */
+  fill('pictures', n => {
+    const p = D.two_pictures; const h = D.handout;
+    if (!p && !h) { n.append(nodata()); return; }
+    if (p) {
+      if (p.story) n.append(J(p.story));
+      if (p.jesus_children) n.append(J(p.jesus_children));
+      if (p.egw_children && p.egw_children.length) n.append(el('details', { class: 'acc' }, el('summary', {}, 'How the children saw Jesus (the lines Jennings quotes)'), el('div', { class: 'body' }, ...p.egw_children.map(J))));
+      if (p.how_to_test) n.append(J(p.how_to_test));
+      if (p.discern && p.discern.length) n.append(el('h3', {}, 'Questions that help in discerning truth from error'), ...p.discern.map(J));
+      if (p.allegations) n.append(el('details', { class: 'acc' }, el('summary', {}, 'Satan\'s allegations against God, as Jennings lists them'), el('div', { class: 'body' }, J(p.allegations.intro), ...(p.allegations.items || []).map(J), (p.allegations.counter_principles || []).length ? el('h3', {}, 'And the principles set against them') : null, ...(p.allegations.counter_principles || []).map(J))));
+      if (p.brain) n.append(J(p.brain));
+      if (p.scripture && p.scripture.length) n.append(el('details', { class: 'acc' }, el('summary', {}, 'The texts behind this, in The Remedy'), el('div', { class: 'body' }, ...p.scripture.map(v => R(v, v.ref) || Q(v)))));
+      if (p.final_message) n.append(J(p.final_message));
+      if (p.centre) n.append(J(p.centre));
+    }
+    if (h && h.pairs && h.pairs.length) {
+      n.append(el('h3', {}, 'The handout: two pictures, point by point'));
+      if (h.intro) n.append(J(h.intro));
+      const t = el('table', { class: 'ctable pairs' }, el('tr', {}, el('th', {}, ''), el('th', {}, 'Picture A'), el('th', {}, 'Picture B')));
+      h.pairs.forEach(pr => t.append(el('tr', {}, el('td', {}, pr.topic || ''), el('td', {}, pr.picture_a), el('td', {}, pr.picture_b))));
+      n.append(t, sourceChip(h.pairs[0].source));
+      if (h.note) n.append(el('p', { class: 'small' }, h.note));
+    }
+  });
+
+  /* 8. Spot the lens */
+  fill('spot', n => {
+    const s = D.spot_quiz; if (!s || !s.items) { n.append(nodata()); return; }
+    if (s.intro) n.append(el('p', { class: 'small' }, s.intro));
+    let right = 0, done = 0;
+    const score = el('div', { class: 'score' });
+    s.items.forEach((it, i) => {
+      const row = el('div', { class: 'qitem' }, el('div', { class: 'st' }, `“${txt(it.statement)}”`));
+      const fb = el('div', { class: 'fb' });
+      const ans = el('div', { class: 'ans' });
+      ['imposed', 'design'].forEach(l => ans.append(el('button', { class: 'opt', style: 'width:auto', onclick: e => { if (row.dataset.done) return; row.dataset.done = '1'; done++; const ok = l === it.lens; if (ok) right++; e.target.classList.add(ok ? 'correct' : 'wrong'); fb.innerHTML = ''; fb.append(el('b', { style: ok ? 'color:var(--good)' : 'color:var(--bad)' }, ok ? 'Yes, ' : 'No, '), `this reads God's law as ${lensName(it.lens)}. `, it.explain || '', ' ', sourceChip(it.source)); score.textContent = `${right} of ${done} spotted`; } }, l === 'imposed' ? 'Imposed law' : 'Design law')));
+      row.append(ans, fb); n.append(row);
+    });
+    n.append(score);
+  });
+
+  /* 9. Why it matters */
+  fill('why', n => {
+    const w = D.why_it_matters; if (!w) { n.append(nodata()); return; }
+    if (w.infecting) n.append(J(w.infecting));
+    if (w.leonard) n.append(el('details', { class: 'acc' }, el('summary', {}, 'A case Jennings cites: the Leonard brothers (2015)'), el('div', { class: 'body' }, J(w.leonard))));
+    if (w.protect) n.append(J(w.protect));
+    if (w.constantine) n.append(el('details', { class: 'acc' }, el('summary', {}, 'How the imposed-law lens got into Christianity (The Remedy, preface)'), el('div', { class: 'body' }, J(w.constantine), J(w.constantine_effects), J(w.translation_bias))));
+    if (w.pastor) n.append(el('details', { class: 'acc' }, el('summary', {}, 'The two lenses in a live conversation (2026)'), el('div', { class: 'body' }, J(w.pastor), J(w.pastor_principles), J(w.pastor_substitution))));
+  });
+
+  /* 10. Design laws */
+  fill('designLaws', n => {
+    const d = D.design_laws_list; if (!d || !d.laws) { n.append(nodata()); return; }
+    if (d.intro) n.append(J(d.intro));
+    if (d.definition) n.append(J(d.definition));
+    n.append(el('ul', {}, ...d.laws.map(l => el('li', {}, el('b', {}, l.name + ': '), l.text, (l.examples || l.consequences || l.detail) ? el('ul', {}, ...(l.examples || l.consequences || l.detail).map(x => el('li', {}, x))) : null))), sourceChip(d.source));
+    if (d.constantine) n.append(el('details', { class: 'acc' }, el('summary', {}, 'Where the other kind of law came from'), el('div', { class: 'body' }, J(d.constantine))));
+    if (d.closing) n.append(J(d.closing));
+  });
+
+  fill('glossary', n => KC.renderAccordion(n, D.glossary || [], { body: it => el('div', {}, it.meaning, sourceChip(it.source)) }));
+  fill('sourceList', n => { const s = D.sources; if (!s || !s.length) { n.append(nodata()); return; } n.append(el('ul', {}, ...s.map(x => el('li', {}, x.label || x.id, ' ', sourceChip(x))))); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Corpus copies stay on this machine; the built pages quote what they need.
+data/sources/
+docs/remedy_verses.json
+
+# Python
+__pycache__/
+*.pyc
+
+# OS / editor
+Thumbs.db
+.DS_Store
